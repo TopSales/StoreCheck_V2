@@ -190,22 +190,22 @@ namespace ZPF
          };
 #endif
 
-         SampleData = SampleViewModel.Current.CreateDBList(SampleData);
+         //SampleData = SampleViewModel.Current.CreateDBList(SampleData);
 
-         if (SampleData)
-         {
-            if (DB_SQL._ViewModel.DBType == DBType.SQLServer)
-            {
-               SampleViewModel.Current.DropTables();
-            };
+         //if (SampleData)
+         //{
+         //   if (DB_SQL._ViewModel.DBType == DBType.SQLServer)
+         //   {
+         //      SampleViewModel.Current.DropTables();
+         //   };
 
-            SampleViewModel.Current.CreateTables();
-            SampleViewModel.Current.SampleData();
-         }
-         else
-         {
-            DB_SQL._ViewModel.LastError = "";
-         };
+         //   SampleViewModel.Current.CreateTables();
+         //   SampleViewModel.Current.SampleData();
+         //}
+         //else
+         //{
+         //   DB_SQL._ViewModel.LastError = "";
+         //};
 
          Log.Write(ErrorLevel.Log, "MainViewModel.InitDB(end)");
 

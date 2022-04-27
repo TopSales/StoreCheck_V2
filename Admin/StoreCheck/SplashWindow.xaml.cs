@@ -85,18 +85,18 @@ namespace StoreCheck
 
          AuditTrailPage auditTrailPage = null;
 
-         Application.Current.Dispatcher.Invoke(new Action(() =>
+         Application.Current.Dispatcher.Invoke(new System.Action(() =>
          {
             auditTrailPage = new AuditTrailPage( AuditTrailViewModel.Current, MainViewModel.IniFileName);
          }));
 
          // - - -  - - - 
 
-         Log.WriteHeader(MainViewModel.DeviceInfo.APP, MainViewModel.DeviceInfo.AV, MainViewModel.DeviceInfo.OS);
+         //ToDo: Log.WriteHeader(MainViewModel.DeviceInfo.APP, MainViewModel.DeviceInfo.AV, MainViewModel.DeviceInfo.OS);
 
          // - - -  - - - 
 
-         Application.Current.Dispatcher.Invoke(new Action(() =>
+         Application.Current.Dispatcher.Invoke(new System.Action(() =>
          {
             MainViewModel.Current.Load();
             string fmt = Environment.CurrentDirectory + @"\Styles\{0}.xaml";

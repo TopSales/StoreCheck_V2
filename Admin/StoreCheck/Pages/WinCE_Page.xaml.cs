@@ -366,7 +366,8 @@ namespace StoreCheck.Pages
       {
          try
          {
-            return Code128Rendering.MakeBarcodeImage(Text, Weight, false);
+            //ToDo: return Code128Rendering.MakeBarcodeImage(Text, Weight, false);
+            return null;
          }
          catch 
          {

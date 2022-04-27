@@ -58,7 +58,7 @@ namespace ZPF
                   FKDocumentType = 3;
                   break;
 
-               case Document.InternalDocumentTypes.Signature:
+               case Document.InternalDocumentTypes.signature:
                   FKDocumentType = 4;
                   break;
             };
@@ -66,7 +66,7 @@ namespace ZPF
 
          try
          {
-            string SQL = $"insert Document ( {(DocType == Document.InternalDocumentTypes.File ? "Document" : "Picture")}, InternalDocType, TypeFK, FK, FileName, FileExt, FileSize, FileDate, FKDocumentType  )"
+            string SQL = $"insert Document ( {(DocType == Document.InternalDocumentTypes.doc ? "Document" : "Picture")}, InternalDocType, TypeFK, FK, FileName, FileExt, FileSize, FileDate, FKDocumentType  )"
                + $" values ( CONVERT(varbinary(max), @DocData) , {(int)DocType}, '{refType}', {extRef}, '{DB_SQL.StringToSQL(fileInfo.Name)}', '{DB_SQL.StringToSQL(fileInfo.Extension)}', {fileInfo.Length}, { DB_SQL.DateTimeToSQL(fileInfo.LastWriteTimeUtc)}, {FKDocumentType} )";
 
             return DB_SQL.UploadFile(DB_SQL._ViewModel, FilePath, SQL);
@@ -90,7 +90,7 @@ namespace ZPF
 
          FileInfo fileInfo = new FileInfo(FilePath);
 
-         string SQL = $"select {(DocType == Document.InternalDocumentTypes.File ? "Document" : "Picture")} from Document where PK={PK}";
+         string SQL = $"select {(DocType == Document.InternalDocumentTypes.doc ? "Document" : "Picture")} from Document where PK={PK}";
 
          return DB_SQL.DownloadFile(DB_SQL._ViewModel, FilePath, SQL);
       }

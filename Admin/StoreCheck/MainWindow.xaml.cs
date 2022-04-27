@@ -337,7 +337,6 @@ namespace StoreCheck
 
 
          MainViewModel.Current.TestUnitaires = false;
-         MainViewModel.Current.UpdateState();
 
          //(frameBody.Content as DashBoardPage).Animation();
          // VMLocator.Main.UpdateRightsMenu();
