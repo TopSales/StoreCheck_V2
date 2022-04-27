@@ -1,0 +1,62 @@
+﻿<Window 
+   x:Class="StoreCheck.InputComboBox"
+   Title="StoreCheck"    
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+   xmlns:ZPF="clr-namespace:ZPF;assembly=ZPFLib_WPF" 
+   xmlns:local="clr-namespace:StoreCheck"
+   mc:Ignorable="d"
+   Icon="StoreCheck.ico" 
+   Height="280" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  Loaded="Window_Loaded"
+   KeyDown="Window_KeyDown" DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
+
+   <Grid>
+      <Grid.Background>
+         <ImageBrush x:Name="BackgroundImageBrush" 
+                     ImageSource="{DynamicResource BackgroundImageSource}" Opacity="0.7" />
+      </Grid.Background>
+
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="*"/>
+         <ColumnDefinition Width="96"/>
+      </Grid.ColumnDefinitions>
+
+      <Label x:Name="label" x:FieldModifier="public" Margin="10" Content="label" FontSize="18" />
+
+      <ComboBox x:Name="comboBox" x:FieldModifier="public" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" />
+
+      <Grid Grid.Column="1" Grid.RowSpan="2">
+         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="190" />
+         </Grid.RowDefinitions>
+
+         <StackPanel Grid.Row="1" >
+            <Controls:Tile x:Name="btnOK"
+            Foreground="White" Background="{StaticResource Brush_Tile}"
+            Margin="0,10,0,5" Width="80" Height="80" TiltFactor="2"
+            Click="btnOK_Click" >
+
+               <StackPanel Orientation="Vertical" Margin="8">
+                  <Image Source="/StoreCheck;component/Images/Dialog/Right tick - 01.png" Width="60" />
+                  <TextBlock Text="OK" Foreground="White" HorizontalAlignment="Center" />
+               </StackPanel>
+            </Controls:Tile>
+
+            <Controls:Tile  x:Name="btnCancel"
+            Foreground="White" Background="{StaticResource Brush_Tile}"
+            Margin="0,5,0,5" Width="80" Height="80" TiltFactor="2"
+            Click="btnCancel_Click" >
+
+               <StackPanel Orientation="Vertical" Margin="8">
+                  <Image Source="/StoreCheck;component/Images/Dialog/Delete.png" Width="60" />
+                  <TextBlock Text="annuler" Foreground="White" HorizontalAlignment="Center" />
+               </StackPanel>
+            </Controls:Tile>
+         </StackPanel>
+      </Grid>
+   </Grid>
+</Window>
