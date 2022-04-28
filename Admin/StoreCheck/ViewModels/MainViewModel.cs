@@ -44,8 +44,8 @@ namespace ZPF
 
       public void RefreshAll()
       {
-         StockViewModel.Current.LoadData();
-         ItemsViewModel.Current.LoadData();
+         //StockViewModel.Current.LoadData();
+         //ItemsViewModel.Current.LoadData();
 
          DoIt.Delay(500, () =>
          {
@@ -488,7 +488,7 @@ namespace ZPF
 
          IniFile.WriteString("Local", "ImportPath", ImportPath);
          IniFile.WriteString("Local", "ArchivPath", ArchivPath);
-         IniFile.WriteBool("Import", "AutoCreateArticle", StockViewModel.Current.AutoCreateArticle);
+         //IniFile.WriteBool("Import", "AutoCreateArticle", StockViewModel.Current.AutoCreateArticle);
 
          BonE_Prefix = (BonE_Prefix == "" ? "*" : BonE_Prefix);
          BonE_Desc = (BonE_Desc == "" ? "*" : BonE_Desc);
@@ -595,7 +595,7 @@ namespace ZPF
 
          ImportPath = IniFile.ReadString("Local", "ImportPath", "");
          ArchivPath = IniFile.ReadString("Local", "ArchivPath", "");
-         StockViewModel.Current.AutoCreateArticle = IniFile.ReadBool("Import", "AutoCreateArticle", false);
+         //StockViewModel.Current.AutoCreateArticle = IniFile.ReadBool("Import", "AutoCreateArticle", false);
 
          SetIniBon(IniFile);
 
@@ -604,14 +604,6 @@ namespace ZPF
          Debug.WriteLine("*** IniFile loaded");
 
          return true;
-      }
-
-      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  
-
-      public Article GetArticle(string Ref)
-      {
-         CurrentArticle = Articles.Where(x => x.Ref == Ref.Trim().ToUpper()).FirstOrDefault();
-         return CurrentArticle;
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  

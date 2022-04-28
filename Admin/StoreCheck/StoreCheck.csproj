@@ -49,12 +49,6 @@
     <ApplicationIcon>StoreCheck.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="ZPF_Fonts\**" />
-    <EmbeddedResource Remove="ZPF_Fonts\**" />
-    <None Remove="ZPF_Fonts\**" />
-    <Page Remove="ZPF_Fonts\**" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="PdfFileWriter">
       <HintPath>..\..\..\..\_units_\Dlls\PdfFileWriter.dll</HintPath>
     </Reference>
@@ -69,6 +63,8 @@
       <Link>Controls\ChartView_WPF.cs</Link>
     </Compile>
     <Compile Include="..\..\..\..\Nugets\ZPF_Basics_WPF\ToDo\WPFMessageBox.xaml.cs" Link="_ToDo_\WPFMessageBox.xaml.cs" />
+    <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\DBSQL_Helper.cs" Link="Controls\DBSQL_Helper.cs" />
+    <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="Controls\SQLServerEngine.cs" />
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\ToDo\OpenDBPage.xaml.cs" Link="_ToDo_\OpenDBPage.xaml.cs" />
     <Compile Include="..\..\..\..\_Units_\CS\ConfigHelper.cs">
       <Link>ConfigHelper.cs</Link>
@@ -102,6 +98,15 @@
     <Resource Include="Images\Tiles\Magic-Wand.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPF_Fonts\desyrel.ttf" Link="ZPF_Fonts\desyrel.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPF_Fonts\IconFont.ttf" Link="ZPF_Fonts\IconFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPF_Fonts\MediaPlayerFont.ttf" Link="ZPF_Fonts\MediaPlayerFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Splash.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -151,7 +156,6 @@
     </Resource>
     <None Include="StoreCheck_TemporaryKey.pfx" />
     <AppDesigner Include="Properties\" />
-    <Resource Include="Images\ZPF.png" />
     <Resource Include="Images\ms-icon-150x150.png" />
   </ItemGroup>
   <ItemGroup>
@@ -169,9 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Background.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\logo_ZPF.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Tiles\Preview.png" />
@@ -215,10 +216,10 @@
       <Version>2.4.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>4.5.0</Version>
+      <Version>4.5.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>4.5.0</Version>
+      <Version>4.5.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="SharpZipLib.Portable">
@@ -227,6 +228,7 @@
     <PackageReference Include="SkiaSharp.Views.WPF">
       <Version>2.80.3</Version>
     </PackageReference>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="System.Numerics.Vectors">
       <Version>4.5.0</Version>
     </PackageReference>
@@ -243,7 +245,7 @@
     <PackageReference Include="ZPF_DBSQL_WPF">
       <Version>1.0.0.53</Version>
     </PackageReference>
-    <PackageReference Include="ZPF_Fonts" Version="1.0.0.3" />
+    <PackageReference Include="ZPF_Fonts" Version="1.0.0.9" />
     <PackageReference Include="ZPF_LabelPrinter" Version="1.0.0.2" />
     <PackageReference Include="ZPF_Users_Rights_WPF">
       <Version>1.1.0.32</Version>
@@ -268,9 +270,6 @@
     <Page Remove="Styles\Horizon.xaml" />
     <Page Remove="Styles\Sun.xaml" />
     <Page Remove="XamarinDlg.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="..\..\..\..\Nugets\ZPF_Fonts\_Fonts_\IconFont\fonts\IconFont.ttf" Link="Images\IconFont.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="..\..\..\..\Nugets\ZPF_Basics_WPF\ToDo\WPFMessageBox.xaml" Link="_ToDo_\WPFMessageBox.xaml">

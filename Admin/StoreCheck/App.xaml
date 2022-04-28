@@ -67,12 +67,6 @@
 
          <clZPF:Dot2CommaConverter  x:Key="Dot2Comma" />
          
-         <clZPF:EmplacementGroupsToTotalConverter  x:Key="EmplGroupsToTotal" />
-         <clZPF:InventoryGroupsToTotalConverter  x:Key="InvGroupsToTotal" />
-
-         <clZPF:EmplacementsGroupsCountConverter  x:Key="EmplGroupsCount" />
-         <clZPF:InventoryGroupsCountConverter  x:Key="InvGroupsCount" />
-
       </ResourceDictionary>
    </Application.Resources>
 </Application>
