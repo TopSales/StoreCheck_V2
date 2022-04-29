@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.Json;
@@ -14,9 +15,6 @@ namespace ZPF
    {
       public static string AppTitle = "StoreCheck";
       public static string IniFileName = "StoreCheck.ini";
-
-      public static int MaxArticles = 50;
-      public static int MaxMVT = 1000;
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
@@ -113,16 +111,18 @@ namespace ZPF
 
          DblClickToSelect = true;
 
-         Articles = new ObservableCollection<Article>();
+         // - - -  - - - 
 
-         // - - -  - - -
+         DataFolder = System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\ZPF\";
 
-         //OK DataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\";
-         DataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\";
-         IniFileName = DataPath + IniFileName;
+         if (!Directory.Exists(DataFolder))
+         {
+            Directory.CreateDirectory(DataFolder);
+         };
 
-         AuditTrailViewModel.Current.Init(new FileAuditTrailWriter(DataPath + AppTitle + ".AuditTrail.txt"));
-         AuditTrailViewModel.Current.Clean();
+         // - - -  - - - 
+
+         OpenDB();
 
          // - - -  - - -
 
@@ -131,20 +131,18 @@ namespace ZPF
          //ToDo: MSSQL
          //DB_SQL.DoTransactions = false;
 
-         // OpenInitDB();
+         //try
+         //{
+         //   TStrings bat = new TStrings();
+         //   bat.Add(string.Format(@"@{0}{1}.exe %1 %2 %3 %4 %5", System.AppDomain.CurrentDomain.BaseDirectory, AppTitle));
 
-         try
-         {
-            TStrings bat = new TStrings();
-            bat.Add(string.Format(@"@{0}{1}.exe %1 %2 %3 %4 %5", System.AppDomain.CurrentDomain.BaseDirectory, AppTitle));
-
-            bat.SaveToFile(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Microsoft\WindowsApps\StoreCheck.bat", System.Text.Encoding.ASCII);
-         }
-         catch (Exception ex)
-         {
-            Log.Write(ErrorLevel.Error, ex);
-            BackboneViewModel.Current.MessageBox(BackboneViewModel.MessageBoxType.Error, "Mise en place de la ligne de commande:" + Environment.NewLine + ex.Message);
-         };
+         //   bat.SaveToFile(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Microsoft\WindowsApps\StoreCheck.bat", System.Text.Encoding.ASCII);
+         //}
+         //catch (Exception ex)
+         //{
+         //   Log.Write(ErrorLevel.Error, ex);
+         //   BackboneViewModel.Current.MessageBox(BackboneViewModel.MessageBoxType.Error, "Mise en place de la ligne de commande:" + Environment.NewLine + ex.Message);
+         //};
 
          // - - -  - - -
 
@@ -153,30 +151,170 @@ namespace ZPF
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
-      public void OpenDB()
+      public DBSQLViewModel Connection_DB { get; private set; }
+      public DBSQLViewModel Connection_AT { get; private set; }
+      public DBSQLViewModel Connection_DOC { get; private set; }
+
+      public string DataFolder { get; internal set; }
+
+      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+      public bool OpenDB()
       {
-         if (DB_SQL._ViewModel == null || !DB_SQL._ViewModel.CheckConnection())
+#if DEBUG
+         // - - - DEV - - -
+         if (Connection_DB == null || !Connection_DB.CheckConnection())
          {
-            string dbFileName = DataPath + AppTitle + ".db3";
-
-            DBConnectionParams connectionParams = new DBConnectionParams()
-            {
-               DBType = ZPF.SQL.DBType.SQLite,
-               Name = "StoreCheck",
-               DBase = dbFileName,
-            };
-
-            DB_SQL._ViewModel = DBSQL_Helper.OpenDB(connectionParams, false);
-            DBViewModel.Current.Connection = DB_SQL._ViewModel;
-
-            CleanAuditTrail();
-
-            if (DBViewModel.Current.DBType == DBType.SQLite)
-            {
-               DB_SQL.QuickQuery("VACUUM");
-            };
+            Connection_DB = SmarterASPViewModel.Current.OpenStoreCheckDev();
          };
+
+         if (Connection_AT == null || !Connection_AT.CheckConnection())
+         {
+            Connection_AT = SmarterASPViewModel.Current.OpenAuditTrailDev();
+
+            // - - -  - - - 
+
+            #region Create table & co 
+
+            string SQL = "";
+
+            //switch (Connection_AT.DBType)
+            //{
+            //    case DBType.SQLServer: SQL = AuditTrail.PostScript_MSSQL; break;
+
+            //    case DBType.SQLite: SQL = AuditTrail.PostScript_SQLite; break;
+
+            //    case DBType.PostgreSQL: SQL = AuditTrail.PostScript_PGSQL; break;
+
+            //    case DBType.MySQL: SQL = AuditTrail.PostScript_MySQL; break;
+            //};
+
+            //// - - -  - - - 
+
+            //DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail), SQL, "");
+            //DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail_App), SQL, "");
+
+            #endregion
+
+            // - - -  - - - 
+
+            AuditTrailViewModel.Current.Init(new DBAuditTrailWriter(Connection_AT));
+            AuditTrailViewModel.Current.Application = "MShop";
+         };
+
+         if (Connection_DOC == null || !Connection_DOC.CheckConnection())
+         {
+            Connection_DOC = SmarterASPViewModel.Current.OpenBaseDocDev();
+            // - - -  - - - 
+
+            #region Create table & co 
+
+            string SQL = "";
+
+            //switch (Connection_DOC.DBType)
+            //{
+            //    case DBType.SQLServer: SQL = Document.SQLPostCreate_MSSQL; break;
+
+            //    case DBType.SQLite: SQL = Document.SQLPostCreate_SQLite; break;
+
+            //    case DBType.PostgreSQL: SQL = Document.SQLPostCreate_PGSQL; break;
+
+            //    case DBType.MySQL: SQL = Document.SQLPostCreate_MySQL; break;
+            //};
+
+            //// - - -  - - - 
+
+            //DB_SQL.CreateTable(Connection_DOC, typeof(Document), SQL, "");
+            //DB_SQL.CreateTrigger_OnUpdated(Connection_DOC, "Document", "UpdatedOn");
+            //DB_SQL.CreateTrigger_OnCreated(Connection_DOC, "Document", "CreatedOn");
+
+            #endregion
+         };
+#else
+                // - - - PROD - - -
+                if (Connection_DB == null || !Connection_DB.CheckConnection())
+                {
+                    Connection_DB = SmarterASPViewModel.Current.OpenStoreCheckProd();
+                };
+
+                if (Connection_AT == null || !Connection_AT.CheckConnection())
+                {
+                    Connection_AT = SmarterASPViewModel.Current.OpenAuditTrailProd();
+
+                    // - - -  - - - 
+
+         #region Create table & co 
+
+                    string SQL = "";
+
+                    switch (Connection_AT.DBType)
+                    {
+                        case DBType.SQLServer: SQL = AuditTrail.PostScript_MSSQL; break;
+
+                        case DBType.SQLite: SQL = AuditTrail.PostScript_SQLite; break;
+
+                        case DBType.PostgreSQL: SQL = AuditTrail.PostScript_PGSQL; break;
+
+                        case DBType.MySQL: SQL = AuditTrail.PostScript_MySQL; break;
+                    };
+
+                    // - - -  - - - 
+
+                    DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail), SQL, "");
+                    DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail_App), SQL, "");
+
+         #endregion
+
+                    // - - -  - - - 
+
+                    AuditTrailViewModel.Current.Init(new DBAuditTrailWriter(Connection_AT));
+                    AuditTrailViewModel.Current.Application = "MShop";
+                };
+
+                if (Connection_DOC == null || !Connection_DOC.CheckConnection())
+                {
+                    Connection_DOC = SmarterASPViewModel.Current.OpenBaseDocProd();
+
+                    // - - -  - - - 
+
+         #region Create table & co 
+
+                    string SQL = "";
+
+                    switch (Connection_DOC.DBType)
+                    {
+                        case DBType.SQLServer: SQL = Document.SQLPostCreate_MSSQL; break;
+
+                        case DBType.SQLite: SQL = Document.SQLPostCreate_SQLite; break;
+
+                        case DBType.PostgreSQL: SQL = Document.SQLPostCreate_PGSQL; break;
+
+                        case DBType.MySQL: SQL = Document.SQLPostCreate_MySQL; break;
+                    };
+
+                    // - - -  - - - 
+
+                    DB_SQL.CreateTable(Connection_DOC, typeof(Document), SQL, "");
+                    DB_SQL.CreateTrigger_OnUpdated(Connection_DOC, "Document", "UpdatedOn");
+                    DB_SQL.CreateTrigger_OnCreated(Connection_DOC, "Document", "CreatedOn");
+
+         #endregion
+
+            };
+#endif
+
+         //Log.Write(new AuditTrail
+         //{
+         //    Level = ErrorLevel.Log,
+         //    Tag = "API",
+         //    Message = request.Path,
+         //    TerminalID = request.HttpContext.Connection.RemoteIpAddress.ToString(),
+         //    TerminalIP = request.HttpContext.Connection.RemoteIpAddress.ToString(),
+         //});
+
+         return true;
       }
+
+      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
       public void InitDB(bool SampleData = false)
       {
@@ -189,23 +327,6 @@ namespace ZPF
             };
          };
 #endif
-
-         //SampleData = SampleViewModel.Current.CreateDBList(SampleData);
-
-         //if (SampleData)
-         //{
-         //   if (DB_SQL._ViewModel.DBType == DBType.SQLServer)
-         //   {
-         //      SampleViewModel.Current.DropTables();
-         //   };
-
-         //   SampleViewModel.Current.CreateTables();
-         //   SampleViewModel.Current.SampleData();
-         //}
-         //else
-         //{
-         //   DB_SQL._ViewModel.LastError = "";
-         //};
 
          Log.Write(ErrorLevel.Log, "MainViewModel.InitDB(end)");
 

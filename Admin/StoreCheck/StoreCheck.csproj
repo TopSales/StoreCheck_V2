@@ -46,7 +46,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>StoreCheck.ico</ApplicationIcon>
+    <ApplicationIcon>Images\StoreCheck.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PdfFileWriter">
@@ -64,11 +64,13 @@
     </Compile>
     <Compile Include="..\..\..\..\Nugets\ZPF_Basics_WPF\ToDo\WPFMessageBox.xaml.cs" Link="_ToDo_\WPFMessageBox.xaml.cs" />
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\DBSQL_Helper.cs" Link="Controls\DBSQL_Helper.cs" />
+    <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\MySQLEngine.cs" Link="Controls\MySQLEngine.cs" />
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="Controls\SQLServerEngine.cs" />
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\ToDo\OpenDBPage.xaml.cs" Link="_ToDo_\OpenDBPage.xaml.cs" />
     <Compile Include="..\..\..\..\_Units_\CS\ConfigHelper.cs">
       <Link>ConfigHelper.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\StoreCheck.Core\StoreCheck.UT\ViewModels\SmarterASPViewModel.cs" Link="ViewModels\SmarterASPViewModel.cs" />
     <Resource Include="Images\Tiles\Text Decoration - 15.png" />
     <Resource Include="Images\Tiles\Data-Export.png" />
     <Resource Include="Images\Tiles\Data-Import.png" />
@@ -79,7 +81,6 @@
     <Resource Include="Images\Tiles\Msg_sent_WF.png" />
     <Resource Include="Images\Tiles\Web.png" />
     <Resource Include="Images\Tiles\Engineer.png" />
-    <Resource Include="StoreCheck.ico" />
     <Resource Include="Dummy\128.ico" />
     <Resource Include="Dummy\16.ico" />
     <Resource Include="Dummy\32.ico" />
@@ -107,10 +108,12 @@
     <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPF_Fonts\MediaPlayerFont.ttf" Link="ZPF_Fonts\MediaPlayerFont.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Splash.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Images\Background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="favicon.ico" />
+    <Content Include="Images\StoreCheck.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\Tiles\Warehouse-01-WF.png" />
     <Resource Include="Styles\Default.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -156,7 +159,6 @@
     </Resource>
     <None Include="StoreCheck_TemporaryKey.pfx" />
     <AppDesigner Include="Properties\" />
-    <Resource Include="Images\ms-icon-150x150.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Nugets\Microcharts\MicrochartsProxy\MicrochartsProxy.csproj" />
@@ -222,6 +224,7 @@
       <Version>4.5.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="MySql.Data" Version="8.0.29" />
     <PackageReference Include="SharpZipLib.Portable">
       <Version>0.86.0.3</Version>
     </PackageReference>
@@ -262,7 +265,8 @@
     <Compile Remove="Pages\PrintPage.xaml.cs" />
     <Compile Remove="XamarinDlg.xaml.cs" />
     <Content Remove="C:\Users\zepro\.nuget\packages\zpf_fonts\1.0.0.3\contentFiles\any\net5.0-windows7.0\ZPF_Fonts\IconFont.ttf" />
-    <None Remove="Images\Splash.png" />
+    <None Remove="Images\Background.jpg" />
+    <None Remove="Images\Splash.jpg" />
     <Page Remove="Pages\PrintPage.xaml" />
     <Page Remove="Styles\Black.xaml" />
     <Page Remove="Styles\Blue.xaml" />

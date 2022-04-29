@@ -5,11 +5,11 @@
         Title="StoreCheck" 
         Height="260" Width="320" Background="#FF558ed5" 
         WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
-        Icon="StoreCheck.ico" ShowInTaskbar="False" Loaded="Window_Loaded">
+        Icon="/Images/StoreCheck.ico" ShowInTaskbar="False">
 
    <Grid>
       <Grid.Background>
-         <ImageBrush ImageSource="/Images/Splash.png" Stretch="Uniform"/>
+         <ImageBrush ImageSource="/Images/Background.jpg" Stretch="UniformToFill"/>
       </Grid.Background>
 
       <Image Source="Images/Loading - 01.png" RenderTransformOrigin="0.5,0.5" >

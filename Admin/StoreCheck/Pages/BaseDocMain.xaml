@@ -9,8 +9,7 @@
    xmlns:ZPF="clr-namespace:ZPF;assembly=ZPFLib_WPF" 
    xmlns:local="clr-namespace:StoreCheck"
    mc:Ignorable="d" 
-   d:DesignHeight="600" d:DesignWidth="900"
-   DataContext="{Binding BaseDoc, Mode=OneWay, Source={StaticResource Locator}}" >
+   d:DesignHeight="600" d:DesignWidth="900">
 
    <Page.Resources>
       <DataTemplate x:Key="dtBaseDoc" >

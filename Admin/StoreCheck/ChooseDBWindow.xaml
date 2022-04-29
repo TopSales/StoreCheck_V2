@@ -16,8 +16,8 @@
 
       <Grid.Background>
          <ImageBrush x:Name="BackgroundImageBrush" 
-                     ImageSource="{DynamicResource BackgroundImageSource}" Opacity="0.6" />
-      </Grid.Background>      
+                     ImageSource="Images/Background.jpg" Opacity="0.7" />
+      </Grid.Background>  
       
       <Frame Margin="10" x:Name="frameBody" NavigationUIVisibility="Hidden" />
    </Grid>

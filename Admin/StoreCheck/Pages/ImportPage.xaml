@@ -9,8 +9,7 @@
    xmlns:local="clr-namespace:StoreCheck.Pages"
    mc:Ignorable="d" 
    d:DesignHeight="480" d:DesignWidth="800"
-   Title="ImportPage" 
-   DataContext="{Binding Main, Mode=OneWay, Source={StaticResource Locator}}">
+   Title="ImportPage" >
 
    <Grid Background="#60FFFFFF" Margin="5,0,0,0" >
 
@@ -58,8 +57,7 @@
                         Background="#2FFF"       
                         IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
                         CanUserDeleteRows="False" CanUserAddRows="False"
-                        ItemsSource="{Binding Log}" 
-                        DataContext="{Binding Stock, Mode=OneWay, Source={StaticResource Locator}}">
+                        ItemsSource="{Binding Log}" >
 
                         <DataGrid.Columns>
                            <DataGridTextColumn Binding="{Binding FileName}" Header="Fichier" Width="190" />

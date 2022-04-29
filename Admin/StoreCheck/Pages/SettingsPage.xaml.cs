@@ -95,7 +95,7 @@ namespace StoreCheck
          //string BaseDir = @"D:\Software\Projects\PIMS\Doc\";
 
          //dlg.InitialDirectory = BaseDir;
-         //dlg.FileName = @"Splash.png";
+         //dlg.FileName = @"Splash.jpg";
 #endif
 
          // Show open file dialog box
@@ -118,7 +118,7 @@ namespace StoreCheck
          //string BaseDir = @"D:\Software\Projects\PIMS\Doc\";
 
          //dlg.InitialDirectory = BaseDir;
-         //dlg.FileName = @"Splash.png";
+         //dlg.FileName = @"Splash.jpg";
 #endif
 
          // Show open file dialog box
@@ -146,7 +146,7 @@ namespace StoreCheck
          string BaseDir = @"D:\Software\Projects\PIMS\Doc\";
 
          dlg.InitialDirectory = BaseDir;
-         dlg.FileName = @"Splash.png";
+         dlg.FileName = @"Splash.jpg";
 #endif
 
          // Show open file dialog box

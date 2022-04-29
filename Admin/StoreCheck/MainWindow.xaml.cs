@@ -25,6 +25,8 @@ namespace StoreCheck
          menuGridView.DataContext = MainViewModel.Current;
          menuGridView.SetModules(MainViewModel.Current.GetModules());
 
+         gridBusy.DataContext = BackboneViewModel.Current;
+
          // I18nViewModel.Current.T(this);
 
 #if DEBUG
@@ -332,9 +334,9 @@ namespace StoreCheck
                App.Current.Dispatcher.InvokeShutdown();
             };
 
+            BackboneViewModel.Current.DecBusy();
             BackboneViewModel.Current.IsBusy = false;
          };
-
 
          MainViewModel.Current.TestUnitaires = false;
 
@@ -347,11 +349,6 @@ namespace StoreCheck
       private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
       {
          Basics.WriteFormPos(MainViewModel.IniFileName, this, false);
-
-         // if (I18nViewModel.Current.FindMissing)
-         {
-            // I18nViewModel.Current.SaveMissing();
-         };
 
          // - - -  - - - 
 

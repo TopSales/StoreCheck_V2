@@ -49,7 +49,6 @@
          <Controls:Tile Grid.Column="1"  Grid.Row="0"
                   Foreground="White" Background="{StaticResource Brush_Tile}"
                   Margin="0,4,0,4" Width="100" Height="100" TiltFactor="2"
-                  DataContext="{Binding Source={StaticResource Locator}}"
                   IsEnabled="{Binding User.ErrorMessage, ConverterParameter=DBase.Clean, Converter={StaticResource HasUserLevel}}"
                   Title="" Click="btnCleanData_Click" >
 

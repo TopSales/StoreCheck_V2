@@ -16,7 +16,7 @@
    <Grid>
       <Grid.Background>
          <ImageBrush x:Name="BackgroundImageBrush" 
-                     ImageSource="{DynamicResource BackgroundImageSource}" Opacity="0.7" />
+                     ImageSource="Images/Background.jpg" Opacity="0.7" />
       </Grid.Background>
 
       <Grid.ColumnDefinitions>
