@@ -18,6 +18,8 @@ namespace StoreCheck.Pages
    {
       public DashBoardPage()
       {
+         DataContext = MainViewModel.Current;
+
          InitializeComponent();
 
          {
@@ -40,8 +42,6 @@ namespace StoreCheck.Pages
 
             chartView.Chart.Entries = GenerateEntries();
          };
-
-         //StockViewModel.Current.LoadDataMVT7();
       }
 
       string[] colors = new string[]{
@@ -265,14 +265,6 @@ namespace StoreCheck.Pages
       {
          dispatcherTimer.Stop();
       }
-
-      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
-
-      //public void Animation()
-      //{
-      //   labelMouvements.ToggleControlFade(AnimationExtensions.TransitionSpeed.VerySlow, true);
-      //   labelRupture.ToggleControlFade(AnimationExtensions.TransitionSpeed.VerySlow, true);
-      //}
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
    }

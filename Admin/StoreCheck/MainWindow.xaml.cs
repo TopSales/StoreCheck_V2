@@ -313,11 +313,6 @@ namespace StoreCheck
 
          this.Title = this.Title + " - " + DBViewModel.Current.Name;
 
-         if (MainViewModel.Current.ServerAutoStart)
-         {
-            //ToDo: Chat: MainViewModel.Current.StartWebServer();
-         };
-
          {
 #if DEBUG
             dlg = new LoginWindow(true);

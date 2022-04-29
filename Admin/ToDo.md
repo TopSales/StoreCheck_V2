@@ -2,12 +2,10 @@
 # ToDo
 
 Gestion Config en JSON
-DashBoard --> 2 listes AuditTrail 
 
 Referentiel Gestion UTC
 
-
- '-----------------------------'
+'-----------------------------'
 
 Implémentation Chat
 
@@ -17,7 +15,9 @@ Gestion "Windows CE" --> Ajouter Champs TerminalID
 
 Liste des tables referentiel du 1er Rang
 
- '-----------------------------'
+'-----------------------------'
+
+OK -  DashBoard --> 2 listes AuditTrail 
 
 OK -  Revoir User & Right 
 OK -  * gestion UTC

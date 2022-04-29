@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
@@ -123,26 +124,11 @@ namespace ZPF
          // - - -  - - - 
 
          OpenDB();
+         UpdateDashboard();
 
          // - - -  - - -
 
          DB_SQL.ToUniversalTime = true;
-
-         //ToDo: MSSQL
-         //DB_SQL.DoTransactions = false;
-
-         //try
-         //{
-         //   TStrings bat = new TStrings();
-         //   bat.Add(string.Format(@"@{0}{1}.exe %1 %2 %3 %4 %5", System.AppDomain.CurrentDomain.BaseDirectory, AppTitle));
-
-         //   bat.SaveToFile(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Microsoft\WindowsApps\StoreCheck.bat", System.Text.Encoding.ASCII);
-         //}
-         //catch (Exception ex)
-         //{
-         //   Log.Write(ErrorLevel.Error, ex);
-         //   BackboneViewModel.Current.MessageBox(BackboneViewModel.MessageBoxType.Error, "Mise en place de la ligne de commande:" + Environment.NewLine + ex.Message);
-         //};
 
          // - - -  - - -
 
@@ -515,65 +501,9 @@ namespace ZPF
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
-      private string _LogoPath;
-      public string LogoPath
-      {
-         get { return _LogoPath; }
-         set { SetField(ref _LogoPath, value); }
-      }
-
-      private string _Footer1;
-      public string Footer1
-      {
-         get { return _Footer1; }
-         set { SetField(ref _Footer1, value); }
-      }
-
-      private string _Footer2;
-      public string Footer2
-      {
-         get { return _Footer2; }
-         set { SetField(ref _Footer2, value); }
-      }
-
-      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
-
-      private string _LabelArticles = "*";
-      public string LabelArticles
-      {
-         get { return _LabelArticles; }
-         set { SetField(ref _LabelArticles, value); }
-      }
-
-      private string _LabelEmplacements = "*";
-      public string LabelEmplacements
-      {
-         get { return _LabelEmplacements; }
-         set { SetField(ref _LabelEmplacements, value); }
-      }
-
-      private string _LabelEmplacementsAvecArt = "*";
-      public string LabelEmplacementsAvecArt
-      {
-         get { return _LabelEmplacementsAvecArt; }
-         set { SetField(ref _LabelEmplacementsAvecArt, value); }
-      }
-
-      private string _LabelBons = "*";
-      public string LabelBons
-      {
-         get { return _LabelBons; }
-         set { SetField(ref _LabelBons, value); }
-      }
-
-      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
-
       public string Style = "Black";
 
-      public bool ServerAutoStart { get; set; }
-
       public string MasterPwd { get => _MasterPwd; set => _MasterPwd = value; }
-
       private string _MasterPwd = "0815";
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
@@ -592,42 +522,15 @@ namespace ZPF
 
          IniFile.WriteBool("General", "IsDebug", IsDebug);
          IniFile.WriteString("Local", "Printer", JsonSerializer.Serialize(PrinterSettings));
-         IniFile.WriteString("Local", "LogoPath", LogoPath);
-         IniFile.WriteString("General", "Footer1", Footer1);
-         IniFile.WriteString("General", "Footer2", Footer2);
          IniFile.WriteBool("General", "AutoLogin", AutoLogin);
          IniFile.WriteString("Local", "Style", Style);
          //IniFile.WriteString("General", "Dump", Jupiter.Current.Dump);
          IniFile.WriteBool("General", "ExitOnValidation", ExitOnValidation);
 
-         IniFile.WriteString("Label", "LabelArticles", LabelArticles);
-         IniFile.WriteString("Label", "LabelEmplacements", LabelEmplacements);
-         IniFile.WriteString("Label", "LabelEmplacementsAvecArt", LabelEmplacementsAvecArt);
-         IniFile.WriteString("Label", "LabelBons", LabelBons);
-
          IniFile.WriteString("Stock", "LastMVT", LastMVT);
 
          IniFile.WriteString("Local", "ImportPath", ImportPath);
          IniFile.WriteString("Local", "ArchivPath", ArchivPath);
-         //IniFile.WriteBool("Import", "AutoCreateArticle", StockViewModel.Current.AutoCreateArticle);
-
-         BonE_Prefix = (BonE_Prefix == "" ? "*" : BonE_Prefix);
-         BonE_Desc = (BonE_Desc == "" ? "*" : BonE_Desc);
-
-         BonS_Prefix = (BonS_Prefix == "" ? "*" : BonS_Prefix);
-         BonS_Desc = (BonS_Desc == "" ? "*" : BonS_Desc);
-
-         IniFile.WriteString("Bons", "BonE_Prefix", BonE_Prefix);
-         IniFile.WriteString("Bons", "BonE_Titre", BonE_Titre);
-         IniFile.WriteString("Bons", "BonE_Desc", BonE_Desc);
-
-         IniFile.WriteString("Bons", "BonS_Prefix", BonS_Prefix);
-         IniFile.WriteString("Bons", "BonS_Titre", BonS_Titre);
-         IniFile.WriteString("Bons", "BonS_Desc", BonS_Desc);
-
-         IniFile.WriteBool("Bons", "ReplaceWithBon", ReplaceWithBon);
-
-         IniFile.WriteBool("Local", "AutoStart", ServerAutoStart);
 
          try
          {
@@ -672,7 +575,7 @@ namespace ZPF
 
          // - - -  - - - 
 
-            LoadIniFromDB(IniFile);
+         LoadIniFromDB(IniFile);
 
          // - - -  - - - 
 
@@ -694,33 +597,14 @@ namespace ZPF
             LabelPrinterViewModel.Current.PrinterSettings = new Printer();
          }
 
-         LogoPath = "";
-         Footer1 = "ZPF - 7, Rue Laurent de Lavoisier - F-91410 Dourdan - +33 1 60 81 64 10";
-         Footer2 = "SAS au capital de 76 224.51 € - N° SIRET: 399 027 861 00034";
-
-         LogoPath = IniFile.ReadString("Local", "LogoPath", LogoPath);
-         Footer1 = IniFile.ReadString("General", "Footer1", Footer1);
-         Footer2 = IniFile.ReadString("General", "Footer2", Footer2);
-
          AutoLogin = IniFile.ReadBool("General", "AutoLogin", false);
          Style = IniFile.ReadString("Local", "Style", Style);
-         //Jupiter.Current.Dump = IniFile.ReadString("General", "Dump", Jupiter.Current.Dump);
          ExitOnValidation = IniFile.ReadBool("General", "ExitOnValidation", true);
-
-         LabelArticles = IniFile.ReadString("Label", "LabelArticles", LabelArticles);
-         LabelEmplacements = IniFile.ReadString("Label", "LabelEmplacements", LabelEmplacements);
-         LabelEmplacementsAvecArt = IniFile.ReadString("Label", "LabelEmplacementsAvecArt", LabelEmplacementsAvecArt);
-         LabelBons = IniFile.ReadString("Label", "LabelBons", LabelBons);
-
-         LastMVT = IniFile.ReadString("Stock", "LastMVT", "7D");
 
          ImportPath = IniFile.ReadString("Local", "ImportPath", "");
          ArchivPath = IniFile.ReadString("Local", "ArchivPath", "");
-         //StockViewModel.Current.AutoCreateArticle = IniFile.ReadBool("Import", "AutoCreateArticle", false);
 
          SetIniBon(IniFile);
-
-         ServerAutoStart = IniFile.ReadBool("Local", "AutoStart", false);
 
          Debug.WriteLine("*** IniFile loaded");
 
@@ -728,5 +612,35 @@ namespace ZPF
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  
+
+      public List<AuditTrail> atDashboard1 { get; set; } = new List<AuditTrail>();
+      public List<AuditTrail> atDashboard2 { get; set; } = new List<AuditTrail>();
+
+
+      public void UpdateDashboard()
+      {
+         string SQL = "";
+
+         SQL = @"
+select top 100 
+  	AuditTrail.PK, AuditTrail.TimeStamp, AuditTrail.TimeStampApp, AuditTrail.TimeStampDB, AuditTrail.Level, AuditTrail.Parent, AuditTrail.IsBusiness, AuditTrail.Tag, AuditTrail.Application, AuditTrail.Source, AuditTrail.Message, AuditTrail.Ticks, AuditTrail.DataIn, AuditTrail.DataInType, AuditTrail.DataOut, AuditTrail.DataOutType, AuditTrail.TerminalID, AuditTrail.TerminalIP, AuditTrail.FKUser, AuditTrail.ItemID, AuditTrail.ItemType
+from 
+	AuditTrail
+order by PK desc  
+";
+
+         var list = DB_SQL.Query<AuditTrail>(Connection_AT, SQL);
+         atDashboard1.Clear();
+         atDashboard2.Clear();
+
+         foreach (AuditTrail auditTrail in list)
+         {
+            atDashboard1.Add(auditTrail);
+            atDashboard2.Add(auditTrail);
+         };
+
+         OnPropertyChanged("atDashboard1");
+         OnPropertyChanged("atDashboard2");
+      }
    }
 }

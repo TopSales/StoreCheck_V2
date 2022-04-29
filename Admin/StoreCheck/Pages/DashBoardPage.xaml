@@ -25,12 +25,7 @@
          <RowDefinition Height="250"/>
       </Grid.RowDefinitions>
 
-
-      <!--<oxy:PlotView Grid.Column="0" Grid.Row="0" Background="#3FFF" Margin="16"
-                    Model="{Binding Stock.DashDonat, Converter={StaticResource Donut}}"/>-->
-
-      <!--http://modernuicharts.codeplex.com/documentation#howto1-->
-
+      
       <Border Grid.Column="0" Grid.Row="0" Background="#3FFF" Margin="5,0,5,5" >
          <Grid>
             <controls:ChartView x:Name="chartView" />
@@ -38,18 +33,15 @@
       </Border>
 
 
-      <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Background="#3FFF" Margin="5,0,5,5" 
-              DataContext="{Binding Stock}" >
+      <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Background="#3FFF" Margin="5,0,5,5" >
 
-         <DataGrid ItemsSource="{Binding StockMVTView7, Mode=TwoWay}" Margin="10,25,10,10"
+         <DataGrid ItemsSource="{Binding atDashboard1, Mode=TwoWay}" Margin="10,25,10,10"
                   Background="#2FFF"  
                   Loaded="dgMVT_Loaded"
-                  IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
-                  CanUserDeleteRows="False" CanUserAddRows="False" 
-                  MouseDoubleClick="ListViewMVT_MouseDoubleClick"
-                  SelectionChanged="ListViewMVT_SelectionChanged" >
+                  IsReadOnly="True" AutoGenerateColumns="True" SelectionMode="Single"
+                  CanUserDeleteRows="False" CanUserAddRows="False" >
 
-            <DataGrid.Columns>
+            <!--<DataGrid.Columns>
                <DataGridTextColumn Binding="{Binding Action}" Header="Action" Width="45"/>
                <DataGridTextColumn Binding="{Binding Article}" Header="Article" Width="200" FontWeight="Bold"/>
 
@@ -65,7 +57,7 @@
                <DataGridTextColumn Binding="{Binding UpdatedOn, StringFormat=\{0:dd/MM/yy\}}" Header="MAJ" Width="80"  CellStyle="{StaticResource CellCenterAligned}" />
 
                <DataGridTextColumn Binding="{Binding PK}" Header="PK" Width="50" Visibility="Hidden"/>
-            </DataGrid.Columns>
+            </DataGrid.Columns>-->
          </DataGrid>
       </Border>
 
@@ -78,20 +70,16 @@
       <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#3FFF" Margin="5,5,5,0"  >
 
          <Grid>
-            <!-- std -->
             <DataGrid x:Name="dataGrid" 
-                  ItemsSource="{Binding ArticlesAlertView, Mode=TwoWay}" 
+                  ItemsSource="{Binding atDashboard2, Mode=TwoWay}" 
                   Margin="10,25,10,10"
                   Background="#2FFF"       
                   Loaded="dgAlertes_Loaded"
-                  Visibility="{Binding Main.IsPro, Converter={StaticResource ToVisibility}, Mode=OneWay}"                     
-                  IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
+                  IsReadOnly="True" AutoGenerateColumns="True" SelectionMode="Single"
                   CanUserDeleteRows="False" CanUserAddRows="False" 
-                  MouseDoubleClick="ListViewArticles_MouseDoubleClick"
-                  SelectionChanged="ListViewArticles_SelectionChanged"
                   LoadingRow="DataGrid_LoadingRow_1">
 
-               <DataGrid.Columns>
+               <!--<DataGrid.Columns>
                   <DataGridTextColumn Binding="{Binding Ref}" Header="Ref" Width="120"/>
                   <DataGridTextColumn Binding="{Binding Nom}" Header="Article" Width="200" FontWeight="Bold"/>
                   <DataGridTextColumn Binding="{Binding Famille}" Header="Famille" Width="150"/>
@@ -102,30 +90,7 @@
                   <DataGridTextColumn Binding="{Binding UpdatedOn, StringFormat=\{0:dd/MM/yy\}}" Header="MAJ" Width="80"  CellStyle="{StaticResource CellCenterAligned}" />
 
                   <DataGridTextColumn Binding="{Binding PK}" Header="PK" Width="50" Visibility="Hidden"/>
-               </DataGrid.Columns>
-            </DataGrid>
-
-            <!-- EuroMat -->
-            <DataGrid x:Name="dgSurLeQuai"
-                  Margin="10,25,10,10"
-                  Background="#2FFF"       
-                  Loaded="dgSurLeQuai_Loaded"
-                  Visibility="{Binding Main.Key, ConverterParameter=EUROMAT, Converter={StaticResource ToVisibility}, Mode=OneWay}"                   
-                  IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
-                  CanUserDeleteRows="False" CanUserAddRows="False" 
-                  MouseDoubleClick="ListViewArticles_MouseDoubleClick"
-                  SelectionChanged="ListViewArticles_SelectionChanged" >
-
-               <DataGrid.Columns>
-                  <DataGridTextColumn Binding="{Binding Emplacement}" Header="Emplacement" Width="160"/>
-                  <DataGridTextColumn Binding="{Binding Fournisseur}" Header="Fournisseur" Width="150"/>
-                  <DataGridTextColumn Binding="{Binding SNLot}" Header="SN/lot" Width="110"/>
-
-                  <DataGridTextColumn Binding="{Binding UpdatedBy}" Header="par" Width="110"/>
-                  <DataGridTextColumn Binding="{Binding UpdatedOn, StringFormat=\{0:dd/MM/yy\}}" Header="MAJ" Width="80"  CellStyle="{StaticResource CellCenterAligned}" />
-
-                  <DataGridTextColumn Binding="{Binding PK}" Header="PK" Width="50" Visibility="Hidden"/>
-               </DataGrid.Columns>
+               </DataGrid.Columns>-->
             </DataGrid>
          </Grid>
       </Border>

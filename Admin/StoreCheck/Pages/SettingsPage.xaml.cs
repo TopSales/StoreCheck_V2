@@ -135,28 +135,28 @@ namespace StoreCheck
 
       private void btnLoadImage_Click(object sender, RoutedEventArgs e)
       {
-         // Configure open file dialog box
-         Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-         dlg.Title = "Image ...";
-         //dlg.IniFileName = "Document";                 // Default file name
-         dlg.DefaultExt = ".png";                        // Default file extension
-         dlg.Filter = "PNG (.png)|*.png|JPG (.jpg)|*.jpg|All files (.*)|*.*"; // Filter files by extension 
+//         // Configure open file dialog box
+//         Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+//         dlg.Title = "Image ...";
+//         //dlg.IniFileName = "Document";                 // Default file name
+//         dlg.DefaultExt = ".png";                        // Default file extension
+//         dlg.Filter = "PNG (.png)|*.png|JPG (.jpg)|*.jpg|All files (.*)|*.*"; // Filter files by extension 
 
-#if DEBUG
-         string BaseDir = @"D:\Software\Projects\PIMS\Doc\";
+//#if DEBUG
+//         string BaseDir = @"D:\Software\Projects\PIMS\Doc\";
 
-         dlg.InitialDirectory = BaseDir;
-         dlg.FileName = @"Splash.jpg";
-#endif
+//         dlg.InitialDirectory = BaseDir;
+//         dlg.FileName = @"Splash.jpg";
+//#endif
 
-         // Show open file dialog box
-         Nullable<bool> result = dlg.ShowDialog();
+//         // Show open file dialog box
+//         Nullable<bool> result = dlg.ShowDialog();
 
-         // Process open file dialog box results 
-         if (result == true)
-         {
-            MainViewModel.Current.LogoPath = dlg.FileName;
-         };
+//         // Process open file dialog box results 
+//         if (result == true)
+//         {
+//            MainViewModel.Current.LogoPath = dlg.FileName;
+//         };
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - - 
