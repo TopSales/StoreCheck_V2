@@ -12,7 +12,7 @@
    d:DesignHeight="480" d:DesignWidth="800"
    Title="ToolsPage">
 
-   <Grid DataContext="{Binding Source={StaticResource Locator}}">
+   <Grid >
 
       <Image Source="/StoreCheck;component/Images/Tiles/Tools-02.png" 
              HorizontalAlignment="Right" VerticalAlignment="Bottom" 
@@ -36,7 +36,6 @@
             Foreground="White" Background="{StaticResource Brush_Tile}"
             Margin="0,4,0,4" Width="100" Height="100" TiltFactor="2"
             Title="" Click="Tile_Click" 
-            DataContext="{Binding Source={StaticResource Locator}}"
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Referentiel.View, Converter={StaticResource HasUserLevel}}"
             CommandParameter="DATA" >
 
@@ -48,14 +47,14 @@
 
          <ZPF:TileEx Grid.Column="1" Grid.Row="0" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
-            DataContext="{Binding Source={StaticResource Locator}}"
+            
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.View, Converter={StaticResource HasUserLevel}}"
             Source="/StoreCheck;component/Images/Tiles/Step-WF.png"
             Text="Emplacements" CommandParameter="EMPL"/>
 
          <ZPF:TileEx Grid.Column="2" Grid.Row="0" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
-            DataContext="{Binding Source={StaticResource Locator}}"
+            
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.View, Converter={StaticResource HasUserLevel}}"
             Source="/StoreCheck;component/Images/Tiles/Step-WF.png"
             Text="Familles" CommandParameter="FAMILLES"/>
@@ -64,7 +63,7 @@
          <Border Grid.Column="0"  Grid.Row="1" IsEnabled="{Binding Main.IsPro, Mode=OneWay}" Grid.ColumnSpan="2" Margin="2,-2,114,2">
             <ZPF:TileEx Grid.Column="0" Grid.Row="1" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
-            DataContext="{Binding Source={StaticResource Locator}}"
+            
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=User.View, Converter={StaticResource HasUserLevel}}"
             Source="/StoreCheck;component/Images/Tiles/User-Group.png"
             Text="Utilisateurs" CommandParameter="USER"/>
@@ -73,7 +72,7 @@
          <Border Grid.Column="1"  Grid.Row="1" IsEnabled="{Binding Main.IsPro, Mode=OneWay}" Grid.ColumnSpan="2" Margin="2,-2,114,2">
             <ZPF:TileEx Grid.Column="0" Grid.Row="1" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
-            DataContext="{Binding Source={StaticResource Locator}}"
+            
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=User.View, Converter={StaticResource HasUserLevel}}"
             Source="/StoreCheck;component/Images/Tiles/Mobile-Phone.png"
             Text="Terminaux" CommandParameter="WINCE"/>
@@ -81,24 +80,24 @@
 
          <ZPF:TileEx Grid.Column="2" Grid.Row="1" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
-            DataContext="{Binding Source={StaticResource Locator}}"
+            
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.View, Converter={StaticResource HasUserLevel}}"
             Source="/Images/Tiles/Settings - 09.png"
             Text="Paramètres" CommandParameter="CONFIG"/>
 
          <ZPF:TileEx x:Name="btnBaseDoc" Grid.Column="3" Grid.Row="0" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
-            DataContext="{Binding Source={StaticResource Locator}}"
+            
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.View, Converter={StaticResource HasUserLevel}}"
-            Visibility="{Binding Main.IsFuture, Converter={StaticResource ToVisibility}, Mode=OneWay, Source={StaticResource Locator}}" 
+            Visibility="{Binding Main.IsFuture, Converter={StaticResource ToVisibility}, Mode=OneWay}" 
             Source="/Images/Tiles/Data-Files.png"
             Text="Basedoc" CommandParameter="BASEDOC"/>
 
          <ZPF:TileEx x:Name="btnScript" Grid.Column="3" Grid.Row="1" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
-            DataContext="{Binding Source={StaticResource Locator}}"
+            
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.View, Converter={StaticResource HasUserLevel}}"
-            Visibility="{Binding Main.IsFuture, Converter={StaticResource ToVisibility}, Mode=OneWay, Source={StaticResource Locator}}" 
+            Visibility="{Binding Main.IsFuture, Converter={StaticResource ToVisibility}, Mode=OneWay}" 
             Source="/Images/Tiles/Engineer.png"
             Text="script" CommandParameter="SCRIPT"/>
 
@@ -119,7 +118,7 @@
 
          <!--<ZPF:TileEx x:Name="btnXamarin" Grid.Column="3" Grid.Row="2" Margin="0,4,0,4" Width="100" Height="100" 
             Click="BtnXamarin_Click" 
-            DataContext="{Binding Source={StaticResource Locator}}"
+            
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.View, Converter={StaticResource HasUserLevel}}"
             Source="/Images/Tiles/Engineer.png"
             Text="Xamarin" CommandParameter="XAMARIN"/>-->

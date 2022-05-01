@@ -51,15 +51,14 @@
 
                      <ZPF:CheckBoxEx 
                         Indent="250" Width="340" FontSize="12" FontFamily="Segoe UI" Margin="0,5,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Left" 
-                        Label="Sortir de l'écran après validation (articles)" 
-                        IsChecked="{Binding Main.ExitOnValidation, Source={StaticResource Locator}}" />
+                        Label="Sortir de l'écran après validation (articles)" />
 
                   </StackPanel>
 
                   <StackPanel Margin="10" Background="{StaticResource Brush03}" >
 
                      <StackPanel Orientation="Horizontal" Margin="10" 
-                        IsEnabled="{Binding Main.IsDemo, Converter={StaticResource ToNotBool}, Mode=OneWay, Source={StaticResource Locator}}" >
+                        IsEnabled="{Binding Main.IsDemo, Converter={StaticResource ToNotBool}, Mode=OneWay}" >
 
                         <ZPF:TextBoxEx Label="Chemin du logo" Indent="130" Width="400" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" Text="{Binding LogoPath, Mode=TwoWay}" VerticalContentAlignment="Center" Height="26" />
                         <Controls:Tile Foreground="White" Background="{StaticResource Brush_Tile}" Margin="0,8,0,4" Width="26" Height="26" TiltFactor="2"
@@ -74,12 +73,12 @@
                      <ZPF:TextBoxEx Margin="10,10,10,0" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
                         Label="Pied de page ligne 1" Indent="130"  
                         Text="{Binding Footer1, Mode=TwoWay}" 
-                        IsEnabled="{Binding Main.IsDemo, Converter={StaticResource ToNotBool}, Mode=OneWay, Source={StaticResource Locator}}" />
+                        IsEnabled="{Binding Main.IsDemo, Converter={StaticResource ToNotBool}, Mode=OneWay}" />
 
                      <ZPF:TextBoxEx Margin="10" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
                         Label="ligne 2" Indent="130"  
                         Text="{Binding Footer2, Mode=TwoWay}" 
-                        IsEnabled="{Binding Main.IsDemo, Converter={StaticResource ToNotBool}, Mode=OneWay, Source={StaticResource Locator}}" />
+                        IsEnabled="{Binding Main.IsDemo, Converter={StaticResource ToNotBool}, Mode=OneWay}" />
 
                   </StackPanel>
 
@@ -232,7 +231,7 @@
                   <ZPF:CheckBoxEx 
                      Indent="300" Width="340" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" 
                      Label="Création auto. d'articles lors de l'inventaire (terminal)" 
-                     IsChecked="{Binding Stock.AutoCreateArticle, Source={StaticResource Locator}}" />
+                     IsChecked="{Binding Stock.AutoCreateArticle}" />
 
                </StackPanel>
             </Border>

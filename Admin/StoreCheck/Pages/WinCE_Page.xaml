@@ -10,7 +10,7 @@
    d:DesignHeight="480" d:DesignWidth="800"
    Title="WinCE_Page" Loaded="Page_Loaded">
 
-   <Grid Margin="10,0,0,0" Background="#60FFFFFF" DataContext="{Binding Source={StaticResource Locator}}" >
+   <Grid Margin="10,0,0,0" Background="#60FFFFFF" >
 
       <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Height="350" Background="#60FFFFFF" >
          <Grid.ColumnDefinitions>
@@ -35,7 +35,7 @@
          </StackPanel>
 
          <ListView Grid.Column="2" Background="#60FFFFFF" Margin="10" 
-            ItemsSource="{Binding ws.LastIPs, Source={StaticResource Locator}}"  >
+            ItemsSource="{Binding ws.LastIPs}"  >
             
             <ListView.ItemTemplate >
                <DataTemplate>

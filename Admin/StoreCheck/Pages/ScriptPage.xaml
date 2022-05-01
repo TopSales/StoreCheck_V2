@@ -11,7 +11,7 @@
    mc:Ignorable="d" 
    d:DesignHeight="480" d:DesignWidth="800" >
 
-   <Grid Background="#6FFF" DataContext="{Binding Source={StaticResource Locator}}" Margin="10,0,0,0">
+   <Grid Background="#6FFF" Margin="10,0,0,0">
       <Grid.ColumnDefinitions>
          <ColumnDefinition Width="*"/>
          <ColumnDefinition Width="*"/>
@@ -154,7 +154,7 @@
                </StackPanel>
 
                <DataGrid x:Name="dgData" Grid.Row="1"
-                  ItemsSource="{Binding PDF2Data.ImportedLines, Source={StaticResource Locator}}" 
+                  ItemsSource="{Binding PDF2Data.ImportedLines}" 
                   Margin="10,10,10,10"
                   Background="#2FFF"    
                   IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"

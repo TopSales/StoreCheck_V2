@@ -321,25 +321,6 @@ namespace ZPF
             UserViewModel.Current.Init(DB_SQL._ViewModel);
          };
 
-         // Updates
-         if (DB_SQL._ViewModel.DBType == DBType.SQLite)
-         {
-            try
-            {
-               DB_SQL.QuickQuery("Drop table UserSession;");
-               DB_SQL.QuickQuery(UserSession.SQLCreate_SQLite);
-
-
-               DB_SQL.QuickQuery("ALTER TABLE User_RoleAdd ADD COLUMN Expiration datetime;");
-
-               DB_SQL._ViewModel.LastError = "";
-            }
-            catch
-            {
-
-            };
-         };
-
          if (!string.IsNullOrEmpty(DB_SQL._ViewModel.LastError))
          {
             BackboneViewModel.Current.MessageBox(BackboneViewModel.MessageBoxType.Error, DB_SQL._ViewModel.LastError);

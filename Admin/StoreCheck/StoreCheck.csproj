@@ -238,20 +238,20 @@
     <PackageReference Include="System.Windows.Interactivity.WPF">
       <Version>2.0.20525</Version>
     </PackageReference>
-    <PackageReference Include="ZPF_Basics_WPF" Version="1.0.5.24">
+    <PackageReference Include="ZPF_Basics_WPF" Version="1.0.5.25">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
     <PackageReference Include="ZPF_DBSQL">
-      <Version>0.1.8.49</Version>
+      <Version>0.1.8.54</Version>
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
     <PackageReference Include="ZPF_DBSQL_WPF">
-      <Version>1.0.0.53</Version>
+      <Version>1.0.0.57</Version>
     </PackageReference>
     <PackageReference Include="ZPF_Fonts" Version="1.0.0.9" />
     <PackageReference Include="ZPF_LabelPrinter" Version="1.0.0.2" />
     <PackageReference Include="ZPF_Users_Rights_WPF">
-      <Version>1.1.0.32</Version>
+      <Version>1.1.0.34</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.310801">
       <PrivateAssets>all</PrivateAssets>
