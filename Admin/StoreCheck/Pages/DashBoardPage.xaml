@@ -26,7 +26,7 @@
       </Grid.RowDefinitions>
 
 
-      <Border Grid.Column="0" Grid.Row="0" Background="#8FFF" Margin="5,0,5,5" >
+      <Border Grid.Column="0" Grid.Row="0" Background="#8FFF" Margin="10,0,5,5" >
          <controls:ChartView x:Name="chartView" />
       </Border>
 
@@ -65,7 +65,7 @@
               Content="Articles en alerte" 
               Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" />
 
-      <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#8FFF" Margin="5,5,5,0"  >
+      <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#8FFF" Margin="10,5,5,0"  >
 
          <Grid>
             <DataGrid x:Name="dataGrid" 

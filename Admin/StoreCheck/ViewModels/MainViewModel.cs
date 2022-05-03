@@ -163,28 +163,28 @@ namespace ZPF
 
             string SQL = "";
 
-            //switch (Connection_AT.DBType)
-            //{
-            //    case DBType.SQLServer: SQL = AuditTrail.PostScript_MSSQL; break;
+            switch (Connection_AT.DBType)
+            {
+               case DBType.SQLServer: SQL = AuditTrail.PostScript_MSSQL; break;
 
-            //    case DBType.SQLite: SQL = AuditTrail.PostScript_SQLite; break;
+               case DBType.SQLite: SQL = AuditTrail.PostScript_SQLite; break;
 
-            //    case DBType.PostgreSQL: SQL = AuditTrail.PostScript_PGSQL; break;
+               case DBType.PostgreSQL: SQL = AuditTrail.PostScript_PGSQL; break;
 
-            //    case DBType.MySQL: SQL = AuditTrail.PostScript_MySQL; break;
-            //};
+               case DBType.MySQL: SQL = AuditTrail.PostScript_MySQL; break;
+            };
 
-            //// - - -  - - - 
+            // - - -  - - - 
 
-            //DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail), SQL, "");
-            //DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail_App), SQL, "");
+            DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail), SQL, "");
+            DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail_App), SQL, "");
 
             #endregion
 
             // - - -  - - - 
 
             AuditTrailViewModel.Current.Init(new DBAuditTrailWriter(Connection_AT));
-            AuditTrailViewModel.Current.Application = "MShop";
+            AuditTrailViewModel.Current.Application = "SCAdmin";
          };
 
          if (Connection_DOC == null || !Connection_DOC.CheckConnection())
@@ -194,7 +194,7 @@ namespace ZPF
 
             #region Create table & co 
 
-            string SQL = "";
+            //string SQL = "";
 
             //switch (Connection_DOC.DBType)
             //{
