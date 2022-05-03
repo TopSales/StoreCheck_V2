@@ -350,6 +350,56 @@ namespace ZPF
          EditReferentielViewModel.Current.CheckRights = false;
          EditReferentielViewModel.Current.Tables.Clear();
 
+         // - - -  - - - 
+
+         EditReferentielViewModel.Current.Tables.Add(new NameValue() { Name = "Chain", Value = "Chain" });
+         EditReferentielViewModel.Current.Tables.Last().Tag = new TStrings();
+         (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("Name=Name,64");
+
+         // - - -  - - - 
+
+         EditReferentielViewModel.Current.Tables.Add(new NameValue() { Name = "SubChain", Value = "SubChain" });
+         EditReferentielViewModel.Current.Tables.Last().Tag = new TStrings();
+         (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("Name=Name,64");
+         (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("FKChain=_Chain");
+         {
+            TStrings NameValue = new TStrings();
+            NameValue = DB_SQL.QuickQueryList("Select Name as Name, PK as Value from Chain order by Name");
+            NameValue.Insert(0, "");
+            (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).SetObject((EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Count - 1, NameValue);
+         }
+
+         // - - -  - - - 
+
+   //      EditReferentielViewModel.Current.Tables.Add(new NameValue() { Name = "Actions", Value = "Action" });
+   //      EditReferentielViewModel.Current.Tables.Last().Tag = new TStrings();
+   //      (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("Nom=Nom,128");
+   //      (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("FKClient=_Client");
+   //      {
+   //         TStrings NameValue = new TStrings();
+   //         NameValue = DB_SQL.QuickQueryList("Select Nom as Name, PK as Value from Client order by Nom");
+   //         NameValue.Insert(0, "");
+   //         (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).SetObject((EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Count - 1, NameValue);
+   //      }
+   //(EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("FKQuestionnaire=_Questionnaire");
+   //      {
+   //         TStrings NameValue = new TStrings();
+   //         NameValue = DB_SQL.QuickQueryList("Select Nom as Name, PK as Value from Questionnaire order by Nom");
+   //         NameValue.Insert(0, "");
+   //         (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).SetObject((EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Count - 1, NameValue);
+   //      }
+   //(EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("Observations=Observations,4096");
+   //      (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("Duration=Duration");
+
+         // - - -  - - - 
+
+         EditReferentielViewModel.Current.TablesRefresh();
+
+         // - - -  - - -  
+
+         Log.Write(ErrorLevel.Log, "MainViewModel.LoadReferentiel(end)");
+
+         /*
          EditReferentielViewModel.Current.Tables.Add(new NameValue() { Name = "Contacts", Value = "Contact" });
          EditReferentielViewModel.Current.Tables.Last().Tag = new TStrings();
          (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("Ref=Ref");
@@ -416,7 +466,7 @@ namespace ZPF
          (EditReferentielViewModel.Current.Tables.Last().Tag as TStrings).Add("Description=Description,1024");
 
          EditReferentielViewModel.Current.TablesRefresh();
-
+         */
          // - - -  - - - 
 
          Log.Write(ErrorLevel.Log, "MainViewModel.LoadReferentiel(end)");

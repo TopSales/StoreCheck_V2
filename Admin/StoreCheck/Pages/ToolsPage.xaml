@@ -41,18 +41,18 @@
 
             <StackPanel Orientation="Vertical" Margin="8">
                <Image Source="/Images/Tiles/Data-Files.png" Width="60" />
-               <TextBlock Text="Référentiel" Foreground="White" HorizontalAlignment="Center" />
+               <TextBlock Text="Referential" Foreground="White" HorizontalAlignment="Center" />
             </StackPanel>
          </Controls:Tile>
 
-         <ZPF:TileEx Grid.Column="1" Grid.Row="0" Margin="0,4,0,4" Width="100" Height="100" 
+         <ZPF:TileEx Grid.Column="1" Grid.Row="0" Margin="0,4,0,4" Width="100" Height="100" Visibility="Collapsed"
             Click="Tile_Click" 
             
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.View, Converter={StaticResource HasUserLevel}}"
             Source="/StoreCheck;component/Images/Tiles/Step-WF.png"
             Text="Emplacements" CommandParameter="EMPL"/>
 
-         <ZPF:TileEx Grid.Column="2" Grid.Row="0" Margin="0,4,0,4" Width="100" Height="100" 
+         <ZPF:TileEx Grid.Column="2" Grid.Row="0" Margin="0,4,0,4" Width="100" Height="100" Visibility="Collapsed"
             Click="Tile_Click" 
             
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.View, Converter={StaticResource HasUserLevel}}"
@@ -66,7 +66,7 @@
             
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=User.View, Converter={StaticResource HasUserLevel}}"
             Source="/StoreCheck;component/Images/Tiles/User-Group.png"
-            Text="Utilisateurs" CommandParameter="USER"/>
+            Text="Users" CommandParameter="USER"/>
          </Border>
 
          <Border Grid.Column="1"  Grid.Row="1" IsEnabled="{Binding Main.IsPro, Mode=OneWay}" Grid.ColumnSpan="2" Margin="2,-2,114,2">
@@ -75,7 +75,7 @@
             
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=User.View, Converter={StaticResource HasUserLevel}}"
             Source="/StoreCheck;component/Images/Tiles/Mobile-Phone.png"
-            Text="Terminaux" CommandParameter="WINCE"/>
+            Text="Pda's" CommandParameter="WINCE"/>
          </Border>
 
          <ZPF:TileEx Grid.Column="2" Grid.Row="1" Margin="0,4,0,4" Width="100" Height="100" 
@@ -83,7 +83,7 @@
             
             IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.View, Converter={StaticResource HasUserLevel}}"
             Source="/Images/Tiles/Settings - 09.png"
-            Text="Paramètres" CommandParameter="CONFIG"/>
+            Text="Parameters" CommandParameter="CONFIG"/>
 
          <ZPF:TileEx x:Name="btnBaseDoc" Grid.Column="3" Grid.Row="0" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
@@ -109,12 +109,12 @@
          <ZPF:TileEx Grid.Column="1" Grid.Row="2" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
             Source="/StoreCheck;component/Images/Tiles/Foot print - 02.png"
-            Text="Traces" CommandParameter="AUDITTRAIL"/>
+            Text="Trackers" CommandParameter="AUDITTRAIL"/>
 
          <ZPF:TileEx Grid.Column="2" Grid.Row="2" Margin="0,4,0,4" Width="100" Height="100" 
             Click="Tile_Click" 
             Source="/StoreCheck;component/Images/Tiles/Dialog-Box-About.png"
-            Text="A propos" CommandParameter="ABOUT"/>
+            Text="About" CommandParameter="ABOUT"/>
 
          <!--<ZPF:TileEx x:Name="btnXamarin" Grid.Column="3" Grid.Row="2" Margin="0,4,0,4" Width="100" Height="100" 
             Click="BtnXamarin_Click" 
