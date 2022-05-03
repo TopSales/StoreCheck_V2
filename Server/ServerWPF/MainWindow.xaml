@@ -1,0 +1,80 @@
+﻿<Window
+    x:Class="_03_ChatServerWPF.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:_03_ChatServerWPF"
+    mc:Ignorable="d"
+    Closing="CloseServerConnection"
+    Title="StoreCheck Server" Height="650" Width="800" MinWidth="500"
+    Background="Bisque" Icon="/Images/StoreCheck.ico">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/Background.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Grid.Row="0" Header="Server Settings" Padding="10" Margin="10" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label>IP Address</Label>
+                <Label Grid.Row="1">Port</Label>
+                <Label Grid.Row="2">Buffer Size</Label>
+
+
+                <TextBox x:Name="serverIpAddress" Grid.Column="1" Text="127.0.0.1" Margin="5"/>
+                <TextBox x:Name="serverPortValue" Grid.Row="1" Grid.Column="1" Text="9000" Margin="5"/>
+                <TextBox x:Name="serverBufferSizeValue" Grid.Row="2" Grid.Column="1" Text="1024" Margin="5"/>
+
+                <Button x:Name="btnStartStop" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Start" Padding="5" Margin="10" Click="btnStartStop_Click" />
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Header="Clients" Padding="10" Margin="10">
+            <ListBox x:Name="listClients" 
+                     ItemsSource="{Binding Clients}" Margin="0,0,-4,0" 
+                     MouseDoubleClick="listClients_MouseDoubleClick">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="file" Click="MenuItem_Click" />
+                                </ContextMenu>
+                            </Grid.ContextMenu>
+
+                            <TextBlock Text="{Binding Name}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </GroupBox>
+
+        <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Header="Chats" Padding="10" Margin="10">
+            <ListBox x:Name="listChats">
+                <ListBoxItem>No chat messages yet...</ListBoxItem>
+            </ListBox>
+        </GroupBox>
+    </Grid>
+</Window>
