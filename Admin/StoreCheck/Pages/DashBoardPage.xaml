@@ -7,6 +7,7 @@
    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
    xmlns:local="clr-namespace:StoreCheck.Pages"
    xmlns:ZPFFonts="clr-namespace:ZPF.Fonts;assembly=ZPF_Fonts"   
+    xmlns:control="http://filterdatagrid.control.com/2021"
    xmlns:controls="clr-namespace:ZPF"
    mc:Ignorable="d" 
    d:DesignHeight="480" d:DesignWidth="800"
@@ -33,13 +34,14 @@
 
       <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Background="#8FFF" Margin="5,0,5,5" >
 
-         <DataGrid ItemsSource="{Binding atDashboard1, Mode=TwoWay}" Margin="10,25,10,10"
+         <control:FilterDataGrid ItemsSource="{Binding atDashboard1, Mode=TwoWay}" Margin="10,25,10,10"
                   Background="#2FFF"  
-                  Loaded="dgMVT_Loaded"
+                FilterLanguage="English"
+            DateFormatString="dd/MM/yyyy"
                   IsReadOnly="True" AutoGenerateColumns="True" SelectionMode="Single"
                   CanUserDeleteRows="False" CanUserAddRows="False" >
 
-            <!--<DataGrid.Columns>
+            <!--  Loaded="dgMVT_Loaded" <DataGrid.Columns>
                <DataGridTextColumn Binding="{Binding Action}" Header="Action" Width="45"/>
                <DataGridTextColumn Binding="{Binding Article}" Header="Article" Width="200" FontWeight="Bold"/>
 
@@ -56,7 +58,7 @@
 
                <DataGridTextColumn Binding="{Binding PK}" Header="PK" Width="50" Visibility="Hidden"/>
             </DataGrid.Columns>-->
-         </DataGrid>
+         </control:FilterDataGrid>
       </Border>
 
       <Label x:Name="labelDataGrid"  Grid.Column="0" Grid.Row="1" 
@@ -68,16 +70,22 @@
       <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#8FFF" Margin="10,5,5,0"  >
 
          <Grid>
-            <DataGrid x:Name="dataGrid" 
-                  ItemsSource="{Binding atDashboard2, Mode=TwoWay}" 
-                  Margin="10,25,10,10"
-                  Background="#2FFF"       
-                  Loaded="dgAlertes_Loaded"
+            <control:FilterDataGrid x:Name="dataGrid" 
+                  ItemsSource="{Binding atDashboard2, Mode=TwoWay}"  
+                  Margin="10,25,10,10"  
                   IsReadOnly="True" AutoGenerateColumns="True" SelectionMode="Single"
                   CanUserDeleteRows="False" CanUserAddRows="False" 
-                  LoadingRow="DataGrid_LoadingRow_1">
+                  Background="#2FFF"   
+            SavCurrentFilter ="True" 
+            FilterLanguage="English"
+            DateFormatString="dd/MM/yyyy">
 
-               <!--<DataGrid.Columns>
+               <!--  Loaded="dgAlertes_Loaded" ExcludeFields="DataIn, DataInType"
+               Style="{StaticResource FilterDatagridStyle}"
+            ShowElapsedTime="True"
+            ShowRowsCount="True"
+            ShowStatusBar="True"
+                  Background="#2FFF"       <DataGrid.Columns>
                   <DataGridTextColumn Binding="{Binding Ref}" Header="Ref" Width="120"/>
                   <DataGridTextColumn Binding="{Binding Nom}" Header="Article" Width="200" FontWeight="Bold"/>
                   <DataGridTextColumn Binding="{Binding Famille}" Header="Famille" Width="150"/>
@@ -89,7 +97,7 @@
 
                   <DataGridTextColumn Binding="{Binding PK}" Header="PK" Width="50" Visibility="Hidden"/>
                </DataGrid.Columns>-->
-            </DataGrid>
+            </control:FilterDataGrid>
          </Grid>
       </Border>
 

@@ -3,6 +3,7 @@
    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:control="http://filterdatagrid.control.com/2021"
    mc:Ignorable="d">
 
    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
@@ -88,6 +89,25 @@
       <Setter Property="HorizontalContentAlignment" Value="Center" />
    </Style>-->
 
+   <Style TargetType="{x:Type control:FilterDataGrid}" BasedOn="{StaticResource MahApps.Styles.DataGrid.Azure}">
+      <!--<Style TargetType="{x:Type DataGrid}" >-->
+      <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}"/>
+      <Setter Property="RowBackground" Value="{StaticResource Alternation1Brush}"/>
+      <Setter Property="AlternatingRowBackground" Value="{StaticResource Alternation2Brush}"/>
+      <Setter Property="CanUserResizeRows" Value="False"/>
+
+      <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource CellBorderBrush}"/>
+      <Setter Property="VerticalGridLinesBrush" Value="{StaticResource CellBorderBrush}"/>
+   </Style>
+   
+   <Style x:Key="NoMetroFdg" TargetType="{x:Type control:FilterDataGrid}" >
+      <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}"/>
+      <Setter Property="RowBackground" Value="{StaticResource Alternation1Brush}"/>
+      <Setter Property="AlternatingRowBackground" Value="{StaticResource Alternation2Brush}"/>
+
+      <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource CellBorderBrush}"/>
+      <Setter Property="VerticalGridLinesBrush" Value="{StaticResource CellBorderBrush}"/>
+   </Style>
    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
    <!--<Style TargetType="{x:Type Border}">
