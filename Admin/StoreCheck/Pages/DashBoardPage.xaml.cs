@@ -23,13 +23,12 @@ namespace StoreCheck.Pages
          InitializeComponent();
 
          {
-            //labelChart.Content = // I18nViewModel.Current.T("Répartition des articles (qté) par familles");
-            labelChart.Content = ("Répartition des articles (qté) par familles");
+            labelChart.Content = ("Ut sciri ausim de at ad certe pedem.");
 
             //chartFamilles.Visibility = Visibility.Visible;
             //chartEmplacements.Visibility = Visibility.Collapsed;
 
-            labelDataGrid.Content = "Articles en alerte";
+            labelDataGrid.Content = "Ob dici anno esse ipse";
 
             // - - -  - - - 
 

@@ -27,17 +27,7 @@ namespace StoreCheck
 
          gridBusy.DataContext = BackboneViewModel.Current;
 
-         // I18nViewModel.Current.T(this);
-
-#if DEBUG
-         // I18nViewModel.Current.FindMissing = true;
-
-         //tileFactures.Visibility = Visibility.Visible;
-#else
-         //tileFactures.Visibility = Visibility.Collapsed;
-#endif
-
-         WPFMessageBox.Dico = WPFMessageBox.DicoFR;
+         //WPFMessageBox.Dico = WPFMessageBox.DicoFR;
 
          BackboneViewModel.Current.InitMsgCallBack(MsgCallBack);
          BackboneViewModel.Current.InitDoEventsCallBack(DoEventsCallBack);
@@ -55,7 +45,6 @@ namespace StoreCheck
          Log.WriteTimeStamp("Before Nav");
 
          NavigateMenu("HOME");
-         // NavigateMenu("STYLE");
 
          columnDefinition.Width = new GridLength(MainViewModel.Current.LoadSplitter("Main", "Splitter", 150));
 
@@ -179,14 +168,14 @@ namespace StoreCheck
                break;
 
             case "HOME":
-               MainViewModel.Current.Title = "Tableau de bord";
+               MainViewModel.Current.Title = "Dashboard";
                frameBody.Navigate(new DashBoardPage());
                break;
 
             // - - -  - - - 
 
             case "ABOUT":
-               NavigatePage("Outils / à propos", new AboutPage());
+               NavigatePage("Tools / About", new AboutPage());
                break;
 
             case "IMP_EXP":
@@ -204,7 +193,7 @@ namespace StoreCheck
                break;
 
             case "TOOLS":
-               NavigatePage("Outils", new ToolsPage());
+               NavigatePage("Tools", new ToolsPage());
                break;
 
             case "DATA":
@@ -212,7 +201,7 @@ namespace StoreCheck
                {
                   MainViewModel.Current.LoadEditReferentiel(); // Refresh data
 
-                  NavigatePage("Outils / référentiel", new ReferentielPage());
+                  NavigatePage("Tools / référentiel", new ReferentielPage());
                };
                break;
 
@@ -222,7 +211,7 @@ namespace StoreCheck
 
                if (UserViewModel.Current.CheckRights("User.View"))
                {
-                  MainViewModel.Current.Title = "Outils / utilisateurs";
+                  MainViewModel.Current.Title = "Tools / utilisateurs";
 
                   var p = new UserManagementPage();
                   p.OnPrintBadge += ((object sender, RoutedEventArgs e) =>
@@ -246,12 +235,12 @@ namespace StoreCheck
                {
                   MainViewModel.Current.LoadEditReferentiel(); // Refresh data
 
-                  NavigatePage("Outils / paramètres", new SettingsPage());
+                  NavigatePage("Tools / paramètres", new SettingsPage());
                };
                break;
 
             case "DBASE":
-               NavigatePage("Outils / database", new DatabasePage());
+               NavigatePage("Tools / database", new DatabasePage());
                break;
 
             case "WINCE":
@@ -301,7 +290,7 @@ namespace StoreCheck
 
          if (!MainViewModel.Current.CheckDB())
          {
-            BackboneViewModel.Current.MessageBox(MessageBoxType.Error, "Version de base de données incompatible!");
+            BackboneViewModel.Current.MessageBox(MessageBoxType.Error, "Incompatible database version!");
 
             if (!Debugger.IsAttached)
             {

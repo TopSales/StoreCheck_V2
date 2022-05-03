@@ -9,7 +9,7 @@
    xmlns:ZPF="clr-namespace:ZPF;assembly=ZPFLib_WPF" 
    xmlns:local="clr-namespace:StoreCheck"
    mc:Ignorable="d"
-   Icon="StoreCheck.ico" 
+   Icon="/Images/StoreCheck.ico" 
    Height="280" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"  Loaded="Window_Loaded"
    KeyDown="Window_KeyDown" DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">
 

@@ -25,15 +25,13 @@
          <RowDefinition Height="250"/>
       </Grid.RowDefinitions>
 
-      
-      <Border Grid.Column="0" Grid.Row="0" Background="#3FFF" Margin="5,0,5,5" >
-         <Grid>
-            <controls:ChartView x:Name="chartView" />
-         </Grid>
+
+      <Border Grid.Column="0" Grid.Row="0" Background="#8FFF" Margin="5,0,5,5" >
+         <controls:ChartView x:Name="chartView" />
       </Border>
 
 
-      <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Background="#3FFF" Margin="5,0,5,5" >
+      <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Background="#8FFF" Margin="5,0,5,5" >
 
          <DataGrid ItemsSource="{Binding atDashboard1, Mode=TwoWay}" Margin="10,25,10,10"
                   Background="#2FFF"  
@@ -67,7 +65,7 @@
               Content="Articles en alerte" 
               Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" />
 
-      <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#3FFF" Margin="5,5,5,0"  >
+      <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#8FFF" Margin="5,5,5,0"  >
 
          <Grid>
             <DataGrid x:Name="dataGrid" 
@@ -144,7 +142,7 @@
       <Label  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" 
               HorizontalAlignment="Left" VerticalAlignment="Top"
               Margin="10,0"
-              Content="Derniers mouvements" 
+              Content="Tetendit ima machinae" 
               Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" >
       </Label>
 

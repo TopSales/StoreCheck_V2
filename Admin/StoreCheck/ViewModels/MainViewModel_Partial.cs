@@ -232,7 +232,7 @@ namespace ZPF
                CommandParameter="HOME" >
                <StackPanel Orientation="Vertical" Margin="8">
                   <Image Source="Images/Tiles/House-07.png" Width="60" />
-                  <TextBlock Text="Tableau de bord" Foreground="White" HorizontalAlignment="Center" />
+                  <TextBlock Text="Dashboard" Foreground="White" HorizontalAlignment="Center" />
                </StackPanel>
             </Controls:Tile>
 
@@ -339,7 +339,7 @@ namespace ZPF
                CommandParameter="TOOLS" >
                <StackPanel Orientation="Vertical" Margin="8">
                   <Image Source="Images/Tiles/Tools-02.png" Width="60" />
-                  <TextBlock Text="Outils" Foreground="White" HorizontalAlignment="Center" />
+                  <TextBlock Text="Tools" Foreground="White" HorizontalAlignment="Center" />
                </StackPanel>
             </Controls:Tile>
          </StackPanel>
@@ -458,8 +458,8 @@ namespace ZPF
          Modules.Add(new Module
          {
             Ref = "HOME",
-            Name = "Tableau de bord",
-            Title = "Tableau de bord",
+            Name = "Dashboard",
+            Title = "Dashboard",
             IconChar = ZPF.Fonts.IF.House,
          });
 
@@ -500,8 +500,8 @@ namespace ZPF
          Modules.Add(new Module
          {
             Ref = "TOOLS",
-            Name = "Outils",
-            Title = "Outils",
+            Name = "Tools",
+            Title = "Tools",
             IconChar = ZPF.Fonts.IF.Tools_02,
          });
 
