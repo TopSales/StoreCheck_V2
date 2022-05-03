@@ -168,6 +168,10 @@ namespace StoreCheck.Pages
 
       private void btnPrintAlerte_Click(object sender, RoutedEventArgs e)
       {
+         var dgcount = MainViewModel.Current.atDashboard2.Count;
+         var items= dataGrid.Items;
+         foreach (var item in items)
+         { }
          //ExcelHelper.ExportXLS(null, VMLocator.Items.GetArticlesAlertView(), System.IO.Path.GetTempFileName() + ".xlsx", true,
          //   (MainViewModel.Current.IsDemo ? MainViewModel.MaxArticles : -1));
       }
@@ -183,7 +187,7 @@ namespace StoreCheck.Pages
       private void dgAlertes_Loaded(object sender, RoutedEventArgs e)
       {
          var dataGrid = sender as DataGrid;
-         new DataGridTools(MainViewModel.IniFileName, "Dashboard_Alertes", dataGrid);
+     //    new DataGridTools(MainViewModel.IniFileName, "Dashboard_Alertes", dataGrid);
       }
 
       private void dgSurLeQuai_Loaded(object sender, RoutedEventArgs e)
