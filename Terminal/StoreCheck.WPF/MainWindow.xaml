@@ -1,0 +1,19 @@
+﻿<wpf:FormsApplicationPage 
+   x:Class="StoreCheck.WPF.MainWindow"
+   xmlns:wpf="clr-namespace:Xamarin.Forms.Platform.WPF;assembly=Xamarin.Forms.Platform.WPF"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:local="clr-namespace:StoreCheck.WPF"
+   mc:Ignorable="d"
+   Title="StoreCheck" Height="600" Width="800" Icon="Icon.ico" >
+
+   <Grid x:Name="grid">
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="563*"/>
+         <ColumnDefinition Width="232*"/>
+      </Grid.ColumnDefinitions>
+
+   </Grid>
+</wpf:FormsApplicationPage>

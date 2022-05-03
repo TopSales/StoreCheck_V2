@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<zpf:Page_Base 
+   xmlns="http://xamarin.com/schemas/2014/forms"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:ZPFXF="clr-namespace:ZPF.XF.Compos;assembly=ZPF_XF_Compos                                                                                                                                                                                                            "
+   xmlns:zpfC="clr-namespace:ZPF.XF.Compos;assembly=ZPF_XF_Compos"
+   xmlns:zpf="clr-namespace:ZPF"
+   mc:Ignorable="d"
+   x:Class="StoreCheck.Pages.ShelfInventoryPage">
+
+   <zpf:Page_Base.MainContent>
+      <ScrollView x:Name="scrollView">
+         <StackLayout x:Name="slScroll">
+
+            <Grid>
+               <Grid.RowDefinitions>
+                  <RowDefinition x:Name="rowDefinition" Height="auto"/>
+                  <RowDefinition Height="auto"/>
+                  <RowDefinition Height="auto"/>
+                  <RowDefinition Height="*"/>
+               </Grid.RowDefinitions>
+
+               <BoxView Grid.Row="0" Margin="20,5,20,0" BackgroundColor="LightGray" CornerRadius="10" />
+               <Label x:Name="lNbScan" Grid.Row="0" Margin="20,5,25,0" Text="???" FontSize="9" HorizontalOptions="End" VerticalOptions="Start" />
+
+               <StackLayout x:Name="slPreviousLayout"  Grid.Row="0" Margin="30,10,30,10" HorizontalOptions="Center" VerticalOptions="Center"  >
+
+                  <StackLayout Orientation="Horizontal">
+                     <Label Text="Previous article" Margin="0,0,5,0" FontAttributes="Bold" FontSize="14" TextColor="Black" />
+                     <Label Text="{Binding PrevArticle.EAN}" Margin="5,0,0,0" FontSize="14" />
+                  </StackLayout>
+
+                  <Label x:Name="lPFamille" IsVisible="false"
+                   Margin="0,5,0,0" FontAttributes="Bold" FontSize="14" HorizontalTextAlignment="Center"  />
+
+                  <Label Text="{Binding PrevArticle.Name}" Margin="0,5,0,0" FontSize="14" HorizontalTextAlignment="Center" TextColor="Black" />
+
+                  <Grid ColumnDefinitions="2*,*">
+                     <StackLayout  Grid.Column="0" Margin="20,0,20,0" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text="{Binding PrevArticle.Brand}" FontAttributes="Bold" />
+                        <Label Text="{Binding PrevArticle.Condi}" FontAttributes="Bold" FontSize="11" VerticalTextAlignment="Center" />
+                        <Label Text="{Binding PrevArticle.UCondi}" FontAttributes="Bold" FontSize="11" VerticalTextAlignment="Center" />
+                     </StackLayout>
+
+                     <Label Grid.Column="1"  Margin="0,0,10,0"  Text="{Binding PrevArticle.Prix, StringFormat='{0:n2}'}"  FontAttributes="Bold" HorizontalOptions="End" />
+                  </Grid>
+               </StackLayout>
+
+               <BoxView Grid.Row="1"  Margin="20,20,20,8" BackgroundColor="Black" CornerRadius="10" />
+               <BoxView Grid.Row="1"  Margin="22,22,22,10" BackgroundColor="#eee" CornerRadius="8" />
+               <StackLayout Grid.Row="1" Margin="25,25,25,10" HorizontalOptions="Center" VerticalOptions="Center"  >
+
+                  <StackLayout x:Name="slSymb" Orientation="Horizontal" >
+                     <Label Margin="5,5,0,0" Text="{Binding Data}" FontAttributes="Bold" FontSize="18"  />
+
+                     <Label Text="{Binding Symbology}" Margin="5,5,0,0" VerticalTextAlignment="Center" FontSize="12" />
+                     <Label Text="{Binding nSymbology,StringFormat='({0})'}" Margin="5,5,0,0" VerticalTextAlignment="Center" FontSize="12" />
+                     <Label Text="{Binding Length,StringFormat='{0} car.'}"  Margin="5,5,0,0" VerticalTextAlignment="Center" FontSize="12" />
+                  </StackLayout>
+
+                  <Label Text="{Binding CurrentArticle.FKFamily}" IsVisible="false"
+                   Margin="0,10,0,0" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center"  />
+
+                  <Label Text="{Binding CurrentArticle.Name}" Margin="5,5,5,0" FontAttributes="Bold" TextColor="Black" FontSize="20" HorizontalTextAlignment="Center"  />
+
+                  <Grid ColumnDefinitions="2*,*">
+                     <StackLayout Grid.Column="0" Margin="30,5,30,10" Orientation="Horizontal" HorizontalOptions="Center">
+                        <Label Text="{Binding CurrentArticle.Brand}" Margin="0,0,5,0" FontAttributes="Bold" />
+                        <Label Text="{Binding CurrentArticle.Condi}" FontAttributes="Bold" />
+                        <Label Text="{Binding CurrentArticle.UCondi}" FontAttributes="Bold" />
+                     </StackLayout>
+
+                     <Label x:Name="lCurrentAPrice" Grid.Column="1"  Margin="0,0,10,0"  Text="{Binding CurrentArticle.Price, StringFormat='{0:n}'}"  FontAttributes="Bold" FontSize="18"  HorizontalOptions="End" />
+                  </Grid>
+
+                  <Grid x:Name="slBarCode" ColumnDefinitions="auto,*" RowDefinitions="auto,auto" Margin="20,0,20,0" BackgroundColor="#EEE">
+                     <Button Grid.Row="0" Grid.ColumnSpan="2"  Margin="5" Text="end off scans" Clicked="btnEOFScan_Clicked" CornerRadius="5" />
+                     <Label Grid.Row="1" Text="Code" TextColor="Black" VerticalOptions="Center" />
+                     <Entry Grid.Row="1" Grid.Column="1" x:Name="entry" Keyboard="Numeric" Placeholder="enter barcode" FontSize="18" VerticalOptions="Center" Completed="entry_Completed" TextChanged="entry_TextChanged" />
+                  </Grid>
+                  
+               </StackLayout>
+
+               <StackLayout x:Name="slFacing" Grid.Row="2" Margin="10,0,0,0" IsVisible="false" >
+                  <Label Text="facing" Margin="14,10,10,0" />
+                  <Grid x:Name="efacing" ColumnDefinitions="*,10,*,*,*,*" Margin="10,-10,10,0" HeightRequest="70" >
+                     <zpfC:RadioButton Grid.Column="0" TextColor="Black" FontSize="20" Text="none" HeightRequest="65" CommandParameter="0" CheckedChanged="RadioButton_CheckedChanged"  />
+                     <zpfC:RadioButton Grid.Column="2" TextColor="Black" FontSize="18" Text="1" HeightRequest="65" CommandParameter="1" CheckedChanged="RadioButton_CheckedChanged" />
+                     <zpfC:RadioButton Grid.Column="3" TextColor="Black" FontSize="18" Text="2" HeightRequest="65" CommandParameter="2" CheckedChanged="RadioButton_CheckedChanged" />
+                     <zpfC:RadioButton Grid.Column="4" TextColor="Black" FontSize="18" Text="3" HeightRequest="65" CommandParameter="3" CheckedChanged="RadioButton_CheckedChanged" />
+                     <zpfC:RadioButton Grid.Column="5" TextColor="Black" FontSize="18" Text="4" HeightRequest="65" CommandParameter="4" CheckedChanged="RadioButton_CheckedChanged" />
+                  </Grid>
+                  
+               </StackLayout>
+
+            </Grid>
+         </StackLayout>
+
+      </ScrollView>
+
+   </zpf:Page_Base.MainContent>
+
+</zpf:Page_Base>

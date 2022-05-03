@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://xamarin.com/schemas/2014/forms" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:zpf="clr-namespace:ZPF.XF.Compos;assembly=ZPF_XF_Compos"
+   x:Class="ZPF.AboutView">
+
+   <ContentView.Content>
+      <Grid>
+         <Image x:Name="imgIconZPF" VerticalOptions="End" HorizontalOptions="End" Margin="0,0,40,20" Opacity="0.8"/>
+
+         <Grid Margin="20">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="auto"/>
+               <ColumnDefinition Width="5"/>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+               <RowDefinition Height="auto"/>
+               <RowDefinition Height="auto"/>
+               <RowDefinition Height="auto"/>
+               <RowDefinition Height="auto"/>
+               <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Image x:Name="imgIcon" Grid.Column="0" Grid.Row="0" 
+                Source="Images/Icon.png" WidthRequest="100" />
+
+            <Label Grid.Column="0" Grid.Row="1" HorizontalOptions="End"
+                Text="version" />
+
+            <StackLayout Grid.Column="2" Grid.Row="1" Orientation="Horizontal">
+               <Label Text="{Binding sVersion}" TextColor="Black" />
+               <Label Text="{Binding BuildOn, StringFormat='({0})'}" TextColor="Black" />
+            </StackLayout>
+
+
+            <Label Grid.Column="0" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center"
+                Text="by" />
+            <!--<Image x:Name="imgLogoCB" Grid.Column="2" Grid.Row="2" />-->
+            <Label Grid.Column="2" Grid.Row="2" Text="ZPF (ME)" TextColor="Black" />
+
+
+            <Label Grid.Column="0" Grid.Row="3" HorizontalOptions="End"
+                Text="web" />
+
+            <Label Grid.Column="2" Grid.Row="3" >
+               <Label.FormattedText>
+                  <FormattedString>
+                     <zpf:HyperlinkSpan Text = "www.ZPF.fr" Url="http://www.ZPF.fr/" />
+                  </FormattedString>
+               </Label.FormattedText>
+            </Label>
+
+
+            <Label Grid.Column="0" Grid.Row="4" HorizontalOptions="End"
+                Text="eMail" />
+
+            <Label Grid.Column="2" Grid.Row="4" >
+               <Label.FormattedText>
+                  <FormattedString>
+                     <zpf:HyperlinkSpan Text = "Support@ZPF.fr" Url="mailto:Support@ZPF.fr?subject=APP StoreCheck" />
+                  </FormattedString>
+               </Label.FormattedText>
+            </Label>
+
+         </Grid>
+      </Grid>
+   </ContentView.Content>
+</ContentView>

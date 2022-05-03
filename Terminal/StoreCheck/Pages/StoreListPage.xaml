@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<zpf:Page_Base 
+   xmlns="http://xamarin.com/schemas/2014/forms"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:ZPFXF="clr-namespace:ZPF.XF.Compos;assembly=Compos"
+   xmlns:ZPFConv="clr-namespace:ZPF.Conv;assembly=ZPF_XF_Compos"
+   xmlns:zpf="clr-namespace:ZPF"
+   mc:Ignorable="d"
+   x:Class="StoreCheck.Pages.StoreListPage">
+
+   <ContentPage.Resources>
+      <ResourceDictionary>
+         <ZPFConv:ToVisibilityConverter x:Key="ToVisibility" />
+         <ZPFConv:ToColorConverter x:Key="ToColor" />
+
+         <OnPlatform x:Key="ListRowHeight" x:TypeArguments="x:Int32">
+            <On Platform="Android">65</On>
+            <On Platform="UWP">74</On>
+         </OnPlatform>
+
+         <OnPlatform x:Key="ColWidth" x:TypeArguments="GridLength">
+            <On Platform="Android">52</On>
+            <On Platform="UWP">60</On>
+         </OnPlatform>
+
+         <OnPlatform x:Key="RowHeight" x:TypeArguments="GridLength">
+            <On Platform="Android">19</On>
+            <On Platform="UWP">24</On>
+         </OnPlatform>
+      </ResourceDictionary>
+   </ContentPage.Resources>
+
+   <zpf:Page_Base.MainContent>
+      <ListView x:Name="listView" Margin="10" SeparatorVisibility="None"  RowHeight="{StaticResource ListRowHeight}"
+                ItemSelected="listView_ItemSelected" SelectionMode="Single" 
+                IsPullToRefreshEnabled="True" Refreshing="listView_Refreshing"  >
+         
+         <ListView.ItemTemplate>
+            <DataTemplate>
+               <ViewCell>
+                  <Grid RowSpacing="0" Padding="0">
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource ColWidth}"/>
+                        <ColumnDefinition Width="*"/>
+                     </Grid.ColumnDefinitions>
+                     
+                     <Grid.RowDefinitions>
+                        <RowDefinition Height="{StaticResource RowHeight}"/>
+                        <RowDefinition Height="{StaticResource RowHeight}"/>
+                        <RowDefinition Height="{StaticResource RowHeight}"/>
+                        <RowDefinition Height="5"/>
+                     </Grid.RowDefinitions>
+
+                     <Grid Grid.RowSpan="3" Margin="0,5,0,0" BackgroundColor="{Binding BackgroundColor}">
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                           <Label Text="{Binding Dist, StringFormat='{0:F2}'}" FontAttributes="Bold"  FontSize="Caption" HorizontalTextAlignment="Center" />
+                           <Label Text="km" FontAttributes="Bold" FontSize="Caption" HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                     </Grid>
+                     
+                     <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" VerticalOptions="End">
+                        <!--<Label Text="{Binding Mag.Enseigne}" FontSize="Subtitle"  LineBreakMode="NoWrap" />-->
+                        <Label Text="{Binding Mag.StoreName}" FontAttributes="Bold" FontSize="Subtitle" LineBreakMode="NoWrap" />
+                        <!--<Label Text="{Binding Mag.Nom, StringFormat='({0})'}" FontSize="Subtitle" IsVisible="{d:Binding Mag.Nom, Converter={StaticResource ToVisibility}}" LineBreakMode="NoWrap" />-->
+                     </StackLayout>
+
+                     <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" VerticalOptions="Start">
+                        <!--<Label Text="{Binding Mag.CP}" FontSize="Subtitle" />-->
+                        <Label Text="{Binding Mag.City}" FontAttributes="Bold" FontSize="Subtitle" LineBreakMode="NoWrap" />
+                     </StackLayout>
+
+                     <StackLayout Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalOptions="Start">
+                        <Label Text="{Binding Mag.Address}" FontSize="Subtitle" LineBreakMode="NoWrap" />
+                     </StackLayout>
+
+                     <BoxView Grid.ColumnSpan="2" Grid.Row="3" Margin="0,4,0,0" BackgroundColor="DarkGray" />
+                  </Grid>
+               </ViewCell>
+            </DataTemplate>
+         </ListView.ItemTemplate>
+      </ListView>
+   </zpf:Page_Base.MainContent>
+
+</zpf:Page_Base>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<zpf:Page_Base 
+   xmlns="http://xamarin.com/schemas/2014/forms"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:ZPFXF="clr-namespace:ZPF.XF.Compos;assembly=Compos"
+   xmlns:zpf="clr-namespace:ZPF"
+   mc:Ignorable="d"
+   x:Class="StoreCheck.Pages.ContactPage">
+
+   <zpf:Page_Base.MainContent>
+      <Grid Margin="0,35,0,0">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110"/>
+            <ColumnDefinition Width="*"/>
+         </Grid.ColumnDefinitions>
+
+         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            
+            <RowDefinition Height="Auto" />
+         </Grid.RowDefinitions>
+
+         <!--<Label Grid.Row="0" Text="societe" Margin="4,4" HorizontalTextAlignment="End" TextColor="DarkGray" />-->
+         <Label Grid.Row="0" Grid.Column="1" Text="{Binding Chain}" FontSize="Subtitle" FontAttributes="Bold" />
+
+         <!--<Label Grid.Row="1" Text="nom" Margin="4,4" HorizontalTextAlignment="End" TextColor="DarkGray" />-->
+         <Label Grid.Row="1" Grid.Column="1" Text="{Binding Name}" FontSize="Subtitle" FontAttributes="Bold" />
+
+         <Label Grid.Row="2" Text="address" Margin="4,4" HorizontalTextAlignment="End" TextColor="DarkGray" />
+         <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <Label Text="{Binding AddressNo}" FontSize="Subtitle" />
+            <Label Text="{Binding Address}" FontSize="Subtitle"  />
+         </StackLayout>
+         
+         <Label Grid.Row="3" Text=" " Margin="4,4" HorizontalTextAlignment="End" TextColor="DarkGray" />
+         <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <Label Text="{Binding PC}" FontSize="Subtitle" />
+            <Label Text="{Binding City}" FontSize="Subtitle" FontAttributes="Bold" />
+         </StackLayout>
+
+         <Label Grid.Row="4" Text="" Margin="4,4" HorizontalTextAlignment="End" TextColor="DarkGray" />
+         <Label Grid.Row="4" Grid.Column="1" Text="{Binding Country}" FontSize="Subtitle" />
+
+         <Label Grid.Row="5" Text="" />
+
+         <Label Grid.Row="6" Text="phone" Margin="4,4" HorizontalTextAlignment="End" TextColor="DarkGray" />
+         <Label Grid.Row="6" Grid.Column="1" Text="{Binding Phone}" FontSize="Subtitle" FontAttributes="Bold" />
+
+         <Label Grid.Row="7" Text="eMail" Margin="4,4" HorizontalTextAlignment="End" TextColor="DarkGray" />
+         <Label Grid.Row="7" Grid.Column="1" Text="{Binding Mail}" FontSize="Subtitle" />
+
+         <Label Grid.Row="8" Text="web" Margin="4,4" HorizontalTextAlignment="End" TextColor="DarkGray" />
+         <Label Grid.Row="8" Grid.Column="1" Text="{Binding URL}" FontSize="Subtitle" />
+         
+         <Label Grid.Row="9" Text="" />
+
+         <Label Grid.Row="10" Text="observations" Margin="4,4" HorizontalTextAlignment="End" TextColor="DarkGray" />
+         <Label Grid.Row="10" Grid.Column="1" Text="{Binding Observations}" FontSize="Subtitle" />
+      </Grid>
+   </zpf:Page_Base.MainContent>
+
+</zpf:Page_Base>

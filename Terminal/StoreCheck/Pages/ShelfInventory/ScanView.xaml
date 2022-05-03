@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://xamarin.com/schemas/2014/forms" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   x:Class="StoreCheck.Pages.ScanView">
+   
+   <ContentView.Content>
+      <Grid>
+         <StackLayout Orientation="Horizontal">
+            <Label Text="Code" Margin="20,0,20,-10" TextColor="Black" />
+            <Entry x:Name="entry" Keyboard="Numeric" Margin="0,0,20,-10" Placeholder="enter barcode" FontSize="18" VerticalOptions="Center" />
+         </StackLayout>
+
+         <!--<Grid Margin="10,0,10,-10" ColumnDefinitions="*,*" VerticalOptions="End"  >
+            <Label Grid.Column="0" Text="cancel" FontAttributes="Bold" HorizontalTextAlignment="Center" HorizontalOptions="Center" />
+            <Label Grid.Column="1" Text="scan" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+         </Grid>-->
+      </Grid>
+   </ContentView.Content>
+</ContentView>

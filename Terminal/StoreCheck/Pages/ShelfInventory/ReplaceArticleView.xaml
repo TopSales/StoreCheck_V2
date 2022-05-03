@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://xamarin.com/schemas/2014/forms" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:zpf="clr-namespace:ZPF.XF.Compos;assembly=ZPF_XF_Compos"
+   x:Name="replaceArticleView"
+   x:Class="StoreCheck.Pages.ReplaceArticleView">
+
+   <ContentView.Content>
+
+      <StackLayout x:Name="stackLayout" Margin="10">
+         <Label Text="REPLACE" HorizontalOptions="Center" FontAttributes="Bold" FontSize="28" TextColor="DarkRed" />
+
+         <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label Text="{Binding CurrentArticle.EAN}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="10" />
+            <Label Text="{Binding CurrentArticle.Name}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="15" />
+         </StackLayout>
+
+         <Label Text="by" HorizontalOptions="Center" FontAttributes="Bold" FontSize="14" />
+
+         <StackLayout Orientation="Horizontal"  HorizontalOptions="Center">
+            <Label Text="{Binding ReplacementArticle.EAN}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="10" TextColor="Black" />
+            <Label Text="{Binding ReplacementArticle.Name}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="15" TextColor="Black"  />
+         </StackLayout>
+
+         <Label Text="Brand"  Margin="14,5,10,0" IsVisible="{Binding ShowBrand, Source={x:Reference  replaceArticleView}}"/>
+         <Picker x:Name="pBrand" Title="Brand" Margin="10,-10,10,0" IsVisible="{Binding ShowBrand, Source={x:Reference  replaceArticleView}}"/>
+
+         <Label Text="# of products changed" Margin="14,15,10,0" />
+         <Entry x:Name="eLabel" Placeholder="# of products changed" Margin="10,-10,10,0" Keyboard="Numeric" />
+
+         <Label Text="content" Margin="14,10,10,0" IsVisible="{Binding ShowContent, Source={x:Reference  replaceArticleView}}"/>
+         <Entry x:Name="eContent" Placeholder="content" Margin="10,-10,10,0" IsVisible="{Binding ShowContent, Source={x:Reference replaceArticleView }}"/>
+
+         <Label Text="facing" Margin="14,10,10,0" IsVisible="{Binding ShowFacing, Source={x:Reference  replaceArticleView}}"/>
+         <Grid x:Name="efacing" ColumnDefinitions="*,10,*,*,*,*" Margin="10,-10,10,0" IsVisible="{Binding ShowFacing, Source={x:Reference replaceArticleView }}">
+            <zpf:RadioButton Grid.Column="0" TextColor="Black" FontSize="20" Text="none" HeightRequest="65" CommandParameter="0" CheckedChanged="RadioButton_CheckedChanged"  />
+            <zpf:RadioButton Grid.Column="2" TextColor="Black" FontSize="18" Text="1" HeightRequest="65" CommandParameter="1" CheckedChanged="RadioButton_CheckedChanged" />
+            <zpf:RadioButton Grid.Column="3" TextColor="Black" FontSize="18" Text="2" HeightRequest="65" CommandParameter="2" CheckedChanged="RadioButton_CheckedChanged" />
+            <zpf:RadioButton Grid.Column="4" TextColor="Black" FontSize="18" Text="3" HeightRequest="65" CommandParameter="3" CheckedChanged="RadioButton_CheckedChanged" />
+            <zpf:RadioButton Grid.Column="5" TextColor="Black" FontSize="18" Text="4" HeightRequest="65" CommandParameter="4" CheckedChanged="RadioButton_CheckedChanged" />
+         </Grid>
+
+         <Label Text="price" Margin="14,10,10,0" IsVisible="{Binding ShowPrice, Source={x:Reference  replaceArticleView}}"/>
+         <Entry x:Name="ePrice" Placeholder="price" Margin="10,-10,10,0" IsVisible="{Binding ShowPrice, Source={x:Reference replaceArticleView }}"/>
+
+      </StackLayout>
+
+   </ContentView.Content>
+</ContentView>
