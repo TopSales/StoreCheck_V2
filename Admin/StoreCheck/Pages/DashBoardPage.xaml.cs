@@ -170,8 +170,6 @@ namespace StoreCheck.Pages
       {
          var dgcount = MainViewModel.Current.atDashboard2.Count;
          var items= dataGrid.Items;
-         foreach (var item in items)
-         { }
          //ExcelHelper.ExportXLS(null, VMLocator.Items.GetArticlesAlertView(), System.IO.Path.GetTempFileName() + ".xlsx", true,
          //   (MainViewModel.Current.IsDemo ? MainViewModel.MaxArticles : -1));
       }
