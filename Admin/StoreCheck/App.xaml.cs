@@ -40,8 +40,8 @@ namespace StoreCheck
 
          // - - -  - - - 
 
-         AppCenter.Start("78d55234-ba34-4af9-a6dd-c4ce4f422f79", typeof(Analytics), typeof(Crashes));
-
+         AppCenter.Start("f56b216d-4570-41ba-a2ae-77bed4efaa1e", typeof(Analytics), typeof(Crashes));
+         
          AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
          // - - -  - - - 
