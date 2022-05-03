@@ -150,7 +150,7 @@ namespace ZPF
          // - - - DEV - - -
          if (Connection_DB == null || !Connection_DB.CheckConnection())
          {
-            Connection_DB = SmarterASPViewModel.Current.OpenStoreCheckDev();
+            Connection_DB = SmarterASPViewModel.Current.OpenStoreCheckMaquette();// SmarterASPViewModel.Current.OpenStoreCheckDev();
          };
 
          if (Connection_AT == null || !Connection_AT.CheckConnection())
@@ -253,7 +253,7 @@ namespace ZPF
                     // - - -  - - - 
 
                     AuditTrailViewModel.Current.Init(new DBAuditTrailWriter(Connection_AT));
-                    AuditTrailViewModel.Current.Application = "MShop";
+                    AuditTrailViewModel.Current.Application = "SCAdmin";
                 };
 
                 if (Connection_DOC == null || !Connection_DOC.CheckConnection())
