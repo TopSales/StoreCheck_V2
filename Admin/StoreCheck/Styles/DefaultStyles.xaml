@@ -78,11 +78,11 @@
       </Style.Triggers>
    </Style>
 
-   <Style TargetType="{x:Type DataGridColumnHeader}">
+   <!--<Style TargetType="{x:Type DataGridColumnHeader}">
       <Setter Property="Background" Value="{StaticResource CellBorderBrush}"/>
       <Setter Property="Foreground" Value="White"/>
       <Setter Property="HorizontalContentAlignment" Value="Center" />
-   </Style>
+   </Style>-->
 
    <!--<Style TargetType="{x:Type DataGridTextColumn}">
       <Setter Property="Background" Value="{StaticResource CellBorderBrush}"/>
@@ -99,7 +99,7 @@
       <Setter Property="HorizontalGridLinesBrush" Value="{StaticResource CellBorderBrush}"/>
       <Setter Property="VerticalGridLinesBrush" Value="{StaticResource CellBorderBrush}"/>
    </Style>
-   
+
    <Style x:Key="NoMetroFdg" TargetType="{x:Type control:FilterDataGrid}" >
       <Setter Property="Background" Value="{StaticResource ControlBackgroundBrush}"/>
       <Setter Property="RowBackground" Value="{StaticResource Alternation1Brush}"/>
@@ -298,6 +298,6 @@
          </Trigger>
       </Style.Triggers>
    </Style>
-   
+
    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 </ResourceDictionary>

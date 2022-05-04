@@ -43,7 +43,7 @@
             <!--<Setter Property="TextElement.FontFamily" Value="/ZPF_Basics_WPF;Component/Fonts/#IconFont" />-->
             <!--<Setter Property="TextElement.FontFamily" Value="//application:,,,/Fonts/#IconFont" />-->
          </Style>
-         <!--<Style
+         <Style
             x:Key="FilterDatagridStyle"
             BasedOn="{StaticResource {ComponentResourceKey TypeInTargetAssembly=control:FilterDataGrid,
                                                            ResourceId=FilterDataGridStyle}}"
@@ -61,7 +61,7 @@
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="IsReadOnly" Value="True" />
             <Setter Property="RowHeaderWidth" Value="40" />
-         </Style>-->
+         </Style>
 
          <!-- STD converter -->
          <cZPF:IIFConverter x:Key="IIF" />
