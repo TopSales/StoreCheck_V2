@@ -242,6 +242,7 @@
     <PackageReference Include="ZPF_Basics_WPF" Version="1.0.5.25">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
+    <PackageReference Include="ZPF_ChatHelper" Version="1.0.0.4" />
     <PackageReference Include="ZPF_DBSQL">
       <Version>0.1.8.57</Version>
       <TreatAsUsed>true</TreatAsUsed>

@@ -43,6 +43,7 @@
       <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.1" />
       <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.1" />
       <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.5.1" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
       <PackageReference Include="Normalisation.Core" Version="1.0.0.4" />
       <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.3" />
       <PackageReference Include="StoreCheck.Core" Version="1.0.0.35" />
@@ -55,6 +56,7 @@
       <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
       <PackageReference Include="ZPF_Basics_XF" Version="1.4.8.21" />
       <PackageReference Include="ZPF_Calc_XF" Version="1.4.8.14" />
+      <PackageReference Include="ZPF_ChatHelper" Version="1.0.0.4" />
       <PackageReference Include="ZPF_MCE" Version="1.1.38" />
       <PackageReference Include="ZPF_MCE.XF" Version="1.1.37" />
       <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />

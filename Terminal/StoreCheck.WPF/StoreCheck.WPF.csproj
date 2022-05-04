@@ -166,7 +166,7 @@
       <Version>2.0.0.31</Version>
     </PackageReference>
     <PackageReference Include="ZPF_DBSQL">
-      <Version>0.1.8.54</Version>
+      <Version>0.1.8.57</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
