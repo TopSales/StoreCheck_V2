@@ -93,11 +93,11 @@
                   DateFormatString="dd/MM/yyyy" 
             Style="{StaticResource FilterDatagridStyle}">
                <control:FilterDataGrid.Columns>
-                  <control:DataGridTextColumn Binding="{Binding PK}" Header="PK" IsColumnFiltered="True" />
-                  <!--<control:DataGridTextColumn Header="TimeStamp" Binding="{Binding TimeStamp, Converter={StaticResource UTC2Local}, ConverterParameter=dd/MM HH:mm:ss}" Width="110" />
+                  <control:DataGridTextColumn Binding="{Binding PK}" Header="PK" IsColumnFiltered="True" Width="60" />
+                  <control:DataGridTextColumn Header="TimeStamp" Binding="{Binding TimeStamp, Converter={StaticResource UTC2Local}, ConverterParameter=dd/MM HH:mm:ss}" Width="110" />
                   <control:DataGridTextColumn IsColumnFiltered="True" FieldName="sLevel" Binding="{Binding sLevel}" Header="Level" Width="40"/>
-                  <control:DataGridTextColumn IsColumnFiltered="True" FieldName="Tag" Binding="{Binding Tag}" Header="Tag" Width="50"/>-->
-                  <control:DataGridTextColumn Binding="{Binding Application}" Header="Application" IsColumnFiltered="True" />
+                  <control:DataGridTextColumn IsColumnFiltered="True" FieldName="Tag" Binding="{Binding Tag}" Header="Tag" Width="50"/>
+                  <control:DataGridTextColumn Binding="{Binding Application}" Header="Application" IsColumnFiltered="True" Width="100"/>
                   <control:DataGridTextColumn  Binding="{Binding Message}" Header="Message" IsColumnFiltered="True" />
                </control:FilterDataGrid.Columns>
             </control:FilterDataGrid>

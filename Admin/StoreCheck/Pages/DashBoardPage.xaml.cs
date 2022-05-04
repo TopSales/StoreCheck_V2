@@ -20,9 +20,10 @@ namespace StoreCheck.Pages
    {
       public DashBoardPage()
       {
-         DataContext = MainViewModel.Current;
 
          InitializeComponent();
+
+         DataContext = MainViewModel.Current;
 
          {
             labelChart.Content = ("Ut sciri ausim de at ad certe pedem.");

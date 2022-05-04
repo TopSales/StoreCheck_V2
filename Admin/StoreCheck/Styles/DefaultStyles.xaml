@@ -78,11 +78,11 @@
       </Style.Triggers>
    </Style>
 
-   <!--<Style TargetType="{x:Type DataGridColumnHeader}">
+   <Style TargetType="{x:Type DataGridColumnHeader}">
       <Setter Property="Background" Value="{StaticResource CellBorderBrush}"/>
       <Setter Property="Foreground" Value="White"/>
       <Setter Property="HorizontalContentAlignment" Value="Center" />
-   </Style>-->
+   </Style>
 
    <!--<Style TargetType="{x:Type DataGridTextColumn}">
       <Setter Property="Background" Value="{StaticResource CellBorderBrush}"/>

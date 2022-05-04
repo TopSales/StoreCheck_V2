@@ -318,7 +318,7 @@ namespace ZPF
 
          if (UserViewModel.Current.Connection == null)
          {
-            UserViewModel.Current.Init(DB_SQL._ViewModel);
+            UserViewModel.Current.Init(Connection_DB);
          };
 
          if (!string.IsNullOrEmpty(DB_SQL._ViewModel.LastError))
