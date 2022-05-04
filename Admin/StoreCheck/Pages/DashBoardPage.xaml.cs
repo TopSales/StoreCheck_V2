@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microcharts;
 using ZPF;
+using ZPF.SQL;
 using ZPF.WPF;
 using ZPF.XLS;
 
@@ -162,16 +164,12 @@ namespace StoreCheck.Pages
 
       private void btnPrintMVT_Click(object sender, RoutedEventArgs e)
       {
-         //ExcelHelper.ExportXLS(null, VMLocator.Stock.GetStockMVT7View(), System.IO.Path.GetTempFileName() + ".xlsx", true,
-         //   (MainViewModel.Current.IsDemo ? MainViewModel.MaxArticles : -1));
+         ExportXLS(fdgDashboard1);
       }
 
       private void btnPrintAlerte_Click(object sender, RoutedEventArgs e)
       {
-         var dgcount = MainViewModel.Current.atDashboard2.Count;
-         var items= dataGrid.Items;
-         //ExcelHelper.ExportXLS(null, VMLocator.Items.GetArticlesAlertView(), System.IO.Path.GetTempFileName() + ".xlsx", true,
-         //   (MainViewModel.Current.IsDemo ? MainViewModel.MaxArticles : -1));
+         ExportXLS(fdgDashboard2);
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
@@ -185,7 +183,7 @@ namespace StoreCheck.Pages
       private void dgAlertes_Loaded(object sender, RoutedEventArgs e)
       {
          var dataGrid = sender as DataGrid;
-     //    new DataGridTools(MainViewModel.IniFileName, "Dashboard_Alertes", dataGrid);
+         //    new DataGridTools(MainViewModel.IniFileName, "Dashboard_Alertes", dataGrid);
       }
 
       private void dgSurLeQuai_Loaded(object sender, RoutedEventArgs e)
@@ -265,6 +263,69 @@ namespace StoreCheck.Pages
       private void Grid_Unloaded(object sender, RoutedEventArgs e)
       {
          dispatcherTimer.Stop();
+      }
+
+      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+      // D:\GitWare\Nugets\ZPF_DBSQL\ZPF_DBSQL_WPF\Pages\DataGridTools.xaml.cs
+
+      private void ExportXLS(FilterDataGrid.FilterDataGrid filterDataGrid)
+      {
+         if (filterDataGrid.Items != null)
+         {
+            var dgcount = filterDataGrid.Items.Count;
+
+            if (dgcount > 0)
+            {
+               var cols = filterDataGrid.Columns;
+               //var col = cols[0];
+
+               var items = filterDataGrid.Items;
+               //var item = items[0];
+
+               // - - -  - - -
+
+               List<ColDef> Fields = new List<ColDef>();
+
+               foreach (var c in cols.OrderBy(x => x.DisplayIndex))
+               {
+                  if (c.Visibility == Visibility.Visible)
+                  {
+                     Fields.Add(new ColDef { Name = c.SortMemberPath, Header = (string)c.Header });
+                  };
+               };
+
+               string FileName = System.IO.Path.GetTempFileName() + ".xlsx";
+
+               if (items is System.Windows.Controls.ItemCollection)
+               {
+                  DataTable dt = new DataTable();
+                  dt.Clear();
+
+                  foreach (var c in cols)
+                  {
+                     dt.Columns.Add(c.SortMemberPath);
+                  };
+
+                  foreach (var item in items)
+                  {
+                     DataRow row = dt.NewRow();
+
+                     row = DB_SQL.ObjToDataRow(item, row);
+
+                     dt.Rows.Add(row);
+                  };
+
+                  ExcelHelper.ExportXLS(null, dt, FileName, true, -1, Fields);
+               };
+
+               if (items.SourceCollection is System.Data.DataView)
+               {
+                  var DataView = ((System.Data.DataView)items.SourceCollection);
+
+                  ExcelHelper.ExportXLS(null, DataView.Table, FileName, true, -1, Fields);
+               };
+            };
+         };
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -

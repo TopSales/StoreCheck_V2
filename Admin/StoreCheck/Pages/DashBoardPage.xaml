@@ -7,11 +7,23 @@
    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
    xmlns:local="clr-namespace:StoreCheck.Pages"
    xmlns:ZPFFonts="clr-namespace:ZPF.Fonts;assembly=ZPF_Fonts"   
-    xmlns:control="http://filterdatagrid.control.com/2021"
+   xmlns:control="http://filterdatagrid.control.com/2021"
+   xmlns:conv="clr-namespace:ZPF.Conv;assembly=ZPF.WPF.Compos"   
    xmlns:controls="clr-namespace:ZPF"
    mc:Ignorable="d" 
    d:DesignHeight="480" d:DesignWidth="800"
    Title="DashBoardPage" >
+
+   <Page.Resources>
+      <ResourceDictionary>
+         <conv:UTC2LocalConverter x:Key="UTC2Local" />
+         
+         <Style x:Key="IconFont">
+            <Setter Property="TextElement.FontFamily" Value="/ZPF_Fonts;Component/fonts/#IconFont"/>
+         </Style>
+
+      </ResourceDictionary>
+   </Page.Resources>
 
    <Grid Loaded="Grid_Loaded" Unloaded="Grid_Unloaded">
 
@@ -34,7 +46,7 @@
 
       <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Background="#8FFF" Margin="5,0,5,5" >
 
-         <control:FilterDataGrid ItemsSource="{Binding atDashboard1, Mode=TwoWay}" Margin="10,25,10,10"
+         <control:FilterDataGrid x:Name="fdgDashboard1" ItemsSource="{Binding atDashboard1, Mode=TwoWay}" Margin="10,25,10,10"
                   Background="#2FFF"  
                 FilterLanguage="English"
             DateFormatString="dd/MM/yyyy"
@@ -70,15 +82,24 @@
       <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#8FFF" Margin="10,5,5,0"  >
 
          <Grid>
-            <control:FilterDataGrid x:Name="dataGrid" 
+            <control:FilterDataGrid x:Name="fdgDashboard2" 
                   ItemsSource="{Binding atDashboard2, Mode=TwoWay}"  
                   Margin="10,25,10,10"  
-                  IsReadOnly="True" AutoGenerateColumns="True" SelectionMode="Single"
+                  IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
                   CanUserDeleteRows="False" CanUserAddRows="False" 
                   Background="#2FFF"   
-            SavCurrentFilter ="True" 
-            FilterLanguage="English"
-            DateFormatString="dd/MM/yyyy">
+                  SavCurrentFilter ="True" 
+                  FilterLanguage="English"
+                  DateFormatString="dd/MM/yyyy">
+               <control:FilterDataGrid.Columns>
+                  <control:DataGridTextColumn Binding="{Binding PK}" Header="PK" Width="60"/>
+                  <control:DataGridTextColumn Header="TimeStamp" Binding="{Binding TimeStamp, Converter={StaticResource UTC2Local}, ConverterParameter=dd/MM HH:mm:ss}" Width="110" />
+                  <control:DataGridTextColumn IsColumnFiltered="True" FieldName="sLevel" Binding="{Binding sLevel}" Header="Level" Width="40"/>
+                  <control:DataGridTextColumn IsColumnFiltered="True" FieldName="Tag" Binding="{Binding Tag}" Header="Tag" Width="50"/>
+                  <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Application}" Header="Application" Width="100"/>
+                  <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Message}" Header="Message" />
+               </control:FilterDataGrid.Columns>
+            </control:FilterDataGrid>
 
                <!--  Loaded="dgAlertes_Loaded" ExcludeFields="DataIn, DataInType"
                Style="{StaticResource FilterDatagridStyle}"
@@ -97,7 +118,6 @@
 
                   <DataGridTextColumn Binding="{Binding PK}" Header="PK" Width="50" Visibility="Hidden"/>
                </DataGrid.Columns>-->
-            </control:FilterDataGrid>
          </Grid>
       </Border>
 
@@ -163,7 +183,7 @@
                   Click="btnPrintMVT_Click" >
 
          <StackPanel Orientation="Horizontal" Margin="0">
-            <Image Source="/StoreCheck;component/Images/Tiles/Excel Online.Black.png" Width="17" VerticalAlignment="Center" />
+            <TextBlock Style="{DynamicResource IconFont}" FontSize="16" Text="{x:Static ZPFFonts:IF.Excel_Online}" />
          </StackPanel>
       </Controls:Tile>
 
@@ -175,7 +195,8 @@
          Visibility="{Binding Main.IsPro, Converter={StaticResource ToVisibility}, Mode=OneWay}"  >
 
          <StackPanel Orientation="Horizontal" Margin="0">
-            <Image Source="/StoreCheck;component/Images/Tiles/Excel Online.Black.png" Width="17" VerticalAlignment="Center" />
+            <!--<Image Source="/StoreCheck;component/Images/Tiles/Excel Online.Black.png" Width="17" VerticalAlignment="Center" />-->
+            <TextBlock Style="{DynamicResource IconFont}" FontSize="16" Text="{x:Static ZPFFonts:IF.Excel_Online}" />
          </StackPanel>
       </Controls:Tile>
    </Grid>
