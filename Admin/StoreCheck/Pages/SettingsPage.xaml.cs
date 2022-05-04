@@ -21,9 +21,10 @@ namespace StoreCheck
 
       public SettingsPage()
       {
-         DataContext = MainViewModel.Current;
+         
 
          InitializeComponent();
+         DataContext = MainViewModel.Current;
 
          MainViewModel.Current.Load();
          _PrevStyle = MainViewModel.Current.Style;
