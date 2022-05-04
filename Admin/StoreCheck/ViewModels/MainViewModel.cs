@@ -639,8 +639,6 @@ namespace ZPF
          ImportPath = IniFile.ReadString("Local", "ImportPath", "");
          ArchivPath = IniFile.ReadString("Local", "ArchivPath", "");
 
-         SetIniBon(IniFile);
-
          Debug.WriteLine("*** IniFile loaded");
 
          return true;

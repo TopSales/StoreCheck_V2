@@ -74,53 +74,6 @@ namespace ZPF
          };
       }
 
-      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
-
-      private string _BonE_Prefix = "BC{0:00000}";
-      public string BonE_Prefix
-      {
-         get { return _BonE_Prefix; }
-         set { SetField(ref _BonE_Prefix, value); }
-      }
-
-      private string _BonE_Titre;
-      public string BonE_Titre
-      {
-         get { return _BonE_Titre; }
-         set { SetField(ref _BonE_Titre, value); }
-      }
-
-      private string _BonE_Desc;
-      public string BonE_Desc
-      {
-         get { return _BonE_Desc; }
-         set { SetField(ref _BonE_Desc, value); }
-      }
-
-      private string _BonS_Prefix = "BL{0:00000}";
-      public string BonS_Prefix
-      {
-         get { return _BonS_Prefix; }
-         set { SetField(ref _BonS_Prefix, value); }
-      }
-
-      private string _BonS_Titre;
-      public string BonS_Titre
-      {
-         get { return _BonS_Titre; }
-         set { SetField(ref _BonS_Titre, value); }
-      }
-
-      private string _BonS_Desc;
-
-      public string BonS_Desc
-      {
-         get { return _BonS_Desc; }
-         set { SetField(ref _BonS_Desc, value); }
-      }
-
-      public bool ReplaceWithBon { get; private set; }
-
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - - 
 
       public string MailAlerte
@@ -155,28 +108,6 @@ namespace ZPF
                IniFile.WriteString(e.List.Replace("Ini.", ""), e.Param, e.Value);
             };
          };
-      }
-
-      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
-
-      private void SetIniBon(TIniFile IniFile)
-      {
-         BonE_Prefix = IniFile.ReadString("Bons", "BonE_Prefix", "BC{0:00000}");
-         BonE_Titre = IniFile.ReadString("Bons", "BonE_Titre", "Bon de commande");
-         BonE_Desc = IniFile.ReadString("Bons", "BonE_Desc", "? Fournisseur ?");
-
-         BonS_Prefix = IniFile.ReadString("Bons", "BonS_Prefix", "BL{0:00000}");
-         BonS_Titre = IniFile.ReadString("Bons", "BonS_Titre", "Bon de livraison");
-         BonS_Desc = IniFile.ReadString("Bons", "BonS_Desc", "? Destinataire ?");
-
-         ReplaceWithBon = IniFile.ReadBool("Bons", "ReplaceWithBon", true);
-         ReplaceWithBon = true;
-
-         BonE_Prefix = (BonE_Prefix == "*" ? "" : BonE_Prefix);
-         BonE_Desc = (BonE_Desc == "*" ? "" : BonE_Desc);
-
-         BonS_Prefix = (BonS_Prefix == "*" ? "" : BonS_Prefix);
-         BonS_Desc = (BonS_Desc == "*" ? "" : BonS_Desc);
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
@@ -465,34 +396,33 @@ namespace ZPF
 
          Modules.Add(new Module
          {
-            Ref = "GUICH",
-            Name = "Entrées / sorties",
-            Title = "Entrées / sorties",
-            IconScale = 0.8,
-            IconChar = ZPF.Fonts.IF.Delivery_packages_on_a_trolley,
+            Ref = "CUST",
+            Name = "Customers",
+            Title = "Customers",
+            IconChar = ZPF.Fonts.IF.Customer,
          });
 
          Modules.Add(new Module
          {
-            Ref = "STOCK",
-            Name = "Stock",
-            Title = "Stock",
-            IconChar = ZPF.Fonts.IF.Warehouse_01_WF,
+            Ref = "SKU",
+            Name = "SKU",
+            Title = "SKU",
+            IconChar = ZPF.Fonts.IF.Barcode_01,
          });
 
          Modules.Add(new Module
          {
-            Ref = "IMP_EXP",
-            Name = "Import / export",
-            Title = "Import / export",
+            Ref = "ASSIGN",
+            Name = "Assigment",
+            Title = "Assigment",
             IconChar = ZPF.Fonts.IF.Data_Sync_WF,
          });
 
          Modules.Add(new Module
          {
-            Ref = "Analytics",
-            Name = "Analytics",
-            Title = "Analytics",
+            Ref = "SHELVES",
+            Name = "Shelves",
+            Title = "Shelves",
             IconScale = 0.8,
             IconChar = ZPF.Fonts.IF.Analytics,
          });
