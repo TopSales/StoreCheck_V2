@@ -41,6 +41,10 @@ namespace ZPF
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
+      public Params Config { get; private set; } = new Params();
+
+      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+
       public void RefreshAll()
       {
          //StockViewModel.Current.LoadData();
