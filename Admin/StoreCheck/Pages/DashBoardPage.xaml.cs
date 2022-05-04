@@ -31,8 +31,6 @@ namespace StoreCheck.Pages
             //chartFamilles.Visibility = Visibility.Visible;
             //chartEmplacements.Visibility = Visibility.Collapsed;
 
-            labelDataGrid.Content = "Ob dici anno esse ipse";
-
             // - - -  - - - 
 
             chartView.Visibility = Visibility.Visible;

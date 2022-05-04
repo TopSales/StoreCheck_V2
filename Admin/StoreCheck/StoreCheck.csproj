@@ -243,11 +243,11 @@
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
     <PackageReference Include="ZPF_DBSQL">
-      <Version>0.1.8.54</Version>
+      <Version>0.1.8.57</Version>
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
     <PackageReference Include="ZPF_DBSQL_WPF">
-      <Version>1.0.0.57</Version>
+      <Version>1.0.0.60</Version>
     </PackageReference>
     <PackageReference Include="ZPF_Fonts" Version="1.0.0.9" />
     <PackageReference Include="ZPF_LabelPrinter" Version="1.0.0.2" />

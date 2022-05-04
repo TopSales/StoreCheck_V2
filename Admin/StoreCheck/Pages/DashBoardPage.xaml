@@ -50,35 +50,22 @@
                   Background="#2FFF"  
                 FilterLanguage="English"
             DateFormatString="dd/MM/yyyy"
-                  IsReadOnly="True" AutoGenerateColumns="True" SelectionMode="Single"
+                  IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
                   CanUserDeleteRows="False" CanUserAddRows="False" 
             Style="{StaticResource FilterDatagridStyle}">
 
-            <!--  Loaded="dgMVT_Loaded" <DataGrid.Columns>
-               <DataGridTextColumn Binding="{Binding Action}" Header="Action" Width="45"/>
-               <DataGridTextColumn Binding="{Binding Article}" Header="Article" Width="200" FontWeight="Bold"/>
-
-               <DataGridTextColumn Binding="{Binding Contact}" Header="Contact" Width="100" Visibility="Hidden"/>
-
-               <DataGridTextColumn Binding="{Binding Source}" Header="de" Width="150"/>
-               <DataGridTextColumn Binding="{Binding Target}" Header="vers" Width="150"/>
-               
-               <DataGridTextColumn Binding="{Binding UpdatedBy}" Header="par" Width="100" Visibility="Hidden"/>
-
-               <DataGridTextColumn Binding="{Binding SNLot}" Header="SN/lot" Width="110"/>
-               <DataGridTextColumn Binding="{Binding QT}" Header="Qté" Width="50" FontWeight="Bold" CellStyle="{StaticResource CellRightAligned}" />
-               <DataGridTextColumn Binding="{Binding UpdatedOn, StringFormat=\{0:dd/MM/yy\}}" Header="MAJ" Width="80"  CellStyle="{StaticResource CellCenterAligned}" />
-
-               <DataGridTextColumn Binding="{Binding PK}" Header="PK" Width="50" Visibility="Hidden"/>
-            </DataGrid.Columns>-->
+            <control:FilterDataGrid.Columns>
+               <control:DataGridTextColumn Binding="{Binding PK}" Header="PK" IsColumnFiltered="True" Width="60" />
+               <control:DataGridTextColumn Header="TimeStamp" Binding="{Binding TimeStamp, Converter={StaticResource UTC2Local}, ConverterParameter=dd.MM HH:mm:ss}" Width="110" />
+               <control:DataGridTextColumn IsColumnFiltered="True" FieldName="sLevel" Binding="{Binding sLevel}" Header="Level" Width="40"/>
+               <control:DataGridTextColumn IsColumnFiltered="True" FieldName="Tag" Binding="{Binding Tag}" Header="Tag" Width="50"/>
+               <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Application}" Header="Application" Width="100"/>
+               <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Message}" Header="Message" />
+               <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding TerminalID}" Header="TerminalID"  Width="100" />
+            </control:FilterDataGrid.Columns>
+            
          </control:FilterDataGrid>
       </Border>
-
-      <Label x:Name="labelDataGrid"  Grid.Column="0" Grid.Row="1" 
-              HorizontalAlignment="Left" VerticalAlignment="Top"
-              Margin="10,5,0,0"
-              Content="Articles en alerte" 
-              Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" />
 
       <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#8FFF" Margin="10,5,5,0"  >
 
@@ -94,38 +81,23 @@
             Style="{StaticResource FilterDatagridStyle}">
                <control:FilterDataGrid.Columns>
                   <control:DataGridTextColumn Binding="{Binding PK}" Header="PK" IsColumnFiltered="True" Width="60" />
-                  <control:DataGridTextColumn Header="TimeStamp" Binding="{Binding TimeStamp, Converter={StaticResource UTC2Local}, ConverterParameter=dd/MM HH:mm:ss}" Width="110" />
+                  <control:DataGridTextColumn Header="TimeStamp" Binding="{Binding TimeStamp, Converter={StaticResource UTC2Local}, ConverterParameter=dd.MM HH:mm:ss}" Width="110" />
                   <control:DataGridTextColumn IsColumnFiltered="True" FieldName="sLevel" Binding="{Binding sLevel}" Header="Level" Width="40"/>
                   <control:DataGridTextColumn IsColumnFiltered="True" FieldName="Tag" Binding="{Binding Tag}" Header="Tag" Width="50"/>
-                  <control:DataGridTextColumn Binding="{Binding Application}" Header="Application" IsColumnFiltered="True" Width="100"/>
-                  <control:DataGridTextColumn  Binding="{Binding Message}" Header="Message" IsColumnFiltered="True" />
+                  <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Application}" Header="Application" Width="100"/>
+                  <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Message}" Header="Message" />
+                  <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding TerminalID}" Header="TerminalID"  Width="100" />
                </control:FilterDataGrid.Columns>
             </control:FilterDataGrid>
 
-               <!--  
-            
-             Background="#2FFF"   
-                  SavCurrentFilter ="True"
-            
-            Loaded="dgAlertes_Loaded" ExcludeFields="DataIn, DataInType"
-               Style="{StaticResource FilterDatagridStyle}"
-            ShowElapsedTime="True"
-            ShowRowsCount="True"
-            ShowStatusBar="True"
-                  Background="#2FFF"       <DataGrid.Columns>
-                  <DataGridTextColumn Binding="{Binding Ref}" Header="Ref" Width="120"/>
-                  <DataGridTextColumn Binding="{Binding Nom}" Header="Article" Width="200" FontWeight="Bold"/>
-                  <DataGridTextColumn Binding="{Binding Famille}" Header="Famille" Width="150"/>
-                  <DataGridTextColumn Binding="{Binding Fournisseur}" Header="Fournisseur" Width="150"/>
-                  <DataGridTextColumn Binding="{Binding QT_TOT}" Header="Qté" Width="50" FontWeight="Bold" CellStyle="{StaticResource CellRightAligned}" />
-                  <DataGridTextColumn Binding="{Binding QTMin}" Header="Qté min" Width="50"  CellStyle="{StaticResource CellRightAligned}" />
-                  <DataGridTextColumn Binding="{Binding QTMax}" Header="Qté max" Width="50"  CellStyle="{StaticResource CellRightAligned}" />
-                  <DataGridTextColumn Binding="{Binding UpdatedOn, StringFormat=\{0:dd/MM/yy\}}" Header="MAJ" Width="80"  CellStyle="{StaticResource CellCenterAligned}" />
-
-                  <DataGridTextColumn Binding="{Binding PK}" Header="PK" Width="50" Visibility="Hidden"/>
-               </DataGrid.Columns>-->
          </Grid>
       </Border>
+
+      <Label Grid.Column="0" Grid.Row="1" 
+              HorizontalAlignment="Left" VerticalAlignment="Top"
+              Margin="15,5,0,0"
+              Content="Ob dici anno esse ipse" 
+              Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" />
 
       <Controls:Tile Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5,5,150" 
          Foreground="White" Background="{StaticResource Brush_Tile}"
@@ -177,8 +149,8 @@
               HorizontalAlignment="Left" VerticalAlignment="Top"
               Margin="10,0"
               Content="Tetendit ima machinae" 
-              Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" >
-      </Label>
+              Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" />
+
 
       <!--IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Movements.Export, Converter={StaticResource HasUserLevel}}"-->
 
