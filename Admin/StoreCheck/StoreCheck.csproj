@@ -157,7 +157,10 @@
     <Resource Include="Styles\Sun.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <None Include="StoreCheck_TemporaryKey.pfx" />
+    <Resource Include="..\StoreCheck.ChangeLog.PC.md" Link="StoreCheck.ChangeLog.PC.md">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="StoreCheck_TemporaryKey.pfx" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +194,7 @@
   <ItemGroup>
     <Resource Include="Images\Dialog\Delete.png" />
     <Resource Include="Images\Dialog\Right tick - 01.png" />
+    <EmbeddedResource Include="VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -265,6 +269,7 @@
     <Compile Remove="Converter\ToVisibilityConverter.cs" />
     <Compile Remove="MainPage.xaml.cs" />
     <Compile Remove="Pages\PrintPage.xaml.cs" />
+    <Compile Remove="VersionInfo.cs" />
     <Compile Remove="XamarinDlg.xaml.cs" />
     <Content Remove="C:\Users\zepro\.nuget\packages\zpf_fonts\1.0.0.3\contentFiles\any\net5.0-windows7.0\ZPF_Fonts\IconFont.ttf" />
     <None Remove="Images\Background.jpg" />
