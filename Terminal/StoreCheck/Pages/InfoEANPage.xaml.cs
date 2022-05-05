@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using ZPF;
 using ZPF.XF;
 using ZPF.XF.Compos;
+using static UnitechViewModel;
 
 namespace StoreCheck.Pages
 {
@@ -29,34 +30,34 @@ namespace StoreCheck.Pages
 
          var tiles = SetAppBarContent(new List<AppBarItem>(new AppBarItem[]
          {
-            new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Clean_Brush), "clean"),
-            new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Sync), "sync"),
+            //new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Clean_Brush), "clean"),
+            //new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Sync), "sync"),
          }));
 
-         tiles[0].Clicked += async (object sender, System.EventArgs e) =>
-         {
-            (sender as Tile).IsEnabled = false;
+         //tiles[0].Clicked += async (object sender, System.EventArgs e) =>
+         //{
+         //   (sender as Tile).IsEnabled = false;
 
-            if (await DisplayAlert("Confirmation", "Delete the EAN database?", "OK", "annuler") == true)
-            {
-               EANViewModel.Current.ArticlesEAN.Clear();
-               MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.all);
-            };
+         //   if (await DisplayAlert("Confirmation", "Delete the EAN database?", "OK", "annuler") == true)
+         //   {
+         //      EANViewModel.Current.ArticlesEAN.Clear();
+         //      MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.all);
+         //   };
 
-            (sender as Tile).IsEnabled = true;
-         };
+         //   (sender as Tile).IsEnabled = true;
+         //};
 
-         tiles[1].Clicked += async (object sender, System.EventArgs e) =>
-         {
-            (sender as Tile).IsEnabled = false;
+         //tiles[1].Clicked += async (object sender, System.EventArgs e) =>
+         //{
+         //   (sender as Tile).IsEnabled = false;
 
-            if (await DisplayAlert("Confirmation", "Sync the EAN database?", "OK", "annuler") == true)
-            {
-               SyncEAN();
-            };
+         //   if (await DisplayAlert("Confirmation", "Sync the EAN database?", "OK", "annuler") == true)
+         //   {
+         //      SyncEAN();
+         //   };
 
-            (sender as Tile).IsEnabled = true;
-         };
+         //   (sender as Tile).IsEnabled = true;
+         //};
 
          // - - -  - - - 
 
@@ -92,6 +93,8 @@ namespace StoreCheck.Pages
          //DependencyService.Get<IScanner>().OpenScanner();
          //DependencyService.Get<IScanner>().EnableAllSymbologies();
          UnitechViewModel.Current.OnScann += OnScann;
+
+         eData.Focus();
       }
 
       private async void SyncEAN()
@@ -175,11 +178,34 @@ namespace StoreCheck.Pages
 
             EANViewModel.Current.CurrentArticleEAN = EANViewModel.Current.ArticlesEAN.Where(x => x.EAN == data).FirstOrDefault();
 
+            if(EANViewModel.Current.CurrentArticleEAN == null)
+            {
+               EANViewModel.Current.CurrentArticleEAN = new EAN_Article
+               {
+                  Label_FR = "*** EAN not found ***",
+                  Label_EN = "*** EAN not found ***",
+               };
+            };
+
             slArticleEAN.BindingContext = EANViewModel.Current.CurrentArticleEAN;
          };
 
          return true;
       }
 
+      private void Entry_Completed(object sender, EventArgs e)
+      {
+         var entry = sender as Entry;
+
+         OnScann(entry.Text, entry.Text.Length, UnitechViewModel.Symbologies.Unknown, Encoding.ASCII.GetBytes(entry.Text));
+      }
+
+      private void Entry_Focused(object sender, FocusEventArgs e)
+      {
+         var entry = sender as Entry;
+
+         entry.CursorPosition = 0;
+         entry.SelectionLength = entry.Text.Length;
+      }
    }
 }

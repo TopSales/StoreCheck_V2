@@ -31,7 +31,8 @@
 
          <StackLayout Grid.Row="2" Margin="40,40,40,10" HorizontalOptions="Center" VerticalOptions="Start" Spacing="0"  >
 
-            <Label Margin="30,5,30,0" Text="{Binding Data}" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center"  />
+            <!--<Label Margin="30,5,30,0" Text="{Binding Data}" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center"  />-->
+            <Entry x:Name="eData" Margin="5,5,5,0" Text="{Binding Data}" FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" BackgroundColor="White" Completed="Entry_Completed" Focused="Entry_Focused"  />
 
             <StackLayout Margin="30,0,30,5" Orientation="Horizontal" HorizontalOptions="Center">
                <Label Text="{Binding Symbology}" Margin="0,0,5,0" FontAttributes="Bold" />
@@ -39,14 +40,18 @@
                <Label Text="{Binding Length,StringFormat='  length={0}'}" HorizontalTextAlignment="Center"  />
             </StackLayout>
 
-            <StackLayout x:Name="slArticleEAN" Margin="5,0,5,0" HorizontalOptions="Center">
+            <StackLayout x:Name="slArticleEAN" Margin="5,0,5,0" HorizontalOptions="Center" >
 
-               <Editor Placeholder="label" Text="{Binding Label_FR}" FontAttributes="Bold" FontSize="16" TextColor="Black" IsReadOnly="True" WidthRequest="200" HeightRequest="60" />
+               <Editor Placeholder="label" Text="{Binding Label_FR}" FontAttributes="Bold" FontSize="16" TextColor="Black" BackgroundColor="LightGray" IsReadOnly="True" WidthRequest="200" HeightRequest="60" />
 
                <StackLayout Orientation="Horizontal" >
-                  <Entry Placeholder="brand" Text="{Binding Brand}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="160" />
-                  <Entry Placeholder="condi" Text="{Binding Condi}" FontAttributes="Bold" FontSize="11" HorizontalTextAlignment="Center" IsReadOnly="True"  WidthRequest="40" />
-                  <Entry Placeholder="unit" Text="{Binding UCondi}" FontAttributes="Bold" FontSize="11" HorizontalTextAlignment="Center" IsReadOnly="True"  WidthRequest="40" />
+                  <Entry Text="{Binding Brand}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="160"  />
+                  <Entry Text="{Binding Condi}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="50" />
+                  <Entry Text="{Binding UCondi}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="40" />
+                  
+                  <!--<Label Text="{Binding Brand}" FontAttributes="Bold" FontSize="16" WidthRequest="160"  />
+                  <Label Text="{Binding Condi}" FontAttributes="Bold" FontSize="11" HorizontalTextAlignment="Center" WidthRequest="40" />
+                  <Label Text="{Binding UCondi}" FontAttributes="Bold" FontSize="11" HorizontalTextAlignment="Center" WidthRequest="40" />-->
                </StackLayout>
 
                <Entry Placeholder="price" Text="{Binding Price, StringFormat='{0:n2}€'}"  FontSize="18" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="End" HorizontalTextAlignment="End"  IsReadOnly="True"  WidthRequest="100" />

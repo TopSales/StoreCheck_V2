@@ -21,6 +21,7 @@
    </ItemGroup>
 
    <ItemGroup>
+      <None Remove="Data\Norma.db3" />
       <None Remove="Images\Icon.png" />
       <None Remove="Images\Logo.png" />
       <None Remove="Images\ZeProgramFactory.350.png" />
@@ -30,6 +31,9 @@
    </ItemGroup>
 
    <ItemGroup>
+      <EmbeddedResource Include="Data\Norma.db3">
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      </EmbeddedResource>
       <EmbeddedResource Include="Images\Icon.png" />
       <EmbeddedResource Include="Images\Logo.png" />
       <EmbeddedResource Include="Images\ZeProgramFactory.350.png" />
@@ -61,6 +65,10 @@
       <PackageReference Include="ZPF_MCE.XF" Version="1.1.37" />
       <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />
       <PackageReference Include="ZPF_XF_Compos" Version="1.4.8.59" />
+   </ItemGroup>
+
+   <ItemGroup>
+     <ProjectReference Include="..\..\..\..\Nugets\ZPF_DBSQL\Sources\ZPF_DBSQL.csproj" />
    </ItemGroup>
 
    <ItemGroup>
@@ -121,12 +129,6 @@
      <EmbeddedResource Update="SplashScreen.xaml">
        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
      </EmbeddedResource>
-   </ItemGroup>
-
-   <ItemGroup>
-     <None Update="Data\Norma.db3">
-       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-     </None>
    </ItemGroup>
 
    <Target Name="PreBuild" Condition="'$(Configuration)'=='Debug' AND '$(DevEnvDir.Substring(0,1))' == 'C' " BeforeTargets="PreBuildEvent">
