@@ -184,6 +184,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_DBSQL\Sources\ZPF_DBSQL.csproj">
+      <Project>{a7a5ddd0-351b-453b-9638-96ecd4a1597e}</Project>
+      <Name>ZPF_DBSQL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StoreCheck\StoreCheck.csproj">
       <Project>{a2b6f65d-2bf3-43f3-ae79-7a0e7aef0364}</Project>
       <Name>StoreCheck</Name>

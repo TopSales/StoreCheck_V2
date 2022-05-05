@@ -47,6 +47,7 @@ class _HomePage : Page_Base
          var l = tm.NewLine();
          l.Height = 120;
          l.AddTile(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Messages_Information_01), T("contact"));
+         l.AddTile(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Barcode_01), T("info EAN"));
       };
 
       // - - -  - - - 
