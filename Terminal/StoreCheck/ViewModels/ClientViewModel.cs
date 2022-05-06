@@ -95,6 +95,11 @@ public class ClientViewModel : BaseViewModel
                // Data Message
                var data = Newtonsoft.Json.JsonConvert.DeserializeObject<ChatData>(message.TrimEnd(new char[] { '~' }));
 
+               if (data == null)
+               {
+                  return false;
+               };
+
                switch (data.Action.ToLower())
                {
                   case "new":
@@ -176,6 +181,14 @@ public class ClientViewModel : BaseViewModel
 
       return Result;
    }
+
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
+
+   public async void Entry(string deviceID)
+   {
+      await chatClient.SendDataToServer("entry", deviceID);
+   }
+
 
    //public async void NewDevice(Spooler spooler)
    //{

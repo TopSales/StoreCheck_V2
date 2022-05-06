@@ -100,9 +100,11 @@ public class ServerViewModel : BaseViewModel
 
                switch (data.Action.ToLower())
                {
-                  case "new":
+                  case "entry":
                      {
-                        //Spooler spooler = Newtonsoft.Json.JsonConvert.DeserializeObject<Spooler>(data.Data);
+                        var DeviceID = Newtonsoft.Json.JsonConvert.DeserializeObject<String>(data.Data);
+
+                        //var b = DB_SQL.QuickQueryInt64("select max(CAST(beeper as INT)) from Current") + 1;
 
                         //if( string.IsNullOrEmpty(spooler.Beeper))
                         //{

@@ -30,7 +30,7 @@ class _HomePage : Page_Base
       {
          var l = tm.NewLine();
          l.Height = 120;
-         tileLogin = l.AddTile(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Login_01), T("login"));
+         tileLogin = l.AddTile(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Entry_01_WF), T("entry"));
       };
 
       // - - -  - - - 
@@ -38,7 +38,7 @@ class _HomePage : Page_Base
       {
          var l = tm.NewLine();
          l.Height = 120;
-         tileSites = l.AddTile(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.DataFiles_WF), T("interventions"));
+         tileSites = l.AddTile(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Exit_WF), T("exit"));
       };
 
       // - - -  - - - 
@@ -178,26 +178,26 @@ class _HomePage : Page_Base
 
    private void RefreshTiles()
    {
-      if (!MainViewModel.Current.Config.IsLogged)
-      {
-         if (tileSites != null)
-         {
-            tileLogin.Text = T("login");
-            tileLogin.IconChar = ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Login_01);
+      //if (!MainViewModel.Current.Config.IsLogged)
+      //{
+      //   if (tileSites != null)
+      //   {
+      //      tileLogin.Text = T("login");
+      //      tileLogin.IconChar = ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Login_01);
 
-            tileSites.IsEnabled = false;
-         };
-      }
-      else
-      {
-         if (tileSites != null)
-         {
-            tileLogin.Text = T("logout");
-            tileLogin.IconChar = ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Login2_WF);
+      //      tileSites.IsEnabled = false;
+      //   };
+      //}
+      //else
+      //{
+      //   if (tileSites != null)
+      //   {
+      //      tileLogin.Text = T("logout");
+      //      tileLogin.IconChar = ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Login2_WF);
 
-            tileSites.IsEnabled = true;
-         };
-      };
+      //      tileSites.IsEnabled = true;
+      //   };
+      //};
    }
 
    async void x_Clicked(object sender, EventArgs e)
@@ -211,48 +211,21 @@ class _HomePage : Page_Base
 
       switch (Tag)
       {
-         case "logout":
-         case "login":
-            if (!MainViewModel.Current.Config.IsLogged)
+         case "entry":
             {
-               await Navigation.PushModalAsync(new LoginPage());
-            }
-            else
-            {
-               if (SyncViewModel.Current.HasUnsyncedData())
-               {
-                  if (MainViewModel.Current.IsInternetAccessAvailable)
-                  {
-                     await SyncViewModel.Current.UploadData();
-                  }
-                  else
-                  {
-                     await DisplayAlert("", "Unable to sync data without internet connection!Logout? Please make sure that your data is synchronized beforehand!", "ok");
-                     return;
-                  };
-               };
-
-               if (await DisplayAlert("", T("Logout? Please make sure that your data is synchronized beforehand!"), T("ok"), T("cancel")))
-               {
-                  MainViewModel.Current.Config.IsLogged = false;
-                  MainViewModel.Current.Config.Login = "";
-                  MainViewModel.Current.Config.UserFK = -1;
-                  MainViewModel.Current.SaveLocalConfig();
-
-                  RefreshTiles();
-               };
+               await Navigation.PushAsync(new EntryPage());
             };
             break;
 
-         case "interventions":
-            if (!MainViewModel.Current.Config.IsLogged)
-            {
-               Navigation.PushModalAsync(new LoginPage());
-            }
-            else
-            {
-               Navigation.PushAsync(new StoreListPage());
-            };
+         case "exit":
+            //if (!MainViewModel.Current.Config.IsLogged)
+            //{
+            //   Navigation.PushModalAsync(new LoginPage());
+            //}
+            //else
+            //{
+            //   Navigation.PushAsync(new StoreListPage());
+            //};
             break;
 
          case "scanner":

@@ -700,6 +700,7 @@ public class MainViewModel : BaseViewModel
    public string PrevData { get; internal set; }
    public string CurrentData { get; internal set; }
    public Intervention_Params.Scann ReplacementArticle { get; internal set; }
+   public string DeviceID { get; set; } = "BidulSurLaRoute";
 
    //internal void SetLocalFamilies(List<EAN_Family> list)
    //{

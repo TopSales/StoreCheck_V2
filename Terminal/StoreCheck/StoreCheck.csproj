@@ -21,6 +21,7 @@
    </ItemGroup>
 
    <ItemGroup>
+      <None Remove="ChangeLog.XF.md" />
       <None Remove="Data\Norma.db3" />
       <None Remove="Images\Icon.png" />
       <None Remove="Images\Logo.png" />
@@ -31,6 +32,7 @@
    </ItemGroup>
 
    <ItemGroup>
+      <EmbeddedResource Include="ChangeLog.XF.md" />
       <EmbeddedResource Include="Data\Norma.db3">
         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </EmbeddedResource>
@@ -113,6 +115,9 @@
       </Compile>
       <Compile Update="Pages\StoreListPage.xaml.cs">
          <DependentUpon>StoreListPage.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\EntryPage.xaml.cs">
+        <DependentUpon>EntryPage.xaml</DependentUpon>
       </Compile>
    </ItemGroup>
 
