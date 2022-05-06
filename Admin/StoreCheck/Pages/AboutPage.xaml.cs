@@ -32,7 +32,7 @@ namespace StoreCheck.Pages
 
          {
             //lbVersion.Content = AnalyticsHelper.DeviceInfo.AV;
-            lbVersion.Content = $"{VersionInfo.sVersion} ({VersionInfo.BuildOn})";
+         //   lbVersion.Content = $"{VersionInfo.sVersion} ({VersionInfo.BuildOn})";
          };
 
          using (Stream stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(ResourceName))

@@ -160,7 +160,6 @@
     <Resource Include="..\StoreCheck.ChangeLog.PC.md" Link="StoreCheck.ChangeLog.PC.md">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Content Include="StoreCheck_TemporaryKey.pfx" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
