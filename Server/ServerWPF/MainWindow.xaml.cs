@@ -30,6 +30,9 @@ namespace _03_ChatServerWPF
          DataContext = ChatServer.Current;
          InitializeComponent();
 
+         serverIpAddress.Text = MainViewModel.Current.Config.ServerIP;
+         serverPortValue.Text = MainViewModel.Current.Config.ServerPort;
+
          chatServer = (ChatServer)ChatServer.Current;
          chatServer.OnChatEvent += ChatServer_OnChatEvent;
       }
