@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 
 namespace ZPF
 {
@@ -28,7 +29,21 @@ namespace ZPF
       public string ClientName { get; internal set; } = "Client";
 
 #if DEBUG
-      public string ServerIP { get; set; } = "127.0.0.1";
+      public string ServerIP 
+      { 
+         get
+         {
+            if( Device.RuntimePlatform == Device.Android)
+            {
+               return "69.10.45.253";
+            }
+            else
+            {
+               return  "127.0.0.1";
+            };
+         }
+      }
+
       public string ServerPort { get; set; } = "9000";
 #else
       public string ServerIP { get; set; } = "69.10.45.253";
