@@ -104,25 +104,17 @@ public class ServerViewModel : BaseViewModel
                      {
                         var DeviceID = Newtonsoft.Json.JsonConvert.DeserializeObject<String>(data.Data);
 
-                        //var b = DB_SQL.QuickQueryInt64("select max(CAST(beeper as INT)) from Current") + 1;
+                        long nb = 0;
+                        //var nb = DB_SQL.QuickQueryInt64("select max(CAST(beeper as INT)) from Current") + 1;
 
-                        //if( string.IsNullOrEmpty(spooler.Beeper))
-                        //{
-                        //   var b = DB_SQL.QuickQueryInt64("select max(CAST(beeper as INT)) from Current") + 1;
-                        //   spooler.Beeper = ("0000" + b.ToString()).Right(4);
-                        //   DB_SQL.Insert("Current", spooler);
-
-                        //   await ChatServer.Current.SendDataToClient(tcpClient, "new", spooler);
-                        //}
-                        //else
-                        //{
-                        //   DB_SQL.QuickQuery( $"delete from Current where Client='{spooler.Client}' and Beeper='{spooler.Beeper}' ") ;
-                        //   DB_SQL.Insert("Current", spooler);
-                        //};
-
-                        //// - - -  - - - 
-
-                        //SendSpoolerToAllClients();
+                        if (nb == 0)
+                        {
+                           await ChatServer.Current.SendDataToClient(tcpClient, "GetSpooler", null);
+                        }
+                        else
+                        {
+                           await ChatServer.Current.SendDataToClient(tcpClient, "GetSpooler", "*");
+                        };
                      };
                      break;
 
@@ -201,27 +193,27 @@ public class ServerViewModel : BaseViewModel
 
                   case "getstats":
                      {
-//                        BeginEnd be = Newtonsoft.Json.JsonConvert.DeserializeObject<BeginEnd>(data.Data);
+                        //                        BeginEnd be = Newtonsoft.Json.JsonConvert.DeserializeObject<BeginEnd>(data.Data);
 
-//                        //ToDo GetStats DateTime begin, DateTime end
+                        //                        //ToDo GetStats DateTime begin, DateTime end
 
-//                        //string SQL = $@"select * from Stats where CreatedOn>={DB_SQL.DateTimeToSQL(be.Begin)} and CreatedOn<={DB_SQL.DateTimeToSQL(be.End)}";
-//                        //var list = DB_SQL.Query<Spooler>(SQL);
+                        //                        //string SQL = $@"select * from Stats where CreatedOn>={DB_SQL.DateTimeToSQL(be.Begin)} and CreatedOn<={DB_SQL.DateTimeToSQL(be.End)}";
+                        //                        //var list = DB_SQL.Query<Spooler>(SQL);
 
-//                        var SQL = $@"
-//select 
-//   *, 
-//   json_extract(Description, '$.Company') as Company,
-//   json_extract(Description, '$.Carrier') as Carrier, 
-//   json_extract(Description, '$.TypeOfMerchandise') as TypeOfMerchandise 
-//from Stats
-//where json_valid(Description) and CreatedOn>={DB_SQL.DateTimeToSQL(be.Begin)} and CreatedOn<={DB_SQL.DateTimeToSQL(be.End)}
-//order by FirstCall
-//";
+                        //                        var SQL = $@"
+                        //select 
+                        //   *, 
+                        //   json_extract(Description, '$.Company') as Company,
+                        //   json_extract(Description, '$.Carrier') as Carrier, 
+                        //   json_extract(Description, '$.TypeOfMerchandise') as TypeOfMerchandise 
+                        //from Stats
+                        //where json_valid(Description) and CreatedOn>={DB_SQL.DateTimeToSQL(be.Begin)} and CreatedOn<={DB_SQL.DateTimeToSQL(be.End)}
+                        //order by FirstCall
+                        //";
 
-//                        var list = DB_SQL.QuickQueryView( SQL) as DataTable;
+                        //                        var list = DB_SQL.QuickQueryView( SQL) as DataTable;
 
-//                        await ChatServer.Current.SendDataToClient(tcpClient, "getstats", list);
+                        //                        await ChatServer.Current.SendDataToClient(tcpClient, "getstats", list);
                      };
                      break;
                };

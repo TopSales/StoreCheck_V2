@@ -102,14 +102,16 @@ public class ClientViewModel : BaseViewModel
 
                switch (data.Action.ToLower())
                {
-                  case "new":
+                  case "entry":
                      {
-                        //var s = Newtonsoft.Json.JsonConvert.DeserializeObject<Spooler>(data.Data);
-
-                        //if (s.Client == MainViewModel.Current.Config.ClientName)
-                        //{
-                        //   MainViewModel.Current.LastBeeper = s.Beeper;
-                        //};
+                        if (data.Data == null)
+                        {
+                           MainViewModel.Current.EntryMsg = "Call your admin";
+                        }
+                        else
+                        {
+                           MainViewModel.Current.EntryMsg = "Hello Mr 'X' ...";
+                        };
                      };
                      break;
 

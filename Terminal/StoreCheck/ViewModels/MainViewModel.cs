@@ -56,7 +56,7 @@ public class MainViewModel : BaseViewModel
 
 #if DEBUG
    public static string wsServer = "https://wsstorecheck.diplodocus.dev/StoreCheck/";
-  // public static string wsServer = "http://localhost:6200/StoreCheck/";
+   // public static string wsServer = "http://localhost:6200/StoreCheck/";
 
    public static string wsServerDoc = "https://wsstorecheckdoc.diplodocus.dev/StoreCheck/";
 #else
@@ -701,6 +701,9 @@ public class MainViewModel : BaseViewModel
    public string CurrentData { get; internal set; }
    public Intervention_Params.Scann ReplacementArticle { get; internal set; }
    public string DeviceID { get; set; } = "BidulSurLaRoute";
+
+   public string EntryMsg { get => _EntryMsg; set => SetField(ref _EntryMsg, value); }
+   string _EntryMsg = "";
 
    //internal void SetLocalFamilies(List<EAN_Family> list)
    //{

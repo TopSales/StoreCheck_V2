@@ -11,7 +11,7 @@
 
    <zpf:Page_Base.MainContent>
       <Grid>
-         <Label x:Name="label" Text="Trying to connect to the server ..."
+         <Label Text="{Binding EntryMsg, Mode=TwoWay}"
             VerticalOptions="CenterAndExpand" 
             HorizontalOptions="CenterAndExpand" />
       </Grid>

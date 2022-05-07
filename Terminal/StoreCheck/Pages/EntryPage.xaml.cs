@@ -8,7 +8,11 @@ namespace StoreCheck.Pages
    {
       public EntryPage()
       {
+         BindingContext = MainViewModel.Current;
+
          InitializeComponent();
+
+         MainViewModel.Current.EntryMsg = "Trying to connect to the server ..."; 
 
          Title = "entry";
       }
@@ -45,7 +49,7 @@ namespace StoreCheck.Pages
             {
                DoIt.OnMainThread(() =>
                {
-                  label.Text = "ID send ...";
+                  MainViewModel.Current.EntryMsg = "ID send ...";
                });
             }
             else
@@ -53,7 +57,7 @@ namespace StoreCheck.Pages
                DoIt.OnMainThread(() =>
                {
                   DisplayAlert("Error", "Not connected to server!", "ok");
-                  label.Text = "Not connected to server!";
+                  MainViewModel.Current.EntryMsg = "Not connected to server!";
                });
             };
          });
