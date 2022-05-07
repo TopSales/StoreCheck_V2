@@ -64,7 +64,6 @@
     </Compile>
     <Compile Include="..\..\..\..\Nugets\ZPF_Basics_WPF\ToDo\WPFMessageBox.xaml.cs" Link="_ToDo_\WPFMessageBox.xaml.cs" />
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\DBSQL_Helper.cs" Link="Controls\DBSQL_Helper.cs" />
-    <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\MySQLEngine.cs" Link="Controls\MySQLEngine.cs" />
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="Controls\SQLServerEngine.cs" />
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\ToDo\OpenDBPage.xaml.cs" Link="_ToDo_\OpenDBPage.xaml.cs" />
     <Compile Include="..\..\..\..\_Units_\CS\ConfigHelper.cs">
@@ -228,7 +227,6 @@
       <Version>4.5.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="MySql.Data" Version="8.0.29" />
     <PackageReference Include="SharpZipLib.Portable">
       <Version>0.86.0.3</Version>
     </PackageReference>
