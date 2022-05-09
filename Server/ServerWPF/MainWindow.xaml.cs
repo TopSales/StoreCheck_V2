@@ -27,7 +27,7 @@ namespace _03_ChatServerWPF
       /// </summary>
       public MainWindow()
       {
-         DataContext = ChatServer.Current;
+         DataContext = ServerViewModel.Current;
          InitializeComponent();
 
          serverIpAddress.Text = MainViewModel.Current.Config.ServerIP;
@@ -35,6 +35,11 @@ namespace _03_ChatServerWPF
 
          chatServer = (ChatServer)ChatServer.Current;
          chatServer.OnChatEvent += ServerViewModel.Current.ChatServer_OnChatEvent;
+      }
+
+      private void Window_Loaded(object sender, RoutedEventArgs e)
+      {
+         btnStartStop_Click(sender, e);
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
@@ -45,7 +50,7 @@ namespace _03_ChatServerWPF
       /// <param name="message"></param>
       private void AddMessage(string message)
       {
-         Dispatcher.Invoke(() => listChats.Items.Add(message));
+         Dispatcher.Invoke(() => ServerViewModel.Current.AddMessage(message));
       }
 
       /// <summary>
@@ -134,5 +139,6 @@ namespace _03_ChatServerWPF
             await chatServer.SendFileToClient(c.Tcp, openFileDialog.FileName);
          };
       }
+
    }
 }

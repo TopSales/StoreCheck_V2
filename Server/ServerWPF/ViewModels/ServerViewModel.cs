@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Net;
@@ -305,15 +306,18 @@ public class ServerViewModel : BaseViewModel
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
+   public List<NameValue> Log { get; set; } = new List<NameValue>();
+
    /// <summary>
    /// Add messages to messages ListBox
    /// </summary>
    /// <param name="message"></param>
-   private void AddMessage(string message)
+   public void AddMessage(string message)
    {
       Debug.WriteLine(message);
+      Log.Insert(0, new NameValue { Value = message });
       //Dispatcher.Invoke(() => listChats.Items.Add(message));
    }
-   
+
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 }
