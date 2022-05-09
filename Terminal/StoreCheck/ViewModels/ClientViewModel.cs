@@ -176,7 +176,7 @@ public class ClientViewModel : BaseViewModel
                //MainViewModel.Current.CurrentMessage = message;
                //MainViewModel.Current.Save();
 
-               //System.Diagnostics.Debug.WriteLine("Chat(M): " + message);
+               System.Diagnostics.Debug.WriteLine("Chat(M): " + message);
             }
             break;
       };

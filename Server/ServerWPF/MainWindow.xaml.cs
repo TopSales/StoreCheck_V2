@@ -34,72 +34,7 @@ namespace _03_ChatServerWPF
          serverPortValue.Text = MainViewModel.Current.Config.ServerPort;
 
          chatServer = (ChatServer)ChatServer.Current;
-         chatServer.OnChatEvent += ChatServer_OnChatEvent;
-      }
-
-      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
-
-      private async Task<bool> ChatServer_OnChatEvent(object sender, TcpClient tcpClient, ChatCore.EventType eventType, string message = "")
-      {
-         bool Result = true;
-
-         switch (eventType)
-         {
-            case ChatCore.EventType.Message:
-               {
-                  // Message to operator
-                  AddMessage(message);
-               }
-               break;
-
-            case ChatCore.EventType.SocketException:
-               {
-                  btnStartStop.Content = "Start";
-                  MessageBox.Show("Server port already in use or the IP Address or server port is invalid!");
-               }
-               break;
-
-            case ChatCore.EventType.ClientConnected:
-               {
-                  AddMessage(message); // clientName
-
-                  Dispatcher.Invoke(() =>
-                  {
-                     listClients.ItemsSource = null;
-                     listClients.ItemsSource = ChatServer.Current.Clients;
-                  });
-               }
-               break;
-
-            case ChatCore.EventType.File:
-               {
-                  // file
-                  AddMessage($"Received file '{message}'");
-                  System.Diagnostics.Process.Start(message);
-               }
-               break;
-
-            case ChatCore.EventType.Data:
-               {
-                  // Data Message
-                  AddMessage(message);
-               }
-               break;
-
-            case ChatCore.EventType.ClientDisconnected:
-               {
-                  AddMessage(message);
-
-                  Dispatcher.Invoke(() =>
-                  {
-                     listClients.ItemsSource = null;
-                     listClients.ItemsSource = ChatServer.Current.Clients;
-                  });
-               }
-               break;
-         };
-
-         return Result;
+         chatServer.OnChatEvent += ServerViewModel.Current.ChatServer_OnChatEvent;
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -

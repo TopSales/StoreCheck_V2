@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Windows.Threading;
 using ZPF;
 using ZPF.Chat;
 using ZPF.SQL;
@@ -44,8 +46,8 @@ public class ServerViewModel : BaseViewModel
 
       ChatCore.DataFolder = System.IO.Path.GetTempPath();
 
-      chatServer = (ChatServer)ChatServer.Current;
-      chatServer.OnChatEvent += ChatServer_OnChatEvent;
+      //chatServer = (ChatServer)ChatServer.Current;
+      //chatServer.OnChatEvent += ChatServer_OnChatEvent;
 
       #endregion
    }
@@ -56,16 +58,18 @@ public class ServerViewModel : BaseViewModel
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
-   private async Task<bool> ChatServer_OnChatEvent(object sender, TcpClient tcpClient, ChatCore.EventType eventType, string message = "")
+   public async Task<bool> ChatServer_OnChatEvent(object sender, TcpClient tcpClient, ChatCore.EventType eventType, string message = "")
    {
       bool Result = true;
+
+      Debug.WriteLine("ICI ICI ICI");
 
       switch (eventType)
       {
          case ChatCore.EventType.Message:
             {
                // Message to operator
-               //AddMessage(message);
+               AddMessage(message);
             }
             break;
 
@@ -88,7 +92,7 @@ public class ServerViewModel : BaseViewModel
          case ChatCore.EventType.File:
             {
                // file
-               //AddMessage($"Received file '{message}'");
+               AddMessage($"Received file '{message}'");
                //System.Diagnostics.Process.Start(message);
             }
             break;
@@ -109,11 +113,11 @@ public class ServerViewModel : BaseViewModel
 
                         if (nb == 0)
                         {
-                           await ChatServer.Current.SendDataToClient(tcpClient, "GetSpooler", null);
+                           await ChatServer.Current.SendDataToClient(tcpClient, "entry", null);
                         }
                         else
                         {
-                           await ChatServer.Current.SendDataToClient(tcpClient, "GetSpooler", "*");
+                           await ChatServer.Current.SendDataToClient(tcpClient, "entry", "*");
                         };
                      };
                      break;
@@ -291,7 +295,7 @@ public class ServerViewModel : BaseViewModel
       int port = int.Parse(MainViewModel.Current.Config.ServerPort);
       int bufferSize = 1024;
 
-      //AddMessage("[SERVER]: Server is closed!");
+      AddMessage("[SERVER]: Server is closed!");
 
       IPAddress.TryParse(ipAddress, out var IP);
       await chatServer.Listener(IP, port, bufferSize, true);
@@ -299,5 +303,17 @@ public class ServerViewModel : BaseViewModel
       await chatServer.StopServer();
    }
 
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
+
+   /// <summary>
+   /// Add messages to messages ListBox
+   /// </summary>
+   /// <param name="message"></param>
+   private void AddMessage(string message)
+   {
+      Debug.WriteLine(message);
+      //Dispatcher.Invoke(() => listChats.Items.Add(message));
+   }
+   
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 }
