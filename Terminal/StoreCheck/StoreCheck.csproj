@@ -79,6 +79,7 @@
       <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
       <PackageReference Include="ZPF_Basics_XF" Version="1.4.8.21" />
       <PackageReference Include="ZPF_Calc_XF" Version="1.4.8.14" />
+      <PackageReference Include="ZPF_ChatHelper" Version="1.0.0.5" />
       <PackageReference Include="ZPF_Fonts" Version="1.0.1.6" />
       <PackageReference Include="ZPF_MCE" Version="1.1.38" />
       <PackageReference Include="ZPF_MCE.XF" Version="1.1.37" />
@@ -87,7 +88,6 @@
    </ItemGroup>
 
    <ItemGroup>
-     <ProjectReference Include="..\..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper.csproj" />
      <ProjectReference Include="..\..\..\..\Nugets\ZPF_DBSQL\Sources\ZPF_DBSQL.csproj" />
    </ItemGroup>
 
