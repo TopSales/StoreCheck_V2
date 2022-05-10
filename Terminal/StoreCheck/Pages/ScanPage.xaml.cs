@@ -25,6 +25,17 @@ namespace StoreCheck.Pages
 
          //DependencyService.Get<IScanner>().OpenScanner();
          //DependencyService.Get<IScanner>().EnableAllSymbologies();
+
+         DoIt.Delay(100, () =>
+         {
+            DoIt.OnMainThread(() =>
+            {
+               //#if SCAN_WEDGE
+               entry.Unfocused += Entry_Unfocused;
+               //#endif
+               entry.Focus();
+            });
+         });
       }
 
       private void itemAppearing(object sender, ItemVisibilityEventArgs e)
@@ -47,6 +58,36 @@ namespace StoreCheck.Pages
          //DependencyService.Get<IScanner>().CloseScanner();
 
          base.OnDisappearing();
+      }
+
+      private void entry_Completed(object sender, EventArgs e)
+      {
+         var entry = sender as Entry;
+
+         if (entry != null && entry.Text != null)
+         {
+            var st = entry.Text.Trim();
+
+            if (!string.IsNullOrEmpty(st))
+            {
+               entry.Unfocused -= Entry_Unfocused;
+               //slBarCode.IsVisible = false;
+               UnitechViewModel.Current.NewBarcode(st, st.Length, 0, null);
+            };
+         };
+      }
+
+      private void entry_TextChanged(object sender, TextChangedEventArgs e)
+      {
+         var entry = sender as Entry;
+         entry.Unfocused -= Entry_Unfocused;
+
+         UnitechViewModel.Current.Length = entry.Text.Length;
+      }
+
+      private void Entry_Unfocused(object sender, FocusEventArgs e)
+      {
+         entry.Focus();
       }
    }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using StoreCheck.Pages;
 using Xamarin.Forms;
 using ZPF;
@@ -61,11 +62,11 @@ class _HomePage : Page_Base
       // - - -  - - - 
 
 #if DEBUG
-      //{
-      //   var l = tm.NewLine();
-      //   l.Height = 30;
-      //   l.AddTile(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Beaker), "test");
-      //};
+      {
+         var l = tm.NewLine();
+         l.Height = 30;
+         l.AddTile(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Beaker), "test");
+      };
 #endif
 
       // - - -  - - - 
@@ -134,20 +135,20 @@ class _HomePage : Page_Base
          BackboneViewModel.Current.IncBusy();
          BackboneViewModel.Current.BusySubTitle = $"Load local data ...";
 
-         DoIt.OnBackground( () =>
-         {
-            DoIt.Delay(1000, async () =>
-            {
-               try
-               {
-                  MainViewModel.Current.LoadLocalDB();
-               }
-               catch { };
+         DoIt.OnBackground(() =>
+        {
+           DoIt.Delay(1000, async () =>
+           {
+              try
+              {
+                 MainViewModel.Current.LoadLocalDB();
+              }
+              catch { };
 
-               if (MainViewModel.Current.Stores.Count == 0)
-               {
-                  MainViewModel.Current.Config.LastSynchro = DateTime.MinValue;
-               };
+              if (MainViewModel.Current.Stores.Count == 0)
+              {
+                 MainViewModel.Current.Config.LastSynchro = DateTime.MinValue;
+              };
 
                //ToDo: SyncData
                //if (!string.IsNullOrEmpty(MainViewModel.Current.Config.Login) && (DateTime.Now - MainViewModel.Current.Config.LastSynchro).TotalHours > 12)
@@ -160,11 +161,11 @@ class _HomePage : Page_Base
                //};
 
                DoIt.OnMainThread(() =>
-               {
-                  BackboneViewModel.Current.DecBusy();
-               });
-            });
-         });
+              {
+                 BackboneViewModel.Current.DecBusy();
+              });
+           });
+        });
       }
       else
       {
@@ -241,48 +242,57 @@ class _HomePage : Page_Base
             break;
 
          case "test":
-            var list = await wsHelper.wGet<Intervention_CE[]>($@"/Interventions/ListInt/01.01.0001 00:00/114");
+            {
+               MainViewModel.Current.SelectedInterventionParams = new Intervention_Params();
+
+               //MainViewModel.Current.SelectedInterventionParams.Data.Scanns.LastOrDefault();
+
+               await Navigation.PushAsync(new ShelfInventoryPage());
+
+               //var list = await wsHelper.wGet<Intervention_CE[]>($@"/Interventions/ListInt/01.01.0001 00:00/114");
 
 
-            //MediaFile _file;
-            //var source = await Application.Current.MainPage.DisplayActionSheet(
-            //    "Where do you want to get the picture?",
-            //    "Cancel",
-            //    null,
-            //    "From Gallery",
-            //    "From Camera");
+               //MediaFile _file;
+               //var source = await Application.Current.MainPage.DisplayActionSheet(
+               //    "Where do you want to get the picture?",
+               //    "Cancel",
+               //    null,
+               //    "From Gallery",
+               //    "From Camera");
 
-            //if (source == "Cancel")
-            //{
-            //   _file = null;
-            //   return;
-            //}
+               //if (source == "Cancel")
+               //{
+               //   _file = null;
+               //   return;
+               //}
 
-            //if (source == "From Camera")
-            //{
-            //   _file = await CrossMedia.Current.TakePhotoAsync(
-            //       new StoreCameraMediaOptions
-            //       {
-            //          Directory = "Sample",
-            //          Name = "test.jpg",
-            //          //PhotoSize = PhotoSize.Small,
-            //       }
-            //   );
-            //}
-            //else
-            //{
-            //   _file = await CrossMedia.Current.PickPhotoAsync();
-            //}
+               //if (source == "From Camera")
+               //{
+               //   _file = await CrossMedia.Current.TakePhotoAsync(
+               //       new StoreCameraMediaOptions
+               //       {
+               //          Directory = "Sample",
+               //          Name = "test.jpg",
+               //          //PhotoSize = PhotoSize.Small,
+               //       }
+               //   );
+               //}
+               //else
+               //{
+               //   _file = await CrossMedia.Current.PickPhotoAsync();
+               //}
 
-            //if (_file != null)
-            //{
-            //   image.Source = ImageSource.FromStream(() =>
-            //   {
-            //      var stream = _file.GetStream();
-            //      _file.Dispose();
-            //      return stream;
-            //   });
-            //}
+               //if (_file != null)
+               //{
+               //   image.Source = ImageSource.FromStream(() =>
+               //   {
+               //      var stream = _file.GetStream();
+               //      _file.Dispose();
+               //      return stream;
+               //   });
+               //}
+
+            };
             break;
       };
 

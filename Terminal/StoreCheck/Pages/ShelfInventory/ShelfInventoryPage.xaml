@@ -78,7 +78,9 @@
                   <Grid x:Name="slBarCode" ColumnDefinitions="auto,*" RowDefinitions="auto,auto" Margin="20,0,20,0" BackgroundColor="#EEE">
                      <Button Grid.Row="0" Grid.ColumnSpan="2"  Margin="5" Text="end off scans" Clicked="btnEOFScan_Clicked" CornerRadius="5" />
                      <Label Grid.Row="1" Text="Code" TextColor="Black" VerticalOptions="Center" />
-                     <Entry Grid.Row="1" Grid.Column="1" x:Name="entry" Keyboard="Numeric" Placeholder="enter barcode" FontSize="18" VerticalOptions="Center" Completed="entry_Completed" TextChanged="entry_TextChanged" />
+                     <Entry Grid.Row="1" Grid.Column="1" x:Name="entry" Keyboard="Numeric" Placeholder="enter barcode" 
+                            FontSize="18" VerticalOptions="Center" 
+                            Completed="entry_Completed" TextChanged="entry_TextChanged" />
                   </Grid>
                   
                </StackLayout>

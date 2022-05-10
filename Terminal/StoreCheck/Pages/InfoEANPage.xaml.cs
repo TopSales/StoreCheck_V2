@@ -24,45 +24,22 @@ namespace StoreCheck.Pages
          InitializeComponent();
 
          slArticleEAN.BindingContext = EANViewModel.Current.CurrentArticleEAN;
-         slHeadder.BindingContext = MainViewModel.Current;
 
-         // - - -  - - - 
 
-         var tiles = SetAppBarContent(new List<AppBarItem>(new AppBarItem[]
-         {
-            //new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Clean_Brush), "clean"),
-            //new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Sync), "sync"),
-         }));
-
-         //tiles[0].Clicked += async (object sender, System.EventArgs e) =>
-         //{
-         //   (sender as Tile).IsEnabled = false;
-
-         //   if (await DisplayAlert("Confirmation", "Delete the EAN database?", "OK", "annuler") == true)
-         //   {
-         //      EANViewModel.Current.ArticlesEAN.Clear();
-         //      MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.all);
-         //   };
-
-         //   (sender as Tile).IsEnabled = true;
-         //};
-
-         //tiles[1].Clicked += async (object sender, System.EventArgs e) =>
-         //{
-         //   (sender as Tile).IsEnabled = false;
-
-         //   if (await DisplayAlert("Confirmation", "Sync the EAN database?", "OK", "annuler") == true)
-         //   {
-         //      SyncEAN();
-         //   };
-
-         //   (sender as Tile).IsEnabled = true;
-         //};
-
-         // - - -  - - - 
 
          //DependencyService.Get<IScanner>().OpenScanner();
          //DependencyService.Get<IScanner>().EnableAllSymbologies();
+
+         DoIt.Delay(100, () =>
+         {
+            DoIt.OnMainThread(() =>
+            {
+               //#if SCAN_WEDGE
+               entry.Unfocused += Entry_Unfocused;
+               //#endif
+               entry.Focus();
+            });
+         });
       }
 
       bool OnAppearing_sema = true;
@@ -94,7 +71,17 @@ namespace StoreCheck.Pages
          //DependencyService.Get<IScanner>().EnableAllSymbologies();
          UnitechViewModel.Current.OnScann += OnScann;
 
-         eData.Focus();
+
+         DoIt.Delay(100, () =>
+         {
+            DoIt.OnMainThread(() =>
+            {
+               //#if SCAN_WEDGE
+               entry.Unfocused += Entry_Unfocused;
+               //#endif
+               entry.Focus();
+            });
+         });
       }
 
       private async void SyncEAN()
@@ -193,9 +180,12 @@ namespace StoreCheck.Pages
          return true;
       }
 
+      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - - 
+
       private void Entry_Completed(object sender, EventArgs e)
       {
          var entry = sender as Entry;
+         entry.Text = entry.Text.Trim();
 
          OnScann(entry.Text, entry.Text.Length, UnitechViewModel.Symbologies.Unknown, Encoding.ASCII.GetBytes(entry.Text));
       }
@@ -207,5 +197,42 @@ namespace StoreCheck.Pages
          entry.CursorPosition = 0;
          entry.SelectionLength = entry.Text.Length;
       }
+
+      //private void entry_Completed(object sender, EventArgs e)
+      //{
+      //   var entry = sender as Entry;
+
+      //   if (entry != null && entry.Text != null)
+      //   {
+      //      var st = entry.Text.Trim();
+
+      //      if (!string.IsNullOrEmpty(st))
+      //      {
+      //         entry.Unfocused -= Entry_Unfocused;
+      //         slBarCode.IsVisible = false;
+      //         UnitechViewModel.Current.NewBarcode(st, st.Length, 0, null);
+      //      };
+      //   };
+      //}
+
+      private void entry_TextChanged(object sender, TextChangedEventArgs e)
+      {
+         var entry = sender as Entry;
+         entry.Unfocused -= Entry_Unfocused;
+
+         UnitechViewModel.Current.Length = entry.Text.Length;
+      }
+
+      private void Entry_Unfocused(object sender, FocusEventArgs e)
+      {
+         entry.Focus();
+      }
+
+      private async void btnExit_Clicked(object sender, EventArgs e)
+      {
+         await Navigation.PopAsync();
+      }
+
+      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - - 
    }
 }
