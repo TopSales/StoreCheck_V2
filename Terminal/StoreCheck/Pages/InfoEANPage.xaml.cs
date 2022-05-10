@@ -138,6 +138,13 @@ namespace StoreCheck.Pages
 
       protected override bool OnBackButtonPressed()
       {
+         if (entry.IsFocused)
+         {
+         };
+
+         entry.Unfocused -= Entry_Unfocused;
+         entry.Unfocus();
+
          UnitechViewModel.Current.OnScann -= OnScann;
          //DependencyService.Get<IScanner>().CloseScanner();
 
@@ -230,6 +237,8 @@ namespace StoreCheck.Pages
 
       private async void btnExit_Clicked(object sender, EventArgs e)
       {
+         OnBackButtonPressed();
+
          await Navigation.PopAsync();
       }
 

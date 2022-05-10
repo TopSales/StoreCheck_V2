@@ -23,12 +23,30 @@
    <ItemGroup>
       <None Remove="ChangeLog.XF.md" />
       <None Remove="Data\Norma.db3" />
+      <None Remove="Fonts\desyrel.ttf" />
+      <None Remove="Fonts\IconFont.ttf" />
+      <None Remove="Fonts\MediaPlayerFont.ttf" />
+      <None Remove="Fonts\Montserrat.ttf" />
       <None Remove="Images\Icon.png" />
       <None Remove="Images\Logo.png" />
       <None Remove="Images\ZeProgramFactory.350.png" />
-      <None Remove="Montserrat.ttf" />
       <None Remove="Pages\ShelfInventory\InputPage.xml" />
       <None Remove="Pages\ShelfInventory\InputPagePromo.xml" />
+   </ItemGroup>
+
+   <ItemGroup>
+     <Content Include="Fonts\desyrel.ttf">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+     </Content>
+     <Content Include="Fonts\IconFont.ttf">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+     </Content>
+     <Content Include="Fonts\MediaPlayerFont.ttf">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+     </Content>
+     <Content Include="Fonts\Montserrat.ttf">
+       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+     </Content>
    </ItemGroup>
 
    <ItemGroup>
@@ -39,7 +57,6 @@
       <EmbeddedResource Include="Images\Icon.png" />
       <EmbeddedResource Include="Images\Logo.png" />
       <EmbeddedResource Include="Images\ZeProgramFactory.350.png" />
-      <EmbeddedResource Include="Montserrat.ttf" />
       <EmbeddedResource Include="Pages\ShelfInventory\InputPage.xml" />
       <EmbeddedResource Include="Pages\ShelfInventory\InputPagePromo.xml" />
    </ItemGroup>
@@ -53,7 +70,7 @@
       <PackageReference Include="Normalisation.Core" Version="1.0.0.5" />
       <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.3" />
       <PackageReference Include="StoreCheck.Core" Version="1.0.0.36" />
-      <PackageReference Include="System.Text.Json" Version="6.0.3" />
+      <PackageReference Include="System.Text.Json" Version="6.0.4" />
       <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
       <PackageReference Include="Xamarin.Controls.SignaturePad.Forms" Version="3.0.0" />
       <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
@@ -62,11 +79,11 @@
       <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
       <PackageReference Include="ZPF_Basics_XF" Version="1.4.8.21" />
       <PackageReference Include="ZPF_Calc_XF" Version="1.4.8.14" />
-      <PackageReference Include="ZPF_Fonts" Version="1.0.0.9" />
+      <PackageReference Include="ZPF_Fonts" Version="1.0.1.6" />
       <PackageReference Include="ZPF_MCE" Version="1.1.38" />
       <PackageReference Include="ZPF_MCE.XF" Version="1.1.37" />
       <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />
-      <PackageReference Include="ZPF_XF_Compos" Version="1.4.8.60" />
+      <PackageReference Include="ZPF_XF_Compos" Version="1.4.8.62" />
    </ItemGroup>
 
    <ItemGroup>
