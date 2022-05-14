@@ -60,9 +60,9 @@ namespace StoreCheck.Pages
             if (EANViewModel.Current.ArticlesEAN == null || EANViewModel.Current.ArticlesEAN.Count == 0)
             {
                EANViewModel.Current.CurrentArticleEAN = null;
-            };
 
-            EANViewModel.Current.SetArticlesEAN();
+               EANViewModel.Current.SetArticlesEAN();
+            };
 
             OnAppearing_sema = true;
          };
@@ -138,14 +138,10 @@ namespace StoreCheck.Pages
 
       protected override bool OnBackButtonPressed()
       {
-         if (entry.IsFocused)
-         {
-         };
-
          entry.Unfocused -= Entry_Unfocused;
          entry.Unfocus();
 
-         UnitechViewModel.Current.OnScann -= OnScann;
+         //UnitechViewModel.Current.OnScann -= OnScann;
          //DependencyService.Get<IScanner>().CloseScanner();
 
          return base.OnBackButtonPressed();
@@ -172,7 +168,7 @@ namespace StoreCheck.Pages
 
             EANViewModel.Current.CurrentArticleEAN = EANViewModel.Current.ArticlesEAN.Where(x => x.EAN == data).FirstOrDefault();
 
-            if(EANViewModel.Current.CurrentArticleEAN == null)
+            if (EANViewModel.Current.CurrentArticleEAN == null)
             {
                EANViewModel.Current.CurrentArticleEAN = new EAN_Article
                {
@@ -232,14 +228,27 @@ namespace StoreCheck.Pages
 
       private void Entry_Unfocused(object sender, FocusEventArgs e)
       {
-         entry.Focus();
+         DoIt.Delay(200, () =>
+         {
+            DoIt.OnMainThread(() =>
+            {
+               if (!btnExit.IsFocused)
+               {
+                  entry.Focus();
+               };
+            });
+         });
       }
 
       private async void btnExit_Clicked(object sender, EventArgs e)
       {
+         BackboneViewModel.Current.IncBusy();
+
          OnBackButtonPressed();
 
          await Navigation.PopAsync();
+
+         BackboneViewModel.Current.DecBusy();
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - - 

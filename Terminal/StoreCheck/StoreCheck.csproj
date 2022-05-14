@@ -84,7 +84,7 @@
       <PackageReference Include="ZPF_MCE" Version="1.1.38" />
       <PackageReference Include="ZPF_MCE.XF" Version="1.1.37" />
       <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />
-      <PackageReference Include="ZPF_XF_Compos" Version="1.4.8.62" />
+      <PackageReference Include="ZPF_XF_Compos" Version="1.4.8.63" />
    </ItemGroup>
 
    <ItemGroup>

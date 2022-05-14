@@ -55,7 +55,7 @@
          <BoxView Grid.Row="1" Margin="20,20,20,0" BackgroundColor="LightGray" CornerRadius="10" />
 
          <Grid Grid.Row="1" Margin="20,20,20,0" BackgroundColor="Transparent">
-            <ZPFXF:Tile IconChar="{x:Static fonts:IF.Exit_03}" Text="exit" CornerRadius="10" Clicked="btnExit_Clicked" />
+            <ZPFXF:Tile x:Name="btnExit" IconChar="{x:Static fonts:IF.Exit_03}" Text="exit" CornerRadius="10" Clicked="btnExit_Clicked" />
          </Grid>
 
       </Grid>

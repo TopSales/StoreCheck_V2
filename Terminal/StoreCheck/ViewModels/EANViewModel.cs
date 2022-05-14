@@ -15,6 +15,7 @@ using ZPF;
 using System.Text.Json;
 using ZPF.AT;
 using ZPF.SQL;
+using System.Runtime.InteropServices.ComTypes;
 
 public class EANViewModel : BaseViewModel
 {
@@ -65,44 +66,58 @@ public class EANViewModel : BaseViewModel
       OnPropertyChanged("ArticlesEAN");
    }
 
+   static bool WasInit = false;
    internal async void SetArticlesEAN()
    {
       //var folder = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
       //System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
       //var fileName = folder + @"\Data\Norma.db3";
 
-      var fileName = await CopyFile("Norma.db3");
-
-
-      if (System.IO.File.Exists(fileName))
+      if (!WasInit)
       {
-         var _DBSQLViewModel = new DBSQLViewModel(new MSSQLiteEngine());
-         string connectionString = DB_SQL.GenConnectionString(DBType.SQLite, "", fileName, "", "");
+         WasInit = true;
 
-         var result = _DBSQLViewModel.Open(connectionString, true);
+         BackboneViewModel.Current.IncBusy();
 
-         var list = DB_SQL.Query<EAN_Article>(_DBSQLViewModel, "select EAN, Brand, Label_FR, Condi, UCondi, Price from EAN_Article");
-
-         if (string.IsNullOrEmpty(DB_SQL._ViewModel.LastError))
+         DoIt.OnBackground( async () => 
          {
-            ArticlesEAN = list;
+            var fileName = await CopyFile("Norma.db3");
 
-            OnPropertyChanged("ArticlesEAN");
-         }
-         else
-         {
-            // DB_SQL._ViewModel.LastError == “SQLite Error 14: 'unable to open database file'.”
-            // https://github.com/xamarin/xamarin-android/issues/3819
+            if (System.IO.File.Exists(fileName))
+            {
+               var _DBSQLViewModel = new DBSQLViewModel(new MSSQLiteEngine());
+               string connectionString = DB_SQL.GenConnectionString(DBType.SQLite, "", fileName, "", "");
 
-            Debug.WriteLine(DB_SQL._ViewModel.LastError);
-            Debugger.Break();
-         };
-      }
-      else
-      {
-         Debugger.Break();
+               var result = _DBSQLViewModel.Open(connectionString, true);
+
+               var list = DB_SQL.Query<EAN_Article>(_DBSQLViewModel, "select EAN, Brand, Label_FR, Condi, UCondi, Price from EAN_Article");
+
+               if (string.IsNullOrEmpty(DB_SQL._ViewModel.LastError))
+               {
+                  ArticlesEAN = list;
+
+                  OnPropertyChanged("ArticlesEAN");
+               }
+               else
+               {
+                  // DB_SQL._ViewModel.LastError == “SQLite Error 14: 'unable to open database file'.”
+                  // https://github.com/xamarin/xamarin-android/issues/3819
+
+                  Debug.WriteLine(DB_SQL._ViewModel.LastError);
+                  Debugger.Break();
+               };
+            }
+            else
+            {
+               Debugger.Break();
+            };
+
+            DoIt.OnMainThread(() =>
+            {
+               BackboneViewModel.Current.DecBusy();
+            });
+         });
       };
-
    }
 
    public async Task<string> CopyFile(string name)
