@@ -9,47 +9,47 @@ namespace StoreCheck.Droid
 {
    // https://docs.microsoft.com/en-us/xamarin/android/user-interface/splash-screen
 
-   [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
-   public class SplashActivity : AppCompatActivity
-   {
-      static readonly string TAG = "X:" + typeof(SplashActivity).Name;
+   //[Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
+   //public class SplashActivity : AppCompatActivity
+   //{
+   //   static readonly string TAG = "X:" + typeof(SplashActivity).Name;
 
-      public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
-      {
-         base.OnCreate(savedInstanceState, persistentState);
+   //   public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
+   //   {
+   //      base.OnCreate(savedInstanceState, persistentState);
 
-         //// - - -  - - - 
+   //      //// - - -  - - - 
 
-         //if (Xamarin.Forms.Device.Idiom == Xamarin.Forms.TargetIdiom.Phone || Xamarin.Forms.Device.Idiom == Xamarin.Forms.TargetIdiom.Unsupported)
-         //{
-         //   // layout views vertically
-         //   this.RequestedOrientation = ScreenOrientation.Portrait;
-         //}
-         //else
-         //{
-         //   // layout views horizontally
-         //   this.RequestedOrientation = ScreenOrientation.Sensor;
-         //};
+   //      //if (Xamarin.Forms.Device.Idiom == Xamarin.Forms.TargetIdiom.Phone || Xamarin.Forms.Device.Idiom == Xamarin.Forms.TargetIdiom.Unsupported)
+   //      //{
+   //      //   // layout views vertically
+   //      //   this.RequestedOrientation = ScreenOrientation.Portrait;
+   //      //}
+   //      //else
+   //      //{
+   //      //   // layout views horizontally
+   //      //   this.RequestedOrientation = ScreenOrientation.Sensor;
+   //      //};
 
-         // - - -  - - - 
-      }
+   //      // - - -  - - - 
+   //   }
 
-      // Launches the startup task
-      protected override void OnResume()
-      {
-         base.OnResume();
-         Task startupWork = new Task(() => { Startup(); });
-         startupWork.Start();
-      }
+   //   // Launches the startup task
+   //   protected override void OnResume()
+   //   {
+   //      base.OnResume();
+   //      Task startupWork = new Task(() => { Startup(); });
+   //      startupWork.Start();
+   //   }
 
-      // Startup background work that happens behind the splash screen
-      void Startup()
-      {
-         StartActivity(new Android.Content.Intent(Application.Context, typeof(MainActivity)));
-      }
-   }
+   //   // Startup background work that happens behind the splash screen
+   //   void Startup()
+   //   {
+   //      StartActivity(new Android.Content.Intent(Application.Context, typeof(MainActivity)));
+   //   }
+   //}
 
-   [Activity(Label = "StoreCheck", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+   [Activity(Label = "StoreCheck", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
    {
       protected override void OnCreate(Bundle savedInstanceState)
