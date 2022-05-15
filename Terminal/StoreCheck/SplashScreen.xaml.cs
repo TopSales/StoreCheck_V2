@@ -32,7 +32,7 @@ namespace ZPF.XF
 
             // GetDeviceInfo();
 
-            MainViewModel.Current.LoadLocalConfig();
+            //MainViewModel.Current.LoadLocalConfig();
 
             // - - -  - - - 
 
