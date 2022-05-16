@@ -15,15 +15,13 @@ using Windows.UI.Xaml.Navigation;
 
 namespace StoreCheck.UWP
 {
-   public sealed partial class MainPage
-   {
-      public MainPage()
-      {
-         this.InitializeComponent();
+    public sealed partial class MainPage
+    {
+        public MainPage()
+        {
+            this.InitializeComponent();
 
-         FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
-
-         LoadApplication(new StoreCheck.App());
-      }
-   }
+            LoadApplication(new StoreCheck.App());
+        }
+    }
 }

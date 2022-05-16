@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.AppCenter.Distribute;
+using Microsoft.AppCenter;
 using Xamarin.Forms;
-using ZPF.XF;
-
-[assembly: ExportFont("Montserrat.ttf", Alias = "Montserrat")]
+using Xamarin.Forms.Xaml;
+using System.Threading.Tasks;
 
 namespace StoreCheck
 {
-   public partial class App : Application
-   {
-      public App()
-      {
-         InitializeComponent();
+    public partial class App : Application
+    {
+        public App()
+        {
+            InitializeComponent();
 
-         MainPage = new SplashScreen();
+         //MainPage = new SplashScreen();
+         MainPage = new NavigationPage(new _HomePage());
       }
 
       protected override void OnStart()
@@ -101,4 +100,3 @@ namespace StoreCheck
       }
    }
 }
-

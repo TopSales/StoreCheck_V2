@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://xamarin.com/schemas/2014/forms" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   mc:Ignorable="d"
+   x:Class="StoreCheck.Pages.PhotoView">
+
+   <ContentView.Content>
+      
+      <Frame Grid.Row="0" Margin="20,10,20,5" BorderColor="DarkGray" HasShadow="True" CornerRadius="10" >
+         <Grid >
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+               <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Column="0" Grid.Row="0" Margin="0,-4,0,0" Padding="0" >
+               <Label Text="The context for the photos is:" FontSize="Subtitle" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" />
+               <Label x:Name="lbText" FontSize="Subtitle" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" FontAttributes="Bold" />
+            </StackLayout>
+
+         </Grid>
+      </Frame>
+      
+   </ContentView.Content>
+</ContentView>

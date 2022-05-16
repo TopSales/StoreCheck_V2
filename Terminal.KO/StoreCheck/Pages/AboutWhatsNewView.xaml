@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://xamarin.com/schemas/2014/forms" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   x:Class="ZPF.AboutWhatsNewView">
+
+   <ContentView.Content>
+      <ScrollView Margin="10" BackgroundColor="#40FFFFFF">
+         <Label x:Name="label" Margin="10" TextColor="Black" />
+      </ScrollView>
+   </ContentView.Content>
+</ContentView>

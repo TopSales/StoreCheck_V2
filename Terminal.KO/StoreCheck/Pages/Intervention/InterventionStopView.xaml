@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://xamarin.com/schemas/2014/forms" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   mc:Ignorable="d"
+   x:Class="StoreCheck.Pages.InterventionStopView">
+
+   <ContentView.Content>
+      
+      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+         <Label Text="Validate and close the intervention?" Margin="50,50,50,0" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Black" />
+         <Label Text="Once validated by the person in charge you will not be able to modify the report." FontSize="Subtitle" HorizontalTextAlignment="Center" Margin="20,0,20,0" TextColor="Black" />
+
+      </StackLayout>
+      
+   </ContentView.Content>
+</ContentView>

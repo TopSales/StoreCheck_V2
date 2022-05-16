@@ -1,0 +1,36 @@
+﻿<Keyboard ID="1" Name="Basic" Platform="*WP*RT*" SnappedKbd="1">
+  <Parameters>
+    <Margin Value="5" />
+    <CellWidth Value="90" />
+    <CellHeight Value="90" />
+    <CellColls Value="4" />
+    <CellRows Value="5" />
+  </Parameters>
+  <Rows>
+    <Row Ind="0">
+      <Key Ind="0" Ref="1" Front="1" Type="0"/>
+      <Key Ind="1" Ref="2" Front="2" Type="0"/>
+      <Key Ind="2" Ref="3" Front="3" Type="0"/>
+      <Key Ind="3" Ref="CLEARALL" Front="C" Type="1"/>
+    </Row>
+    <Row Ind="1">
+      <Key Ind="0" Ref="4" Front="4" Type="0"/>
+      <Key Ind="1" Ref="5" Front="5" Type="0"/>
+      <Key Ind="2" Ref="6" Front="6" Type="0"/>
+      <Key Ind="3" Ref="BS" Front="&#x2190;" Type="1" />
+    </Row>
+    <Row Ind="2">
+      <Key Ind="0" Ref="7" Front="7" Type="0"/>
+      <Key Ind="1" Ref="8" Front="8" Type="0"/>
+      <Key Ind="2" Ref="9" Front="9" Type="0"/>
+      <Key Ind="3" Ref="RET" Front="OK" Type="2" RowSpan="3"/>
+    </Row>
+    <Row Ind="3">
+      <Key Ind="0" Ref="0" Front="0" Type="0" ColSpan="2" />
+      <Key Ind="2" Ref="," Front="," Type="0" />
+    </Row>
+    <Row Ind="4">
+      <Key Ind="0" Ref="Promo" Front="Promo" Type="3" ColSpan="3" />
+    </Row>
+  </Rows>
+</Keyboard>

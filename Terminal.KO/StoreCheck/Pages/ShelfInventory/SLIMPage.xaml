@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<zpf:Page_Base
+   xmlns="http://xamarin.com/schemas/2014/forms"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:ZPFXF="clr-namespace:ZPF.XF.Compos;assembly=ZPF_XF_Compos"
+   xmlns:ZPFConv="clr-namespace:ZPF.Conv;assembly=ZPF_XF_Compos"
+   xmlns:fonts="clr-namespace:ZPF.Fonts;assembly=Compos"
+   xmlns:zpf="clr-namespace:ZPF"   
+   x:Class="StoreCheck.Pages.SLIMPage">
+
+   <ContentPage.Resources>
+      <ResourceDictionary>
+         <ZPFConv:ToVisibilityConverter x:Key="ToVisibility" />
+
+         <OnPlatform x:Key="ListRowHeight" x:TypeArguments="x:Int32">
+            <On Platform="Android">100</On>
+            <On Platform="UWP">150</On>
+         </OnPlatform>
+
+      </ResourceDictionary>
+   </ContentPage.Resources>
+
+   <zpf:Page_Base.MainContent>
+      <Grid RowDefinitions="auto,*" Margin="10" >
+         <Label Text="labels to be stuck" TextColor="Black" HorizontalTextAlignment="Center" FontSize="18" />
+         
+         <ListView x:Name="listView" Grid.Row="1" SeparatorVisibility="None" HasUnevenRows="True" SelectionMode="Single" BackgroundColor="#EEE" >
+
+            <ListView.ItemTemplate>
+               <DataTemplate>
+                  <ViewCell>
+                     <Grid ColumnDefinitions="auto,*" RowDefinitions="*,auto" Margin="20,5,20,0" >
+
+                        <!--<CheckBox IsChecked="{Binding Tag}" />-->
+
+                        <ZPFXF:CheckBoxZPF x:Name="cbPI1"
+                           WidthRequest="48" HeightRequest="48" FontSize="30" TextColor="Red"
+                           BorderColor="#215a98" BorderWidth="4" CornerRadius="4" BackgroundColor="White" Checked="{Binding Tag}"
+                           HorizontalOptions="Start" VerticalOptions="Center" />
+
+                        <StackLayout Grid.Column="1" >
+
+                           <StackLayout Orientation="Horizontal">
+                              <Label Text="{Binding EAN}" FontSize="12" TextColor="Black" />
+                              <Label Text="{Binding Brand}" FontSize="10" Margin="5,0,0,0" FontAttributes="Bold" />
+                              <Label Text="{Binding Condi}" FontSize="10" Margin="5,0,0,0" FontAttributes="Bold" VerticalTextAlignment="Center" />
+                              <Label Text="{Binding UCondi}" FontSize="10" FontAttributes="Bold" VerticalTextAlignment="Center" />
+                           </StackLayout>
+
+                           <Label x:Name="lPFamille" IsVisible="false" Margin="0,0,0,0" FontAttributes="Bold" FontSize="14" HorizontalTextAlignment="Center"  />
+
+                           <Label Text="{Binding Libelle}" Margin="0,0,0,0" FontSize="14" TextColor="Black" />
+                        </StackLayout>
+                        
+                        <BoxView Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="Black" HeightRequest="2" />
+                     </Grid>
+                  </ViewCell>
+               </DataTemplate>
+            </ListView.ItemTemplate>
+         </ListView>
+      </Grid>
+   </zpf:Page_Base.MainContent>
+
+</zpf:Page_Base>

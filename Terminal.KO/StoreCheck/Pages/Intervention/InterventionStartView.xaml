@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://xamarin.com/schemas/2014/forms" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+   xmlns:local="clr-namespace:StoreCheck.Pages"
+   mc:Ignorable="d"
+   x:Class="StoreCheck.Pages.InterventionStartView">
+
+   <ContentView.Content>
+      <StackLayout Margin="20">
+
+         <Label Text="Starting" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Black"/>
+         <Label Text="the intervention" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Black"/>
+
+         <Label Text="Are you in front of the store:" FontSize="Subtitle" HorizontalTextAlignment="Center" Margin="0,10,0,0" TextColor="Black" />
+
+         <local:StoreView Margin="-18,0,-18,0" />
+
+         <StackLayout x:Name="slKM">
+
+            <Label Text="How many km did you drive?" FontSize="Subtitle" HorizontalTextAlignment="Center" Margin="0,10,0,0" TextColor="Black" />
+
+         <StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+            <Entry x:Name="kmEntry" MaxLength="3" Keyboard="Numeric" IsSpellCheckEnabled="False" WidthRequest="60" TextChanged="OnEntryTextChanged"  />
+            <Label Text=" km" FontSize="Subtitle" VerticalOptions="Center" TextColor="Black" />
+         </StackLayout>
+            
+         </StackLayout>
+
+      </StackLayout>
+   </ContentView.Content>
+</ContentView>

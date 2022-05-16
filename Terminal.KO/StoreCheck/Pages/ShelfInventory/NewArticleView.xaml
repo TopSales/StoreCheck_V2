@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://xamarin.com/schemas/2014/forms" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:zpf="clr-namespace:ZPF.XF.Compos;assembly=ZPF_XF_Compos"
+   x:Name="newArticleView"
+   x:Class="StoreCheck.Pages.NewArticleView">
+
+   <ContentView.Content>
+
+      <StackLayout x:Name="stackLayout" Margin="15">
+         <Label Text="EAN unknown" HorizontalOptions="Center" FontAttributes="Bold" FontSize="28" TextColor="DarkRed"  />
+         <Label Text="{Binding CurrentArticle.EAN}" HorizontalOptions="Center" FontAttributes="Bold" FontSize="16" />
+
+         <Label Text="Brand"  Margin="14,5,10,0" IsVisible="{Binding ShowBrand, Source={x:Reference  newArticleView}}"/>
+         <Picker x:Name="pBrand" Title="Brand" Margin="10,-10,10,0" IsVisible="{Binding ShowBrand, Source={x:Reference  newArticleView}}"/>
+
+         <Label Text="name" Margin="14,10,10,0" />
+         <Entry x:Name="eLabel" Placeholder="name" Margin="10,-10,10,0"/>
+
+         <Label Text="content" Margin="14,10,10,0" IsVisible="{Binding ShowContent, Source={x:Reference  newArticleView}}"/>
+         <Entry x:Name="eContent" Placeholder="content" Margin="10,-10,10,0" IsVisible="{Binding ShowContent, Source={x:Reference newArticleView }}"/>
+
+         <Label Text="facing" Margin="14,10,10,0" IsVisible="{Binding ShowFacing, Source={x:Reference  newArticleView}}"/>
+         <Grid x:Name="efacing" ColumnDefinitions="*,10,*,*,*,*" Margin="10,-10,10,0" IsVisible="{Binding ShowFacing, Source={x:Reference newArticleView }}">
+            <zpf:RadioButton Grid.Column="0" TextColor="Black" FontSize="20" Text="none" HeightRequest="65" CommandParameter="0" CheckedChanged="RadioButton_CheckedChanged"  />
+            <zpf:RadioButton Grid.Column="2" TextColor="Black" FontSize="18" Text="1" HeightRequest="65" CommandParameter="1" CheckedChanged="RadioButton_CheckedChanged" />
+            <zpf:RadioButton Grid.Column="3" TextColor="Black" FontSize="18" Text="2" HeightRequest="65" CommandParameter="2" CheckedChanged="RadioButton_CheckedChanged" />
+            <zpf:RadioButton Grid.Column="4" TextColor="Black" FontSize="18" Text="3" HeightRequest="65" CommandParameter="3" CheckedChanged="RadioButton_CheckedChanged" />
+            <zpf:RadioButton Grid.Column="5" TextColor="Black" FontSize="18" Text="4" HeightRequest="65" CommandParameter="4" CheckedChanged="RadioButton_CheckedChanged" />
+         </Grid>
+
+         <Label Text="price" Margin="14,10,10,0" IsVisible="{Binding ShowPrice, Source={x:Reference  newArticleView}}"/>
+            <Entry x:Name="ePrice" Placeholder="price" Margin="10,-10,10,0" IsVisible="{Binding ShowPrice, Source={x:Reference newArticleView }}"/>
+
+      </StackLayout>
+
+   </ContentView.Content>
+</ContentView>

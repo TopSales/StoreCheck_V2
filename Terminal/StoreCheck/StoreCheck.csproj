@@ -1,160 +1,56 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-   <PropertyGroup>
-      <TargetFramework>netstandard2.0</TargetFramework>
-      <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-   </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
 
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-      <DebugType>portable</DebugType>
-      <DebugSymbols>true</DebugSymbols>
-      <DefineConstants>TRACE;__XF__; nSCAN_WEDGE</DefineConstants>
-   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
 
-   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-     <DebugType></DebugType>
-     <DefineConstants>TRACE;__XF__; nSCAN_WEDGE;RELEASE;NETSTANDARD;NETSTANDARD2_0;</DefineConstants>
-   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="ChangeLog.XF.md" />
+    <None Remove="Data\Norma.db3" />
+    <None Remove="Images\Background_Main.png" />
+    <None Remove="Images\Icon.png" />
+    <None Remove="Images\Logo.png" />
+    <None Remove="Images\ZeProgramFactory.350.png" />
+  </ItemGroup>
 
-   <ItemGroup>
-     <Compile Remove="CS\Scanner.cs" />
-   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ChangeLog.XF.md" />
+    <EmbeddedResource Include="Data\Norma.db3" />
+    <EmbeddedResource Include="Images\Background_Main.png" />
+    <EmbeddedResource Include="Images\Icon.png" />
+    <EmbeddedResource Include="Images\Logo.png" />
+    <EmbeddedResource Include="Images\ZeProgramFactory.350.png" />
+  </ItemGroup>
 
-   <ItemGroup>
-      <None Remove="ChangeLog.XF.md" />
-      <None Remove="Data\Norma.db3" />
-      <None Remove="Fonts\desyrel.ttf" />
-      <None Remove="Fonts\IconFont.ttf" />
-      <None Remove="Fonts\MediaPlayerFont.ttf" />
-      <None Remove="Fonts\Montserrat.ttf" />
-      <None Remove="Images\Icon.png" />
-      <None Remove="Images\Logo.png" />
-      <None Remove="Images\ZeProgramFactory.350.png" />
-      <None Remove="Pages\ShelfInventory\InputPage.xml" />
-      <None Remove="Pages\ShelfInventory\InputPagePromo.xml" />
-   </ItemGroup>
-
-   <ItemGroup>
-     <Content Include="Fonts\desyrel.ttf">
-       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-     </Content>
-     <Content Include="Fonts\IconFont.ttf">
-       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-     </Content>
-     <Content Include="Fonts\MediaPlayerFont.ttf">
-       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-     </Content>
-     <Content Include="Fonts\Montserrat.ttf">
-       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-     </Content>
-   </ItemGroup>
-
-   <ItemGroup>
-      <EmbeddedResource Include="ChangeLog.XF.md" />
-      <EmbeddedResource Include="Data\Norma.db3">
-        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      </EmbeddedResource>
-      <EmbeddedResource Include="Images\Icon.png" />
-      <EmbeddedResource Include="Images\Logo.png" />
-      <EmbeddedResource Include="Images\ZeProgramFactory.350.png" />
-      <EmbeddedResource Include="Pages\ShelfInventory\InputPage.xml" />
-      <EmbeddedResource Include="Pages\ShelfInventory\InputPagePromo.xml" />
-   </ItemGroup>
-
-   <ItemGroup>
-      <PackageReference Include="Microsoft.AppCenter" Version="4.5.1" />
-      <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.1" />
-      <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.1" />
-      <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.5.1" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-      <PackageReference Include="Normalisation.Core" Version="1.0.0.5" />
-      <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.3" />
-      <PackageReference Include="StoreCheck.Core" Version="1.0.0.36" />
-      <PackageReference Include="System.Text.Json" Version="6.0.4" />
-      <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
-      <PackageReference Include="Xamarin.Controls.SignaturePad.Forms" Version="3.0.0" />
-      <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
-      <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
-      <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
-      <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
-      <PackageReference Include="ZPF_Basics_XF" Version="1.4.8.21" />
-      <PackageReference Include="ZPF_Calc_XF" Version="1.4.8.14" />
-      <PackageReference Include="ZPF_ChatHelper" Version="1.0.0.5" />
-      <PackageReference Include="ZPF_Fonts" Version="1.0.1.6" />
-      <PackageReference Include="ZPF_MCE" Version="1.1.38" />
-      <PackageReference Include="ZPF_MCE.XF" Version="1.1.37" />
-      <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />
-      <PackageReference Include="ZPF_XF_Compos" Version="1.4.8.63" />
-   </ItemGroup>
-
-   <ItemGroup>
-     <ProjectReference Include="..\..\..\..\Nugets\ZPF_DBSQL\Sources\ZPF_DBSQL.csproj" />
-   </ItemGroup>
-
-   <ItemGroup>
-     <Reference Include="Windows.Foundation.UniversalApiContract">
-       <HintPath>C:\Program Files (x86)\Windows Kits\10\References\10.0.19041.0\Windows.Foundation.UniversalApiContract\10.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
-     </Reference>
-   </ItemGroup>
-
-   <ItemGroup>
-      <Compile Update="Pages\Durex\MissingPage.xaml.cs">
-        <DependentUpon>MissingPage.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\InfoEANPage.xaml.cs">
-        <DependentUpon>InfoEANPage.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\ShelfInventory\ReplaceArticleView.xaml.cs">
-        <DependentUpon>ReplaceArticleView.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\StorePage.xaml.cs">
-        <DependentUpon>StorePage.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\StoreView.xaml.cs">
-        <DependentUpon>StoreView.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\ShelfInventory\DisplayAlertView.xaml.cs">
-        <DependentUpon>DisplayAlertView.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\ShelfInventory\ScanView.xaml.cs">
-        <DependentUpon>ScanView.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\ShelfInventory\EditEtatEmplacementView.xaml.cs">
-        <DependentUpon>EditEtatEmplacementView.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\ShelfInventory\ShelfInventoryPage.xaml.cs">
-        <DependentUpon>ShelfInventoryPage.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\ShelfInventory\SLIMPage.xaml.cs">
-        <DependentUpon>SLIMPage.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\PhotoView.xaml.cs">
-         <DependentUpon>PhotoView.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\StoreListPage.xaml.cs">
-         <DependentUpon>StoreListPage.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\EntryPage.xaml.cs">
-        <DependentUpon>EntryPage.xaml</DependentUpon>
-      </Compile>
-   </ItemGroup>
-
-   <ItemGroup>
-     <EmbeddedResource Update="Pages\AboutView.xaml">
-       <Generator>MSBuild:Compile</Generator>
-     </EmbeddedResource>
-     <EmbeddedResource Update="Pages\AboutWhatsNewView.xaml">
-       <Generator>MSBuild:Compile</Generator>
-     </EmbeddedResource>
-     <EmbeddedResource Update="Pages\ShelfInventory\NewArticleView.xaml">
-       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-     </EmbeddedResource>
-     <EmbeddedResource Update="SplashScreen.xaml">
-       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-     </EmbeddedResource>
-   </ItemGroup>
-
-   <Target Name="PreBuild" Condition="'$(Configuration)'=='Debug' AND '$(DevEnvDir.Substring(0,1))' == 'C' " BeforeTargets="PreBuildEvent">
-      <Exec Command="$(SolutionDir)UpdateVersionInfo -v=auto -p=scan" />
-   </Target>
+  <ItemGroup>
+     <PackageReference Include="Microsoft.AppCenter" Version="4.5.1" />
+     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.1" />
+     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.1" />
+     <PackageReference Include="Microsoft.AppCenter.Distribute" Version="4.5.1" />
+     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+     <PackageReference Include="Normalisation.Core" Version="1.0.0.5" />
+     <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.3" />
+     <PackageReference Include="StoreCheck.Core" Version="1.0.0.36" />
+     <PackageReference Include="System.Text.Json" Version="6.0.4" />
+     <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+     <PackageReference Include="Xamarin.Controls.SignaturePad.Forms" Version="3.0.0" />
+     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+     <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+     <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
+     <PackageReference Include="ZPF_Basics_XF" Version="1.4.8.21" />
+     <PackageReference Include="ZPF_Calc_XF" Version="1.4.8.14" />
+     <PackageReference Include="ZPF_ChatHelper" Version="1.0.0.5" />
+     <PackageReference Include="ZPF_Fonts" Version="1.0.1.6" />
+     <PackageReference Include="ZPF_MCE" Version="1.1.38" />
+     <PackageReference Include="ZPF_MCE.XF" Version="1.1.37" />
+     <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />
+     <PackageReference Include="ZPF_XF_Compos" Version="1.4.8.63" />     
+  </ItemGroup>
 </Project>
