@@ -152,6 +152,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_XF_Compos\XFCompos\ZPF_XF_Compos.csproj">
+      <Project>{23fc5847-eb8e-4185-a3ad-812e69d32b75}</Project>
+      <Name>ZPF_XF_Compos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StoreCheck\StoreCheck.csproj">
       <Project>{E2A4863F-7E67-40BB-8CB9-2D10625CB0C4}</Project>
       <Name>StoreCheck</Name>

@@ -50,7 +50,10 @@
      <PackageReference Include="ZPF_Fonts" Version="1.0.1.6" />
      <PackageReference Include="ZPF_MCE" Version="1.1.38" />
      <PackageReference Include="ZPF_MCE.XF" Version="1.1.37" />
-     <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />
-     <PackageReference Include="ZPF_XF_Compos" Version="1.4.8.63" />     
+     <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />     
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_XF_Compos\XFCompos\ZPF_XF_Compos.csproj" />
   </ItemGroup>
 </Project>
