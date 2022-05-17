@@ -44,7 +44,6 @@
      <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
      <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
      <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
-     <PackageReference Include="ZPF_Basics_XF" Version="1.4.8.21" />
      <PackageReference Include="ZPF_Calc_XF" Version="1.4.8.14" />
      <PackageReference Include="ZPF_ChatHelper" Version="1.0.0.5" />
      <PackageReference Include="ZPF_Fonts" Version="1.0.1.6" />
