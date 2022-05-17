@@ -1,1 +1,1 @@
-dotnet build -f net6.0-android
+dotnet build -f net6.0-android -c release
