@@ -198,7 +198,7 @@ namespace StoreCheck.Pages
          var entry = sender as Entry;
 
          entry.CursorPosition = 0;
-         entry.SelectionLength = entry.Text.Length;
+         entry.SelectionLength = (entry.Text == null ? 0 : entry.Text.Length);
       }
 
       //private void entry_Completed(object sender, EventArgs e)

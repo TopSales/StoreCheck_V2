@@ -53,12 +53,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Include="..\..\..\_Units_\CS\DoIt.cs" Link="ToDo\DoIt.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="Pages\EANPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\TopSalesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Models\" />
+	  <Folder Include="ToDo\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Normalisation.Core" Version="1.0.0.5" />
+	  <PackageReference Include="StoreCheck.Core" Version="1.0.0.36" />
+	  <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
+	  <PackageReference Include="ZPF_DBSQL" Version="0.1.8.57" />
 	</ItemGroup>
 
 </Project>
