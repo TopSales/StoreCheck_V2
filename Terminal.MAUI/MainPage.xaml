@@ -16,9 +16,9 @@
                 Clicked="btnStop_Clicked" />
 
         <Button Grid.Column="1" Grid.Row="3" Margin="10"
-                x:Name="btn1"
-                Text="stop" FontSize="28"
-                Clicked="btn1_Clicked" />
+                x:Name="btnContact"
+                Text="contact" FontSize="28"
+                Clicked="btnContact_Clicked" />
         
         <Button Grid.Column="2" Grid.Row="3" Margin="10"
                 x:Name="btnEAN"

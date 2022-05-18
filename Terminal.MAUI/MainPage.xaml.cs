@@ -4,8 +4,6 @@ namespace StoreCheck;
 
 public partial class MainPage : ContentPage
 {
-    int count = 0;
-
     public MainPage()
     {
         InitializeComponent();
@@ -25,8 +23,9 @@ public partial class MainPage : ContentPage
 
     // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
-    private void btn1_Clicked(object sender, EventArgs e)
+    private async void btnContact_Clicked(object sender, EventArgs e)
     {
+        await Navigation.PushModalAsync(new TopSalesPage());
 
     }
 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StoreCheck.Pages.TopSalesPage"
+             Title="contact">
+
+    <Grid RowDefinitions="auto,*,auto">
+
+        <HorizontalStackLayout BackgroundColor="{StaticResource Primary}">
+            <Button Text="&lt;" Clicked="btnBack_Clicked" />
+        </HorizontalStackLayout>
+        
+        
+        <StackLayout Grid.Row="1" VerticalOptions="Center"  HorizontalOptions="Center" >
+            
+            <Image Source="Logo.png" WidthRequest="120" />
+
+            <Label Text="" 
+                   FontSize="16"
+                   HorizontalTextAlignment="Center"/>
+
+            <Label Text="Avenue Marcel Thiry 11/2" 
+                   FontSize="16"
+                   HorizontalTextAlignment="Center"/>
+            <Label Text="1200 Woluwe-Saint -Lambert" 
+                   FontSize="16"
+                   HorizontalTextAlignment="Center"/>
+            <Label Text="Tel.: +32 2 247 29 30" 
+                   FontSize="16"
+                   HorizontalTextAlignment="Center" />
+            <Label Text="E-mail : Contact@TopSales.be" 
+                   FontSize="16"
+                   HorizontalTextAlignment="Center" />
+        </StackLayout>
+        
+    </Grid>
+</ContentPage>
