@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Todo.md = Todo.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_DBSQL", "..\..\..\Apps\TestSQLite-Maui\ZPF_DBSQL\ZPF_DBSQL.csproj", "{A1558E70-8E9A-4EB1-9CA5-31334D8A8D3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{3F435EBF-12D6-4F02-972C-613468A1D40E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F435EBF-12D6-4F02-972C-613468A1D40E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3F435EBF-12D6-4F02-972C-613468A1D40E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A1558E70-8E9A-4EB1-9CA5-31334D8A8D3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1558E70-8E9A-4EB1-9CA5-31334D8A8D3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1558E70-8E9A-4EB1-9CA5-31334D8A8D3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1558E70-8E9A-4EB1-9CA5-31334D8A8D3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -65,6 +65,7 @@ public class EANViewModel : BaseViewModel
    static bool WasInit = false;
    internal void SetArticlesEAN()
    {
+
       //var folder = System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
       //System.Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
       //var fileName = folder + @"\Data\Norma.db3";
@@ -128,7 +129,6 @@ public class EANViewModel : BaseViewModel
       string basePath = "";
 
       basePath = FileSystem.AppDataDirectory;
-
       var finalPath = Path.Combine(basePath, name);
 
       if (File.Exists(finalPath))
