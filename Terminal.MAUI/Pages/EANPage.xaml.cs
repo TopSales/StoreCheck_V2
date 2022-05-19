@@ -29,39 +29,39 @@ public partial class EANPage : ContentPage
    {
       base.OnAppearing();
 
-      //if (OnAppearing_sema)
-      //{
-      //   OnAppearing_sema = false;
+      if (OnAppearing_sema)
+      {
+         OnAppearing_sema = false;
 
-      //   //if (MainViewModel.Current.ArticlesEAN.Count == 0)
-      //   //{
-      //   //   SyncEAN();
-      //   //};
+         //   //if (MainViewModel.Current.ArticlesEAN.Count == 0)
+         //   //{
+         //   //   SyncEAN();
+         //   //};
 
-      //   if (EANViewModel.Current.ArticlesEAN == null || EANViewModel.Current.ArticlesEAN.Count == 0)
-      //   {
-      //      EANViewModel.Current.CurrentArticleEAN = null;
+         if (EANViewModel.Current.ArticlesEAN == null || EANViewModel.Current.ArticlesEAN.Count == 0)
+         {
+            EANViewModel.Current.CurrentArticleEAN = null;
 
-      //      EANViewModel.Current.SetArticlesEAN();
-      //   };
+            EANViewModel.Current.SetArticlesEAN();
+         };
 
-      //   OnAppearing_sema = true;
-      //};
+         //   OnAppearing_sema = true;
+      };
 
       ////DependencyService.Get<IScanner>().OpenScanner();
       ////DependencyService.Get<IScanner>().EnableAllSymbologies();
-     
+
       UnitechViewModel.Current.OnScann += OnScann;
 
       //DoIt.Delay(100, () =>
       //{
       //   DoIt.OnMainThread(() =>
       //   {
-            //#if SCAN_WEDGE
-            entry.Unfocused -= Entry_Unfocused;
-            entry.Unfocused += Entry_Unfocused;
-            //#endif
-            entry.Focus();
+      //#if SCAN_WEDGE
+      entry.Unfocused -= Entry_Unfocused;
+      entry.Unfocused += Entry_Unfocused;
+      //#endif
+      entry.Focus();
       //   });
       //});
    }

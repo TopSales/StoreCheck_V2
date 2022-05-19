@@ -75,16 +75,23 @@ public class EANViewModel : BaseViewModel
 
          BackboneViewModel.Current.IncBusy();
 
-         DoIt.OnBackground( async () => 
+         DoIt.OnBackground(async () =>
          {
-            var fileName = await CopyFile("Norma.db3");
+            var fileName = await CopyFile("norma.db3");
 
             if (System.IO.File.Exists(fileName))
             {
                var _DBSQLViewModel = new DBSQLViewModel(new MSSQLiteEngine());
                string connectionString = DB_SQL.GenConnectionString(DBType.SQLite, "", fileName, "", "");
 
-               var result = _DBSQLViewModel.Open(connectionString, true);
+               try
+               {
+                  _DBSQLViewModel.Open(connectionString, true);
+               }
+               catch (Exception ex)
+               {
+                  Debug.WriteLine(ex.Message);
+               };
 
                var list = DB_SQL.Query<EAN_Article>(_DBSQLViewModel, "select EAN, Brand, Label_FR, Condi, UCondi, Price from EAN_Article");
 
@@ -118,18 +125,27 @@ public class EANViewModel : BaseViewModel
 
    public async Task<string> CopyFile(string name)
    {
-      var basePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+      string basePath = "";
+
+      basePath = FileSystem.AppDataDirectory;
+
       var finalPath = Path.Combine(basePath, name);
 
       if (File.Exists(finalPath))
       {
-         File.Delete(finalPath);
+         return finalPath;
+         //File.Delete(finalPath);
       };
 
-      var assembly = GetType().Assembly;
-      var tmpName = $"{assembly.GetName().Name}.Data.{name}";
+      using var stream = await FileSystem.OpenAppPackageFileAsync(name);
+      //using var reader = new StreamReader(stream);
+      //var contents = await reader.ReadToEndAsync();
+      //monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
 
-      using (var tempFileStream = assembly.GetManifestResourceStream(tmpName))
+      //var assembly = GetType().Assembly;
+      //var tmpName = $"{assembly.GetName().Name}.Data.{name}";
+
+      using (var tempFileStream = await FileSystem.OpenAppPackageFileAsync(name))
       {
          using (var fileStream = File.Open(finalPath, FileMode.CreateNew))
          {
