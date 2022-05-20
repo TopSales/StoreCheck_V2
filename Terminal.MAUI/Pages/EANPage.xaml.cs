@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using ZPF;
+using ZPF.SQL;
 
 namespace StoreCheck.Pages;
 
@@ -126,7 +127,14 @@ public partial class EANPage : ContentPage
       {
          slArticleEAN.BindingContext = null;
 
-         EANViewModel.Current.CurrentArticleEAN = EANViewModel.Current.ArticlesEAN.Where(x => x.EAN == data).FirstOrDefault();
+         if (DeviceInfo.Platform == DevicePlatform.Android)
+         {
+            EANViewModel.Current.CurrentArticleEAN = DB_SQL.QueryFirst<EAN_Article>( EANViewModel.Current.DBSQLViewModel, $"select * from EAN_Article where EAN = '{data}'");
+         }
+         else
+         {
+            EANViewModel.Current.CurrentArticleEAN = EANViewModel.Current.ArticlesEAN.Where(x => x.EAN == data).FirstOrDefault();
+         };
 
          if (EANViewModel.Current.CurrentArticleEAN == null)
          {
