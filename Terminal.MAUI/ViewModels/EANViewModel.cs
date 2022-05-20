@@ -138,12 +138,6 @@ public class EANViewModel : BaseViewModel
       };
 
       using var stream = await FileSystem.OpenAppPackageFileAsync(name);
-      //using var reader = new StreamReader(stream);
-      //var contents = await reader.ReadToEndAsync();
-      //monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
-
-      //var assembly = GetType().Assembly;
-      //var tmpName = $"{assembly.GetName().Name}.Data.{name}";
 
       using (var tempFileStream = await FileSystem.OpenAppPackageFileAsync(name))
       {
