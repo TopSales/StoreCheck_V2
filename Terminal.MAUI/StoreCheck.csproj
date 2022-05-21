@@ -49,6 +49,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Properties\**" />
+	  <Compile Remove="Properties\**" />
+	  <EmbeddedResource Remove="Properties\**" />
+	  <MauiCss Remove="Properties\**" />
+	  <MauiXaml Remove="Properties\**" />
+	  <None Remove="Properties\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Images\Logo.png" />
 	  <None Remove="Resources\Raw\Norma.db3" />
 	</ItemGroup>
