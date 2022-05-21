@@ -62,6 +62,9 @@ public class EANViewModel : BaseViewModel
       OnPropertyChanged("ArticlesEAN");
    }
 
+   public DBSQLViewModel DBSQLViewModel { get => _DBSQLViewModel; set => _DBSQLViewModel = value; }
+   DBSQLViewModel _DBSQLViewModel = null;
+
    static bool WasInit = false;
    internal void SetArticlesEAN()
    {
@@ -82,7 +85,7 @@ public class EANViewModel : BaseViewModel
 
             if (System.IO.File.Exists(fileName))
             {
-               var _DBSQLViewModel = new DBSQLViewModel(new MSSQLiteEngine());
+               _DBSQLViewModel = new DBSQLViewModel(new MSSQLiteEngine());
                string connectionString = DB_SQL.GenConnectionString(DBType.SQLite, "", fileName, "", "");
 
                try
@@ -94,21 +97,28 @@ public class EANViewModel : BaseViewModel
                   Debug.WriteLine(ex.Message);
                };
 
-               var list = DB_SQL.Query<EAN_Article>(_DBSQLViewModel, "select EAN, Brand, Label_FR, Condi, UCondi, Price from EAN_Article");
-
-               if (string.IsNullOrEmpty(DB_SQL._ViewModel.LastError))
+               if (DeviceInfo.Platform == DevicePlatform.Android)
                {
-                  ArticlesEAN = list;
 
-                  OnPropertyChanged("ArticlesEAN");
                }
                else
                {
-                  // DB_SQL._ViewModel.LastError == “SQLite Error 14: 'unable to open database file'.”
-                  // https://github.com/xamarin/xamarin-android/issues/3819
+                  var list = DB_SQL.Query<EAN_Article>(_DBSQLViewModel, "select EAN, Brand, Label_FR, Condi, UCondi, Price from EAN_Article");
 
-                  Debug.WriteLine(DB_SQL._ViewModel.LastError);
-                  Debugger.Break();
+                  if (string.IsNullOrEmpty(DB_SQL._ViewModel.LastError))
+                  {
+                     ArticlesEAN = list;
+
+                     OnPropertyChanged("ArticlesEAN");
+                  }
+                  else
+                  {
+                     // DB_SQL._ViewModel.LastError == “SQLite Error 14: 'unable to open database file'.”
+                     // https://github.com/xamarin/xamarin-android/issues/3819
+
+                     Debug.WriteLine(DB_SQL._ViewModel.LastError);
+                     Debugger.Break();
+                  };
                };
             }
             else
@@ -138,12 +148,6 @@ public class EANViewModel : BaseViewModel
       };
 
       using var stream = await FileSystem.OpenAppPackageFileAsync(name);
-      //using var reader = new StreamReader(stream);
-      //var contents = await reader.ReadToEndAsync();
-      //monkeyList = JsonSerializer.Deserialize<List<Monkey>>(contents);
-
-      //var assembly = GetType().Assembly;
-      //var tmpName = $"{assembly.GetName().Name}.Data.{name}";
 
       using (var tempFileStream = await FileSystem.OpenAppPackageFileAsync(name))
       {
