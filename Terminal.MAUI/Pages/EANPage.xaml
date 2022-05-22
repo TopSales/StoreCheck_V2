@@ -17,12 +17,12 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <BoxView Grid.Row="0"  Margin="20,20,20,0" BackgroundColor="LightGray" CornerRadius="10" />
+            <BoxView Margin="20,20,20,0" CornerRadius="10" />
 
-            <StackLayout Grid.Row="0" Margin="30,30,30,10" HorizontalOptions="Center" VerticalOptions="Start" Spacing="0"  >
+            <StackLayout Margin="30,30,30,10" HorizontalOptions="Center" VerticalOptions="Start" Spacing="0"  >
 
                 <Entry x:Name="entry" Margin="5,5,5,0" Text="{Binding Data}" Keyboard="Numeric" 
-                   FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" BackgroundColor="White" 
+                   FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center"  
                    Completed="Entry_Completed" Focused="Entry_Focused" />
 
                 <StackLayout Margin="30,0,30,5" Orientation="Horizontal" HorizontalOptions="Center">
