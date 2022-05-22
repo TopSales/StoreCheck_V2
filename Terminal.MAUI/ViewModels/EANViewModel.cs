@@ -198,7 +198,7 @@ public class EANViewModel : BaseViewModel
          Result.UCondi = _fsRecord.Substring(ind, 8).TrimEnd();
          ind += 8;
 
-         Result.Price = decimal.Parse(_fsRecord.Substring(ind, 8).TrimEnd());
+         //ToDo: Result.Price = decimal.Parse(_fsRecord.Substring(ind, 8).TrimEnd());
          ind += 8;
       };
 

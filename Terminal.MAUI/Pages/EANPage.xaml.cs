@@ -17,8 +17,8 @@ public partial class EANPage : ContentPage
 
    private async void btnBack_Clicked(object sender, EventArgs e)
    {
-      entry.Unfocused -= Entry_Unfocused;
-      entry.Unfocus();
+      entryInput.Unfocused -= Entry_Unfocused;
+      entryInput.Unfocus();
 
       await Navigation.PopModalAsync();
    }
@@ -35,25 +35,20 @@ public partial class EANPage : ContentPage
       {
          OnAppearing_sema = false;
 
-         if (EANViewModel.Current.ArticlesEAN == null || EANViewModel.Current.ArticlesEAN.Count == 0)
-         {
-            EANViewModel.Current.CurrentArticleEAN = null;
-
-            EANViewModel.Current.SetArticlesEAN();
-         };
+         EANViewModel.Current.CurrentArticleEAN = null;
+         EANViewModel.Current.SetArticlesEAN();
       };
 
       UnitechViewModel.Current.OnScann += OnScann;
 
-      entry.Unfocused -= Entry_Unfocused;
-      entry.Unfocused += Entry_Unfocused;
+      entryInput.Unfocused -= Entry_Unfocused;
+      entryInput.Unfocused += Entry_Unfocused;
 
       ZPF.DoIt.Delay(1000, () =>
       {
          ZPF.DoIt.OnMainThread(() =>
          {
-            entry.BackgroundColor = Microsoft.Maui.Graphics.Colors.White;
-            entry.Focus();
+            entryInput.Focus();
          });
       });
    }
@@ -69,22 +64,29 @@ public partial class EANPage : ContentPage
 
    private void Entry_Completed(object sender, EventArgs e)
    {
-      entry.Text = entry.Text.Trim();
+      entryInput.Text = entryInput.Text.Trim();
+      entryOutPut.Text = entryInput.Text;
 
-      OnScann(entry.Text, entry.Text.Length, UnitechViewModel.Symbologies.Unknown, Encoding.ASCII.GetBytes(entry.Text));
+      OnScann(entryInput.Text, entryInput.Text.Length, UnitechViewModel.Symbologies.Unknown, Encoding.ASCII.GetBytes(entryInput.Text));
+
+      entryInput.Text = "";
    }
 
    private void Entry_Focused(object sender, FocusEventArgs e)
    {
-      entry.CursorPosition = 0;
-      entry.SelectionLength = (entry.Text == null ? 0 : entry.Text.Length);
+      entryInput.CursorPosition = 0;
+      entryInput.SelectionLength = (entryInput.Text == null ? 0 : entryInput.Text.Length);
    }
 
    private void entry_TextChanged(object sender, TextChangedEventArgs e)
    {
-      entry.Unfocused -= Entry_Unfocused;
+      if (entryInput.Text != "")
+      {
+         entryOutPut.Text = "";
+      };
 
-      UnitechViewModel.Current.Length = entry.Text.Length;
+      entryInput.Unfocused -= Entry_Unfocused;
+      UnitechViewModel.Current.Length = entryInput.Text.Length;
    }
 
    private void Entry_Unfocused(object sender, FocusEventArgs e)
@@ -95,10 +97,10 @@ public partial class EANPage : ContentPage
          {
             if (!btnBack.IsFocused)
             {
-               entry.CursorPosition = 0;
-               entry.SelectionLength = (entry.Text == null ? 0 : entry.Text.Length);
+               entryInput.CursorPosition = 0;
+               entryInput.SelectionLength = (entryInput.Text == null ? 0 : entryInput.Text.Length);
 
-               entry.Focus();
+               entryInput.Focus();
             };
          });
       });
@@ -108,12 +110,11 @@ public partial class EANPage : ContentPage
 
    public bool OnScann(string data, int length, UnitechViewModel.Symbologies symbology, byte[] rawData)
    {
-#if !SCAN_WEDGE
       if (DeviceInfo.Platform == DevicePlatform.Android)
       {
          Vibration.Vibrate(100);
       };
-#endif
+
       {
          slArticleEAN.BindingContext = null;
 
@@ -140,7 +141,7 @@ public partial class EANPage : ContentPage
          slArticleEAN.BindingContext = EANViewModel.Current.CurrentArticleEAN;
       };
 
-      Entry_Focused(entry, null);
+      Entry_Focused(entryInput, null);
 
       return true;
    }
