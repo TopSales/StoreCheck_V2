@@ -81,45 +81,45 @@ public class EANViewModel : BaseViewModel
 
          DoIt.OnBackground(async () =>
          {
-            var fileName = await CopyFile("norma.db3");
+            TxtFileName = await CopyFile("norma.db3.txt");
 
-            if (System.IO.File.Exists(fileName))
+            if (System.IO.File.Exists(TxtFileName))
             {
-               _DBSQLViewModel = new DBSQLViewModel(new MSSQLiteEngine());
-               string connectionString = DB_SQL.GenConnectionString(DBType.SQLite, "", fileName, "", "");
+               //_DBSQLViewModel = new DBSQLViewModel(new MSSQLiteEngine());
+               //string connectionString = DB_SQL.GenConnectionString(DBType.SQLite, "", fileName, "", "");
 
-               try
-               {
-                  _DBSQLViewModel.Open(connectionString, true);
-               }
-               catch (Exception ex)
-               {
-                  Debug.WriteLine(ex.Message);
-               };
+               //try
+               //{
+               //   _DBSQLViewModel.Open(connectionString, true);
+               //}
+               //catch (Exception ex)
+               //{
+               //   Debug.WriteLine(ex.Message);
+               //};
 
-               if (DeviceInfo.Platform == DevicePlatform.Android)
-               {
+               //if (DeviceInfo.Platform == DevicePlatform.Android)
+               //{
 
-               }
-               else
-               {
-                  var list = DB_SQL.Query<EAN_Article>(_DBSQLViewModel, "select EAN, Brand, Label_FR, Condi, UCondi, Price from EAN_Article");
+               //}
+               //else
+               //{
+               //   var list = DB_SQL.Query<EAN_Article>(_DBSQLViewModel, "select EAN, Brand, Label_FR, Condi, UCondi, Price from EAN_Article");
 
-                  if (string.IsNullOrEmpty(DB_SQL._ViewModel.LastError))
-                  {
-                     ArticlesEAN = list;
+               //   if (string.IsNullOrEmpty(DB_SQL._ViewModel.LastError))
+               //   {
+               //      ArticlesEAN = list;
 
-                     OnPropertyChanged("ArticlesEAN");
-                  }
-                  else
-                  {
-                     // DB_SQL._ViewModel.LastError == “SQLite Error 14: 'unable to open database file'.”
-                     // https://github.com/xamarin/xamarin-android/issues/3819
+               //      OnPropertyChanged("ArticlesEAN");
+               //   }
+               //   else
+               //   {
+               //      // DB_SQL._ViewModel.LastError == “SQLite Error 14: 'unable to open database file'.”
+               //      // https://github.com/xamarin/xamarin-android/issues/3819
 
-                     Debug.WriteLine(DB_SQL._ViewModel.LastError);
-                     Debugger.Break();
-                  };
-               };
+               //      Debug.WriteLine(DB_SQL._ViewModel.LastError);
+               //      Debugger.Break();
+               //   };
+               //};
             }
             else
             {
@@ -163,6 +163,8 @@ public class EANViewModel : BaseViewModel
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
    public EAN_Article CurrentArticleEAN { get => _CurrentArticleEAN; set => SetField(ref _CurrentArticleEAN, value); }
+   public string TxtFileName { get; private set; }
+
    EAN_Article _CurrentArticleEAN = null;
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
@@ -196,7 +198,7 @@ public class EANViewModel : BaseViewModel
          Result.UCondi = _fsRecord.Substring(ind, 8).TrimEnd();
          ind += 8;
 
-         Result.Price = decimal.Parse(_fsRecord.Substring(ind, 8).TrimEnd());
+         //ToDo: Result.Price = decimal.Parse(_fsRecord.Substring(ind, 8).TrimEnd());
          ind += 8;
       };
 

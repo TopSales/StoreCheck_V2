@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Xml.Linq;
 using ZPF;
 using ZPF.SQL;
 
@@ -16,8 +17,8 @@ public partial class EANPage : ContentPage
 
    private async void btnBack_Clicked(object sender, EventArgs e)
    {
-      entry.Unfocused -= Entry_Unfocused;
-      entry.Unfocus();
+      entryInput.Unfocused -= Entry_Unfocused;
+      entryInput.Unfocus();
 
       await Navigation.PopModalAsync();
    }
@@ -34,37 +35,22 @@ public partial class EANPage : ContentPage
       {
          OnAppearing_sema = false;
 
-         //   //if (MainViewModel.Current.ArticlesEAN.Count == 0)
-         //   //{
-         //   //   SyncEAN();
-         //   //};
-
-         if (EANViewModel.Current.ArticlesEAN == null || EANViewModel.Current.ArticlesEAN.Count == 0)
-         {
-            EANViewModel.Current.CurrentArticleEAN = null;
-
-            EANViewModel.Current.SetArticlesEAN();
-         };
-
-         //   OnAppearing_sema = true;
+         EANViewModel.Current.CurrentArticleEAN = null;
+         EANViewModel.Current.SetArticlesEAN();
       };
-
-      ////DependencyService.Get<IScanner>().OpenScanner();
-      ////DependencyService.Get<IScanner>().EnableAllSymbologies();
 
       UnitechViewModel.Current.OnScann += OnScann;
 
-      //DoIt.Delay(100, () =>
-      //{
-      //   DoIt.OnMainThread(() =>
-      //   {
-      //#if SCAN_WEDGE
-      entry.Unfocused -= Entry_Unfocused;
-      entry.Unfocused += Entry_Unfocused;
-      //#endif
-      entry.Focus();
-      //   });
-      //});
+      entryInput.Unfocused -= Entry_Unfocused;
+      entryInput.Unfocused += Entry_Unfocused;
+
+      ZPF.DoIt.Delay(1000, () =>
+      {
+         ZPF.DoIt.OnMainThread(() =>
+         {
+            entryInput.Focus();
+         });
+      });
    }
 
    protected override void OnDisappearing()
@@ -78,26 +64,29 @@ public partial class EANPage : ContentPage
 
    private void Entry_Completed(object sender, EventArgs e)
    {
-      var entry = sender as Entry;
-      entry.Text = entry.Text.Trim();
+      entryInput.Text = entryInput.Text.Trim();
+      entryOutPut.Text = entryInput.Text;
 
-      OnScann(entry.Text, entry.Text.Length, UnitechViewModel.Symbologies.Unknown, Encoding.ASCII.GetBytes(entry.Text));
+      OnScann(entryInput.Text, entryInput.Text.Length, UnitechViewModel.Symbologies.Unknown, Encoding.ASCII.GetBytes(entryInput.Text));
+
+      entryInput.Text = "";
    }
 
    private void Entry_Focused(object sender, FocusEventArgs e)
    {
-      var entry = sender as Entry;
-
-      entry.CursorPosition = 0;
-      entry.SelectionLength = (entry.Text == null ? 0 : entry.Text.Length);
+      entryInput.CursorPosition = 0;
+      entryInput.SelectionLength = (entryInput.Text == null ? 0 : entryInput.Text.Length);
    }
 
    private void entry_TextChanged(object sender, TextChangedEventArgs e)
    {
-      var entry = sender as Entry;
-      entry.Unfocused -= Entry_Unfocused;
+      if (entryInput.Text != "")
+      {
+         entryOutPut.Text = "";
+      };
 
-      UnitechViewModel.Current.Length = entry.Text.Length;
+      entryInput.Unfocused -= Entry_Unfocused;
+      UnitechViewModel.Current.Length = entryInput.Text.Length;
    }
 
    private void Entry_Unfocused(object sender, FocusEventArgs e)
@@ -108,7 +97,10 @@ public partial class EANPage : ContentPage
          {
             if (!btnBack.IsFocused)
             {
-               entry.Focus();
+               entryInput.CursorPosition = 0;
+               entryInput.SelectionLength = (entryInput.Text == null ? 0 : entryInput.Text.Length);
+
+               entryInput.Focus();
             };
          });
       });
@@ -118,25 +110,26 @@ public partial class EANPage : ContentPage
 
    public bool OnScann(string data, int length, UnitechViewModel.Symbologies symbology, byte[] rawData)
    {
-#if !SCAN_WEDGE
       if (DeviceInfo.Platform == DevicePlatform.Android)
       {
          Vibration.Vibrate(100);
       };
-#endif
+
       {
          slArticleEAN.BindingContext = null;
 
-         if (DeviceInfo.Platform == DevicePlatform.Android)
-         {
-            EANViewModel.Current.CurrentArticleEAN = DB_SQL.QueryFirst<EAN_Article>( EANViewModel.Current.DBSQLViewModel, $"select * from EAN_Article where EAN = '{data}'");
-         }
-         else
-         {
-            EANViewModel.Current.CurrentArticleEAN = EANViewModel.Current.ArticlesEAN.Where(x => x.EAN == data).FirstOrDefault();
-         };
+         EANViewModel.Current.CurrentArticleEAN = EANViewModel.Current.GetRecord(EANViewModel.Current.TxtFileName, data);
 
-         if (EANViewModel.Current.CurrentArticleEAN == null)
+         //if (DeviceInfo.Platform == DevicePlatform.Android)
+         //{
+         //   EANViewModel.Current.CurrentArticleEAN = DB_SQL.QueryFirst<EAN_Article>( EANViewModel.Current.DBSQLViewModel, $"select * from EAN_Article where EAN = '{data}'");
+         //}
+         //else
+         //{
+         //   EANViewModel.Current.CurrentArticleEAN = EANViewModel.Current.ArticlesEAN.Where(x => x.EAN == data).FirstOrDefault();
+         //};
+
+         if (EANViewModel.Current.CurrentArticleEAN == null || string.IsNullOrEmpty(EANViewModel.Current.CurrentArticleEAN.Label_FR))
          {
             EANViewModel.Current.CurrentArticleEAN = new EAN_Article
             {
@@ -147,6 +140,8 @@ public partial class EANPage : ContentPage
 
          slArticleEAN.BindingContext = EANViewModel.Current.CurrentArticleEAN;
       };
+
+      Entry_Focused(entryInput, null);
 
       return true;
    }

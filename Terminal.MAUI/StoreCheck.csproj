@@ -39,8 +39,7 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
-
+        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
@@ -58,8 +57,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Resources\Images\Logo.png" />
-	  <None Remove="Resources\Raw\Norma.db3" />
+	  <MauiImage Remove="Resources\Images\dotnet_bot.svg" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\desyrel.ttf" />
+	  <None Remove="Resources\Fonts\IconFont.ttf" />
+	  <None Remove="Resources\Fonts\MediaPlayerFont.ttf" />
+	  <None Remove="Resources\Fonts\Montserrat.ttf" />
+      <None Remove="Resources\Images\Logo.png" />
+      <None Remove="Resources\Raw\Norma.db3" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -68,6 +75,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Pages\EANPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\HeaderContent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\TopSalesPage.xaml">
@@ -89,5 +99,9 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\Apps\TestSQLite-Maui\ZPF_DBSQL\ZPF_DBSQL.csproj" />
 	</ItemGroup>
+
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+	  <Exec Command="$(SolutionDir)UpdateVersionInfo -v=auto -p=scan" />
+	</Target>
 
 </Project>

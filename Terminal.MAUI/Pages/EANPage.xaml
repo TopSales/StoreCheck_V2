@@ -4,58 +4,63 @@
              x:Class="StoreCheck.Pages.EANPage"
              Title="info EAN">
 
-    <Grid RowDefinitions="auto,*,auto">
+   <Grid RowDefinitions="auto,*,auto">
 
-        <HorizontalStackLayout BackgroundColor="{StaticResource Primary}">
-            <Button x:Name="btnBack" Text="&lt;" Clicked="btnBack_Clicked" />
-        </HorizontalStackLayout>
+      <HorizontalStackLayout BackgroundColor="{StaticResource Primary}">
+         <Button x:Name="btnBack" Text="&lt;" Clicked="btnBack_Clicked" />
+      </HorizontalStackLayout>
 
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="270"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
+      <Grid Grid.Row="1">
+         <Grid.RowDefinitions>
+            <RowDefinition Height="270"/>
+            <RowDefinition Height="auto"/>
+         </Grid.RowDefinitions>
 
-            <BoxView Grid.Row="0"  Margin="20,20,20,0" BackgroundColor="LightGray" CornerRadius="10" />
+         <BoxView Margin="20,20,20,0" CornerRadius="10" />
 
-            <StackLayout Grid.Row="0" Margin="30,30,30,10" HorizontalOptions="Center" VerticalOptions="Start" Spacing="0"  >
+         <StackLayout Margin="30,30,30,10" HorizontalOptions="Center" VerticalOptions="Start" Spacing="0"  >
 
-                <Entry x:Name="entry" Margin="5,5,5,0" Text="{Binding Data}" Keyboard="Numeric" 
-                   FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" BackgroundColor="White" 
+            <Grid>
+            <Entry x:Name="entryOutPut" Margin="5,5,5,0" Keyboard="Numeric" BackgroundColor="White" 
+                   FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" />
+
+            <Entry x:Name="entryInput" Margin="5,5,5,0" Keyboard="Numeric" BackgroundColor="Transparent"
+                   FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center"  TextChanged="entry_TextChanged"
                    Completed="Entry_Completed" Focused="Entry_Focused" />
+            </Grid>
+            
+            <StackLayout Margin="30,0,30,5" Orientation="Horizontal" HorizontalOptions="Center">
+               <Label Text="{Binding Symbology}" Margin="0,0,5,0" FontAttributes="Bold" />
+               <Label Text="{Binding nSymbology,StringFormat=' ({0})'}" FontAttributes="Bold" />
+               <Label Text="{Binding Data.Length,StringFormat='  length={0} car.'}" HorizontalTextAlignment="Center"  />
+            </StackLayout>
 
-                <StackLayout Margin="30,0,30,5" Orientation="Horizontal" HorizontalOptions="Center">
-                    <Label Text="{Binding Symbology}" Margin="0,0,5,0" FontAttributes="Bold" />
-                    <Label Text="{Binding nSymbology,StringFormat=' ({0})'}" FontAttributes="Bold" />
-                    <Label Text="{Binding Data.Length,StringFormat='  length={0} car.'}" HorizontalTextAlignment="Center"  />
-                </StackLayout>
+            <StackLayout x:Name="slArticleEAN" Margin="5,0,5,0" HorizontalOptions="Center" >
 
-                <StackLayout x:Name="slArticleEAN" Margin="5,0,5,0" HorizontalOptions="Center" >
+               <Editor Placeholder="label" Text="{Binding Label_FR}" FontAttributes="Bold" FontSize="16" TextColor="Black" BackgroundColor="LightGray" IsReadOnly="True" WidthRequest="200" HeightRequest="60" />
 
-                    <Editor Placeholder="label" Text="{Binding Label_FR}" FontAttributes="Bold" FontSize="16" TextColor="Black" BackgroundColor="LightGray" IsReadOnly="True" WidthRequest="200" HeightRequest="60" />
+               <StackLayout Orientation="Horizontal" >
+                  <Entry Text="{Binding Brand}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="160"  />
+                  <Entry Text="{Binding Condi}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="50" />
+                  <Entry Text="{Binding UCondi}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="50" />
+               </StackLayout>
 
-                    <StackLayout Orientation="Horizontal" >
-                        <Entry Text="{Binding Brand}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="160"  />
-                        <Entry Text="{Binding Condi}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="50" />
-                        <Entry Text="{Binding UCondi}" FontAttributes="Bold" FontSize="16" IsReadOnly="True"  WidthRequest="50" />
-                    </StackLayout>
-
-                    <Entry Placeholder="price" Text="{Binding Price, StringFormat='{0:n2}€'}"  FontSize="18" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="End" HorizontalTextAlignment="End"  IsReadOnly="True"  WidthRequest="100" />
-
-                </StackLayout>
+               <Entry Placeholder="price" Text="{Binding Price, StringFormat='{0:n2}€'}"  FontSize="18" FontAttributes="Bold" HorizontalOptions="End" VerticalOptions="End" HorizontalTextAlignment="End"  IsReadOnly="True"  WidthRequest="100" />
 
             </StackLayout>
 
-            <BoxView Grid.Row="1" Margin="20,20,20,0" BackgroundColor="LightGray" CornerRadius="10" />
+         </StackLayout>
 
-            <Grid Grid.Row="1" Margin="20,20,20,0" BackgroundColor="Transparent">
-                <!--<ZPFXF:Tile x:Name="btnExit" IconChar="{x:Static fonts:IF.Exit_03}" Text="exit" CornerRadius="10" Clicked="btnExit_Clicked" />-->
-            </Grid>
+         <BoxView Grid.Row="1" Margin="20,20,20,0" BackgroundColor="LightGray" CornerRadius="10" />
 
-        </Grid>
+         <Grid Grid.Row="1" Margin="20,20,20,0" BackgroundColor="Transparent">
+            <!--<ZPFXF:Tile x:Name="btnExit" IconChar="{x:Static fonts:IF.Exit_03}" Text="exit" CornerRadius="10" Clicked="btnExit_Clicked" />-->
+         </Grid>
+
+      </Grid>
 
 
 
-    </Grid>
+   </Grid>
 </ContentPage>
