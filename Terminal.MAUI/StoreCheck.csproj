@@ -80,24 +80,34 @@
 	  <MauiXaml Update="Pages\HeaderContent.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\EntryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\TopSalesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Models\" />
 	  <Folder Include="ToDo\" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Normalisation.Core" Version="1.0.0.5" />
 	  <PackageReference Include="StoreCheck.Core" Version="1.0.0.36" />
+	  <PackageReference Include="System.DirectoryServices" Version="6.0.0" />
 	  <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\Apps\TestSQLite-Maui\ZPF_DBSQL\ZPF_DBSQL.csproj" />
+	  <ProjectReference Include="..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper6.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Pages\EntryPage.xaml.cs">
+	    <DependentUpon>EntryPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">

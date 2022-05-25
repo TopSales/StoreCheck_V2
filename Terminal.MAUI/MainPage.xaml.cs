@@ -13,9 +13,9 @@ public partial class MainPage : ContentPage
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
-   private void btnStart_Clicked(object sender, EventArgs e)
+   private async void btnStart_Clicked(object sender, EventArgs e)
    {
-
+      await Navigation.PushModalAsync(new EntryPage());
    }
 
    private void btnStop_Clicked(object sender, EventArgs e)
