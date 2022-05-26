@@ -87,7 +87,7 @@ public class ClientViewModel : BaseViewModel
          case ChatCore.EventType.Data:
             {
                // Data Message
-               var data = Newtonsoft.Json.JsonConvert.DeserializeObject<ChatData>(message.TrimEnd(new char[] { '~' }));
+               ChatData data = ChatCore.DeserializeChatData(message);
 
                if (data == null)
                {

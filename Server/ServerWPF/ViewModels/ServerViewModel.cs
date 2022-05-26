@@ -7,6 +7,7 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 using ZPF;
+using ZPF.AT;
 using ZPF.Chat;
 using ZPF.SQL;
 
@@ -269,10 +270,21 @@ public class ServerViewModel : BaseViewModel
       {
          if (ChatCore.IsValidIpAddress(ipAddress) && ChatCore.IsValidPort(MainViewModel.Current.Config.ServerPort))
          {
-            IPAddress.TryParse(ipAddress, out var IP);
-            await chatServer.Listener(IP, port, bufferSize);
+            try
+            {
+               IPAddress.TryParse(ipAddress, out var IP);
+               await chatServer.Listener(IP, port, bufferSize);
 
-            IsServerRunning = true;
+               IsServerRunning = true;
+            }
+            catch (Exception ex)
+            {
+               ZPF.AT.Log.Write(new AuditTrail(ex));
+
+               IsServerRunning = false;
+
+               StopServer();
+            };
          }
          else
          {
