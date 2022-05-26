@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Common;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -8,10 +9,13 @@ using System.Threading.Tasks;
 using System.Timers;
 using Newtonsoft.Json;
 using ZPF;
+using ZPF.AT;
 using ZPF.SQL;
 
 public class MainViewModel : BaseViewModel
 {
+   public static string AppTitle = "StoreCheck_Server";
+
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
    static MainViewModel _Current = null;
@@ -43,18 +47,15 @@ public class MainViewModel : BaseViewModel
    public MainViewModel()
    {
       _Current = this;
-      //Ikea.InitMsg();
 
-      // - - -  - - -
-
-      DataFolder = System.IO.Path.GetDirectoryName(Environment.CurrentDirectory) + @"\Data\";
+      DataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\";
 
       System.Diagnostics.Debug.WriteLine($"Data: {DataFolder}");
 
-      if (!Directory.Exists(DataFolder))
-      {
-         Directory.CreateDirectory(DataFolder);
-      };
+      // - - -  - - - 
+
+      AuditTrailViewModel.Current.Init(new FileAuditTrailWriter(DataPath + AppTitle + ".AuditTrail.txt"));
+      AuditTrailViewModel.Current.Clean();
 
       // - - -  - - -
 
@@ -65,6 +66,7 @@ public class MainViewModel : BaseViewModel
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+   public string DataPath { get; private set; }
 
    //bool IsFirst_Timer_Elapsed = true;
 
