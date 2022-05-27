@@ -150,6 +150,9 @@
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs">
       <Link>DBSQL\SQLServerEngine.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\..\Nugets\ZPF_Users\ZPF_Users_Rights\Models\User.cs">
+      <Link>Modeles\User.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\StoreCheck.Core\StoreCheck.UT\ViewModels\SmarterASPViewModel.cs">
       <Link>ViewModels\SmarterASPViewModel.cs</Link>
     </Compile>

@@ -108,12 +108,26 @@ public class ServerViewModel : BaseViewModel
                {
                   case "entry":
                      {
-                        // dc6ac87fb3e9a5c3 -> ME Droid
-
                         var DeviceID = Newtonsoft.Json.JsonConvert.DeserializeObject<String>(data.Data);
 
-                        long nb = 0;
-                        //var nb = DB_SQL.QuickQueryInt64("select max(CAST(beeper as INT)) from Current") + 1;
+                        // dc6ac87fb3e9a5c3 -> ME Droid
+                        // S-1-5-21-1273532890-4014729352-2326173191 -> ME SB3
+
+                        // cf918dd52379e32a -> ChM PA760 Unitech
+                        // S-1-5-21-1027867382-3233639938-3375810606 -> ChM SB3
+
+                        switch (DeviceID)
+                        {
+                           // - - - ME - - -
+                           case "S-1-5-21-1273532890-4014729352-2326173191":
+                              DeviceID = "dc6ac87fb3e9a5c3"; break;
+
+                           // - - - ChM - - -
+                           case "S-1-5-21-1027867382-3233639938-3375810606":
+                              DeviceID = "cf918dd52379e32a"; break;
+                        };
+
+                        var user = DB_SQL.QueryFirst<UserAccount>($"select * from UserAccount where UserAccount.TerminalID='{DeviceID}'");
 
                         if (nb == 0)
                         {
