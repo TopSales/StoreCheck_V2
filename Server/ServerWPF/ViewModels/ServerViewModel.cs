@@ -112,6 +112,7 @@ public class ServerViewModel : BaseViewModel
 
                         // dc6ac87fb3e9a5c3 -> ME Droid
                         // S-1-5-21-1273532890-4014729352-2326173191 -> ME SB3
+                        // S-1-5-21-952733102-2235713207-1786640839 -> ME SB2
 
                         // cf918dd52379e32a -> ChM PA760 Unitech
                         // S-1-5-21-1027867382-3233639938-3375810606 -> ChM SB3
@@ -119,6 +120,7 @@ public class ServerViewModel : BaseViewModel
                         switch (DeviceID)
                         {
                            // - - - ME - - -
+                           case "S-1-5-21-952733102-2235713207-1786640839":
                            case "S-1-5-21-1273532890-4014729352-2326173191":
                               DeviceID = "dc6ac87fb3e9a5c3"; break;
 
@@ -127,16 +129,14 @@ public class ServerViewModel : BaseViewModel
                               DeviceID = "cf918dd52379e32a"; break;
                         };
 
-                        var user = DB_SQL.QueryFirst<UserAccount>($"select * from UserAccount where UserAccount.TerminalID='{DeviceID}'");
+                        var user = DB_SQL.QueryFirst<UserAccount>(MainViewModel.Current.Connection_DB, $"select * from UserAccount where UserAccount.TerminalID='{DeviceID}'");
 
-                        if (nb == 0)
+                        if (user != null)
                         {
-                           await ChatServer.Current.SendDataToClient(tcpClient, "entry", null);
-                        }
-                        else
-                        {
-                           await ChatServer.Current.SendDataToClient(tcpClient, "entry", "*");
+                           user.Password = "";
                         };
+
+                        await ChatServer.Current.SendDataToClient(tcpClient, "entry", user);
                      };
                      break;
 

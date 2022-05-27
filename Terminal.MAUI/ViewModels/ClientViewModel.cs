@@ -104,7 +104,8 @@ public class ClientViewModel : BaseViewModel
                         }
                         else
                         {
-                           MainViewModel.Current.EntryMsg = "Hello Mr 'X' ...";
+                           var u = Newtonsoft.Json.JsonConvert.DeserializeObject<UserAccount>(data.Data);
+                           MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
                         };
                      };
                      break;

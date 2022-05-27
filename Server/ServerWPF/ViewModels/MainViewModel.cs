@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.Common;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Timers;
 using Newtonsoft.Json;
 using ZPF;
@@ -20,6 +14,9 @@ public class MainViewModel : BaseViewModel
 
    static MainViewModel _Current = null;
 
+   public DBSQLViewModel Connection_DB { get; private set; }
+   public DBSQLViewModel Connection_AT { get; private set; }
+   public DBSQLViewModel Connection_DOC { get; private set; }
    public string DataFolder { get; }
 
    private Timer timer;
@@ -55,46 +52,150 @@ public class MainViewModel : BaseViewModel
       // - - -  - - - 
 
       AuditTrailViewModel.Current.Init(new FileAuditTrailWriter(DataPath + AppTitle + ".AuditTrail.txt"));
+      AuditTrailViewModel.Current.Application = "SCServ";
       AuditTrailViewModel.Current.Clean();
 
       // - - -  - - -
 
-      //timer = new Timer();
-      //timer.Interval = 1000 * 5;
-      //timer.Elapsed += Timer_Elapsed;
-      //timer.Start();
+      OpenDB();
+
+#if !DEBUG
+      AuditTrailViewModel.Current.Init(new DBAuditTrailWriter(Connection_AT));
+      AuditTrailViewModel.Current.Application = "SCAdmin";
+#endif
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
    public string DataPath { get; private set; }
 
-   //bool IsFirst_Timer_Elapsed = true;
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+   public bool OpenDB()
+   {
+#if DEBUG
+      // - - - DEV - - -
+      if (Connection_DB == null || !Connection_DB.CheckConnection())
+      {
+         //Connection_DB = SmarterASPViewModel.Current.OpenStoreCheckDev();
+         Connection_DB = SmarterASPViewModel.Current.OpenStoreCheckMaquette();
+      };
 
-   //private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
-   //{
-   //   timer.Stop();
+      if (Connection_AT == null || !Connection_AT.CheckConnection())
+      {
+         Connection_AT = SmarterASPViewModel.Current.OpenAuditTrailDev();
 
-   //   WebServiceOK = ClientViewModel.Current.IsConnected();
-   //   OnPropertyChanged("WebServiceOK");
+         // - - -  - - - 
 
-   //   if (!WebServiceOK)
-   //   {
-   //      ClientViewModel.Current.Connect();
-   //   };
+         #region Create table & co 
 
-   //   if (Config.IsServer && !ServerViewModel.Current.IsServerRunning)
-   //   {
-   //      OpenDB();
-   //      ServerViewModel.Current.StartStop();
-   //   };
+         string SQL = "";
 
-   //   timer.Start();
-   //}
+         switch (Connection_AT.DBType)
+         {
+            case DBType.SQLServer: SQL = AuditTrail.PostScript_MSSQL; break;
 
-   //internal void StopTimer()
-   //{
-   //   timer.Stop();
-   //}
+            case DBType.SQLite: SQL = AuditTrail.PostScript_SQLite; break;
+
+            case DBType.PostgreSQL: SQL = AuditTrail.PostScript_PGSQL; break;
+
+            case DBType.MySQL: SQL = AuditTrail.PostScript_MySQL; break;
+         };
+
+         // - - -  - - - 
+
+         DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail), SQL, "");
+         DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail_App), SQL, "");
+
+         #endregion
+      };
+
+      if (Connection_DOC == null || !Connection_DOC.CheckConnection())
+      {
+         Connection_DOC = SmarterASPViewModel.Current.OpenBaseDocDev();
+      };
+#else
+      // - - - PROD - - -
+      if (Connection_DB == null || !Connection_DB.CheckConnection())
+      {
+         Connection_DB = SmarterASPViewModel.Current.OpenStoreCheckProd();
+      };
+
+                if (Connection_AT == null || !Connection_AT.CheckConnection())
+                {
+                    Connection_AT = SmarterASPViewModel.Current.OpenAuditTrailProd();
+
+                    // - - -  - - - 
+
+      #region Create table & co 
+
+                    string SQL = "";
+
+                    switch (Connection_AT.DBType)
+                    {
+                        case DBType.SQLServer: SQL = AuditTrail.PostScript_MSSQL; break;
+
+                        case DBType.SQLite: SQL = AuditTrail.PostScript_SQLite; break;
+
+                        case DBType.PostgreSQL: SQL = AuditTrail.PostScript_PGSQL; break;
+
+                        case DBType.MySQL: SQL = AuditTrail.PostScript_MySQL; break;
+                    };
+
+                    // - - -  - - - 
+
+                    DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail), SQL, "");
+                    DB_SQL.CreateTable(Connection_AT, typeof(AuditTrail_App), SQL, "");
+
+      #endregion
+
+                    // - - -  - - - 
+
+                    AuditTrailViewModel.Current.Init(new DBAuditTrailWriter(Connection_AT));
+                    AuditTrailViewModel.Current.Application = "SCAdmin";
+                };
+
+                if (Connection_DOC == null || !Connection_DOC.CheckConnection())
+                {
+                    Connection_DOC = SmarterASPViewModel.Current.OpenBaseDocProd();
+
+                    // - - -  - - - 
+
+      #region Create table & co 
+
+                    string SQL = "";
+
+                    switch (Connection_DOC.DBType)
+                    {
+                        case DBType.SQLServer: SQL = Document.SQLPostCreate_MSSQL; break;
+
+                        case DBType.SQLite: SQL = Document.SQLPostCreate_SQLite; break;
+
+                        case DBType.PostgreSQL: SQL = Document.SQLPostCreate_PGSQL; break;
+
+                        case DBType.MySQL: SQL = Document.SQLPostCreate_MySQL; break;
+                    };
+
+                    // - - -  - - - 
+
+                    DB_SQL.CreateTable(Connection_DOC, typeof(Document), SQL, "");
+                    DB_SQL.CreateTrigger_OnUpdated(Connection_DOC, "Document", "UpdatedOn");
+                    DB_SQL.CreateTrigger_OnCreated(Connection_DOC, "Document", "CreatedOn");
+
+      #endregion
+
+            };
+#endif
+
+      //Log.Write(new AuditTrail
+      //{
+      //    Level = ErrorLevel.Log,
+      //    Tag = "API",
+      //    Message = request.Path,
+      //    TerminalID = request.HttpContext.Connection.RemoteIpAddress.ToString(),
+      //    TerminalIP = request.HttpContext.Connection.RemoteIpAddress.ToString(),
+      //});
+
+      return true;
+   }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
@@ -155,52 +256,6 @@ public class MainViewModel : BaseViewModel
          Config.CurrentMessage = value;
          OnPropertyChanged("CurrentMessage");
       }
-   }
-
-   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
-
-   public DBSQLViewModel Connection { get; private set; }
-
-   public void OpenDB()
-   {
-      string Server = @"";
-      string DBase = DataFolder + @"Syscall.SQLite.db3";
-      string User = "";
-      string Password = "";
-
-      string ConnectionString = DB_SQL.GenConnectionString(DBType.SQLite, Server, DBase, User, Password);
-
-      if (string.IsNullOrEmpty(ConnectionString))
-      {
-         MainViewModel.Current.Connection.LastError = "No ConnectionString ...";
-         return;
-      };
-
-      Connection = new DBSQLViewModel(new MSSQLiteEngine());
-      DB_SQL._ViewModel = Connection;
-      Connection.Open(ConnectionString, true);
-      //Log.Write("", $"{ConnectionString} {(Connection.Open(ConnectionString, true) ? "OK" : "KO")}");
-
-      //ToDo: CleanAuditTrail();
-
-      //DB_SQL.CreateTable(typeof(Spooler));
-      //DB_SQL.CreateTable(typeof(Spooler), "Stats");
-      //DB_SQL.CreateTable(typeof(Current));
-
-      if (Connection.DBType == DBType.SQLite)
-      {
-         DB_SQL.QuickQuery("VACUUM");
-      };
-
-      {
-         DateTime dt = DateTime.Now.AddYears(-2);
-
-         DB_SQL.QuickQuery($"delete from Spooler where DATE(CreatedOn) <= {DB_SQL.DateTimeToSQL(DB_SQL._ViewModel.DBType, dt)}");
-
-         //// Sodexo.Safran
-         //dt = DateTime.Now.AddHours(-4);
-         //DB_SQL.QuickQuery($"delete from Current where DATE(CreatedOn) <= {DB_SQL.DateTimeToSQL(DB_SQL._ViewModel.DBType, dt)}");
-      };
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
