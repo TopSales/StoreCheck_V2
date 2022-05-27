@@ -50,6 +50,13 @@ namespace _03_ChatServerWPF
       /// <param name="message"></param>
       private void AddMessage(string message)
       {
+         ZPF.AT.Log.Write(new ZPF.AT.AuditTrail
+         {
+            IsBusiness = false,
+            Level = ZPF.AT.ErrorLevel.Info,
+            Message = message,
+         });
+
          Dispatcher.Invoke(() => ServerViewModel.Current.AddMessage(message));
       }
 
