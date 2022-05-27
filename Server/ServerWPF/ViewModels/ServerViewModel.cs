@@ -108,6 +108,8 @@ public class ServerViewModel : BaseViewModel
                {
                   case "entry":
                      {
+                        // dc6ac87fb3e9a5c3 -> ME Droid
+
                         var DeviceID = Newtonsoft.Json.JsonConvert.DeserializeObject<String>(data.Data);
 
                         long nb = 0;

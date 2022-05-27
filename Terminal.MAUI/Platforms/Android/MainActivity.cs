@@ -10,8 +10,5 @@ public class MainActivity : MauiAppCompatActivity
    public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
    {
       base.OnCreate(savedInstanceState, persistentState);
-
    }
-
-
 }
