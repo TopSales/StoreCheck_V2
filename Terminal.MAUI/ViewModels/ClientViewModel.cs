@@ -1,4 +1,5 @@
 ﻿using ZPF;
+using ZPF.AT;
 using ZPF.Chat;
 
 public class ClientViewModel : BaseViewModel
@@ -105,7 +106,14 @@ public class ClientViewModel : BaseViewModel
                         else
                         {
                            var u = Newtonsoft.Json.JsonConvert.DeserializeObject<UserAccount>(data.Data);
-                           MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
+
+                           if( u != null )
+                           {
+                              AuditTrailViewModel.Current.TerminalID = u.TerminalID;
+                              AuditTrailViewModel.Current.FKUser = u.PK.ToString();
+
+                              MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
+                           };
                         };
                      };
                      break;

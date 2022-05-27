@@ -47,7 +47,7 @@ public class MainViewModel : BaseViewModel
 
       DataPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\";
 
-      System.Diagnostics.Debug.WriteLine($"Data: {DataFolder}");
+      System.Diagnostics.Debug.WriteLine($"Data: {DataPath}");
 
       // - - -  - - - 
 
