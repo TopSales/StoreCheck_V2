@@ -196,11 +196,13 @@ public class ServerViewModel : BaseViewModel
                      };
                      break;
 
-                  case "getspooler":
+                  case "get_interventions":
                      {
-                        //var list = DB_SQL.Query<Spooler>("select * from Current order by CreatedOn");
+                        QueryParams qp = Newtonsoft.Json.JsonConvert.DeserializeObject<QueryParams>(data.Data);
 
-                        //await ChatServer.Current.SendDataToClient(tcpClient, "GetSpooler", list);
+                        var list = MainViewModel.Current.GetInterventions(qp.Begin, true, qp.FKUser, null, null);
+
+                        await ChatServer.Current.SendDataToClient(tcpClient, "get_interventions", list);
                      };
                      break;
 

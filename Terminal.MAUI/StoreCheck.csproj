@@ -70,6 +70,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Include="..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPFFonts.cs" Link="ToDo\ZPFFonts.cs" />
 	  <Compile Include="..\..\..\Nugets\ZPF_Users\ZPF_Users_Rights\Models\User.cs" Link="Models\User.cs" />
 	  <Compile Include="..\..\..\_Units_\CS\DoIt.cs" Link="ToDo\DoIt.cs" />
 	</ItemGroup>
@@ -84,13 +85,12 @@
 	  <MauiXaml Update="Pages\EntryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\StoreListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\TopSalesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="ToDo\" />
 	</ItemGroup>
 
 	<ItemGroup>

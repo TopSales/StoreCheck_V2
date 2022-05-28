@@ -3,19 +3,19 @@
    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
    xmlns:views="clr-namespace:StoreCheck.Pages"
+   xmlns:fonts="clr-namespace:ZPF.Fonts"
    x:Class="StoreCheck.MainPage">
 
-   <Grid ColumnDefinitions="*,4*,4*,*" RowDefinitions="*,2*,2*,2*,*,*" >
+   <Grid ColumnDefinitions="*,4*,4*,*" RowDefinitions="74,2*,2*,2*,*,*" >
 
-      <views:HeaderContent Grid.Row="0" Grid.ColumnSpan="4" />
+      <views:HeaderContent Grid.Row="0" Grid.ColumnSpan="4" NavBack="False" />
 
       <Button Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="10"
                 x:Name="btnStart"
                 Text="start" FontSize="28"
                 Clicked="btnStart_Clicked" >
          <Button.ImageSource >
-            <!--icon-Entry_01_WF-->
-            <FontImageSource Glyph="&#xe943;" FontFamily="IconFont" Size="64" />
+            <FontImageSource Glyph="{x:Static fonts:IF.Entry_01_WF}" FontFamily="IconFont" Size="64" />
          </Button.ImageSource>
       </Button>
 
@@ -24,28 +24,25 @@
                 Text="stop" FontSize="28"
                 Clicked="btnStop_Clicked" >
          <Button.ImageSource >
-            <!--icon-Exit_WF-->
-            <FontImageSource Glyph="&#xe946;" FontFamily="IconFont" Size="64" />
+            <FontImageSource Glyph="{x:Static fonts:IF.Exit_WF}" FontFamily="IconFont" Size="64" />
          </Button.ImageSource>
       </Button>
 
       <Button Grid.Column="1" Grid.Row="3" Margin="10"
                 x:Name="btnContact"
-                Text="contact" FontSize="28"
+                Text="contact" FontSize="24"
                 Clicked="btnContact_Clicked" ContentLayout="Top" >
          <Button.ImageSource >
-            <!--icon-Messages-Information-01-->
-            <FontImageSource Glyph="&#xe970;" FontFamily="IconFont" Size="64" />
+            <FontImageSource Glyph="{x:Static fonts:IF.Messages_Information_01}" FontFamily="IconFont" Size="64" />
          </Button.ImageSource>
       </Button>
 
       <Button Grid.Column="2" Grid.Row="3" Margin="10"
                 x:Name="btnEAN"
-                Text="EAN" FontSize="28"
+                Text="EAN" FontSize="24"
                 Clicked="btnEAN_Clicked" ContentLayout="Top" >
          <Button.ImageSource >
-            <!--Barcode_01-->
-            <FontImageSource Glyph="&#xe90c;" FontFamily="IconFont" Size="64" />
+            <FontImageSource Glyph="{x:Static fonts:IF.Barcode_01}" FontFamily="IconFont" Size="64" />
          </Button.ImageSource>
       </Button>
       
@@ -54,8 +51,7 @@
                 Text="test" FontSize="28"
                 Clicked="btnTest_Clicked" ContentLayout="Left" >
          <Button.ImageSource >
-            <!--Barcode_01-->
-            <FontImageSource Glyph="&#xe90d;" FontFamily="IconFont" Size="48" />
+            <FontImageSource Glyph="{x:Static fonts:IF.Beaker}" FontFamily="IconFont" Size="56" />
          </Button.ImageSource>
       </Button>
 

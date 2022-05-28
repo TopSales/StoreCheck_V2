@@ -2,17 +2,27 @@
 <ContentView 
    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:fonts="clr-namespace:ZPF.Fonts"   
    x:Class="StoreCheck.Pages.HeaderContent">
-   
+
    <Grid Margin="0" Padding="0" >
-      <Label x:Name="labelVersion" Text="1.23" VerticalOptions="Start" HorizontalOptions="Start" TextColor="Gray" FontSize="12" />
-      
-      <HorizontalStackLayout>
-         <!--<Image VerticalOptions="Start" Margin="10" Source="storecheck.svg" />-->
-         <Label Text="StoreCheck" VerticalOptions="Start" HorizontalOptions="Start" FontSize="64" Margin="20,0,0,0" />
+      <Label x:Name="labelVersion" Text="1.23" VerticalOptions="Start" HorizontalOptions="Start" Margin="5,0,0,0" TextColor="Gray" FontSize="12" />
+
+      <HorizontalStackLayout x:Name="hslHome" IsVisible="false">
+         <Label Text="StoreCheck" VerticalOptions="Start" HorizontalOptions="Start" FontSize="48" Margin="10,3,0,0" />
       </HorizontalStackLayout>
-      
-      <Image HorizontalOptions="End" VerticalOptions="Start" Margin="10" Source="logo.png" />
+
+      <HorizontalStackLayout x:Name="hslNav" IsVisible="true">
+         <Button x:Name="btnBack" Clicked="btnBack_Clicked" BackgroundColor="WhiteSmoke" TextColor="Black" WidthRequest="35" HeightRequest="35" 
+                 Margin="5,5,0,0" Padding="0" ContentLayout="Top,-1" CornerRadius="10" BorderColor="Black"  >
+            <Button.ImageSource >
+               <FontImageSource Glyph="{x:Static fonts:IF.Navigation_Left}" FontFamily="IconFont" Size="32" Color="Black" />
+            </Button.ImageSource>
+         </Button>
+         <Label Text="{Binding Source={x:RelativeSource AncestorType={x:Type ContentPage}}, Path=Title}" VerticalOptions="Start" HorizontalOptions="Start" FontSize="36" Margin="5,13,0,0" />
+      </HorizontalStackLayout>
+
+      <Image HorizontalOptions="End" VerticalOptions="Start" Margin="10,10,2,10" Source="logo.png" />
    </Grid>
-   
+
 </ContentView>

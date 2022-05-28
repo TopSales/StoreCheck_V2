@@ -6,7 +6,7 @@ using ZPF;
 using ZPF.AT;
 using ZPF.SQL;
 
-public class MainViewModel : BaseViewModel
+public partial class MainViewModel : BaseViewModel
 {
    public static string AppTitle = "StoreCheck_Server";
 

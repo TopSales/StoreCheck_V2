@@ -107,12 +107,16 @@ public class ClientViewModel : BaseViewModel
                         {
                            var u = Newtonsoft.Json.JsonConvert.DeserializeObject<UserAccount>(data.Data);
 
-                           if( u != null )
+                           if (u != null)
                            {
                               AuditTrailViewModel.Current.TerminalID = u.TerminalID;
                               AuditTrailViewModel.Current.FKUser = u.PK.ToString();
+                              MainViewModel.Current.Config.FKUser = u.PK;
+                              MainViewModel.Current.Save();
 
                               MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
+
+                              await chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
                            };
                         };
                      };
@@ -154,9 +158,10 @@ public class ClientViewModel : BaseViewModel
                      };
                      break;
 
-                  case "getspooler":
+                  case "get_interventions":
                      {
-                        //MainViewModel.Current.SetSpoolerList(data.Data);
+                        MainViewModel.Current.SetInterventions(data.Data);
+                        MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Interventions);
                      };
                      break;
 
@@ -214,12 +219,12 @@ public class ClientViewModel : BaseViewModel
 
    public async void GetStats()
    {
-      await chatClient.SendDataToServer("GetStats", new BeginEnd());
+      await chatClient.SendDataToServer("GetStats", new QueryParams());
    }
 
    public async void GetStats(DateTime begin, DateTime end)
    {
-      await chatClient.SendDataToServer("GetStats", new BeginEnd { Begin = begin, End = end });
+      await chatClient.SendDataToServer("GetStats", new QueryParams { Begin = begin, End = end });
    }
 
    public async void ClearSpooler()

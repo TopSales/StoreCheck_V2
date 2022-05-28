@@ -8,7 +8,24 @@ public partial class MainPage : ContentPage
 {
    public MainPage()
    {
+      Title = "";
+      NavigationPage.SetHasNavigationBar(this, false);
+
       InitializeComponent();
+   }
+
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+
+   protected override void OnAppearing()
+   {
+      base.OnAppearing();
+
+      try
+      {
+         MainViewModel.Current.Load();
+         MainViewModel.Current.LoadLocalDB();
+      }
+      catch { };
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -

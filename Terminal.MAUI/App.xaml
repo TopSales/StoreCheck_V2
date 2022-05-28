@@ -1,14 +1,21 @@
 ﻿<?xml version = "1.0" encoding = "UTF-8" ?>
-<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:StoreCheck"
-             x:Class="StoreCheck.App">
-    <Application.Resources>
-        <ResourceDictionary>
+<Application 
+   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:local="clr-namespace:StoreCheck"
+   x:Class="StoreCheck.App">
+
+   <Application.Resources>
+      <ResourceDictionary>
+         <!--https://github.com/dotnet/maui/pull/5811-->         
+         <DataTemplate x:Key="MauiAppTitleBarTemplate">
+            <Grid HeightRequest="0"/>
+         </DataTemplate>
+
          <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Application.Resources>
+            <ResourceDictionary Source="Resources/Colors.xaml" />
+            <ResourceDictionary Source="Resources/Styles.xaml" />
+         </ResourceDictionary.MergedDictionaries>
+      </ResourceDictionary>
+   </Application.Resources>
 </Application>

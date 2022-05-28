@@ -15,50 +15,57 @@ public partial class EntryPage : ContentPage
       Title = "entry";
    }
 
-   protected override void OnAppearing()
+   protected override async void OnAppearing()
    {
       base.OnAppearing();
 
       ClientViewModel.Current.Connect();
 
-      DoIt.Delay(200, () =>
+      if (MainViewModel.Current.Config.FKUser > 0)
       {
-         bool isOK = true;
-
-         if (ClientViewModel.Current.IsConnected())
+         await Navigation.PushModalAsync(new StoreListPage());
+      }
+      else
+      {
+         DoIt.Delay(200, () =>
          {
-            try
-            {
-               ClientViewModel.Current.Entry(MainViewModel.Current.DeviceID);
+            bool isOK = true;
 
-               isOK = true;
+            if (ClientViewModel.Current.IsConnected())
+            {
+               try
+               {
+                  ClientViewModel.Current.Entry(MainViewModel.Current.DeviceID);
+
+                  isOK = true;
+               }
+               catch
+               {
+                  isOK = false;
+               };
             }
-            catch
+            else
             {
                isOK = false;
             };
-         }
-         else
-         {
-            isOK = false;
-         };
 
-         if (isOK)
-         {
-            DoIt.OnMainThread(() =>
+            if (isOK)
             {
-               MainViewModel.Current.EntryMsg = "ID send ...";
-            });
-         }
-         else
-         {
-            DoIt.OnMainThread(() =>
+               DoIt.OnMainThread(() =>
+               {
+                  MainViewModel.Current.EntryMsg = "ID send ...";
+               });
+            }
+            else
             {
-               DisplayAlert("Error", "Not connected to server!", "ok");
-               MainViewModel.Current.EntryMsg = "Not connected to server!";
-            });
-         };
-      });
+               DoIt.OnMainThread(() =>
+               {
+                  DisplayAlert("Error", "Could not connect to the server!", "ok");
+                  MainViewModel.Current.EntryMsg = "Could not connect to the server!";
+               });
+            };
+         });
+      };
    }
 
    private async void btnBack_Clicked(object sender, EventArgs e)

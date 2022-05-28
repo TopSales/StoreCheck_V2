@@ -4,6 +4,9 @@ public partial class TopSalesPage : ContentPage
 {
    public TopSalesPage()
    {
+      Title = "";
+      NavigationPage.SetHasNavigationBar(this, false);
+
       InitializeComponent();
    }
 

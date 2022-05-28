@@ -95,7 +95,7 @@ public partial class EANPage : ContentPage
       {
          DoIt.OnMainThread(() =>
          {
-            if (!btnBack.IsFocused)
+            //ToDo: if (!headerContent.btnBack.IsFocused)
             {
                entryInput.CursorPosition = 0;
                entryInput.SelectionLength = (entryInput.Text == null ? 0 : entryInput.Text.Length);
