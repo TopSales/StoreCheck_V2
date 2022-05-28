@@ -51,7 +51,8 @@ public class MainViewModel : BaseViewModel
 
       // - - -  - - - 
 
-      AuditTrailViewModel.Current.Init(new FileAuditTrailWriter(DataPath + AppTitle + ".AuditTrail.txt"));
+      //AuditTrailViewModel.Current.Init(new FileAuditTrailWriter(DataPath + AppTitle + ".AuditTrail.txt"));
+      AuditTrailViewModel.Current.Init(new JSONAuditTrailWriter(DataPath + AppTitle + ".AuditTrail.JSON", JSONAuditTrailWriter.FileTypes.PartialJSON));
       AuditTrailViewModel.Current.Application = "SCServ";
       AuditTrailViewModel.Current.Clean();
 
