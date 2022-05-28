@@ -117,6 +117,7 @@ public class ClientViewModel : BaseViewModel
                               MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
 
                               await chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                              await chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
                            };
                         };
                      };
@@ -165,9 +166,10 @@ public class ClientViewModel : BaseViewModel
                      };
                      break;
 
-                  case "getstats":
+                  case "get_stores":
                      {
-                        //MainViewModel.Current.SetStats(data.Data);
+                        MainViewModel.Current.SetStores(data.Data);
+                        MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Stores);
                      };
                      break;
                };

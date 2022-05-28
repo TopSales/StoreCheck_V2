@@ -32,7 +32,14 @@ public partial class MainPage : ContentPage
 
    private async void btnStart_Clicked(object sender, EventArgs e)
    {
-      await Navigation.PushModalAsync(new EntryPage());
+      if (MainViewModel.Current.Config.FKUser > 0)
+      {
+         await Navigation.PushModalAsync(new StoreListPage());
+      }
+      else
+      {
+         await Navigation.PushModalAsync(new EntryPage());
+      };
    }
 
    private void btnStop_Clicked(object sender, EventArgs e)

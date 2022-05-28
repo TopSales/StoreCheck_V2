@@ -1,11 +1,61 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StoreCheck.Pages.StoreListPage"
-             Title="StoreListPage">
-    <StackLayout>
-        <Label Text="Welcome to .NET MAUI!"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" />
-    </StackLayout>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:views="clr-namespace:StoreCheck.Pages"   
+   x:Class="StoreCheck.Pages.StoreListPage"
+   Title="stores">
+
+   <Grid RowDefinitions="74,*,auto">
+
+      <views:HeaderContent Grid.Row="0" />
+
+      <ListView x:Name="listView" Grid.Row="1"
+         Margin="10" SeparatorVisibility="None"  RowHeight="{StaticResource ListRowHeight}"
+         ItemSelected="listView_ItemSelected" SelectionMode="Single" 
+         IsPullToRefreshEnabled="True" Refreshing="listView_Refreshing"  >
+
+         <ListView.ItemTemplate>
+            <DataTemplate>
+               <ViewCell>
+                  <Grid RowSpacing="0" Padding="0">
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource ColWidth}"/>
+                        <ColumnDefinition Width="*"/>
+                     </Grid.ColumnDefinitions>
+
+                     <Grid.RowDefinitions>
+                        <RowDefinition Height="{StaticResource RowHeight}"/>
+                        <RowDefinition Height="{StaticResource RowHeight}"/>
+                        <RowDefinition Height="{StaticResource RowHeight}"/>
+                        <RowDefinition Height="5"/>
+                     </Grid.RowDefinitions>
+
+                     <Grid Grid.RowSpan="3" Margin="0,5,0,0" BackgroundColor="{Binding BackgroundColor}">
+                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                           <Label Text="{Binding Dist, StringFormat='{0:F2}'}" FontAttributes="Bold"  FontSize="Caption" HorizontalTextAlignment="Center" />
+                           <Label Text="km" FontAttributes="Bold" FontSize="Caption" HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                     </Grid>
+
+                     <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal" VerticalOptions="End">
+                        <Label Text="{Binding Mag.StoreName}" FontAttributes="Bold" FontSize="Subtitle" LineBreakMode="NoWrap" />
+                     </StackLayout>
+
+                     <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal" VerticalOptions="Start">
+                        <Label Text="{Binding Mag.City}" FontAttributes="Bold" FontSize="Subtitle" LineBreakMode="NoWrap" />
+                     </StackLayout>
+
+                     <StackLayout Grid.Column="1" Grid.Row="2" Orientation="Horizontal" VerticalOptions="Start">
+                        <Label Text="{Binding Mag.Address}" FontSize="Subtitle" LineBreakMode="NoWrap" />
+                     </StackLayout>
+
+                     <BoxView Grid.ColumnSpan="2" Grid.Row="3" Margin="0,4,0,0" BackgroundColor="DarkGray" />
+                  </Grid>
+               </ViewCell>
+            </DataTemplate>
+         </ListView.ItemTemplate>
+      </ListView>
+
+   </Grid>
 </ContentPage>

@@ -163,6 +163,7 @@
       <Link>ViewModels\SmarterASPViewModel.cs</Link>
     </Compile>
     <Compile Include="Modeles\Params.cs" />
+    <Compile Include="ViewModels\MainViewModel_Stores.cs" />
     <Compile Include="ViewModels\MainViewModel_Interventions.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ServerViewModel.cs" />

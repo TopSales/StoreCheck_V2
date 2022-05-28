@@ -45,11 +45,11 @@ public partial class MainViewModel : BaseViewModel
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
    public string DataFolder { get; private set; }
-
+   public bool IsInternetAccessAvailable { get; internal set; }
 
    public MainViewModel()
    {
-      DataFolder = FileSystem.AppDataDirectory;
+      DataFolder = FileSystem.AppDataDirectory + @"\";
 
       System.Diagnostics.Debug.WriteLine($"Data: {DataFolder}");
 
@@ -109,19 +109,25 @@ public partial class MainViewModel : BaseViewModel
 
       #endregion
 
+
+      #region - - - Stores - - -
+
+      DoIt.OnMainThread(() =>
+      {
+         BackboneViewModel.Current.BusySubTitle = $"Load Stores ...";
+      });
+      var m = System.Text.Json.JsonSerializer.Deserialize<Store_CE[]>(LoadJson("Stores"));
+      if (m != null) MainViewModel.Current.SetLocalStores(m.ToList());
+
+      #endregion
+
+
       //DoIt.OnMainThread(() =>
       //{
       //   BackboneViewModel.Current.BusySubTitle = $"Load Documents ...";
       //});
       //var d = System.Text.Json.JsonSerializer.Deserialize<Document_CE[]>(LoadJson("Documents"));
       //if (d != null) MainViewModel.Current.SetLocalDocuments(d.ToList());
-
-      //DoIt.OnMainThread(() =>
-      //{
-      //   BackboneViewModel.Current.BusySubTitle = $"Load Stores ...";
-      //});
-      //var m = System.Text.Json.JsonSerializer.Deserialize<Store_CE[]>(LoadJson("Stores"));
-      //if (m != null) MainViewModel.Current.SetLocalStores(m.ToList());
 
       //DoIt.OnMainThread(() =>
       //{
@@ -171,7 +177,8 @@ public partial class MainViewModel : BaseViewModel
       }
 
       if (saveDBRange == DBRange.all || saveDBRange == DBRange.Interventions) SaveListe("Interventions", Interventions);
-      //if (saveDBRange == DBRange.all || saveDBRange == DBRange.Stores) SaveListe("Stores", Stores);
+      if (saveDBRange == DBRange.all || saveDBRange == DBRange.Stores) SaveListe("Stores", Stores);
+
       //if (saveDBRange == DBRange.all || saveDBRange == DBRange.Documents) SaveListe("Documents", Documents);
       ////ToDo: if (saveDBRange == DBRange.all || saveDBRange == DBRange.Articles) SaveListe("ArticlesEAN", ArticlesEAN);
       //if (saveDBRange == DBRange.all || saveDBRange == DBRange.Articles) SaveListe("Articles", Articles);

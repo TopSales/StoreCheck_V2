@@ -206,6 +206,16 @@ public class ServerViewModel : BaseViewModel
                      };
                      break;
 
+                  case "get_stores":
+                     {
+                        QueryParams qp = Newtonsoft.Json.JsonConvert.DeserializeObject<QueryParams>(data.Data);
+
+                        var list = MainViewModel.Current.GetStores(qp.Begin);
+
+                        await ChatServer.Current.SendDataToClient(tcpClient, "get_stores", list);
+                     };
+                     break;
+
                   case "clearspooler":
                      {
                         //DB_SQL.QuickQuery("delete from Spooler");
@@ -215,31 +225,6 @@ public class ServerViewModel : BaseViewModel
                      };
                      break;
 
-                  case "getstats":
-                     {
-                        //                        BeginEnd be = Newtonsoft.Json.JsonConvert.DeserializeObject<BeginEnd>(data.Data);
-
-                        //                        //ToDo GetStats DateTime begin, DateTime end
-
-                        //                        //string SQL = $@"select * from Stats where CreatedOn>={DB_SQL.DateTimeToSQL(be.Begin)} and CreatedOn<={DB_SQL.DateTimeToSQL(be.End)}";
-                        //                        //var list = DB_SQL.Query<Spooler>(SQL);
-
-                        //                        var SQL = $@"
-                        //select 
-                        //   *, 
-                        //   json_extract(Description, '$.Company') as Company,
-                        //   json_extract(Description, '$.Carrier') as Carrier, 
-                        //   json_extract(Description, '$.TypeOfMerchandise') as TypeOfMerchandise 
-                        //from Stats
-                        //where json_valid(Description) and CreatedOn>={DB_SQL.DateTimeToSQL(be.Begin)} and CreatedOn<={DB_SQL.DateTimeToSQL(be.End)}
-                        //order by FirstCall
-                        //";
-
-                        //                        var list = DB_SQL.QuickQueryView( SQL) as DataTable;
-
-                        //                        await ChatServer.Current.SendDataToClient(tcpClient, "getstats", list);
-                     };
-                     break;
                };
 
                //AddMessage(message);

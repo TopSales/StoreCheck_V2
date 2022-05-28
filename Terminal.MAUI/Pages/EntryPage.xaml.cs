@@ -23,7 +23,7 @@ public partial class EntryPage : ContentPage
 
       if (MainViewModel.Current.Config.FKUser > 0)
       {
-         await Navigation.PushModalAsync(new StoreListPage());
+         await Navigation.PopModalAsync(); 
       }
       else
       {
