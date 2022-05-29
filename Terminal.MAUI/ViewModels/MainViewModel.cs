@@ -116,8 +116,16 @@ public partial class MainViewModel : BaseViewModel
       {
          BackboneViewModel.Current.BusySubTitle = $"Load Stores ...";
       });
-      var m = System.Text.Json.JsonSerializer.Deserialize<Store_CE[]>(LoadJson("Stores"));
-      if (m != null) MainViewModel.Current.SetLocalStores(m.ToList());
+
+      try
+      {
+         var m = System.Text.Json.JsonSerializer.Deserialize<Store_CE[]>(LoadJson("Stores"));
+         if (m != null) MainViewModel.Current.SetLocalStores(m.ToList());
+      }
+      catch (Exception ex)
+      {
+         Log.Write(new AuditTrail(ex));
+      };
 
       #endregion
 

@@ -210,7 +210,8 @@ public partial class StoreListPage : ContentPage
    };
 
    enum Filters { past, todo, all }
-   Filters Filter { get; set; } = Filters.todo;
+   //ToDo: Filters Filter { get; set; } = Filters.todo;
+   Filters Filter { get; set; } = Filters.all;
 
    enum Orders { byDistance, byZone, byCP }
    Orders Order { get; set; } = Orders.byDistance;

@@ -106,6 +106,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\Apps\TestSQLite-Maui\ZPF_DBSQL\ZPF_DBSQL.csproj" />
 	  <ProjectReference Include="..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper6.csproj" />
+	  <ProjectReference Include="..\ZPF_MAUITools\ZPF_MAUITools.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
