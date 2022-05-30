@@ -15,7 +15,7 @@
          //    base.WidthRequest = base.Height;
          //}
 
-         int fontSize = (int)(Device.RuntimePlatform == Device.WPF ? 128 : FontSize);
+         int fontSize = (int)FontSize;
 
          //base.ImageSourceChecked = ZPF.XF.Compos.SkiaHelperXF.SkiaFontIcon(ZPF.Fonts.IF.CircledCheckBox_01, fontSize, TextColor);
          //base.ImageSourceUnchecked = ZPF.XF.Compos.SkiaHelperXF.SkiaFontIcon(ZPF.Fonts.IF.Circle_01, fontSize, TextColor);

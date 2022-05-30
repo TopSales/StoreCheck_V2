@@ -100,7 +100,7 @@ public partial class StoreListPage_Test : PageEx
          {
             var l = new Label
             {
-               Text = T("sort by"),
+               Text = "sort by",
                FontAttributes = FontAttributes.Bold,
                FontSize = 20,
                TextColor = ColorViewModel.Current.TextColor,

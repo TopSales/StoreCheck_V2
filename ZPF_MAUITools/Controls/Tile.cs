@@ -9,6 +9,7 @@ namespace ZPF.XF.Compos
     public class Tile : Button
     {
         public string IconChar { get; internal set; }
+        public Microsoft.Maui.Graphics.Color IconColor { get; internal set; }
     }
 #else
     public class Tile : Grid

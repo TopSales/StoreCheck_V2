@@ -94,11 +94,11 @@ namespace ZPF.XF.Compos
 
                 Double sWidth = -1;
 
-                //sWidth = ZPF.XF.Basics.Current.Display.Width;
-                //Double sHeight = ZPF.XF.Basics.Current.Display.Height;
-                //Double scale = ZPF.XF.Basics.Current.Display.Scale;
+                //sWidth = DeviceDisplay.MainDisplayInfo.Width;
+                //Double sHeight = DeviceDisplay.MainDisplayInfo.Height;
+                //Double scale = DeviceDisplay.MainDisplayInfo.Scale;
 
-                sWidth = DeviceDisplay.Current.MainDisplayInfo.Width;
+                sWidth = DeviceDisplay.MainDisplayInfo.Width;
                 Double sHeight = DeviceDisplay.Current.MainDisplayInfo.Height;
                 Double scale = 1;
 
