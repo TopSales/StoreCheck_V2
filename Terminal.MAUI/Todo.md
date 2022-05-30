@@ -1,7 +1,8 @@
 
 # ToDo
 
-  * Test de com
+  * Entry: Relance de com 
+  * Entry: Hello Mr --> navigation
 
 # NiceToHave
   * Header: TopSales: About ...
