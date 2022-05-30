@@ -45,7 +45,17 @@ public partial class MainViewModel : BaseViewModel
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
    public string DataFolder { get; private set; }
-   public bool IsInternetAccessAvailable { get; internal set; }
+
+   public bool IsInternetAccessAvailable 
+   { 
+      get
+      {
+         NetworkAccess accessType = Connectivity.Current.NetworkAccess;
+
+         // Connection to internet is available
+         return (accessType == NetworkAccess.Internet);
+      } 
+   }
 
    public MainViewModel()
    {

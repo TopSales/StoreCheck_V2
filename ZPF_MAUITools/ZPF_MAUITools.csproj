@@ -58,6 +58,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Include="..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPFFonts.cs" Link="ToDo\ZPFFonts.cs" />
 	  <Compile Include="..\..\..\_Units_\CS.Converter\ColorConverter.cs" Link="Converter\ColorConverter.cs" />
 	  <Compile Include="..\..\..\_Units_\CS.Converter\DateTimeToStringConverter.cs" Link="Converter\DateTimeToStringConverter.cs" />
 	  <Compile Include="..\..\..\_Units_\CS.Converter\IIFConverter.cs" Link="Converter\IIFConverter.cs" />

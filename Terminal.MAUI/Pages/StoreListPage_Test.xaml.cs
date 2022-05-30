@@ -18,18 +18,18 @@ public partial class StoreListPage_Test : PageEx
       // - - -  - - - 
 
       var tiles = SetAppBarContent(new List<AppBarItem>(new AppBarItem[]
-    {
-                  new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Tools_02), "sort/filter"),
-                  new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Reload), "sync"),
-                  new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Delete), "cancel"),
-    }), new GridLength(85, GridUnitType.Absolute));
+      {
+         new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Tools_02), "sort/filter"),
+         new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Reload), "sync"),
+         new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Exit_03), "exit"),
+      }), new GridLength(85, GridUnitType.Absolute));
 
       tiles[0].FontSize = 16;
       tiles[0].Clicked += async (object sender, System.EventArgs e) =>
       {
-               //var st = await MDDlgOnTop("#To be done ...\n * passé / en cours / futures\n * filtrable / triable");
+         //var st = await MDDlgOnTop("#To be done ...\n * passé / en cours / futures\n * filtrable / triable");
 
-               #region - - - Régénération - - -
+         #region - - - Régénération - - -
 
          var _Filter = Filter;
          var _Order = Order;
@@ -50,50 +50,50 @@ public partial class StoreListPage_Test : PageEx
          };
 
          {
-            //var rb = new ZPF.XF.Compos.RadioButton
-            //{
-            //   Text = "all",
-            //   FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-            //   Checked = Filter == Filters.all,
-            //   TextColor = ColorViewModel.Current.TextColor,
-            //};
-            //rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-            //{
-            //   Filter = (rb.Checked ? Filters.all : Filter);
-            //};
+            var rb = new ZPF.XF.Compos.RadioButton
+            {
+               Text = "all",
+               FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+               Checked = Filter == Filters.all,
+               TextColor = ColorViewModel.Current.TextColor,
+            };
+            rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+            {
+               Filter = (rb.Checked ? Filters.all : Filter);
+            };
 
-            //s.Children.Add(rb);
+            s.Children.Add(rb);
          };
 
          {
-            //var rb = new ZPF.XF.Compos.RadioButton
-            //{
-            //   Text = "already visited",
-            //   FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-            //   Checked = Filter == Filters.past,
-            //   TextColor = ColorViewModel.Current.TextColor,
-            //};
-            //rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-            //{
-            //   Filter = (rb.Checked ? Filters.past : Filter);
-            //};
+            var rb = new ZPF.XF.Compos.RadioButton
+            {
+               Text = "already visited",
+               FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+               Checked = Filter == Filters.past,
+               TextColor = ColorViewModel.Current.TextColor,
+            };
+            rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+            {
+               Filter = (rb.Checked ? Filters.past : Filter);
+            };
 
-            //s.Children.Add(rb);
+            s.Children.Add(rb);
          };
 
          {
-            //var rb = new ZPF.XF.Compos.RadioButton
-            //{
-            //   Text = "to do",
-            //   FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-            //   Checked = Filter == Filters.todo,
-            //   TextColor = ColorViewModel.Current.TextColor,
-            //};
-            //rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-            //{
-            //   Filter = (rb.Checked ? Filters.todo : Filter);
-            //};
-            //s.Children.Add(rb);
+            var rb = new ZPF.XF.Compos.RadioButton
+            {
+               Text = "to do",
+               FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+               Checked = Filter == Filters.todo,
+               TextColor = ColorViewModel.Current.TextColor,
+            };
+            rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+            {
+               Filter = (rb.Checked ? Filters.todo : Filter);
+            };
+            s.Children.Add(rb);
          };
 
 
@@ -110,34 +110,34 @@ public partial class StoreListPage_Test : PageEx
          };
 
          {
-            //var rb = new ZPF.XF.Compos.RadioButton
-            //{
-            //   Text = T("by distance"),
-            //   FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-            //   Checked = Order == Orders.byDistance,
-            //   TextColor = ColorViewModel.Current.TextColor,
-            //};
-            //rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-            //{
-            //   Order = (rb.Checked ? Orders.byDistance : Order);
-            //};
+            var rb = new ZPF.XF.Compos.RadioButton
+            {
+               Text = "by distance",
+               FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+               Checked = Order == Orders.byDistance,
+               TextColor = ColorViewModel.Current.TextColor,
+            };
+            rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+            {
+               Order = (rb.Checked ? Orders.byDistance : Order);
+            };
 
-            //s.Children.Add(rb);
+            s.Children.Add(rb);
          };
 
          {
-            //var rb = new ZPF.XF.Compos.RadioButton
-            //{
-            //   Text = T("by zone"),
-            //   FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-            //   Checked = Order == Orders.byCP,
-            //   TextColor = ColorViewModel.Current.TextColor,
-            //};
-            //rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-            //{
-            //   Order = (rb.Checked ? Orders.byZone : Order);
-            //};
-            //s.Children.Add(rb);
+            var rb = new ZPF.XF.Compos.RadioButton
+            {
+               Text = "by zone",
+               FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+               Checked = Order == Orders.byCP,
+               TextColor = ColorViewModel.Current.TextColor,
+            };
+            rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+            {
+               Order = (rb.Checked ? Orders.byZone : Order);
+            };
+            s.Children.Add(rb);
          };
 
          {
@@ -167,7 +167,7 @@ public partial class StoreListPage_Test : PageEx
             Order = _Order;
          };
 
-               #endregion
+         #endregion
       };
 
       tiles[1].FontSize = 16;
@@ -179,7 +179,7 @@ public partial class StoreListPage_Test : PageEx
       tiles[2].FontSize = 16;
       tiles[2].Clicked += async (object sender, System.EventArgs e) =>
       {
-         await Navigation.PopAsync();
+         await Navigation.PopModalAsync();
       };
 
       listView.SetBinding(ListView.ItemsSourceProperty, new Binding("listIMD", BindingMode.TwoWay, source: this));
@@ -374,7 +374,7 @@ public partial class StoreListPage_Test : PageEx
 
    private async void listView_Refreshing(object sender, System.EventArgs e)
    {
-      if (string.IsNullOrEmpty(MainViewModel.Current.Config.Login))
+      if (MainViewModel.Current.Config.FKUser < 0)
       {
       }
       else
@@ -382,7 +382,9 @@ public partial class StoreListPage_Test : PageEx
          if (MainViewModel.Current.IsInternetAccessAvailable)
          {
             BackboneViewModel.Current.IncBusy();
-            //ToDo: await SyncViewModel.Current.SyncDataWithWeb(MainViewModel.Current.Config.Login);
+
+            ClientViewModel.Current.Entry(MainViewModel.Current.DeviceID);
+
             BackboneViewModel.Current.DecBusy();
 
             listView.IsRefreshing = false;

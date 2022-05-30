@@ -111,7 +111,9 @@ public class ClientViewModel : BaseViewModel
                            {
                               AuditTrailViewModel.Current.TerminalID = u.TerminalID;
                               AuditTrailViewModel.Current.FKUser = u.PK.ToString();
+
                               MainViewModel.Current.Config.FKUser = u.PK;
+                              MainViewModel.Current.Config.Login = u.Login;
                               MainViewModel.Current.Save();
 
                               MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";

@@ -36,7 +36,7 @@
          }
          else
          {
-            IList<View> children = null;
+            IList<IView> children = null;
 
             if (Parent is StackLayout)
             {

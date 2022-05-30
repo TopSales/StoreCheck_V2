@@ -8,9 +8,26 @@ namespace ZPF.XF.Compos
 #if true
     public class Tile : Button
     {
-        public string IconChar { get; internal set; }
-        public Microsoft.Maui.Graphics.Color IconColor { get; internal set; }
+        public string IconChar
+        {
+            set
+            {
+                var fis = new FontImageSource()
+                {
+                    Glyph = value,
+                    FontFamily = "IconFont",
+                    Size = 48,
+                };
+
+                ImageSource = fis;
+            }
+        }
+
+
+        public Microsoft.Maui.Graphics.Color IconColor { get; set; }
     }
+
+
 #else
     public class Tile : Grid
     {
