@@ -204,7 +204,7 @@ namespace ZPF.XF.Compos
             {
                 BackgroundColor =
                   (ColorViewModel.Current.ColorMode == ColorViewModel.ColorModes.Light ?
-                  Microsoft.Maui.Graphics.Color.FromHex("8000") : Microsoft.Maui.Graphics.Color.FromHex("A000")),
+                  Microsoft.Maui.Graphics.Color.FromArgb("8000") : Microsoft.Maui.Graphics.Color.FromArgb("A000")),
                 Padding = 60,
             };
 
@@ -225,7 +225,7 @@ namespace ZPF.XF.Compos
 
             var bv = new BoxView
             {
-                BackgroundColor = Microsoft.Maui.Graphics.Color.FromHex(OuterBackgroundColor),
+                BackgroundColor = Microsoft.Maui.Graphics.Color.FromArgb(OuterBackgroundColor),
                 CornerRadius = 20,
             };
 
@@ -237,7 +237,7 @@ namespace ZPF.XF.Compos
             var bvC = new BoxView
             {
                 BackgroundColor = (ColorViewModel.Current.ColorMode == ColorViewModel.ColorModes.Light ?
-                  Microsoft.Maui.Graphics.Color.FromHex(DarkInnerBackgroundColor) : Microsoft.Maui.Graphics.Color.FromHex(LightInnerBackgroundColor)),
+                  Microsoft.Maui.Graphics.Color.FromArgb(DarkInnerBackgroundColor) : Microsoft.Maui.Graphics.Color.FromArgb(LightInnerBackgroundColor)),
                 Margin = new Thickness(15, 15, 15, 0),
                 CornerRadius = 5,
             };

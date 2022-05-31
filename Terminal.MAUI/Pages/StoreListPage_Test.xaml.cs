@@ -56,6 +56,8 @@ public partial class StoreListPage_Test : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Filter == Filters.all,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions= LayoutOptions.Start,
+               Margin=new Thickness(100,0,0,0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
@@ -72,6 +74,8 @@ public partial class StoreListPage_Test : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Filter == Filters.past,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions = LayoutOptions.Start,
+               Margin = new Thickness(100, 0, 0, 0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
@@ -88,6 +92,8 @@ public partial class StoreListPage_Test : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Filter == Filters.todo,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions = LayoutOptions.Start,
+               Margin = new Thickness(100, 0, 0, 0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
@@ -116,6 +122,8 @@ public partial class StoreListPage_Test : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Order == Orders.byDistance,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions = LayoutOptions.Start,
+               Margin = new Thickness(100, 0, 0, 0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
@@ -132,6 +140,8 @@ public partial class StoreListPage_Test : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Order == Orders.byCP,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions = LayoutOptions.Start,
+               Margin = new Thickness(100, 0, 0, 0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
@@ -147,6 +157,8 @@ public partial class StoreListPage_Test : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Order == Orders.byCP,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions = LayoutOptions.Start,
+               Margin = new Thickness(100, 0, 0, 0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
