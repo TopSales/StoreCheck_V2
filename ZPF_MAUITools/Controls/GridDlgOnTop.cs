@@ -113,8 +113,8 @@ namespace ZPF.XF.Compos
 
             //g.Add(bv, 0, 1, 0, 3);
             g.Add(bv, 0, 0);
-            Grid.SetColumnSpan( bv, 2);
-            Grid.SetRowSpan( bv, 3);
+            Grid.SetColumnSpan(bv, 2);
+            Grid.SetRowSpan(bv, 3);
 
             var bvC = new BoxView
             {
@@ -290,7 +290,7 @@ namespace ZPF.XF.Compos
             double hMargin = DeviceDisplay.MainDisplayInfo.Width / 10;
             double vMargin = DeviceDisplay.MainDisplayInfo.Height / 10;
 
-            if (Device.Idiom == TargetIdiom.Desktop)
+            if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
             {
                 hMargin = DeviceDisplay.MainDisplayInfo.Width / 5;
             };
@@ -313,7 +313,7 @@ namespace ZPF.XF.Compos
                 //};
             };
 
-            if (Device.Idiom == TargetIdiom.Phone)
+            if (DeviceInfo.Idiom == DeviceIdiom.Phone)
             {
                 switch (marginWidth)
                 {
@@ -383,7 +383,7 @@ namespace ZPF.XF.Compos
                         {
                             RemoveFromTop(mainGrid);
 
-                       // https://github.com/ZeProgFactory/StoreCheck/issues/107
+                            // https://github.com/ZeProgFactory/StoreCheck/issues/107
                             try
                             {
                                 Is_MDDlgOnTop_Terminated.SetResult(i.Text);
