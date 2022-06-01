@@ -1,15 +1,98 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
+<ZPF:PageEx  
    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-   xmlns:views="clr-namespace:StoreCheck.Pages"   
+   xmlns:views="clr-namespace:StoreCheck.Views"   
+   xmlns:ZPFConv="clr-namespace:ZPF.Conv;assembly=ZPF_MAUITools"
+   xmlns:ZPF="clr-namespace:ZPF.XF.Compos;assembly=ZPF_MAUITools"   
    x:Class="StoreCheck.Pages.StorePage"
    Title="StorePage">
 
-   <Grid RowDefinitions="74,*,auto">
+   <ContentPage.Resources>
+      <ResourceDictionary>
+         <ZPFConv:ToVisibilityConverter x:Key="ToVisibility" />
+         <ZPFConv:ToColorConverter x:Key="ToColor" />
 
-      <views:HeaderContent Grid.Row="0" />
+         <OnPlatform x:Key="ListRowHeight" x:TypeArguments="x:Int32">
+            <On Platform="Android">54</On>
+            <On Platform="UWP">58</On>
+         </OnPlatform>
 
-   </Grid>
+         <!--<OnPlatform x:Key="ColWidth" x:TypeArguments="GridLength">
+            <On Platform="Android">52</On>
+            <On Platform="UWP">56</On>
+         </OnPlatform>
+
+         <OnPlatform x:Key="RowHeight" x:TypeArguments="GridLength">
+            <On Platform="Android">52</On>
+            <On Platform="UWP">56</On>
+         </OnPlatform>-->
+      </ResourceDictionary>
+   </ContentPage.Resources>
+
    
-</ContentPage>
+   <ZPF:PageEx.MainContent>
+
+      <Grid>
+         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+         </Grid.RowDefinitions>
+
+         <views:StoreView />
+
+         <!--<Grid Grid.Row="1" Margin="20,15,20,10" HeightRequest="50" >
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ZPFXF:Tile Grid.Column="0" IconChar="{x:Static fonts:IF.Contacts_Directory_01}" Text="infos" CornerRadius="10" Clicked="infosClicked" />
+            <ZPFXF:Tile Grid.Column="1" IconChar="{x:Static fonts:IF.Road_Right_Curve}" Text="navi" CornerRadius="10" Clicked="naviClicked" />
+         </Grid>-->
+
+         <BoxView Grid.Row="2" Margin="20,5,20,10" CornerRadius="10" />
+         <ListView x:Name="listView" Grid.Row="2" Margin="30,20,30,15"  RowHeight="{StaticResource ListRowHeight}"
+                   ItemSelected="listView_ItemSelected" >
+            <ListView.ItemTemplate>
+               <DataTemplate>
+                  <ViewCell>
+                     <Grid>
+                        <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="{StaticResource ColWidth}"/>
+                           <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                           <RowDefinition Height="{StaticResource RowHeight}"/>
+                           <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+
+                        <Grid Margin="5,5,0,0" BackgroundColor="{Binding BackgroundColor, Converter={StaticResource ToColor}}" Padding="0">
+                           <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Padding="0">
+                              <Label Text="{Binding DatePrevue, StringFormat='{0:dd/MM}'}" FontAttributes="Bold"  FontSize="Caption"
+                                    TranslationY="2" HorizontalTextAlignment="Center" VerticalTextAlignment="End"
+                                     IsVisible="{Binding DatePrevue, Converter={StaticResource ToVisibility}}" />
+                              <Label Text="{Binding DatePrevue, StringFormat='{0:yyyy}'}" FontAttributes="Bold"  FontSize="Caption" 
+                                    TranslationY="-4" HorizontalTextAlignment="Center" VerticalTextAlignment="Start"
+                                     IsVisible="{Binding DatePrevue, Converter={StaticResource ToVisibility}}" />
+                           </StackLayout>
+                        </Grid>
+
+                        <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                           <Label Text="{Binding Customer}" FontSize="Subtitle" VerticalTextAlignment="Center" />
+                           <Label Text="{Binding Action}" FontSize="Subtitle" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                        </StackLayout>
+
+                        <BoxView Grid.ColumnSpan="2" Grid.Row="1"  BackgroundColor="DarkGray" />
+                     </Grid>
+                  </ViewCell>
+               </DataTemplate>
+            </ListView.ItemTemplate>
+
+         </ListView>
+      </Grid>
+
+   </ZPF:PageEx.MainContent>
+
+</ZPF:PageEx>

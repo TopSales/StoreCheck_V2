@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:ZPFConv="clr-namespace:ZPF.Conv;assembly=ZPF_MAUITools"
+   x:Class="StoreCheck.Views.StoreView">
+
+   <ContentView.Resources>
+      <ResourceDictionary>
+         <ZPFConv:ToVisibilityConverter x:Key="ToVisibility" />
+
+         <!--<OnPlatform x:Key="RowHeight" x:TypeArguments="GridLength">
+            <On Platform="Android">19</On>
+            <On Platform="UWP">24</On>
+         </OnPlatform>-->
+         
+      </ResourceDictionary>
+   </ContentView.Resources>
+
+   <ContentView.Content>
+
+      <Frame Grid.Row="0" Margin="20,10,20,0" BorderColor="DarkGray" HasShadow="True" CornerRadius="10" Padding="0" >
+         <Grid >
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+               <RowDefinition Height="35"/>
+               <RowDefinition Height="25"/>
+               <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="lTypeStore" Grid.Column="0" Grid.Row="0"  Grid.RowSpan="3" Margin="0,0,15,0"
+                   Text="" FontSize="70" FontAttributes="Bold" TextColor="CornflowerBlue" Opacity="0.5"
+                   HorizontalTextAlignment="End" VerticalTextAlignment="Center" LineBreakMode="NoWrap" />
+
+            <Label Grid.Column="0" Grid.Row="0" Margin="0,0,5,0" 
+               Text="{Binding SelectedStore.PK}" FontSize="9" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Start"/>
+
+            <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="20,0,20,0" VerticalOptions="End" >
+               <!--<Label Text="{Binding SelectedStore.Enseigne}" FontSize="Subtitle"  LineBreakMode="NoWrap" />-->
+               <Label Text="{Binding SelectedStore.StoreName}" FontAttributes="Bold" FontSize="Subtitle" LineBreakMode="NoWrap" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="0" Grid.Row="1" Orientation="Horizontal" VerticalOptions="Center" Margin="20,0,20,0" >
+               <Label Text="{Binding SelectedStore.PC}" FontSize="Subtitle" />
+               <Label Text="{Binding SelectedStore.City}" FontAttributes="Bold" FontSize="Subtitle"  LineBreakMode="NoWrap" />
+            </StackLayout>
+
+            <StackLayout Grid.Column="0" Grid.Row="2" Orientation="Horizontal" VerticalOptions="Start" Margin="20,0,20,0" >
+               <Label Text="{Binding SelectedStore.Address}" FontSize="Subtitle" LineBreakMode="NoWrap" />
+            </StackLayout>
+
+         </Grid>
+      </Frame>
+
+   </ContentView.Content>
+   
+</ContentView>

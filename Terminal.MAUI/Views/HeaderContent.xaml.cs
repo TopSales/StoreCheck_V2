@@ -1,6 +1,6 @@
 ﻿using ZPF;
 
-namespace StoreCheck.Pages;
+namespace StoreCheck.Views;
 
 public partial class HeaderContent : ContentView
 {

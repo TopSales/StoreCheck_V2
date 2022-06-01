@@ -222,9 +222,8 @@ public partial class StoreListPage_Test : PageEx
    };
 
    enum Filters { past, todo, all }
-   //ToDo: Filters Filter { get; set; } = Filters.todo;
-   Filters Filter { get; set; } = Filters.all;
-
+   Filters Filter { get; set; } = Filters.todo;
+   
    enum Orders { byDistance, byZone, byCP }
    Orders Order { get; set; } = Orders.byDistance;
 
@@ -245,20 +244,20 @@ public partial class StoreListPage_Test : PageEx
 
       Location loc = null;
 
-      //try
-      //{
-      //   loc = await Xamarin.Essentials.Geolocation.GetLastKnownLocationAsync();
-      //}
-      //catch (Exception ex)
-      //{
-      //   var infos = new System.Collections.Generic.Dictionary<string, string>
-      //            {
-      //               { "Exception", ex.Message },
-      //               { "StackTrace", ex.StackTrace }
-      //            };
+      try
+      {
+         loc = await Microsoft.Maui.Devices.Sensors.Geolocation.GetLastKnownLocationAsync();
+      }
+      catch (Exception ex)
+      {
+         //   var infos = new System.Collections.Generic.Dictionary<string, string>
+         //            {
+         //               { "Exception", ex.Message },
+         //               { "StackTrace", ex.StackTrace }
+         //            };
 
-      //   Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Geolocation.GetLastKnownLocationAsync", infos);
-      //};
+         //   Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Geolocation.GetLastKnownLocationAsync", infos);
+      };
 
       if (loc == null)
       {
@@ -268,20 +267,20 @@ public partial class StoreListPage_Test : PageEx
 
          //BackboneViewModel.Current.Silent = false;
 
-         //try
-         //{
-         //   loc = await Xamarin.Essentials.Geolocation.GetLastKnownLocationAsync();
-         //}
-         //catch (Exception ex)
-         //{
-         //   var infos = new System.Collections.Generic.Dictionary<string, string>
-         //         {
-         //            { "Exception", ex.Message },
-         //            { "StackTrace", ex.StackTrace }
-         //         };
+         try
+         {
+            loc = await Microsoft.Maui.Devices.Sensors.Geolocation.GetLastKnownLocationAsync();
+         }
+         catch (Exception ex)
+         {
+            //   var infos = new System.Collections.Generic.Dictionary<string, string>
+            //         {
+            //            { "Exception", ex.Message },
+            //            { "StackTrace", ex.StackTrace }
+            //         };
 
-         //   Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Geolocation.GetLastKnownLocationAsync", infos);
-         //};
+            //   Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Geolocation.GetLastKnownLocationAsync", infos);
+         };
       };
 
       var mags = MainViewModel.Current.Interventions.GroupBy(x => x.FKStore).Select(x => x.FirstOrDefault());
@@ -296,7 +295,7 @@ public partial class StoreListPage_Test : PageEx
                {
                   Inter = i,
                   Mag = m,
-                  //Dist = (loc == null ? 0 : Xamarin.Essentials.Location.CalculateDistance(loc, new Xamarin.Essentials.Location { Latitude = m.Latitude, Longitude = m.Longitude }, Xamarin.Essentials.DistanceUnits.Kilometers)),
+                  Dist = (loc == null || m.Latitude == 0 || m.Longitude== 0 ? 0 : Location.CalculateDistance(loc, new Location { Latitude = m.Latitude, Longitude = m.Longitude }, DistanceUnits.Kilometers)),
                   BackgroundColor = Microsoft.Maui.Graphics.Colors.AntiqueWhite,
                }).ToList();
 
@@ -371,14 +370,18 @@ public partial class StoreListPage_Test : PageEx
 
    private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
    {
-      if (e.SelectedItem != null)
+   }
+
+   private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+   {
+      if (e.Item != null)
       {
-         var i = e.SelectedItem as InterMagDist;
+         var i = e.Item as InterMagDist;
 
          MainViewModel.Current.SelectedStore = i.Mag;
          MainViewModel.Current.SelectedIntervention = i.Inter;
 
-         Navigation.PushAsync(new StorePage());
+         Navigation.PushModalAsync(new StorePage());
 
          OnAppearing_Sema = true;
       };
@@ -413,6 +416,7 @@ public partial class StoreListPage_Test : PageEx
          };
       };
    }
+
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -   
 }

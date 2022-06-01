@@ -3,7 +3,7 @@
    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
    xmlns:fonts="clr-namespace:ZPF.Fonts;assembly=ZPF_MAUITools"
-   x:Class="StoreCheck.Pages.HeaderContent">
+   x:Class="StoreCheck.Views.HeaderContent">
 
    <Grid Margin="0" Padding="0" >
       <Label x:Name="labelVersion" Text="1.23" VerticalOptions="Start" HorizontalOptions="Start" Margin="5,0,0,0" TextColor="Gray" FontSize="12" />
