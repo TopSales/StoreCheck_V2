@@ -1,8 +1,9 @@
 ﻿using ZPF;
+using ZPF.XF.Compos;
 
 namespace StoreCheck.Pages;
 
-public partial class EntryPage : ContentPage
+public partial class EntryPage : PageEx
 {
    public EntryPage()
    {

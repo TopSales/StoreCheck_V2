@@ -30,6 +30,9 @@
       </ResourceDictionary>
    </ContentPage.Resources>
 
+   <ZPF:PageEx.HeaderContent>
+      <views:HeaderContent />
+   </ZPF:PageEx.HeaderContent>
    
    <ZPF:PageEx.MainContent>
 

@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Security.Cryptography.X509Certificates;
 using ZPF;
+using ZPF.XF.Compos;
 
 namespace StoreCheck.Pages;
 
-public partial class StoreListPage : ContentPage
+public partial class StoreListPage : PageEx
 {
    public StoreListPage()
    {
@@ -15,172 +16,196 @@ public partial class StoreListPage : ContentPage
       Title = "stores";
 
       // - - -  - - - 
-      /*
-            var tiles = SetAppBarContent(new List<AppBarItem>(new AppBarItem[]
+
+      var tiles = SetAppBarContent(new List<AppBarItem>(new AppBarItem[]
+      {
+         new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Tools_02), "sort/filter"),
+         new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Reload), "sync"),
+         new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Exit_03), "exit"),
+      }), new GridLength(85, GridUnitType.Absolute));
+
+      tiles[0].FontSize = 16;
+      tiles[0].Clicked += async (object sender, System.EventArgs e) =>
+      {
+         //var st = await MDDlgOnTop("#To be done ...\n * passé / en cours / futures\n * filtrable / triable");
+
+         #region - - - Régénération - - -
+
+         var _Filter = Filter;
+         var _Order = Order;
+
+         var s2 = new StackLayout
+         {
+            Margin = 20,
+         };
+         {
+            var s = new StackLayout
             {
-                  new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Tools_02), "sort/filter"),
-                  new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Reload), "sync"),
-                  new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Delete), "cancel"),
-            }), new GridLength(85, GridUnitType.Absolute));
-
-            tiles[0].FontSize = 16;
-            tiles[0].Clicked += async (object sender, System.EventArgs e) =>
+               Margin = 20,
+            };
             {
-               //var st = await MDDlgOnTop("#To be done ...\n * passé / en cours / futures\n * filtrable / triable");
-
-               #region - - - Régénération - - -
-
-               var _Filter = Filter;
-               var _Order = Order;
-
-               var s = new StackLayout
+               var l = new Label
                {
-                  Margin = 30,
+                  Text = "filter",
+                  FontAttributes = FontAttributes.Bold,
+                  FontSize = 20,
+                  TextColor = ColorViewModel.Current.TextColor,
                };
-               {
-                  var l = new Label
-                  {
-                     Text = "filter",
-                     FontAttributes = FontAttributes.Bold,
-                     FontSize = 20,
-                     TextColor = ColorViewModel.Current.TextColor,
-                  };
-                  s.Children.Add(l);
-               };
-
-               {
-                  var rb = new ZPF.XF.Compos.RadioButton
-                  {
-                     Text = "all",
-                     FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-                     Checked = Filter == Filters.all,
-                     TextColor = ColorViewModel.Current.TextColor,
-                  };
-                  rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-                  {
-                     Filter = (rb.Checked ? Filters.all : Filter);
-                  };
-
-                  s.Children.Add(rb);
-               };
-
-               {
-                  var rb = new ZPF.XF.Compos.RadioButton
-                  {
-                     Text = "already visited",
-                     FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-                     Checked = Filter == Filters.past,
-                     TextColor = ColorViewModel.Current.TextColor,
-                  };
-                  rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-                  {
-                     Filter = (rb.Checked ? Filters.past : Filter);
-                  };
-
-                  s.Children.Add(rb);
-               };
-
-               {
-                  var rb = new ZPF.XF.Compos.RadioButton
-                  {
-                     Text = "to do",
-                     FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-                     Checked = Filter == Filters.todo,
-                     TextColor = ColorViewModel.Current.TextColor,
-                  };
-                  rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-                  {
-                     Filter = (rb.Checked ? Filters.todo : Filter);
-                  };
-                  s.Children.Add(rb);
-               };
-
-
-               {
-                  var l = new Label
-                  {
-                     Text = T("sort by"),
-                     FontAttributes = FontAttributes.Bold,
-                     FontSize = 20,
-                     TextColor = ColorViewModel.Current.TextColor,
-                     Margin = new Thickness(0, 20, 0, 0),
-                  };
-                  s.Children.Add(l);
-               };
-
-               {
-                  var rb = new ZPF.XF.Compos.RadioButton
-                  {
-                     Text = T("by distance"),
-                     FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-                     Checked = Order == Orders.byDistance,
-                     TextColor = ColorViewModel.Current.TextColor,
-                  };
-                  rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-                  {
-                     Order = (rb.Checked ? Orders.byDistance : Order);
-                  };
-
-                  s.Children.Add(rb);
-               };
-
-               {
-                  var rb = new ZPF.XF.Compos.RadioButton
-                  {
-                     Text = T("by zone"),
-                     FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-                     Checked = Order == Orders.byCP,
-                     TextColor = ColorViewModel.Current.TextColor,
-                  };
-                  rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-                  {
-                     Order = (rb.Checked ? Orders.byZone : Order);
-                  };
-                  s.Children.Add(rb);
-               };
-
-               {
-                  var rb = new ZPF.XF.Compos.RadioButton
-                  {
-                     Text = T("by CP"),
-                     FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-                     Checked = Order == Orders.byCP,
-                     TextColor = ColorViewModel.Current.TextColor,
-                  };
-                  rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-                  {
-                     Order = (rb.Checked ? Orders.byCP : Order);
-                  };
-                  s.Children.Add(rb);
-               };
-
-               var Result = await GridDlgOnTop.DlgOnTop(mainGrid, s, GridDlgOnTop.OkCancelTiles());
-
-               if (Result == T("OK"))
-               {
-                  UpdateData();
-               };
-
-               if (Result == T("cancel"))
-               {
-                  Order = _Order;
-               };
-
-               #endregion
+               s.Children.Add(l);
             };
 
-            tiles[1].FontSize = 16;
-            tiles[1].Clicked += async (object sender, System.EventArgs e) =>
             {
-               listView_Refreshing(null, null);
+               var rb = new ZPF.XF.Compos.RadioButton
+               {
+                  Text = "all",
+                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+                  Checked = Filter == Filters.all,
+                  TextColor = ColorViewModel.Current.TextColor,
+                  HorizontalOptions = LayoutOptions.Start,
+                  Margin = new Thickness(60, 0, 0, 0),
+               };
+               rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+               {
+                  Filter = (rb.Checked ? Filters.all : Filter);
+               };
+
+               s.Children.Add(rb);
             };
 
-            tiles[2].FontSize = 16;
-            tiles[2].Clicked += async (object sender, System.EventArgs e) =>
             {
-               await Navigation.PopAsync();
+               var rb = new ZPF.XF.Compos.RadioButton
+               {
+                  Text = "already visited",
+                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+                  Checked = Filter == Filters.past,
+                  TextColor = ColorViewModel.Current.TextColor,
+                  HorizontalOptions = LayoutOptions.Start,
+                  Margin = new Thickness(60, 0, 0, 0),
+               };
+               rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+               {
+                  Filter = (rb.Checked ? Filters.past : Filter);
+               };
+
+               s.Children.Add(rb);
+               s2.Children.Add(s);
             };
-      */
+
+            {
+               var rb = new ZPF.XF.Compos.RadioButton
+               {
+                  Text = "to do",
+                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+                  Checked = Filter == Filters.todo,
+                  TextColor = ColorViewModel.Current.TextColor,
+                  HorizontalOptions = LayoutOptions.Start,
+                  Margin = new Thickness(60, 0, 0, 0),
+               };
+               rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+               {
+                  Filter = (rb.Checked ? Filters.todo : Filter);
+               };
+               s.Children.Add(rb);
+            };
+         };
+
+         {
+            var s = new StackLayout
+            {
+               Margin = new Thickness(20, 0, 20, 20),
+            };
+            {
+               var l = new Label
+               {
+                  Text = "sort by",
+                  FontAttributes = FontAttributes.Bold,
+                  FontSize = 20,
+                  TextColor = ColorViewModel.Current.TextColor,
+                  Margin = new Thickness(0, 20, 0, 0),
+               };
+               s.Children.Add(l);
+            };
+
+            {
+               var rb = new ZPF.XF.Compos.RadioButton
+               {
+                  Text = "by distance",
+                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+                  Checked = Order == Orders.byDistance,
+                  TextColor = ColorViewModel.Current.TextColor,
+                  HorizontalOptions = LayoutOptions.Start,
+                  Margin = new Thickness(60, 0, 0, 0),
+               };
+               rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+               {
+                  Order = (rb.Checked ? Orders.byDistance : Order);
+               };
+
+               s.Children.Add(rb);
+            };
+
+            {
+               var rb = new ZPF.XF.Compos.RadioButton
+               {
+                  Text = "by zone",
+                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+                  Checked = Order == Orders.byCP,
+                  TextColor = ColorViewModel.Current.TextColor,
+                  HorizontalOptions = LayoutOptions.Start,
+                  Margin = new Thickness(60, 0, 0, 0),
+               };
+               rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+               {
+                  Order = (rb.Checked ? Orders.byZone : Order);
+               };
+               s.Children.Add(rb);
+            };
+
+            {
+               var rb = new ZPF.XF.Compos.RadioButton
+               {
+                  Text = "by CP",
+                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+                  Checked = Order == Orders.byCP,
+                  TextColor = ColorViewModel.Current.TextColor,
+                  HorizontalOptions = LayoutOptions.Start,
+                  Margin = new Thickness(60, 0, 0, 0),
+               };
+               rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+               {
+                  Order = (rb.Checked ? Orders.byCP : Order);
+               };
+               s.Children.Add(rb);
+            };
+            s2.Children.Add(s);
+         };
+
+         var Result = await GridDlgOnTop.DlgOnTop(mainGrid, s2, GridDlgOnTop.OkCancelTiles());
+
+         if (Result == "OK")
+         {
+            UpdateData();
+         };
+
+         if (Result == "cancel")
+         {
+            Order = _Order;
+         };
+
+         #endregion
+      };
+
+      tiles[1].FontSize = 16;
+      tiles[1].Clicked += async (object sender, System.EventArgs e) =>
+      {
+         listView_Refreshing(null, null);
+      };
+
+      tiles[2].FontSize = 16;
+      tiles[2].Clicked += async (object sender, System.EventArgs e) =>
+      {
+         await Navigation.PopModalAsync();
+      };
 
       listView.SetBinding(ListView.ItemsSourceProperty, new Binding("listIMD", BindingMode.TwoWay, source: this));
    }
@@ -210,8 +235,7 @@ public partial class StoreListPage : ContentPage
    };
 
    enum Filters { past, todo, all }
-   //ToDo: Filters Filter { get; set; } = Filters.todo;
-   Filters Filter { get; set; } = Filters.all;
+   Filters Filter { get; set; } = Filters.todo;
 
    enum Orders { byDistance, byZone, byCP }
    Orders Order { get; set; } = Orders.byDistance;
@@ -233,20 +257,20 @@ public partial class StoreListPage : ContentPage
 
       Location loc = null;
 
-      //try
-      //{
-      //   loc = await Xamarin.Essentials.Geolocation.GetLastKnownLocationAsync();
-      //}
-      //catch (Exception ex)
-      //{
-      //   var infos = new System.Collections.Generic.Dictionary<string, string>
-      //            {
-      //               { "Exception", ex.Message },
-      //               { "StackTrace", ex.StackTrace }
-      //            };
+      try
+      {
+         loc = await Microsoft.Maui.Devices.Sensors.Geolocation.GetLastKnownLocationAsync();
+      }
+      catch (Exception ex)
+      {
+         //   var infos = new System.Collections.Generic.Dictionary<string, string>
+         //            {
+         //               { "Exception", ex.Message },
+         //               { "StackTrace", ex.StackTrace }
+         //            };
 
-      //   Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Geolocation.GetLastKnownLocationAsync", infos);
-      //};
+         //   Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Geolocation.GetLastKnownLocationAsync", infos);
+      };
 
       if (loc == null)
       {
@@ -256,20 +280,20 @@ public partial class StoreListPage : ContentPage
 
          //BackboneViewModel.Current.Silent = false;
 
-         //try
-         //{
-         //   loc = await Xamarin.Essentials.Geolocation.GetLastKnownLocationAsync();
-         //}
-         //catch (Exception ex)
-         //{
-         //   var infos = new System.Collections.Generic.Dictionary<string, string>
-         //         {
-         //            { "Exception", ex.Message },
-         //            { "StackTrace", ex.StackTrace }
-         //         };
+         try
+         {
+            loc = await Microsoft.Maui.Devices.Sensors.Geolocation.GetLastKnownLocationAsync();
+         }
+         catch (Exception ex)
+         {
+            //   var infos = new System.Collections.Generic.Dictionary<string, string>
+            //         {
+            //            { "Exception", ex.Message },
+            //            { "StackTrace", ex.StackTrace }
+            //         };
 
-         //   Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Geolocation.GetLastKnownLocationAsync", infos);
-         //};
+            //   Microsoft.AppCenter.Analytics.Analytics.TrackEvent("Geolocation.GetLastKnownLocationAsync", infos);
+         };
       };
 
       var mags = MainViewModel.Current.Interventions.GroupBy(x => x.FKStore).Select(x => x.FirstOrDefault());
@@ -284,7 +308,7 @@ public partial class StoreListPage : ContentPage
                {
                   Inter = i,
                   Mag = m,
-                  //Dist = (loc == null ? 0 : Xamarin.Essentials.Location.CalculateDistance(loc, new Xamarin.Essentials.Location { Latitude = m.Latitude, Longitude = m.Longitude }, Xamarin.Essentials.DistanceUnits.Kilometers)),
+                  Dist = (loc == null || m.Latitude == 0 || m.Longitude == 0 ? 0 : Location.CalculateDistance(loc, new Location { Latitude = m.Latitude, Longitude = m.Longitude }, DistanceUnits.Kilometers)),
                   BackgroundColor = Microsoft.Maui.Graphics.Colors.AntiqueWhite,
                }).ToList();
 
@@ -359,14 +383,18 @@ public partial class StoreListPage : ContentPage
 
    private void listView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
    {
-      if (e.SelectedItem != null)
+   }
+
+   private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+   {
+      if (e.Item != null)
       {
-         var i = e.SelectedItem as InterMagDist;
+         var i = e.Item as InterMagDist;
 
          MainViewModel.Current.SelectedStore = i.Mag;
          MainViewModel.Current.SelectedIntervention = i.Inter;
 
-         Navigation.PushAsync(new StorePage());
+         Navigation.PushModalAsync(new StorePage());
 
          OnAppearing_Sema = true;
       };
@@ -374,7 +402,7 @@ public partial class StoreListPage : ContentPage
 
    private async void listView_Refreshing(object sender, System.EventArgs e)
    {
-      if (string.IsNullOrEmpty(MainViewModel.Current.Config.Login))
+      if (MainViewModel.Current.Config.FKUser < 0)
       {
       }
       else
@@ -382,7 +410,9 @@ public partial class StoreListPage : ContentPage
          if (MainViewModel.Current.IsInternetAccessAvailable)
          {
             BackboneViewModel.Current.IncBusy();
-            //ToDo: await SyncViewModel.Current.SyncDataWithWeb(MainViewModel.Current.Config.Login);
+
+            ClientViewModel.Current.Entry(MainViewModel.Current.DeviceID);
+
             BackboneViewModel.Current.DecBusy();
 
             listView.IsRefreshing = false;
@@ -399,6 +429,7 @@ public partial class StoreListPage : ContentPage
          };
       };
    }
+
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -   
 }

@@ -1,16 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
+<ZPF:PageEx 
    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
    xmlns:views="clr-namespace:StoreCheck.Views"
+   xmlns:ZPFConv="clr-namespace:ZPF.Conv;assembly=ZPF_MAUITools"
+   xmlns:ZPF="clr-namespace:ZPF.XF.Compos;assembly=ZPF_MAUITools"  
    x:Class="StoreCheck.Pages.EANPage"
    Title="info EAN">
 
-   <Grid RowDefinitions="74,*,auto">
+   <ZPF:PageEx.HeaderContent>
+      <views:HeaderContent />
+   </ZPF:PageEx.HeaderContent>
 
-      <views:HeaderContent x:Name="headerContent" Grid.Row="0" />
+   <ZPF:PageEx.MainContent>
 
-      <Grid Grid.Row="1">
+      <Grid >
          <Grid.RowDefinitions>
             <RowDefinition Height="270"/>
             <RowDefinition Height="auto"/>
@@ -21,14 +25,14 @@
          <StackLayout Margin="30,30,30,10" HorizontalOptions="Center" VerticalOptions="Start" Spacing="0"  >
 
             <Grid>
-            <Entry x:Name="entryOutPut" Margin="5,5,5,0" Keyboard="Numeric" BackgroundColor="White" 
+               <Entry x:Name="entryOutPut" Margin="5,5,5,0" Keyboard="Numeric" BackgroundColor="White" 
                    FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center" />
 
-            <Entry x:Name="entryInput" Margin="5,5,5,0" Keyboard="Numeric" BackgroundColor="Transparent"
+               <Entry x:Name="entryInput" Margin="5,5,5,0" Keyboard="Numeric" BackgroundColor="Transparent"
                    FontAttributes="Bold" FontSize="16" HorizontalTextAlignment="Center"  TextChanged="entry_TextChanged"
                    Completed="Entry_Completed" Focused="Entry_Focused" />
             </Grid>
-            
+
             <StackLayout Margin="30,0,30,5" Orientation="Horizontal" HorizontalOptions="Center">
                <Label Text="{Binding Symbology}" Margin="0,0,5,0" FontAttributes="Bold" />
                <Label Text="{Binding nSymbology,StringFormat=' ({0})'}" FontAttributes="Bold" />
@@ -60,6 +64,6 @@
       </Grid>
 
 
+   </ZPF:PageEx.MainContent>
 
-   </Grid>
-</ContentPage>
+</ZPF:PageEx>

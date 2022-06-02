@@ -1,6 +1,8 @@
+﻿using ZPF.XF.Compos;
+
 namespace StoreCheck.Pages;
 
-public partial class ContactPage : ContentPage
+public partial class ContactPage : PageEx
 {
    private Store_CE selectedStore;
 

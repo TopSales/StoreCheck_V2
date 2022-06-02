@@ -374,6 +374,7 @@ namespace ZPF.XF.Compos
                     tile.FontSize = 22;
                     tile.BackgroundColor = ColorViewModel.Current.ActionBackgroundColor;
                     tile.CornerRadius = 10;
+                    tile.Margin = 5;
 
                     tile.Clicked += (object sender, EventArgs e) =>
                     {

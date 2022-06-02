@@ -90,9 +90,6 @@
 	  <MauiXaml Update="Pages\EntryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\StoreListPage_Test.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Pages\StoreListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -124,8 +121,8 @@
 	  <Compile Update="Pages\EntryPage.xaml.cs">
 	    <DependentUpon>EntryPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Pages\StoreListPage_Test.xaml.cs">
-	    <DependentUpon>StoreListPage_Test.xaml</DependentUpon>
+	  <Compile Update="Pages\StoreListPage.xaml.cs">
+	    <DependentUpon>StoreListPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 

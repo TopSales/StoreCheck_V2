@@ -2,10 +2,11 @@
 using System.Xml.Linq;
 using ZPF;
 using ZPF.SQL;
+using ZPF.XF.Compos;
 
 namespace StoreCheck.Pages;
 
-public partial class EANPage : ContentPage
+public partial class EANPage : PageEx
 {
    public EANPage()
    {

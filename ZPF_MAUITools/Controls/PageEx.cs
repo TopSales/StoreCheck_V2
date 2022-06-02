@@ -186,21 +186,39 @@ namespace ZPF.XF.Compos
 
         // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - - 
 
+        View _HeaderView = null;
+
         public void SetHeaderContent(View view, double Height = -1)
         {
+            if (_HeaderView != null)
+            {
+                mainGrid.Remove(_HeaderView);
+                _HeaderView = null;
+            };
+
             mainGrid.Add(view, 0, 1);
 
             if (Height != -1)
             {
                 mainGrid.RowDefinitions[1].Height = new GridLength(Height, GridUnitType.Absolute);
             };
+
+            _HeaderView = view;
         }
 
         public View HeaderContent
         {
             set
             {
+                if (_HeaderView != null)
+                {
+                    mainGrid.Remove(_HeaderView);
+                    _HeaderView = null;
+                };
+
                 mainGrid.Add(value, 0, 1);
+
+                _HeaderView = value;
             }
         }
 
@@ -293,6 +311,7 @@ namespace ZPF.XF.Compos
                 tile.IconChar = i.IconChar;
                 tile.Text = i.Text;
                 tile.FontSize = 22;
+                tile.Margin = 5;
 
                 g.Add(tile, g.Children.Count, 0);
 

@@ -34,7 +34,7 @@ public partial class MainPage : ContentPage
    {
       if (MainViewModel.Current.Config.FKUser > 0)
       {
-         await Navigation.PushModalAsync(new StoreListPage_Test());
+         await Navigation.PushModalAsync(new StoreListPage());
       }
       else
       {

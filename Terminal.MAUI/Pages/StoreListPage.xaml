@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
+<ZPF:PageEx 
    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
    xmlns:views="clr-namespace:StoreCheck.Views"
    xmlns:ZPFConv="clr-namespace:ZPF.Conv;assembly=ZPF_MAUITools"
+   xmlns:ZPF="clr-namespace:ZPF.XF.Compos;assembly=ZPF_MAUITools"
    x:Class="StoreCheck.Pages.StoreListPage"
    Title="stores">
 
@@ -28,14 +29,15 @@
          </OnPlatform>-->
       </ResourceDictionary>
    </ContentPage.Resources>
+
+   <ZPF:PageEx.HeaderContent>
+      <views:HeaderContent />
+   </ZPF:PageEx.HeaderContent>
    
-   <Grid RowDefinitions="74,*,auto">
-
-      <views:HeaderContent Grid.Row="0" />
-
-      <ListView x:Name="listView" Grid.Row="1"
+   <ZPF:PageEx.MainContent>
+      <ListView x:Name="listView" 
          Margin="10" SeparatorVisibility="None"  RowHeight="{StaticResource ListRowHeight}"
-         ItemSelected="listView_ItemSelected" SelectionMode="Single" 
+         ItemSelected="listView_ItemSelected" ItemTapped="listView_ItemTapped"   SelectionMode="Single" 
          IsPullToRefreshEnabled="True" Refreshing="listView_Refreshing"  >
 
          <ListView.ItemTemplate>
@@ -81,5 +83,7 @@
          </ListView.ItemTemplate>
       </ListView>
 
-   </Grid>
-</ContentPage>
+
+   </ZPF:PageEx.MainContent>
+ 
+</ZPF:PageEx>

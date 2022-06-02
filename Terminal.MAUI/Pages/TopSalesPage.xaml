@@ -1,36 +1,41 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
+<ZPF:PageEx 
    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-   xmlns:views="clr-namespace:StoreCheck.Views"   
+   xmlns:views="clr-namespace:StoreCheck.Views"
+   xmlns:ZPFConv="clr-namespace:ZPF.Conv;assembly=ZPF_MAUITools"
+   xmlns:ZPF="clr-namespace:ZPF.XF.Compos;assembly=ZPF_MAUITools"             
    x:Class="StoreCheck.Pages.TopSalesPage"
    Title="contact">
 
-   <Grid RowDefinitions="74,*,auto">
+   <ZPF:PageEx.HeaderContent>
+      <views:HeaderContent />
+   </ZPF:PageEx.HeaderContent>
 
-      <views:HeaderContent Grid.Row="0" />
-        
-        <StackLayout Grid.Row="1" VerticalOptions="Center"  HorizontalOptions="Center" >
-            
-            <Image Source="Logo.png" WidthRequest="120" />
+   <ZPF:PageEx.MainContent>
+      
+      <StackLayout VerticalOptions="Center"  HorizontalOptions="Center" >
 
-            <Label Text="" 
+         <Image Source="Logo.png" WidthRequest="120" />
+
+         <Label Text="" 
                    FontSize="16"
                    HorizontalTextAlignment="Center"/>
 
-            <Label Text="Avenue Marcel Thiry 11/2" 
+         <Label Text="Avenue Marcel Thiry 11/2" 
                    FontSize="16"
                    HorizontalTextAlignment="Center"/>
-            <Label Text="1200 Woluwe-Saint -Lambert" 
+         <Label Text="1200 Woluwe-Saint -Lambert" 
                    FontSize="16"
                    HorizontalTextAlignment="Center"/>
-            <Label Text="Tel.: +32 2 247 29 30" 
+         <Label Text="Tel.: +32 2 247 29 30" 
                    FontSize="16"
                    HorizontalTextAlignment="Center" />
-            <Label Text="E-mail : Contact@TopSales.be" 
+         <Label Text="E-mail : Contact@TopSales.be" 
                    FontSize="16"
                    HorizontalTextAlignment="Center" />
-        </StackLayout>
-        
-    </Grid>
-</ContentPage>
+      </StackLayout>
+      
+   </ZPF:PageEx.MainContent>
+
+</ZPF:PageEx>

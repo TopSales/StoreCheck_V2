@@ -1,6 +1,8 @@
-﻿namespace StoreCheck.Pages;
+﻿using ZPF.XF.Compos;
 
-public partial class TopSalesPage : ContentPage
+namespace StoreCheck.Pages;
+
+public partial class TopSalesPage : PageEx
 {
    public TopSalesPage()
    {
