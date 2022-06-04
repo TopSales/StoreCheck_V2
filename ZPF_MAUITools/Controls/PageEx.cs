@@ -54,6 +54,17 @@ namespace ZPF.XF.Compos
             this.Appearing += PageEx_Appearing;
             this.Disappearing += PageEx_Disappearing;
             this.PropertyChanged += Page_Base_PropertyChanged;
+
+            this.SizeChanged += PageEx_SizeChanged;
+        }
+
+        private void PageEx_SizeChanged(object sender, EventArgs e)
+        {
+            if (ZPF.XF.Display.Height != Height && ZPF.XF.Display.Width != Width)
+            {
+                ZPF.XF.Display.Height = Height;
+                ZPF.XF.Display.Width = Width;
+            }
         }
 
         // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - - 
@@ -94,12 +105,8 @@ namespace ZPF.XF.Compos
 
                 Double sWidth = -1;
 
-                //sWidth = DeviceDisplay.MainDisplayInfo.Width;
-                //Double sHeight = DeviceDisplay.MainDisplayInfo.Height;
-                //Double scale = DeviceDisplay.MainDisplayInfo.Scale;
-
-                sWidth = DeviceDisplay.MainDisplayInfo.Width;
-                Double sHeight = DeviceDisplay.Current.MainDisplayInfo.Height;
+                sWidth = ZPF.XF.Display.Width;
+                Double sHeight = ZPF.XF.Display.Height;
                 Double scale = 1;
 
                 if (DeviceInfo.Platform == DevicePlatform.Android || DeviceInfo.Platform == DevicePlatform.iOS)

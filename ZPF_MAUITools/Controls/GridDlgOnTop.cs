@@ -283,32 +283,32 @@ namespace ZPF.XF.Compos
         private void AdaptiveLayout(Grid gb, double widthOnDesktop, MarginWidths marginWidth = MarginWidths.normal)
         {
             //var scale = DeviceDisplay.MainDisplayInfo.Scale;
-            //double hMargin = DeviceDisplay.MainDisplayInfo.Width / 10;
+            //double hMargin = ZPF.XF.Display.Width / 10;
             //double vMargin = DeviceDisplay.MainDisplayInfo.Height / 10;
 
             var scale = 1;
-            double hMargin = DeviceDisplay.MainDisplayInfo.Width / 10;
+            double hMargin = ZPF.XF.Display.Width / 10;
             double vMargin = DeviceDisplay.MainDisplayInfo.Height / 10;
 
             if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
             {
-                hMargin = DeviceDisplay.MainDisplayInfo.Width / 5;
+                hMargin = ZPF.XF.Display.Width / 5;
             };
 
             if (widthOnDesktop > 1)
             {
-                if ((widthOnDesktop + 2 * hMargin) < DeviceDisplay.MainDisplayInfo.Width)
+                if ((widthOnDesktop + 2 * hMargin) < ZPF.XF.Display.Width)
                 {
-                    hMargin = (DeviceDisplay.MainDisplayInfo.Width - widthOnDesktop) / 2;
+                    hMargin = (ZPF.XF.Display.Width - widthOnDesktop) / 2;
                 }
                 else
                 {
-                    hMargin = DeviceDisplay.MainDisplayInfo.Width / 10;
+                    hMargin = ZPF.XF.Display.Width / 10;
                 };
 
                 //if (Device.Idiom == TargetIdiom.Desktop)
                 //{
-                //   double m = (DeviceDisplay.MainDisplayInfo.Width - widthOnDesktop) / 2;
+                //   double m = (ZPF.XF.Display.Width - widthOnDesktop) / 2;
                 //   gb.Padding = new Thickness(m, 60, m, 60);
                 //};
             };
@@ -318,18 +318,18 @@ namespace ZPF.XF.Compos
                 switch (marginWidth)
                 {
                     case MarginWidths.narrow:
-                        hMargin = DeviceDisplay.MainDisplayInfo.Width / 25 / scale;
+                        hMargin = ZPF.XF.Display.Width / 25 / scale;
                         vMargin = DeviceDisplay.MainDisplayInfo.Height / 25 / scale;
                         break;
 
                     default:
                     case MarginWidths.normal:
-                        hMargin = DeviceDisplay.MainDisplayInfo.Width / 15 / scale;
+                        hMargin = ZPF.XF.Display.Width / 15 / scale;
                         vMargin = DeviceDisplay.MainDisplayInfo.Height / 15 / scale;
                         break;
 
                     case MarginWidths.wide:
-                        hMargin = DeviceDisplay.MainDisplayInfo.Width / 9 / scale;
+                        hMargin = ZPF.XF.Display.Width / 9 / scale;
                         vMargin = DeviceDisplay.MainDisplayInfo.Height / 9 / scale;
                         break;
                 };
@@ -359,7 +359,7 @@ namespace ZPF.XF.Compos
             var gTiles = new Grid();
             gTiles.Margin = new Thickness(15, 8, 15, 15);
 
-            var w = DeviceDisplay.MainDisplayInfo.Width * 0.8;
+            var w = ZPF.XF.Display.Width * 0.8;
 
             if (ActionTiles != null && ActionTiles.Count > 0)
             {
