@@ -8,5 +8,8 @@ namespace ZPF_MAUITools.Controls
 {
     public static class FileIO
     {
+        public static void CleanPath()
+        {
+        }
     }
 }

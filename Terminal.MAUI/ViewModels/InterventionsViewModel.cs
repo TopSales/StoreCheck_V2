@@ -467,7 +467,7 @@ public class InterventionsViewModel : BaseViewModel
 
                try
                {
-                  var json = System.IO.File.ReadAllText(ZPF.XF.Basics.Current.FileIO.CleanPath($@"{MainViewModel.Current.DataFolder}Interventions\{MainViewModel.Current.SelectedIntervention.PK}.json"));
+                  var json = System.IO.File.ReadAllText(ZPF.XF.FileIO.CleanPath($@"{MainViewModel.Current.DataFolder}Interventions\{MainViewModel.Current.SelectedIntervention.PK}.json"));
                   MainViewModel.Current.SelectedInterventionParams = JsonSerializer.Deserialize<Intervention_Params>(json);
                }
                catch { };
