@@ -88,4 +88,31 @@ public partial class MainViewModel : BaseViewModel
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+
+   public void SaveInterv(Intervention_Params p)
+   {
+      SelectedIntervention.Parameters = null;
+
+      string json = System.Text.Json.JsonSerializer.Serialize(p);
+
+      string extractPath = ZPF.XF.FileIO.CleanPath(MainViewModel.Current.DataFolder + @"Interventions\");
+
+      if (!System.IO.Directory.Exists(extractPath))
+      {
+         System.IO.Directory.CreateDirectory(extractPath);
+      };
+
+      System.IO.File.WriteAllText(ZPF.XF.FileIO.CleanPath($@"{MainViewModel.Current.DataFolder}Interventions\{MainViewModel.Current.SelectedIntervention.PK}.json"), json);
+
+      MainViewModel.Current.SelectedIntervention.SyncOn = DateTime.MinValue;
+      MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Interventions);
+   }
+   
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+
+   public Durex_Params durexParams { get; internal set; }
+   public PhotoAuKM_Params PhotoAuKM { get; internal set; }
+   public QCM_woMenu_Params QCM_woMenuParams { get; internal set; }
+
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 }

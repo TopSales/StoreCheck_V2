@@ -59,9 +59,9 @@ public class InterventionsViewModel : BaseViewModel
 
          MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Interventions);
 
-         wsHelper._httpClient.Dispose();
-         wsHelper._httpClient = null;
-         MainViewModel.Current.InitWS();
+         //wsHelper._httpClient.Dispose();
+         //wsHelper._httpClient = null;
+         //MainViewModel.Current.InitWS();
 
          var tmpInter = MainViewModel.Current.SelectedIntervention.Copy();
          tmpInter.Parameters = "";
@@ -98,9 +98,9 @@ public class InterventionsViewModel : BaseViewModel
 
       MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Interventions);
 
-      wsHelper._httpClient.Dispose();
-      wsHelper._httpClient = null;
-      MainViewModel.Current.InitWS();
+      //wsHelper._httpClient.Dispose();
+      //wsHelper._httpClient = null;
+      //MainViewModel.Current.InitWS();
 
       var tmpInter = MainViewModel.Current.SelectedIntervention.Copy();
       tmpInter.Parameters = "";

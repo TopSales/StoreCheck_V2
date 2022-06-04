@@ -6,27 +6,27 @@
    x:Class="StoreCheck.Views.InterventionView">
 
    <ContentView.Content>
-      
-      <Frame Margin="20,10,20,5" BorderColor="DarkGray" HasShadow="True" CornerRadius="10" Padding="0" >
-         <Grid >
-            <Grid.ColumnDefinitions>
-               <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+      <Grid>
+         <Frame Margin="20,10,20,5" BorderColor="DarkGray" HasShadow="True" CornerRadius="10" Padding="2" >
+            <Grid BackgroundColor="Transparent" >
+               <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+               </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-               <RowDefinition Height="40"/>
-            </Grid.RowDefinitions>
+               <Grid.RowDefinitions>
+                  <RowDefinition Height="42"/>
+               </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="0" Margin="0,0,5,0" 
+               <Label Grid.Column="0" Grid.Row="0" Margin="0,0,5,0" 
                Text="{Binding PK}" FontSize="9" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Start" />
 
-            <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="20,-4,20,-4" >
-               <Label Text="{Binding Client}" FontSize="Subtitle" VerticalTextAlignment="Center" />
-               <Label Text="{Binding Action}" FontSize="Subtitle" VerticalTextAlignment="Center" FontAttributes="Bold" />
-            </StackLayout>
+               <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="20,-4,20,-4" >
+                  <Label Text="{Binding Client}" FontSize="Subtitle" VerticalTextAlignment="Center" Margin="0,0,0,0" />
+                  <Label Text="{Binding Action}" FontSize="Subtitle" VerticalTextAlignment="Center" FontAttributes="Bold" Margin="10,0,0,0"  />
+               </StackLayout>
 
-         </Grid>
-      </Frame>
-      
+            </Grid>
+         </Frame>
+      </Grid>
    </ContentView.Content>
 </ContentView>

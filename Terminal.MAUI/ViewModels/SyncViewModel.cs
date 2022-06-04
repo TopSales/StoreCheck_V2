@@ -51,6 +51,16 @@ namespace ZPF
 
       public string LastError { get; set; }
 
+      internal Task<string> UploadInter(Intervention_CE tmpInter)
+      {
+         throw new NotImplementedException();
+      }
+
+      internal Task SyncDataWithWeb(string login)
+      {
+         throw new NotImplementedException();
+      }
+
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
    }
 

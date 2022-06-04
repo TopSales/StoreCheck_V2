@@ -1,4 +1,5 @@
-﻿using ZPF.XF.Compos;
+﻿using StoreCheck.Views;
+using ZPF.XF.Compos;
 
 namespace StoreCheck.Pages
 {
@@ -12,74 +13,83 @@ namespace StoreCheck.Pages
 
          BindingContext = MainViewModel.Current.SelectedIntervention;
 
-         //         // - - -  - - - 
+         HeaderContent = new StoreCheck.Views.HeaderContent();
 
-         //         {
-         //            var layout = new StackLayout
-         //            {
-         //            };
+         // - - -  - - - 
 
-         //            // - - -  - - - 
+         {
+            var layout = new StackLayout
+            {
+            };
 
-         //            layout.Children.Add(new StoreView());
-         //            layout.Children.Add(new InterventionView());
+            // - - -  - - - 
 
-         //            XFHelper.AddLF(layout);
+            layout.Children.Add( new StoreView() 
+            {
+               Margin = new Thickness(0, 0, 0, 10),
+            } );
 
-         //            var tm = new TileMenu(this);
-         //            tm.TopMargin = 72 + 76 + 60;
-         //            tm.TileBackgroundColor = ColorViewModel.Current.ActionBackgroundColor;
-         //            tm.FontSize = 16;
+            layout.Children.Add(new InterventionView()
+            {
+               Margin = new Thickness(0, 0, 0, 10),
+            });
 
-         //            // - - -  - - - 
+            //XFHelper.AddLF(layout);
 
-         //            switch (MainViewModel.Current.SelectedInterventionParams.FKActionType)
-         //            {
-         //               case (long)FKActionTypes.BeforeAfter:
-         //                  GetMenu_MShopBeforeAfter(tm);
-         //                  tm.OnClicked += x_Clicked_MShopBeforeAfter;
-         //                  UpdateTiles_MShopBeforeAfter();
-         //                  break;
+            //var tm = new TileMenu(this);
+            //tm.TopMargin = 72 + 76 + 60;
+            //tm.TileBackgroundColor = ColorViewModel.Current.ActionBackgroundColor;
+            //tm.FontSize = 16;
 
-         //               case (long)FKActionTypes.PhotoAuKM:
-         //                  GetMenu_MShopPhotoAuKM(tm);
-         //                  tm.OnClicked += x_Clicked_MShopPhotoAuKM;
-         //                  UpdateTiles_MShopPhotoAuKM();
-         //                  break;
+            //// - - -  - - - 
 
-         //               case (long)FKActionTypes.Durex:
-         //                  GetMenu_MShopDurex(tm);
-         //                  tm.OnClicked += x_Clicked_MShopDurex;
-         //                  UpdateTiles_Durex();
-         //                  break;
+            //switch (MainViewModel.Current.SelectedInterventionParams.FKActionType)
+            //{
+            //   case (long)FKActionTypes.BeforeAfter:
+            //      GetMenu_MShopBeforeAfter(tm);
+            //      tm.OnClicked += x_Clicked_MShopBeforeAfter;
+            //      UpdateTiles_MShopBeforeAfter();
+            //      break;
 
-         //               case (long)FKActionTypes.ReleveLinairaire:
-         //                  GetMenuReleveLinairaire(tm);
-         //                  UpdateTiles();
-         //                  break;
+            //   case (long)FKActionTypes.PhotoAuKM:
+            //      GetMenu_MShopPhotoAuKM(tm);
+            //      tm.OnClicked += x_Clicked_MShopPhotoAuKM;
+            //      UpdateTiles_MShopPhotoAuKM();
+            //      break;
 
-         //               case (long)FKActionTypes.QCM_woMenu:
-         //                  GetMenu_QCM_woMenu(tm);
-         //                  tm.OnClicked += x_Clicked_QCM_woMenu;
-         //                  UpdateTiles_QCM_woMenu();
-         //                  break;
+            //   case (long)FKActionTypes.Durex:
+            //      GetMenu_MShopDurex(tm);
+            //      tm.OnClicked += x_Clicked_MShopDurex;
+            //      UpdateTiles_Durex();
+            //      break;
 
-         //               default:
-         //                  GetMenuDefault(tm);
-         //                  tm.OnClicked += x_Clicked;
-         //                  UpdateTiles();
-         //                  break;
-         //            };
+            //   case (long)FKActionTypes.ReleveLinairaire:
+            //      GetMenuReleveLinairaire(tm);
+            //      UpdateTiles();
+            //      break;
 
-         //            // - - -  - - - 
+            //   case (long)FKActionTypes.QCM_woMenu:
+            //      GetMenu_QCM_woMenu(tm);
+            //      tm.OnClicked += x_Clicked_QCM_woMenu;
+            //      UpdateTiles_QCM_woMenu();
+            //      break;
 
-         //            layout.Children.Add(tm);
+            //   default:
+            //      GetMenuDefault(tm);
+            //      tm.OnClicked += x_Clicked;
+            //      UpdateTiles();
+            //      break;
+            //};
 
-         //            // - - -  - - - 
+            // - - -  - - - 
 
-         //            SetMainContent(layout);
-         //            SetAppBarContent();
-         //         };
+            //layout.Children.Add(tm);
+
+            // - - -  - - - 
+
+            SetMainContent(layout);
+            SetAppBarContent();
+         };
       }
 
       //      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - - 
