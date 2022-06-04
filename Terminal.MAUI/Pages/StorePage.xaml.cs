@@ -57,6 +57,8 @@ public partial class StorePage : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Filter == Filters.all,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions = LayoutOptions.Start,
+               Margin = new Thickness(60, 0, 0, 0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
@@ -73,6 +75,8 @@ public partial class StorePage : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Filter == Filters.past,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions = LayoutOptions.Start,
+               Margin = new Thickness(60, 0, 0, 0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
@@ -89,6 +93,8 @@ public partial class StorePage : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Filter == Filters.current,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions = LayoutOptions.Start,
+               Margin = new Thickness(60, 0, 0, 0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
@@ -104,6 +110,8 @@ public partial class StorePage : PageEx
                FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                Checked = Filter == Filters.future,
                TextColor = ColorViewModel.Current.TextColor,
+               HorizontalOptions = LayoutOptions.Start,
+               Margin = new Thickness(60, 0, 0, 0),
             };
             rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
             {
@@ -229,7 +237,7 @@ public partial class StorePage : PageEx
          }
          else
          {
-            await Navigation.PushAsync(new InterventionPage());
+            await Navigation.PushModalAsync(new InterventionPage());
          };
 
          listView.SelectedItem = null;

@@ -101,9 +101,13 @@ namespace ZPF.XF.Compos
                 Padding = 5,
             };
 
-            g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
             g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
             g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 
             var bv = new BoxView
             {
@@ -202,9 +206,8 @@ namespace ZPF.XF.Compos
 
             var gb = new Grid
             {
-                BackgroundColor =
-                  (ColorViewModel.Current.ColorMode == ColorViewModel.ColorModes.Light ?
-                  Microsoft.Maui.Graphics.Color.FromArgb("8000") : Microsoft.Maui.Graphics.Color.FromArgb("A000")),
+                BackgroundColor = (ColorViewModel.Current.ColorMode == ColorViewModel.ColorModes.Light ?
+                                    Microsoft.Maui.Graphics.Color.FromArgb("8000") : Microsoft.Maui.Graphics.Color.FromArgb("A000")),
                 Padding = 60,
             };
 
@@ -219,9 +222,14 @@ namespace ZPF.XF.Compos
                 Padding = 5,
             };
 
-            g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
+            g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
             g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
             g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
 
             var bv = new BoxView
             {
@@ -229,10 +237,8 @@ namespace ZPF.XF.Compos
                 CornerRadius = 20,
             };
 
-            //g.Add(bv, 0, 1, 0, 3);
-            g.Add(bv, 0, 0);
-            Grid.SetColumnSpan(bv, 2);
-            Grid.SetRowSpan(bv, 3);
+            g.Add(bv, 1, 1);
+            Grid.SetRowSpan(bv, 2);
 
             var bvC = new BoxView
             {
@@ -242,24 +248,25 @@ namespace ZPF.XF.Compos
                 CornerRadius = 5,
             };
 
-            g.Add(bvC, 0, 1);
-            g.Add(view, 0, 1);
+            g.Add(bvC, 1, 1);
+            g.Add(view, 1, 1);
 
             // - - -  - - - 
 
             var gTiles = dlg.GenerateTiles(mainGrid, ActionTiles, Is_MDDlgOnTop_Terminated);
+            gTiles.BackgroundColor = Microsoft.Maui.Graphics.Colors.Crimson;
             if (gTiles == null)
             {
                 g.Add(new Label { HeightRequest = 10 }, 0, 2);
             }
             else
             {
-                g.Add(gTiles, 0, 2);
+                g.Add(gTiles, 1, 2);
             };
 
             // - - -  - - - 
 
-            gb.Add(g, 0, 0);
+            gb.Add(g, 1, 2);
 
             Device.BeginInvokeOnMainThread(() =>
             {

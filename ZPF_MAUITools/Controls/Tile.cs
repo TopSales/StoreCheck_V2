@@ -16,7 +16,7 @@ namespace ZPF.XF.Compos
                 {
                     Glyph = value,
                     FontFamily = "IconFont",
-                    Size = 48,
+                    Size = 32,
                 };
 
                 ImageSource = fis;

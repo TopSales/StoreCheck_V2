@@ -62,7 +62,8 @@
                   <ViewCell>
                      <Grid>
                         <Grid.ColumnDefinitions>
-                           <ColumnDefinition Width="{StaticResource ColWidth}"/>
+                           <!--<ColumnDefinition Width="{StaticResource ColWidth}"/>-->
+                           <ColumnDefinition Width="65"/>
                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
@@ -82,9 +83,11 @@
                            </StackLayout>
                         </Grid>
 
+                        
                         <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                           <Label Text="{Binding Customer}" FontSize="Subtitle" VerticalTextAlignment="Center" />
-                           <Label Text="{Binding Action}" FontSize="Subtitle" VerticalTextAlignment="Center" FontAttributes="Bold" />
+                           <Label Text="{Binding Customer}" FontSize="Subtitle" VerticalTextAlignment="Center" Margin="5,0,0,0"  />
+                           <Label Text="{Binding Action}" FontSize="Subtitle" VerticalTextAlignment="Center" 
+                                  FontAttributes="Bold" Margin="5,0,0,0" />
                         </StackLayout>
 
                         <BoxView Grid.ColumnSpan="2" Grid.Row="1"  BackgroundColor="DarkGray" />

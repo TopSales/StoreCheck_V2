@@ -32,7 +32,7 @@ namespace ZPF.XF.Compos
             mainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(0, GridUnitType.Absolute) });   // iPhone
             mainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(72, GridUnitType.Absolute) });  // Header
             mainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(1, GridUnitType.Star) });       // Body
-            mainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(72, GridUnitType.Absolute) });  // Footer
+            mainGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(85, GridUnitType.Absolute) });  // Footer
 
             if (DeviceInfo.Platform == DevicePlatform.iOS)
             {
@@ -271,10 +271,10 @@ namespace ZPF.XF.Compos
                         BackgroundColor = backgroundColor,
                     };
 
-                    mainGrid.Add(b, 0, mainGrid.RowDefinitions.Count - 1);
+                    mainGrid.Add(b, 1, mainGrid.RowDefinitions.Count - 1);
                 };
 
-                mainGrid.Add(view, 0, mainGrid.RowDefinitions.Count - 1);
+                mainGrid.Add(view, 1, mainGrid.RowDefinitions.Count - 1);
             };
 
             if (Height != null)
@@ -308,7 +308,7 @@ namespace ZPF.XF.Compos
             List<Tile> tiles = new List<Tile>();
 
             var g = new Grid();
-            g.Margin = new Thickness(10, 8, 15, 10);
+            g.Margin = new Thickness(10, 8, 10, 10);
 
             foreach (var i in items)
             {

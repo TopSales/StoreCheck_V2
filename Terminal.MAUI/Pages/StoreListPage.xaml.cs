@@ -22,7 +22,7 @@ public partial class StoreListPage : PageEx
          new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Tools_02), "sort/filter"),
          new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Reload), "sync"),
          new AppBarItem(ZPF.Fonts.IF.GetContent(ZPF.Fonts.IF.Exit_03), "exit"),
-      }), new GridLength(85, GridUnitType.Absolute));
+      }));
 
       tiles[0].FontSize = 16;
       tiles[0].Clicked += async (object sender, System.EventArgs e) =>

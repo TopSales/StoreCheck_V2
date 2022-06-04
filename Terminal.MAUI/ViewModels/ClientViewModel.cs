@@ -200,6 +200,8 @@ public class ClientViewModel : BaseViewModel
 
    public async void Entry(string deviceID)
    {
+      ClientViewModel.Current.Connect();
+
       await chatClient.SendDataToServer("entry", deviceID);
    }
 
