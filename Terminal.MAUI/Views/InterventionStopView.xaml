@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:ZPFConv="clr-namespace:ZPF.Conv;assembly=ZPF_MAUITools"
+   xmlns:views="clr-namespace:StoreCheck.Views" 
+   x:Class="StoreCheck.Views.InterventionStopView">
+
+   <ContentView.Content>
+      
+      <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+         <Label Text="Validate and close the intervention?" Margin="50,50,50,0" FontAttributes="Bold" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Black" />
+         <Label Text="Once validated by the person in charge you will not be able to modify the report." FontSize="Subtitle" HorizontalTextAlignment="Center" Margin="20,0,20,0" TextColor="Black" />
+
+      </StackLayout>
+      
+   </ContentView.Content>
+</ContentView>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+   xmlns:ZPFConv="clr-namespace:ZPF.Conv;assembly=ZPF_MAUITools"
+   x:Class="StoreCheck.Views.InterventionView">
+
+   <ContentView.Content>
+      
+      <Frame Margin="20,10,20,5" BorderColor="DarkGray" HasShadow="True" CornerRadius="10" Padding="0" >
+         <Grid >
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+               <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0" Margin="0,0,5,0" 
+               Text="{Binding PK}" FontSize="9" HorizontalTextAlignment="End" HorizontalOptions="End" VerticalOptions="Start" />
+
+            <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal" Margin="20,-4,20,-4" >
+               <Label Text="{Binding Client}" FontSize="Subtitle" VerticalTextAlignment="Center" />
+               <Label Text="{Binding Action}" FontSize="Subtitle" VerticalTextAlignment="Center" FontAttributes="Bold" />
+            </StackLayout>
+
+         </Grid>
+      </Frame>
+      
+   </ContentView.Content>
+</ContentView>

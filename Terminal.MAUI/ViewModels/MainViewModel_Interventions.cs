@@ -7,6 +7,10 @@ using ZPF.AT;
 
 public partial class MainViewModel : BaseViewModel
 {
+   public Intervention_Params SelectedInterventionParams { get => _SelectedInterventionParams; set => _SelectedInterventionParams = value; }
+
+   Intervention_Params _SelectedInterventionParams = null;
+
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
    public List<Intervention_CE> Interventions { get; private set; } = new List<Intervention_CE>();

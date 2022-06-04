@@ -7,6 +7,8 @@ using ZPF.AT;
 
 public partial class MainViewModel : BaseViewModel
 {
+
+
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
    public List<Store_CE> Stores { get; private set; } = new List<Store_CE>();
@@ -31,6 +33,9 @@ public partial class MainViewModel : BaseViewModel
          };
       }
    }
+
+   public BeforeAfter_Params BeforeAfter { get; internal set; }
+
    Store_CE _SelectedStore = null;
 
    // - - -  - - - 
