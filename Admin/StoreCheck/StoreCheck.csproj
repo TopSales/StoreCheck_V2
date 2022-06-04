@@ -98,13 +98,13 @@
     <Resource Include="Images\Tiles\Magic-Wand.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPF_Fonts\desyrel.ttf" Link="ZPF_Fonts\desyrel.ttf">
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\EMB_Fonts\desyrel.ttf" Link="ZPF_Fonts\desyrel.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPF_Fonts\IconFont.ttf" Link="ZPF_Fonts\IconFont.ttf">
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\EMB_Fonts\IconFont.ttf" Link="ZPF_Fonts\IconFont.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPF_Fonts\MediaPlayerFont.ttf" Link="ZPF_Fonts\MediaPlayerFont.ttf">
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\EMB_Fonts\MediaPlayerFont.ttf" Link="ZPF_Fonts\MediaPlayerFont.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Background.jpg">
@@ -240,10 +240,10 @@
     <PackageReference Include="System.Windows.Interactivity.WPF">
       <Version>2.0.20525</Version>
     </PackageReference>
-    <PackageReference Include="ZPF_Basics_WPF" Version="1.0.5.25">
+    <PackageReference Include="ZPF_Basics_WPF" Version="1.0.5.26">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
-    <PackageReference Include="ZPF_ChatHelper" Version="1.0.0.4" />
+    <PackageReference Include="ZPF_ChatHelper" Version="1.0.0.5" />
     <PackageReference Include="ZPF_DBSQL">
       <Version>0.1.8.57</Version>
       <TreatAsUsed>true</TreatAsUsed>
@@ -251,12 +251,10 @@
     <PackageReference Include="ZPF_DBSQL_WPF">
       <Version>1.0.0.60</Version>
     </PackageReference>
-    <PackageReference Include="ZPF_Fonts" Version="1.0.0.9" />
-    <PackageReference Include="ZPF_LabelPrinter" Version="1.0.0.2" />
     <PackageReference Include="ZPF_Users_Rights_WPF">
       <Version>1.1.0.34</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.310801">
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.326103">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.3.0" />
@@ -286,6 +284,9 @@
     <Page Include="..\..\..\..\Nugets\ZPF_DBSQL\ToDo\OpenDBPage.xaml" Link="_ToDo_\OpenDBPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fonts\WPF\" />
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>rem copy $(ProjectDir)_History_.txt D:\Dropbox\StoreCheck\Installs</PostBuildEvent>
