@@ -101,15 +101,6 @@ namespace ZPF
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
-      private Printer _PrinterSettings = new Printer();
-      public Printer PrinterSettings
-      {
-         get { return _PrinterSettings; }
-         set { SetField(ref _PrinterSettings, value); }
-      }
-
-      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
-
       public MainViewModel()
       {
          _Instance = this;
@@ -556,7 +547,6 @@ namespace ZPF
          TIniFile IniFile = new TIniFile(IniFileName);
 
          IniFile.WriteBool("General", "IsDebug", IsDebug);
-         IniFile.WriteString("Local", "Printer", JsonSerializer.Serialize(PrinterSettings));
          IniFile.WriteBool("General", "AutoLogin", AutoLogin);
          IniFile.WriteString("Local", "Style", Style);
          //IniFile.WriteString("General", "Dump", Jupiter.Current.Dump);
@@ -618,19 +608,7 @@ namespace ZPF
 
          var st = IniFile.ReadString("Local", "Printer", "");
 
-         if (string.IsNullOrEmpty(st))
-         {
-            LabelPrinterViewModel.Current.PrinterSettings = new Printer();
-         }
-         else
-         {
-            LabelPrinterViewModel.Current.PrinterSettings = JsonSerializer.Deserialize<Printer>(st);
-         };
-
-         if (LabelPrinterViewModel.Current.PrinterSettings == null)
-         {
-            LabelPrinterViewModel.Current.PrinterSettings = new Printer();
-         }
+        
 
          AutoLogin = IniFile.ReadBool("General", "AutoLogin", false);
          Style = IniFile.ReadString("Local", "Style", Style);
