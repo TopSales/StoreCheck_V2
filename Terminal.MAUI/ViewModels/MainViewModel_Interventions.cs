@@ -31,7 +31,7 @@ public partial class MainViewModel : BaseViewModel
                Message = $"SelectedIntervention PK={_SelectedIntervention.PK} ({_SelectedIntervention.ToString()})",
             });
 
-            //ToDo: InterventionsViewModel.Current.LoadInterventionParams();
+            InterventionsViewModel.Current.LoadInterventionParams();
          };
       }
    }

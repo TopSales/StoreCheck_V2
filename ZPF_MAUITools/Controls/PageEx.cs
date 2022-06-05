@@ -271,7 +271,7 @@ namespace ZPF.XF.Compos
                         BackgroundColor = backgroundColor,
                     };
 
-                    mainGrid.Add(b, 1, mainGrid.RowDefinitions.Count - 1);
+                    mainGrid.Add(b, 0, mainGrid.RowDefinitions.Count - 1);
                 };
 
                 mainGrid.Add(view, 1, mainGrid.RowDefinitions.Count - 1);

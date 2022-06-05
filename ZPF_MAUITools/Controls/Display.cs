@@ -13,5 +13,7 @@ namespace ZPF.XF
 
         public static double Width { get => _Width; set => _Width = value; }
         static double _Width = -1;
+
+        public static double Scale { get; internal set; } = 1;
     }
 }

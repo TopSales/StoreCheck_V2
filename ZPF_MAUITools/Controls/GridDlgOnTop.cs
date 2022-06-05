@@ -366,20 +366,19 @@ namespace ZPF.XF.Compos
             var gTiles = new Grid();
             gTiles.Margin = new Thickness(15, 8, 15, 15);
 
-            var w = ZPF.XF.Display.Width * 0.8;
-
             if (ActionTiles != null && ActionTiles.Count > 0)
             {
                 foreach (var i in ActionTiles)
                 {
                     gTiles.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
+                    //tile.Style = ColorViewModel.Current.ActionTilesStyle;
+                    //tile.BackgroundColor = ColorViewModel.Current.ActionBackgroundColor;
+
                     Tile tile = new Tile();
-                    tile.Style = ColorViewModel.Current.ActionTilesStyle;
                     tile.IconChar = i.IconChar;
                     tile.Text = i.Text;
                     tile.FontSize = 22;
-                    tile.BackgroundColor = ColorViewModel.Current.ActionBackgroundColor;
                     tile.CornerRadius = 10;
                     tile.Margin = 5;
 
@@ -408,8 +407,9 @@ namespace ZPF.XF.Compos
                         tile.Text = (tile.Width < 150 ? "" : i.Text);
                     };
 
+                    gTiles.Add(tile, gTiles.Children.Count, 0);
                     _Tiles.Add(tile);
-                    gTiles.Add(tile, gTiles.ColumnDefinitions.Count - 1, 0);
+                    //gTiles.Add(tile, gTiles.ColumnDefinitions.Count - 1, 0);
                 }
 
                 return gTiles;

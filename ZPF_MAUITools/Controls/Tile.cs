@@ -8,10 +8,14 @@ namespace ZPF.XF.Compos
 #if true
     public class Tile : Button
     {
+        string _IconChar = "";
         public string IconChar
         {
+            get { return _IconChar; }
+
             set
             {
+                _IconChar = value;
                 var fis = new FontImageSource()
                 {
                     Glyph = value,
@@ -25,6 +29,83 @@ namespace ZPF.XF.Compos
 
 
         public Microsoft.Maui.Graphics.Color IconColor { get; set; }
+        public bool BoldText { get; internal set; }
+        public double ImageScale { get; internal set; }
+        public string Hint { get; internal set; }
+        public ImageSource Source { get; internal set; }
+
+
+        // - - -  - - - 
+
+        public Tile PlaceTile(AbsoluteLayout absoluteLayout, double PosX, double PosY, ImageSource imageSource, string Tag, EventHandler OnClicked, double width, double height = -1)
+        {
+            return PlaceTile(absoluteLayout, PosX, PosY, imageSource, "", Tag, OnClicked, width, height);
+        }
+
+        public Tile PlaceTile(AbsoluteLayout absoluteLayout, double PosX, double PosY, string iconChar, string Tag, EventHandler OnClicked, double width, double height = -1)
+        {
+            return PlaceTile(absoluteLayout, PosX, PosY, null, iconChar, Tag, OnClicked, width, height);
+        }
+
+        public Tile PlaceTile(AbsoluteLayout absoluteLayout, double PosX, double PosY, ImageSource imageSource, string iconChar, string Tag, EventHandler OnClicked, double width, double height = -1)
+        {
+            Debug.WriteLine("PlaceTile");
+
+            // http://developer.xamarin.com/guides/cross-platform/xamarin-forms/working-with/images/
+            try
+            {
+                Clicked -= OnClicked;
+                Clicked += OnClicked;
+
+                if (height == -1)
+                {
+                    height = width;
+                };
+
+                Text = Tag;
+
+                try
+                {
+                    absoluteLayout.Children.Add(this);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                };
+
+                AbsoluteLayout.SetLayoutBounds(this, new Rect(PosX, PosY, width, height));
+
+                if (imageSource != null)
+                {
+                    try
+                    {
+                        //// make your image your button should be
+                        //_Image.Source = imageSource;
+
+                        //double ImgSize = width / 2;
+
+                        //_Image.WidthRequest = ImgSize;
+                        //_Image.HeightRequest = ImgSize;
+                    }
+                    catch (Exception ex)
+                    {
+                        Tag = ex.Message;
+                        Debug.WriteLine("missing " + imageSource);
+                    };
+                };
+
+                IconChar = iconChar;
+
+                CommandParameter = CommandParameter;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"PlaceTile: {ex.Message}");
+            };
+
+            return this;
+        }
+
     }
 
 
@@ -596,6 +677,8 @@ namespace ZPF.XF.Compos
 
             return this;
         }
+
+        // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  
 
         private bool Sema_X_Clicked = true;
         private void X_Clicked(object sender, EventArgs e)

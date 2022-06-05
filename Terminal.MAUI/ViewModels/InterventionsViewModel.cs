@@ -267,7 +267,14 @@ public class InterventionsViewModel : BaseViewModel
                }
                else
                {
-                  MainViewModel.Current.BeforeAfter = JsonSerializer.Deserialize<BeforeAfter_Params>(MainViewModel.Current.SelectedIntervention.Parameters);
+                  try
+                  {
+                     MainViewModel.Current.BeforeAfter = JsonSerializer.Deserialize<BeforeAfter_Params>(MainViewModel.Current.SelectedIntervention.Parameters);
+                  }
+                  catch (Exception ex)
+                  {
+                     MainViewModel.Current.BeforeAfter = new BeforeAfter_Params();
+                  };
                };
 
                MainViewModel.Current.BeforeAfter.Input = MainViewModel.Current.SelectedIntervention.Input;
