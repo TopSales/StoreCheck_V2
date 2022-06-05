@@ -68,11 +68,11 @@ namespace StoreCheck.Pages
                //      UpdateTiles();
                //      break;
 
-               //   case (long)FKActionTypes.QCM_woMenu:
-               //      GetMenu_QCM_woMenu(tm);
-               //      tm.OnClicked += x_Clicked_QCM_woMenu;
-               //      UpdateTiles_QCM_woMenu();
-               //      break;
+               case (long)FKActionTypes.QCM_woMenu:
+                  GetMenu_QCM_woMenu(tm);
+                  tm.OnClicked += x_Clicked_QCM_woMenu;
+                  UpdateTiles_QCM_woMenu();
+                  break;
 
                default:
                   GetMenuDefault(tm);

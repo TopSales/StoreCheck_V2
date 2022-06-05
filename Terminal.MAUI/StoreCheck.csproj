@@ -81,6 +81,15 @@
 	  <MauiXaml Update="Pages\EANPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\MCE\InventoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\MCE\MCEPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PhotoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\InterventionStartView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -120,6 +129,8 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\Apps\TestSQLite-Maui\ZPF_DBSQL\ZPF_DBSQL.csproj" />
 	  <ProjectReference Include="..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper6.csproj" />
+	  <ProjectReference Include="..\..\..\Nugets\ZPF_MCE\ZPF_MCE.Maui\ZPF_MCE.Maui.csproj" />
+	  <ProjectReference Include="..\..\..\Nugets\ZPF_MCE\ZPF_MCE\ZPF_MCE\ZPF_MCE.csproj" />
 	  <ProjectReference Include="..\ZPF_MAUITools\ZPF_MAUITools.csproj" />
 	</ItemGroup>
 

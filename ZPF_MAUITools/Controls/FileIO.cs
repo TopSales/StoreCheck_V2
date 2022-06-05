@@ -26,5 +26,10 @@ namespace ZPF.XF
 
             return path;
         }
+
+        public static bool WriteStream(Stream outputStream, string fileName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

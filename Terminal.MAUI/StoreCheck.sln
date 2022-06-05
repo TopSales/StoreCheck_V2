@@ -16,9 +16,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "..\TestProje
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_ChatHelper6", "..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper6.csproj", "{27702518-4D44-4C7B-A937-49F7C01F4F37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZPF_MAUITools", "..\ZPF_MAUITools\ZPF_MAUITools.csproj", "{0C1DE3BF-802C-475B-A258-600341B438C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_MAUITools", "..\ZPF_MAUITools\ZPF_MAUITools.csproj", "{0C1DE3BF-802C-475B-A258-600341B438C0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_XF_Compos", "..\..\..\Nugets\ZPF_XF_Compos\XFCompos\ZPF_XF_Compos.csproj", "{162432C5-D080-4A9B-8F9A-38BE33BE01B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_MCE", "..\..\..\Nugets\ZPF_MCE\ZPF_MCE\ZPF_MCE\ZPF_MCE.csproj", "{CD7C37C0-7F0E-4BEF-8E35-969DB615E1BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZPF_MCE.Maui", "..\..\..\Nugets\ZPF_MCE\ZPF_MCE.Maui\ZPF_MCE.Maui.csproj", "{73695013-E5D5-4F48-BE7E-F64477478BC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +56,14 @@ Global
 		{162432C5-D080-4A9B-8F9A-38BE33BE01B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{162432C5-D080-4A9B-8F9A-38BE33BE01B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{162432C5-D080-4A9B-8F9A-38BE33BE01B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD7C37C0-7F0E-4BEF-8E35-969DB615E1BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD7C37C0-7F0E-4BEF-8E35-969DB615E1BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD7C37C0-7F0E-4BEF-8E35-969DB615E1BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD7C37C0-7F0E-4BEF-8E35-969DB615E1BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73695013-E5D5-4F48-BE7E-F64477478BC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73695013-E5D5-4F48-BE7E-F64477478BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73695013-E5D5-4F48-BE7E-F64477478BC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73695013-E5D5-4F48-BE7E-F64477478BC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
