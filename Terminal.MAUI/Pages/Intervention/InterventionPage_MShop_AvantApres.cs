@@ -109,7 +109,7 @@
 //               photosPage.SubTitle = MainViewModel.Current.BeforeAfter.PhotoConcurence;
 //               photosPage.Comment = MainViewModel.Current.BeforeAfter.PhotoConcurence_DocComment;
 //               photosPage.LoadData();
-//               await Navigation.PushAsync(photosPage);
+//               await Navigation.PushModalAsync(photosPage);
 //               break;
 
 //            case "photo before":
@@ -121,7 +121,7 @@
 //               photosPage.SubTitle = MainViewModel.Current.BeforeAfter.PhotoBefore;
 //               photosPage.Comment = MainViewModel.Current.BeforeAfter.PhotoBefore_DocComment;
 //               photosPage.LoadData();
-//               await Navigation.PushAsync(photosPage);
+//               await Navigation.PushModalAsync(photosPage);
 //               break;
 
 //            case "photo after":
@@ -131,7 +131,7 @@
 //               photosPage.SubTitle = MainViewModel.Current.BeforeAfter.PhotoAfter;
 //               photosPage.Comment = MainViewModel.Current.BeforeAfter.PhotoAfter_DocComment;
 //               photosPage.LoadData();
-//               await Navigation.PushAsync(photosPage);
+//               await Navigation.PushModalAsync(photosPage);
 //               break;
 
 //            case "QCM":
@@ -141,7 +141,7 @@
 //                  mce.Output = MainViewModel.Current.SelectedIntervention.Output;
 //                  mce.OnUpdateOutput += Report_OnUpdateOutput;
 
-//                  await Navigation.PushAsync(mce);
+//                  await Navigation.PushModalAsync(mce);
 //               };
 //               break;
 

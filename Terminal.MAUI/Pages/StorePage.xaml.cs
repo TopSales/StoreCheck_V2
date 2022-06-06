@@ -186,7 +186,7 @@ public partial class StorePage : PageEx
 
    private void infosClicked(object sender, System.EventArgs e)
    {
-      Navigation.PushAsync(new ContactPage(MainViewModel.Current.SelectedStore));
+      Navigation.PushModalAsync(new ContactPage(MainViewModel.Current.SelectedStore));
    }
 
    private async void naviClicked(object sender, System.EventArgs e)

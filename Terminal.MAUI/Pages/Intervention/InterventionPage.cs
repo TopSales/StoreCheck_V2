@@ -199,32 +199,32 @@ namespace StoreCheck.Pages
          //                  mce.Output = MainViewModel.Current.SelectedIntervention.Output;
          //                  mce.OnUpdateOutput += Report_OnUpdateOutput;
 
-         //                  await Navigation.PushAsync(mce);
+         //                  await Navigation.PushModalAsync(mce);
          //               };
          //               break;
 
          //            case "shelf":
-         //               await Navigation.PushAsync(new ShelfInventoryPage());
+         //               await Navigation.PushModalAsync(new ShelfInventoryPage());
          //               break;
 
          //            case "SLIM":
-         //               await Navigation.PushAsync(new SLIMPage());
+         //               await Navigation.PushModalAsync(new SLIMPage());
          //               break;
 
          //            case "Missing":
-         //               await Navigation.PushAsync(new MissingPage());
+         //               await Navigation.PushModalAsync(new MissingPage());
          //               break;
 
          //            case "photos":
          //               photosPage.Title = "";
          //               photosPage.Comment = "";
-         //               await Navigation.PushAsync(photosPage);
+         //               await Navigation.PushModalAsync(photosPage);
          //               break;
 
          //            case "scan":
          //               var p = new ShelfInventoryPage();
          //               p.Title = "scan";
-         //               await Navigation.PushAsync(p);
+         //               await Navigation.PushModalAsync(p);
          //               break;
 
          //            case "photo concurence":
@@ -235,7 +235,7 @@ namespace StoreCheck.Pages
          //               photosPage.SubTitle = MainViewModel.Current.durexParams.PhotoConcurence;
          //               photosPage.Comment = MainViewModel.Current.durexParams.PhotoConcurence_DocComment;
          //               photosPage.LoadData();
-         //               await Navigation.PushAsync(photosPage);
+         //               await Navigation.PushModalAsync(photosPage);
          //               break;
 
          //            case "photo before":
@@ -246,7 +246,7 @@ namespace StoreCheck.Pages
          //               //ToDo: photosPage.SubTitle = MainViewModel.Current.durexParams.PhotoBefore;
          //               //ToDo: photosPage.Comment = MainViewModel.Current.durexParams.PhotoBefore_DocComment;
          //               photosPage.LoadData();
-         //               await Navigation.PushAsync(photosPage);
+         //               await Navigation.PushModalAsync(photosPage);
          //               break;
 
          //            case "photo after":
@@ -255,7 +255,7 @@ namespace StoreCheck.Pages
          //               //ToDo: photosPage.SubTitle = MainViewModel.Current.durexParams.PhotoAfter;
          //               //ToDo: photosPage.Comment = MainViewModel.Current.durexParams.PhotoAfter_DocComment;
          //               photosPage.LoadData();
-         //               await Navigation.PushAsync(photosPage);
+         //               await Navigation.PushModalAsync(photosPage);
          //               break;
 
          //            case "validate":

@@ -91,7 +91,7 @@ namespace StoreCheck.Pages
       public delegate void OnUpdateOutputHandler(object sender, MCEViewModel mce);
       public OnUpdateOutputHandler OnUpdateOutput { get; set; }
 
-      private void Mce_OnButtonPressed(MCEViewModel sender, long ID, long targetID, MCEViewModel.ButtonTypes btnType)
+      private async void Mce_OnButtonPressed(MCEViewModel sender, long ID, long targetID, MCEViewModel.ButtonTypes btnType)
       {
          switch (MainViewModel.Current.SelectedInterventionParams.FKActionType)
          {
@@ -114,7 +114,7 @@ namespace StoreCheck.Pages
             DoIt.OnMainThread(async () =>
             {
                //await DisplayAlert("MCE", "Game over ...", "ok");
-               await Navigation.PopAsync();
+               await Navigation.PopModalAsync();
             });
 
             return;
@@ -122,8 +122,8 @@ namespace StoreCheck.Pages
 
          if (btnType == MCEViewModel.ButtonTypes.OK && targetID < 1)
          {
-            DoIt.OnMainThread(async () =>
-            {
+            //DoIt.OnMainThread(async () =>
+            //{
                mce.UpdateControlValues(slHost);
                Output = mce.ControlValues.Text;
 
@@ -132,8 +132,8 @@ namespace StoreCheck.Pages
                   OnUpdateOutput(this, mce);
                };
 
-               await Navigation.PopAsync();
-            });
+               await Navigation.PopModalAsync();
+            //});
 
             return;
          };
@@ -145,8 +145,8 @@ namespace StoreCheck.Pages
 
             var item = mce.Items.Where(x => x.ID == ID).FirstOrDefault();
 
-            DoIt.OnMainThread(async () =>
-            {
+            //DoIt.OnMainThread(async () =>
+            //{
                switch (item.Format)
                {
                   case "Photos":
@@ -155,22 +155,22 @@ namespace StoreCheck.Pages
                      photosPage.SubTitle = item.Caption;
                      photosPage.Comment = item.Name;
                      photosPage.LoadData();
-                     await Navigation.PushAsync(photosPage);
+                     await Navigation.PushModalAsync(photosPage);
                      break;
 
                   case "Inventory":
-                     await Navigation.PushAsync(new InventoryPage());
+                     await Navigation.PushModalAsync(new InventoryPage());
                      break;
 
                   case "Signature":
-                     await Navigation.PushAsync(new SignaturePage());
+                     await Navigation.PushModalAsync(new SignaturePage());
                      break;
 
                   default:
                      mce.Exec(targetID, slHost);
                      break;
                };
-            });
+            //});
 
             return;
          };

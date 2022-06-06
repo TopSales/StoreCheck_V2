@@ -62,7 +62,7 @@ namespace StoreCheck.Pages
                   mce.Output = MainViewModel.Current.SelectedIntervention.Output;
                   mce.OnUpdateOutput += Report_OnUpdateOutput;
 
-                  await Navigation.PushAsync(mce);
+                  await Navigation.PushModalAsync(mce);
                };
                break;
 

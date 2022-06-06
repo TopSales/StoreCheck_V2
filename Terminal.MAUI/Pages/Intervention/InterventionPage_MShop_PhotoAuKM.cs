@@ -99,7 +99,7 @@
 //               photosPage.SubTitle = MainViewModel.Current.PhotoAuKM.PhotoConcurence;
 //               photosPage.Comment = MainViewModel.Current.PhotoAuKM.PhotoConcurence_DocComment;
 //               photosPage.LoadData();
-//               await Navigation.PushAsync(photosPage);
+//               await Navigation.PushModalAsync(photosPage);
 //               break;
 
 //            case "photos":
@@ -111,7 +111,7 @@
 //               photosPage.SubTitle = MainViewModel.Current.PhotoAuKM.Photos;
 //               photosPage.Comment = MainViewModel.Current.PhotoAuKM.Photos_DocComment;
 //               photosPage.LoadData();
-//               await Navigation.PushAsync(photosPage);
+//               await Navigation.PushModalAsync(photosPage);
 //               break;
 
 //            case "QCM":
@@ -121,7 +121,7 @@
 //                  mce.Output = MainViewModel.Current.SelectedIntervention.Output;
 //                  mce.OnUpdateOutput += Report_OnUpdateOutput;
 
-//                  await Navigation.PushAsync(mce);
+//                  await Navigation.PushModalAsync(mce);
 //               };
 //               break;
 

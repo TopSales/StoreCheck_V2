@@ -200,13 +200,13 @@ namespace ZPF
       async void saveToolbarItem_Activated(object sender, EventArgs e)
       {
          //SiteViewModel.Instance.SaveSelectedSite();
-         //await Navigation.PopAsync();
+         //await Navigation.PopModalAsync();
       }
 
       async void cancelToolbarItem_Activated(object sender, EventArgs e)
       {
          //await SiteViewModel.Instance.SelectSite(SiteViewModel.Instance.SelectedSite.PK);
-         //await Navigation.PopAsync();
+         //await Navigation.PopModalAsync();
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -

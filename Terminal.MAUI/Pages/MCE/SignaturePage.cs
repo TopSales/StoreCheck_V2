@@ -92,7 +92,7 @@ namespace ZPF
                   //   if ( MainViewModel.Current.IsInternetAccessAvailable &&
                   //         await MainViewModel.Current.UploadDoc(FileName, Document.InternalDocumentTypes.signature, RefType, ExtRef, "Signature", "", Guid.NewGuid().ToString() ))
                   //   {
-                  //      await Navigation.PopAsync();
+                  //      await Navigation.PopModalAsync();
                   //   }
                   //   else
                   //   {
@@ -119,7 +119,7 @@ namespace ZPF
 
                b.Clicked += async (object sender, System.EventArgs e) =>
                {
-                  await Navigation.PopAsync();
+                  await Navigation.PopModalAsync();
                };
 
                // - - -  - - - 

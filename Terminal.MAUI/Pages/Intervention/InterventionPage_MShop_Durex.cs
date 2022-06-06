@@ -114,7 +114,7 @@
 //               photosPage.SubTitle = MainViewModel.Current.durexParams.PhotoConcurence;
 //               photosPage.Comment = MainViewModel.Current.durexParams.PhotoConcurence_DocComment;
 //               photosPage.LoadData();
-//               await Navigation.PushAsync(photosPage);
+//               await Navigation.PushModalAsync(photosPage);
 //               break;
 
 //            case "photo before":
@@ -126,17 +126,17 @@
 //               photosPage.SubTitle = MainViewModel.Current.durexParams.PhotoBefore;
 //               photosPage.Comment = MainViewModel.Current.durexParams.PhotoBefore_DocComment;
 //               photosPage.LoadData();
-//               await Navigation.PushAsync(photosPage);
+//               await Navigation.PushModalAsync(photosPage);
 //               break;
 
 //            case "scan":
 //               var p = new ShelfInventoryPage();
 //               p.Title = "scan";
-//               await Navigation.PushAsync(p);
+//               await Navigation.PushModalAsync(p);
 //               break;
 
 //            case "Missing":
-//               await Navigation.PushAsync(new MissingPage());
+//               await Navigation.PushModalAsync(new MissingPage());
 //               break;
 
 //            case "photo after":
@@ -146,7 +146,7 @@
 //               photosPage.SubTitle = MainViewModel.Current.durexParams.PhotoAfter;
 //               photosPage.Comment = MainViewModel.Current.durexParams.PhotoAfter_DocComment;
 //               photosPage.LoadData();
-//               await Navigation.PushAsync(photosPage);
+//               await Navigation.PushModalAsync(photosPage);
 //               break;
 
 //            case "validate":

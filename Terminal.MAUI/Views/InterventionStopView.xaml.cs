@@ -61,7 +61,7 @@ namespace StoreCheck.Views
 
             // - - -  - - - 
 
-            await parent.Navigation.PopAsync();
+            await parent.Navigation.PopModalAsync();
          };
 
          tiles[1].IsCancel = true;
