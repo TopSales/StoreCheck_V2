@@ -211,7 +211,7 @@ namespace ZPF
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
-      public async Task<string> OnProcessPhoto(string FileName, MediaFile file)
+      public async Task<string> OnProcessPhoto(string FileName, FileResult file)
       {
          if (!System.IO.Directory.Exists(MainViewModel.Current.DataFolder + @"/Photos/"))
          {
@@ -221,7 +221,10 @@ namespace ZPF
          FileName = MainViewModel.Current.DataFolder + @"/Photos/" + System.IO.Path.GetFileName(FileName);
          FileName = ZPF.XF.FileIO.CleanPath(FileName);
 
-         System.IO.File.Move(file.Path, FileName);
+         using Stream sourceStream = await file.OpenReadAsync();
+         using FileStream localFileStream = File.OpenWrite(FileName);
+
+         await sourceStream.CopyToAsync(localFileStream);
 
          //return FileName;
 
@@ -249,9 +252,7 @@ namespace ZPF
                   }
                   else
                   {
-                     outputStream = await ImageService.Instance
-                       .LoadFile(FileName)
-                       .AsJPGStreamAsync(quality: 70);
+                     //ToDo: outputStream = await ImageService.Instance .LoadFile(FileName) .AsJPGStreamAsync(quality: 70);
                   };
                }
                else
@@ -261,10 +262,7 @@ namespace ZPF
                   }
                   else
                   {
-                     outputStream = await ImageService.Instance
-                    .LoadFile(FileName)
-                    .DownSample(1024)
-                    .AsJPGStreamAsync(quality: AttachmentPanel.CompressionQuality);
+                     //ToDo: outputStream = await ImageService.Instance .LoadFile(FileName) .DownSample(1024) .AsJPGStreamAsync(quality: AttachmentPanel.CompressionQuality);
                   };
                };
 

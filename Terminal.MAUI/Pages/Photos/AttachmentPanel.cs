@@ -1,4 +1,5 @@
-﻿using ZPF.Conv;
+﻿using Microsoft.Maui.Controls;
+using ZPF.Conv;
 using ZPF.XF.Compos;
 using static ZPF.XF.Compos.AttachmentList;
 
@@ -76,7 +77,7 @@ namespace ZPF.XF
       }
       Func<TAttachment, bool> _OnUpdateData = null;
 
-      public Func<string, MediaFile, Task<string>> OnProcessPhoto { get; set; }
+      public Func<string, FileResult, Task<string>> OnProcessPhoto { get; set; }
 
       // - - -  - - - 
 
@@ -107,7 +108,10 @@ namespace ZPF.XF
             {
                BackgroundColor = Microsoft.Maui.Graphics.Colors.Silver,
             };
-            this.Add(b, 0, 1, 0, 1);
+            //this.Add(b, 0, 1, 0, 1);
+            this.Add(b, 0, 0);
+            Grid.SetColumnSpan(b, 2);
+            Grid.SetRowSpan(b, 2);
 
             iPreview = new AImage();
 
@@ -374,7 +378,7 @@ namespace ZPF.XF
 
       private async void btnChooseImage_Clicked(object sender, EventArgs e)
       {
-         if (!CrossMedia.Current.IsPickPhotoSupported)
+         if (!MediaPicker.Default.IsCaptureSupported)
          {
             await _Parent.DisplayAlert("Photos Not Supported", ":( Permission not granted to photos.", "OK");
 
@@ -383,10 +387,10 @@ namespace ZPF.XF
 
          string _FileName = System.IO.Path.GetFileNameWithoutExtension(FileName) + "." + DateTime.Now.ToString("yyyyMMdd-HHmmss") + System.IO.Path.GetExtension(FileName);
 
-         var file = await Plugin.Media.CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-         {
-            PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
-         });
+         FileResult file = await MediaPicker.Default.PickPhotoAsync(new MediaPickerOptions { });
+         //{
+         //   PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium
+         //});
 
          if (file == null)
             return;

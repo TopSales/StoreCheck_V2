@@ -1,4 +1,5 @@
 ﻿using StoreCheck.Views;
+using ZPF.MCE;
 using ZPF.XF.Compos;
 
 namespace StoreCheck.Pages
@@ -166,10 +167,10 @@ namespace StoreCheck.Pages
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - - 
 
-      //      void Report_OnUpdateOutput(object sender, MCEViewModel mce)
-      //      {
-      //         InterventionsViewModel.Current.SaveMCE(mce.ControlValues.Text);
-      //      }
+      void Report_OnUpdateOutput(object sender, MCEViewModel mce)
+      {
+         InterventionsViewModel.Current.SaveMCE(mce.ControlValues.Text);
+      }
 
       bool Sema_x_Clicked = false;
       async void x_Clicked(object sender, EventArgs e)
