@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-StoreCheck.Service-9677a25e-81a0-40df-832d-c36836d33d65</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\Nugets\ZPF_DBSQL\CS\MySQLEngine.cs" Link="DBSQL\MySQLEngine.cs" />
+    <Compile Include="..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="DBSQL\SQLServerEngine.cs" />
+    <Compile Include="..\..\..\Nugets\ZPF_Users\ZPF_Users_Rights\Models\User.cs" Link="Modeles\User.cs" />
+    <Compile Include="..\..\StoreCheck.Core\StoreCheck.UT\ViewModels\SmarterASPViewModel.cs" Link="ViewModels\SmarterASPViewModel.cs" />
+    <Compile Include="..\Server\ServerWPF\Modeles\Params.cs" Link="Modeles\Params.cs" />
+    <Compile Include="..\Server\ServerWPF\ViewModels\MainViewModel.cs" Link="ViewModels\MainViewModel.cs" />
+    <Compile Include="..\Server\ServerWPF\ViewModels\MainViewModel_Interventions.cs" Link="ViewModels\MainViewModel_Interventions.cs" />
+    <Compile Include="..\Server\ServerWPF\ViewModels\MainViewModel_Stores.cs" Link="ViewModels\MainViewModel_Stores.cs" />
+    <Compile Include="..\Server\ServerWPF\ViewModels\ServerViewModel.cs" Link="ViewModels\ServerViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.29" />
+    <PackageReference Include="StoreCheck.Core" Version="1.0.0.36" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="ZPF_DBSQL" Version="0.1.8.57" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper.csproj" />
+  </ItemGroup>
+</Project>

@@ -15,10 +15,10 @@ public class Params
       public string ServerIP { get; set; } = "127.0.0.1";
       public string ServerPort { get; set; } = "9000";
 #else
-      public string ServerIP { get; set; } = "69.10.45.253";
+      public string ServerIP { get; set; } = "69.10.45.253"; //  vps.diplodocus.dev
       public string ServerPort { get; set; } = "9000";
 #endif
 
-      #endregion
+   #endregion
 }
 

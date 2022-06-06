@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
-using System.Windows.Threading;
+//using System.Windows.Threading;
 using ZPF;
 using ZPF.AT;
 using ZPF.Chat;

@@ -19,7 +19,7 @@ public partial class MainViewModel : BaseViewModel
    public DBSQLViewModel Connection_DOC { get; private set; }
    public string DataFolder { get; }
 
-   private Timer timer;
+   private System.Timers.Timer timer;
 
    public static MainViewModel Current
    {
