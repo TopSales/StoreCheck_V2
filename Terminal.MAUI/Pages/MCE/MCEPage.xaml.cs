@@ -95,7 +95,7 @@ namespace StoreCheck.Pages
       {
          switch (MainViewModel.Current.SelectedInterventionParams.FKActionType)
          {
-            case (long)FKActionTypes.AvantApres:
+            case (long)FKActionTypes.BeforeAfter:
             case (long)FKActionTypes.PhotoAuKM:
                {
                   if (targetID == -1 && btnType == MCEViewModel.ButtonTypes.Other)

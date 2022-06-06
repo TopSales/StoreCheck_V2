@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using ZPF;
 using ZPF.AT;
@@ -136,6 +138,76 @@ public partial class MainViewModel : BaseViewModel
       // - - -  - - - 
 
       OnPropertyChanged("Documents");
+   }
+
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+
+   public async Task<bool> UploadDoc(string FileName, Document.InternalDocumentTypes DocType, string refType, string extRef, string title, string comment, string GUID)
+   {
+      refType = (string.IsNullOrEmpty(refType) ? "*" : refType);
+      extRef = (string.IsNullOrEmpty(extRef) ? "*" : extRef);
+      comment = (string.IsNullOrEmpty(comment) ? " " : comment);
+
+
+      //ToDp:
+      //string URL = string.Format(@"{0}Docs/Up/{1}/{2}/{3}/{4}/{5}/{6}/{7}",
+      //   wsServerDoc, System.IO.Path.GetFileName(FileName), DocType, refType, extRef, title, comment, GUID);
+
+      {
+         var content = new MultipartFormDataContent();
+
+         FileName = ZPF.XF.FileIO.CleanPath(FileName);
+         using (var stream = new StreamReader(FileName).BaseStream)
+         {
+            var streamContent = new StreamContent(stream);
+
+            streamContent.Headers.ContentDisposition = ContentDispositionHeaderValue.Parse("form-data");
+            streamContent.Headers.ContentDisposition.Parameters.Add(new NameValueHeaderValue("name", "contentFile"));
+            streamContent.Headers.ContentDisposition.Parameters.Add(new NameValueHeaderValue("filename", "\"" + FileName + "\""));
+
+            content.Add(streamContent);
+
+            try
+            {
+               //ToDo: var r = await wsHelper._httpClient.PostAsync(URL, content);
+               //var wsResult = await r.Content.ReadAsStringAsync();
+
+               //if (!r.IsSuccessStatusCode)
+               //{
+               //   Debug.WriteLine(r.ReasonPhrase);
+               //   return false;
+               //};
+            }
+            catch (Exception ex)
+            {
+               Debug.WriteLine(ex.Message);
+
+               return false;
+            };
+         };
+      };
+
+      return true;
+   }
+
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+
+   public async Task<bool> DownloadDoc(Document_CE doc)
+   {
+      if (doc.InternalDocType != Document.InternalDocumentTypes.FilePath)
+      {
+         if (!System.IO.Directory.Exists(MainViewModel.Current.DataFolder + @"/Photos/"))
+         {
+            System.IO.Directory.CreateDirectory(MainViewModel.Current.DataFolder + @"/Photos/");
+         };
+
+         doc.FullPath = MainViewModel.Current.DataFolder + @"/Photos/" + doc.FileName;
+         doc.FullPath = ZPF.XF.FileIO.CleanPath(doc.FullPath);
+
+         //ToDo: return await SyncViewModel.Current.wsHelperwGetDownload(string.Format("/DownloadDoc/{0}/{1}", doc.InternalDocType, doc.GUID), doc.FullPath);
+      };
+
+      return false;
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
