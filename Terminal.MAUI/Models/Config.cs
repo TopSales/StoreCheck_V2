@@ -44,7 +44,8 @@ namespace ZPF
             }
             else
             {
-               return "127.0.0.1";
+               //return "127.0.0.1";
+               return ServerIP1;
             };
          }
       }
@@ -52,7 +53,7 @@ namespace ZPF
 
       public string ServerPort { get; set; } = "9000";
 #else
-      public string ServerIP { get; set; } = "69.10.45.253";
+      public string ServerIP { get; set; } = ServerIP1;
       public string ServerPort { get; set; } = "9000";
 #endif
 

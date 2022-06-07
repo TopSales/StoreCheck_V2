@@ -101,7 +101,7 @@ public class ClientViewModel : BaseViewModel
                      {
                         if (data.Data == null)
                         {
-                           MainViewModel.Current.EntryMsg = "Call your admin";
+                           MainViewModel.Current.EntryMsg = $"Call your admin\n\n[{MainViewModel.Current.DeviceID}]";
                         }
                         else
                         {
