@@ -52,7 +52,7 @@
       </GroupBox>
 
       <GroupBox Grid.Row="1" Header="Clients" Padding="10" Margin="10">
-         <ListBox x:Name="listClients" 
+         <!--<ListBox x:Name="listClients" 
                      ItemsSource="{Binding Clients}" Margin="0,0,-4,0" 
                      MouseDoubleClick="listClients_MouseDoubleClick">
             <ListBox.ItemTemplate>
@@ -68,20 +68,11 @@
                   </Grid>
                </DataTemplate>
             </ListBox.ItemTemplate>
-         </ListBox>
+         </ListBox>-->
       </GroupBox>
 
       <GroupBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" 
                   Header="Chats" Padding="10" Margin="10">
-         <ListBox x:Name="listChats" ItemsSource="{Binding Log}">
-            <ListBox.ItemTemplate>
-               <DataTemplate>
-                  <Grid>
-                     <TextBlock Text="{Binding Value}" />
-                  </Grid>
-               </DataTemplate>
-            </ListBox.ItemTemplate>
-         </ListBox>
       </GroupBox>
    </Grid>
 </Window>

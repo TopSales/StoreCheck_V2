@@ -71,7 +71,7 @@ public class ServerViewModel : BaseViewModel
          case ChatCore.EventType.Message:
             {
                // Message to operator
-               AddMessage(message);
+               //ToDo: AddMessage(message);
             }
             break;
 
@@ -94,7 +94,7 @@ public class ServerViewModel : BaseViewModel
          case ChatCore.EventType.File:
             {
                // file
-               AddMessage($"Received file '{message}'");
+               //ToDo: AddMessage($"Received file '{message}'");
                //System.Diagnostics.Process.Start(message);
             }
             break;
@@ -311,27 +311,12 @@ public class ServerViewModel : BaseViewModel
       int port = int.Parse(MainViewModel.Current.Config.ServerPort);
       int bufferSize = 1024;
 
-      AddMessage("[SERVER]: Server is closed!");
+      //ToDo: AddMessage("[SERVER]: Server is closed!");
 
       IPAddress.TryParse(ipAddress, out var IP);
       await chatServer.Listener(IP, port, bufferSize, true);
 
       await chatServer.StopServer();
-   }
-
-   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
-
-   public List<NameValue> Log { get; set; } = new List<NameValue>();
-
-   /// <summary>
-   /// Add messages to messages ListBox
-   /// </summary>
-   /// <param name="message"></param>
-   public void AddMessage(string message)
-   {
-      Debug.WriteLine(message);
-      Log.Insert(0, new NameValue { Value = message });
-      //Dispatcher.Invoke(() => listChats.Items.Add(message));
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -

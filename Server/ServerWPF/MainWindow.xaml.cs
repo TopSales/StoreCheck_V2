@@ -57,7 +57,7 @@ namespace _03_ChatServerWPF
             Message = message,
          });
 
-         Dispatcher.Invoke(() => ServerViewModel.Current.AddMessage(message));
+         //ToDo: Dispatcher.Invoke(() => ServerViewModel.Current.AddMessage(message));
       }
 
       /// <summary>
