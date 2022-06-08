@@ -60,10 +60,24 @@ public partial class MainViewModel : BaseViewModel
 
       OpenDB();
 
-#if !DEBUG
       AuditTrailViewModel.Current.Init(new DBAuditTrailWriter(Connection_AT));
-      AuditTrailViewModel.Current.Application = "SCAdmin";
+
+      // - - -  - - -
+
+#if DEBUG
+      Log.WriteHeader("ServerWPF", "debug", Environment.MachineName);
+#else
+      Log.WriteHeader("ServerWPF", "release", Environment.MachineName);
 #endif
+
+      try
+      {
+         var st = $"DB {Connection_DB.DbConnection.Database} - Doc {Connection_DOC.DbConnection.Database} - AT {Connection_AT.DbConnection.Database}";
+         Log.Write(ErrorLevel.Log, st);
+      }
+      catch { };
+
+      // - - -  - - -
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
@@ -83,6 +97,7 @@ public partial class MainViewModel : BaseViewModel
       if (Connection_AT == null || !Connection_AT.CheckConnection())
       {
          Connection_AT = SmarterASPViewModel.Current.OpenAuditTrailDev();
+         Connection_AT = Connection_DB;
 
          // - - -  - - - 
 
