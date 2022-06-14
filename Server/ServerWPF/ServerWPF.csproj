@@ -215,16 +215,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper.csproj">
-      <Project>{9d857d32-8241-4ac2-a736-659a2594b288}</Project>
-      <Name>ZPF_ChatHelper</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Background.png" />
     <Resource Include="Images\StoreCheck.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_ChatHelper\R&amp;D\ClientServer\ZPF_ChatHelper\ZPF_ChatHelper.csproj">
+      <Project>{CA060F26-E34E-43B2-9D6D-06F0F50B03CE}</Project>
+      <Name>ZPF_ChatHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Text.Json.6.0.4\build\System.Text.Json.targets" Condition="Exists('..\packages\System.Text.Json.6.0.4\build\System.Text.Json.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

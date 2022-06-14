@@ -5,9 +5,9 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerWPF", "ServerWPF\ServerWPF.csproj", "{5C58F5AD-385E-4A1F-AA33-86113F977BDE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_ChatHelper", "..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper.csproj", "{9D857D32-8241-4AC2-A736-659A2594B288}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreCheck.Service", "..\Service\StoreCheck.Service.csproj", "{6088AC6B-A2FF-4A9B-A7A4-2910901F4DF5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_ChatHelper", "..\..\..\Nugets\ZPF_ChatHelper\R&D\ClientServer\ZPF_ChatHelper\ZPF_ChatHelper.csproj", "{CA060F26-E34E-43B2-9D6D-06F0F50B03CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{5C58F5AD-385E-4A1F-AA33-86113F977BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C58F5AD-385E-4A1F-AA33-86113F977BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C58F5AD-385E-4A1F-AA33-86113F977BDE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D857D32-8241-4AC2-A736-659A2594B288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D857D32-8241-4AC2-A736-659A2594B288}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D857D32-8241-4AC2-A736-659A2594B288}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D857D32-8241-4AC2-A736-659A2594B288}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6088AC6B-A2FF-4A9B-A7A4-2910901F4DF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6088AC6B-A2FF-4A9B-A7A4-2910901F4DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6088AC6B-A2FF-4A9B-A7A4-2910901F4DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6088AC6B-A2FF-4A9B-A7A4-2910901F4DF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA060F26-E34E-43B2-9D6D-06F0F50B03CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA060F26-E34E-43B2-9D6D-06F0F50B03CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA060F26-E34E-43B2-9D6D-06F0F50B03CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA060F26-E34E-43B2-9D6D-06F0F50B03CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
