@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\..\..\Nugets\ZPF_Basics\AuditTrail\AuditTrailWriterHelper.cs" Link="DBSQL\AuditTrailWriterHelper.cs" />
+    <Compile Include="..\..\..\Nugets\ZPF_Basics\AuditTrail\DBAuditTrailWriter.cs" Link="DBSQL\DBAuditTrailWriter.cs" />
     <Compile Include="..\..\..\Nugets\ZPF_DBSQL\CS\MySQLEngine.cs" Link="DBSQL\MySQLEngine.cs" />
     <Compile Include="..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="DBSQL\SQLServerEngine.cs" />
     <Compile Include="..\..\..\Nugets\ZPF_Users\ZPF_Users_Rights\Models\User.cs" Link="Modeles\User.cs" />
