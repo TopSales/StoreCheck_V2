@@ -65,9 +65,9 @@ public partial class MainViewModel : BaseViewModel
       // - - -  - - -
 
 #if DEBUG
-      Log.WriteHeader("ServerWPF", "debug", Environment.MachineName);
+      Log.WriteHeader("ServerWPF", $"debug on {Environment.MachineName}", "");
 #else
-      Log.WriteHeader("ServerWPF", "release", Environment.MachineName);
+      Log.WriteHeader("ServerWPF", $"release on {Environment.MachineName}", "");
 #endif
 
       try

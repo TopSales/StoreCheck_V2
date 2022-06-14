@@ -64,8 +64,6 @@ public class ServerViewModel : BaseViewModel
    {
       bool Result = true;
 
-      Debug.WriteLine("ICI ICI ICI");
-
       switch (eventType)
       {
          case ChatCore.EventType.Message:
@@ -101,8 +99,19 @@ public class ServerViewModel : BaseViewModel
 
          case ChatCore.EventType.Data:
             {
+               ChatData data = null;
+
                // Data Message
-               var data = Newtonsoft.Json.JsonConvert.DeserializeObject<ChatData>(message.TrimEnd(new char[] { '~' }));
+               try
+               {
+                  data = Newtonsoft.Json.JsonConvert.DeserializeObject<ChatData>(message.TrimEnd(new char[] { '~' }));
+               }
+               catch (Exception ex)
+               {
+                  Log.Write(new AuditTrail(ex) { DataInType="JSON", DataIn=message.Left(1024) });
+
+                  return false;
+               };
 
                switch (data.Action.ToLower())
                {
