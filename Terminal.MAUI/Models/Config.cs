@@ -51,7 +51,7 @@ namespace ZPF
       }
 
 
-      public string ServerPort { get; set; } = "9000";
+      public string ServerPort { get; set; } = "8080";
 #else
       public string ServerIP { get; set; } = ServerIP1;
       public string ServerPort { get; set; } = "9000";

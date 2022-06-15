@@ -305,8 +305,8 @@ public class ClientViewModel : BaseViewModel
       if (chatClient == null)
       {
          chatClient = new ZPF.Chat.ChatClient(OnHostMessage, OnDataMessage, ipAddress, port);
+         chatClient.StartClient();
       };
-      chatClient.StartClient();
    }
 
    public bool IsConnected()

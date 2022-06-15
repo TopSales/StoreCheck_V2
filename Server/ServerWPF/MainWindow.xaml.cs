@@ -20,21 +20,44 @@ namespace _03_ChatServerWPF
    /// </summary>
    public partial class MainWindow
    {
-      ChatServer chatServer = null;
+      ChatServer BLL = null;
+
+      // Write the host messages to the console
+      void OnHostMessage(string input)
+      {
+         PeriodicallyClearScreen();
+         AddMessage(input);
+      }
+
+      // Write the host messages to the console
+      void OnDataMessage(ChatData data)
+      {
+         PeriodicallyClearScreen();
+         AddMessage($"{data.Action} [{data.Data}]");
+      }
+
+      int i = 0;
+      void PeriodicallyClearScreen()
+      {
+         i++;
+         if (i > 15)
+         {
+            ClearMessage();
+            AddMessage("Press esc key to stop");
+            i = 0;
+         }
+      }
 
       /// <summary>
       /// Initialize main window
       /// </summary>
       public MainWindow()
       {
-         DataContext = ServerViewModel.Current;
+         //DataContext = ServerViewModel.Current;
          InitializeComponent();
 
          serverIpAddress.Text = MainViewModel.Current.Config.ServerIP;
          serverPortValue.Text = MainViewModel.Current.Config.ServerPort;
-
-         chatServer = (ChatServer)ChatServer.Current;
-         chatServer.OnChatEvent += ServerViewModel.Current.ChatServer_OnChatEvent;
       }
 
       private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -48,17 +71,37 @@ namespace _03_ChatServerWPF
       /// Add messages to messages ListBox
       /// </summary>
       /// <param name="message"></param>
+      //private void AddMessage(string message)
+      //{
+      //   ZPF.AT.Log.Write(new ZPF.AT.AuditTrail
+      //   {
+      //      IsBusiness = false,
+      //      Level = ZPF.AT.ErrorLevel.Info,
+      //      Message = message,
+      //   });
+
+      //   //ToDo: Dispatcher.Invoke(() => ServerViewModel.Current.AddMessage(message));
+      //}
+
+      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
+
+      /// <summary>
+      /// Add messages to messages ListBox
+      /// </summary>
+      /// <param name="message"></param>
       private void AddMessage(string message)
       {
-         ZPF.AT.Log.Write(new ZPF.AT.AuditTrail
-         {
-            IsBusiness = false,
-            Level = ZPF.AT.ErrorLevel.Info,
-            Message = message,
-         });
+         //Dispatcher.Invoke(() => listChats.Items.Add(message));
 
-         //ToDo: Dispatcher.Invoke(() => ServerViewModel.Current.AddMessage(message));
+         System.Diagnostics.Debug.WriteLine(message);
       }
+
+      private void ClearMessage()
+      {
+         //Dispatcher.Invoke(() => listChats.Items.Clear());
+      }
+
+      // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
       /// <summary>
       /// Start server and stop server button functionality
@@ -74,20 +117,30 @@ namespace _03_ChatServerWPF
                btnStartStop.Content = "Stop";
 
                var serverPort = ChatCore.ParseStringToInt(serverPortValue.Text);
-               var serverBufferSize = ChatCore.ParseStringToInt(serverBufferSizeValue.Text);
-               IPAddress.TryParse(serverIpAddress.Text, out var ipAddress);
-               await chatServer.Listener(ipAddress, serverPort, serverBufferSize);
+               var ipAddress = serverIpAddress.Text.Trim();
+               //await chatServer.Listener(ipAddress, serverPort);
+
+
+               if (BLL == null)
+               {
+                  BLL = new ZPF.Chat.ChatServer(OnHostMessage, OnDataMessage, ipAddress, serverPort);
+
+                  if (BLL == null)
+                  {
+                  };
+               };
+               BLL.StartServer();
             }
             else
             {
                MessageBox.Show("IP Address or server port is invalid!");
-            }
+            };
          }
          else
          {
             btnStartStop.Content = "Start";
-            StopServer();
-         }
+            BLL.StopServer();
+         };
       }
 
 
@@ -96,17 +149,17 @@ namespace _03_ChatServerWPF
       /// </summary>
       private async void StopServer()
       {
-         await chatServer.SendStatusToAllClients(ChatCore.ServerDisconnectSignal);
+         //await chatServer.SendStatusToAllClients(ChatCore.ServerDisconnectSignal);
 
-         //Dispatcher.Invoke(() => listClients.Items.Clear());
-         AddMessage("[SERVER]: Server is closed!");
+         ////Dispatcher.Invoke(() => listClients.Items.Clear());
+         //AddMessage("[SERVER]: Server is closed!");
 
-         var serverPort = ChatCore.ParseStringToInt(serverPortValue.Text);
-         var serverBufferSize = ChatCore.ParseStringToInt(serverBufferSizeValue.Text);
-         IPAddress.TryParse(serverIpAddress.Text, out var ipAddress);
-         await chatServer.Listener(ipAddress, serverPort, serverBufferSize, true);
+         //var serverPort = ChatCore.ParseStringToInt(serverPortValue.Text);
+         //var serverBufferSize = ChatCore.ParseStringToInt(serverBufferSizeValue.Text);
+         //IPAddress.TryParse(serverIpAddress.Text, out var ipAddress);
+         //await chatServer.Listener(ipAddress, serverPort, serverBufferSize, true);
 
-         await chatServer.StopServer();
+         //await chatServer.StopServer();
       }
 
 
@@ -118,34 +171,7 @@ namespace _03_ChatServerWPF
       /// <param name="e"></param>
       private async void CloseServerConnection(object sender, CancelEventArgs e)
       {
-         await chatServer.CloseConnection();
+         //ToDo: await chatServer.CloseConnection();
       }
-
-      private async void listClients_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-      {
-         var l = sender as ListBox;
-
-         if (l != null)
-         {
-            var c = (l.SelectedItem as Client);
-
-            await chatServer.SendMessageToClient(c.Tcp, "Beuh?");
-         };
-      }
-
-      private async void MenuItem_Click(object sender, RoutedEventArgs e)
-      {
-         OpenFileDialog openFileDialog = new OpenFileDialog();
-
-         if (openFileDialog.ShowDialog() == true)
-         {
-            var c = (sender as MenuItem).DataContext as Client;
-
-            AddMessage($"[{c.Name}]: Send file '{openFileDialog.FileName}'");
-
-            await chatServer.SendFileToClient(c.Tcp, openFileDialog.FileName);
-         };
-      }
-
    }
 }

@@ -30,16 +30,14 @@
 
             <Label>IP Address</Label>
             <Label Grid.Row="1">Port</Label>
-            <Label Grid.Row="2">Buffer Size</Label>
-
 
             <!--<TextBox x:Name="serverIpAddress" Grid.Column="1" Text="127.0.0.1" Margin="5"/>-->
             <ComboBox x:Name="serverIpAddress" Grid.Column="1" Margin="5">
-               <ComboBoxItem Content="127.0.0.1" IsSelected="True"/>
+               <ComboBoxItem Content="0.0.0.0" IsSelected="True"/>
+               <ComboBoxItem Content="127.0.0.1" />
                <ComboBoxItem Content="69.10.45.253" />
             </ComboBox>
             <TextBox x:Name="serverPortValue" Grid.Row="1" Grid.Column="1" Text="9000" Margin="5"/>
-            <TextBox x:Name="serverBufferSizeValue" Grid.Row="2" Grid.Column="1" Text="1024" Margin="5"/>
 
             <Button x:Name="btnStartStop" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Content="Start" Padding="5" Margin="10" Click="btnStartStop_Click" />
          </Grid>
