@@ -55,10 +55,12 @@ public class ClientViewModel : BaseViewModel
    }
 
    // Write the host messages to the console
-   void OnDataMessage(ChatData data)
+   void OnDataMessage(Object sender, ChatData data)
    {
       PeriodicallyClearScreen();
       AddMessage($"{data.Action} [{data.Data}]");
+
+      OnDataMessage(sender as ChatClient, data);
    }
 
    int i = 0;
@@ -93,150 +95,89 @@ public class ClientViewModel : BaseViewModel
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
-   private async Task<bool> ChatClient_OnChatEvent(object sender, ChatCore.EventType eventType, string message = "")
+   public void OnDataMessage(ChatClient chatClient, ChatData data)
    {
-      bool Result = true;
-
-      switch (eventType)
+      switch (data.Action.ToLower())
       {
-         case ChatCore.EventType.ConnectionFailed:
+         case "entry":
             {
-               //AddMessage("[CLIENT]: ❌ Could not create a connection with the server.");
-            }
-            break;
-
-         case ChatCore.EventType.SendConnectionDataFailed:
-            {
-               //MessageBox.Show("❌ Can't connect to the server, try again later!", "Client");
-            }
-            break;
-
-         case ChatCore.EventType.IOException:
-            {
-               //AddMessage("[SERVER]: ❌ Connection with server is lost!");
-            }
-            break;
-
-         case ChatCore.EventType.ClientDisconnected:
-            {
-               //AddMessage("[CLIENT]: ❌ Disconnected!");
-            }
-            break;
-
-         case ChatCore.EventType.ServerDisconnect:
-            {
-            }
-            break;
-
-         case ChatCore.EventType.Data:
-            {
-               // Data Message
-               ChatData data = ChatCore.DeserializeChatData(message);
-
-               if (data == null)
+               if (data.Data == null)
                {
-                  return false;
-               };
-
-               switch (data.Action.ToLower())
+                  MainViewModel.Current.EntryMsg = $"Call your admin\n\n[{MainViewModel.Current.DeviceID}]";
+               }
+               else
                {
-                  case "entry":
-                     {
-                        if (data.Data == null)
-                        {
-                           MainViewModel.Current.EntryMsg = $"Call your admin\n\n[{MainViewModel.Current.DeviceID}]";
-                        }
-                        else
-                        {
-                           var u = Newtonsoft.Json.JsonConvert.DeserializeObject<UserAccount>(data.Data);
+                  var u = Newtonsoft.Json.JsonConvert.DeserializeObject<UserAccount>(data.Data);
 
-                           if (u != null)
-                           {
-                              AuditTrailViewModel.Current.TerminalID = u.TerminalID;
-                              AuditTrailViewModel.Current.FKUser = u.PK.ToString();
+                  if (u != null)
+                  {
+                     AuditTrailViewModel.Current.TerminalID = u.TerminalID;
+                     AuditTrailViewModel.Current.FKUser = u.PK.ToString();
 
-                              MainViewModel.Current.Config.FKUser = u.PK;
-                              MainViewModel.Current.Config.Login = u.Login;
-                              MainViewModel.Current.Save();
+                     MainViewModel.Current.Config.FKUser = u.PK;
+                     MainViewModel.Current.Config.Login = u.Login;
+                     MainViewModel.Current.Save();
 
-                              MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
+                     MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
 
-                              chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
-                              chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
-                           };
-                        };
-                     };
-                     break;
-
-                  case "call":
-                     {
-                        //var s = Newtonsoft.Json.JsonConvert.DeserializeObject<Spooler>(data.Data);
-
-                        //if (s.Client == MainViewModel.Current.Config.ClientName)
-                        //{
-                        //   string buffer = "";
-
-                        //   // - - - beeper - - -
-                        //   if (false)
-                        //   {
-                        //      buffer = (char)0x01 + s.Beeper + (char)0x03;
-                        //      DependencyService.Get<ISyscallHelper>().Write2SerialPort(byte.Parse(MainViewModel.Current.Config.ComPort), buffer);
-                        //   };
-
-                        //   // - - - pager - - -
-                        //   if (true)
-                        //   {
-                        //      string beeper = s.Beeper;
-                        //      string gate = s.Gate.ToString();
-                        //      string text = "Gate";
-
-                        //      buffer = beeper.PadLeft(4, '0'); // beeper
-                        //      buffer += gate.PadLeft(3, '0'); // gate
-                        //      buffer += text.ToUpper().PadLeft(10, ' '); // text
-
-                        //      buffer = (char)0x01 + buffer + (char)0x03;
-
-                        //      // fucking ugly ... but, it works ...
-                        //      DependencyService.Get<ISyscallHelper>().Write2SerialPort(byte.Parse(MainViewModel.Current.Config.ComPort), buffer);
-                        //      DependencyService.Get<ISyscallHelper>().Write2SerialPort(byte.Parse(MainViewModel.Current.Config.ComPort), buffer);
-                        //   };
-                        //};
-                     };
-                     break;
-
-                  case "get_interventions":
-                     {
-                        MainViewModel.Current.SetInterventions(data.Data);
-                        MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Interventions);
-                     };
-                     break;
-
-                  case "get_stores":
-                     {
-                        MainViewModel.Current.SetStores(data.Data);
-                        MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Stores);
-                     };
-                     break;
+                     chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                     chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                  };
                };
-
-               // private async Task<bool> SetSpoolerList(string json)
-               //ToDo: SetStats()
-               // System.Diagnostics.Debug.WriteLine("Chat(D): " + message);
-            }
+            };
             break;
 
-         case ChatCore.EventType.Message:
+         case "call":
             {
-               // Message
-               //MainViewModel.Current.CurrentMessage = message;
-               //MainViewModel.Current.Save();
+               //var s = Newtonsoft.Json.JsonConvert.DeserializeObject<Spooler>(data.Data);
 
-               System.Diagnostics.Debug.WriteLine("Chat(M): " + message);
-            }
+               //if (s.Client == MainViewModel.Current.Config.ClientName)
+               //{
+               //   string buffer = "";
+
+               //   // - - - beeper - - -
+               //   if (false)
+               //   {
+               //      buffer = (char)0x01 + s.Beeper + (char)0x03;
+               //      DependencyService.Get<ISyscallHelper>().Write2SerialPort(byte.Parse(MainViewModel.Current.Config.ComPort), buffer);
+               //   };
+
+               //   // - - - pager - - -
+               //   if (true)
+               //   {
+               //      string beeper = s.Beeper;
+               //      string gate = s.Gate.ToString();
+               //      string text = "Gate";
+
+               //      buffer = beeper.PadLeft(4, '0'); // beeper
+               //      buffer += gate.PadLeft(3, '0'); // gate
+               //      buffer += text.ToUpper().PadLeft(10, ' '); // text
+
+               //      buffer = (char)0x01 + buffer + (char)0x03;
+
+               //      // fucking ugly ... but, it works ...
+               //      DependencyService.Get<ISyscallHelper>().Write2SerialPort(byte.Parse(MainViewModel.Current.Config.ComPort), buffer);
+               //      DependencyService.Get<ISyscallHelper>().Write2SerialPort(byte.Parse(MainViewModel.Current.Config.ComPort), buffer);
+               //   };
+               //};
+            };
+            break;
+
+         case "get_interventions":
+            {
+               MainViewModel.Current.SetInterventions(ZIPHelper.Unzip(Convert.FromBase64String(data.Data)));
+               MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Interventions);
+            };
+            break;
+
+         case "get_stores":
+            {
+               MainViewModel.Current.SetStores(ZIPHelper.Unzip(Convert.FromBase64String(data.Data)));
+               MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Stores);
+            };
             break;
       };
 
-      return Result;
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -

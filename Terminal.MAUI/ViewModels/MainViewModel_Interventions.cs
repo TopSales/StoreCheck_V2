@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 using ZPF;
 using ZPF.AT;
+using ZPF.Chat;
 
 public partial class MainViewModel : BaseViewModel
 {

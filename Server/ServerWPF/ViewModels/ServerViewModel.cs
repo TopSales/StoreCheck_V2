@@ -57,7 +57,7 @@ public class ServerViewModel : BaseViewModel
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
    //public async Task<bool> ChatServer_OnChatEvent(object sender, TcpClient tcpClient, ChatCore.EventType eventType, string message = "")
-   public void OnDataMessage(ChatData data)
+   public void OnDataMessage(ChatServer chatServer, ChatData data)
    {
       bool Result = true;
 
@@ -93,8 +93,7 @@ public class ServerViewModel : BaseViewModel
                   user.Password = "";
                };
 
-               chatServer.
-                  SendDataToClient(tcpClient, "entry", user);
+               chatServer.SendDataToClient("entry", user);
             };
             break;
 
@@ -104,7 +103,7 @@ public class ServerViewModel : BaseViewModel
 
                var list = MainViewModel.Current.GetInterventions(qp.Begin, true, qp.FKUser, null, null);
 
-               await ChatServer.Current.SendDataToClient(tcpClient, "get_interventions", list);
+               chatServer.SendDataToClient("get_interventions", list);
             };
             break;
 
@@ -114,12 +113,12 @@ public class ServerViewModel : BaseViewModel
 
                var list = MainViewModel.Current.GetStores(qp.Begin);
 
-               await ChatServer.Current.SendDataToClient(tcpClient, "get_stores", list);
+               chatServer.SendDataToClient("get_stores", list);
             };
             break;
       };
 
-      return Result;
+      //return Result;
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -

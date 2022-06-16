@@ -30,10 +30,12 @@ namespace _03_ChatServerWPF
       }
 
       // Write the host messages to the console
-      void OnDataMessage(ChatData data)
+      void OnDataMessage(Object sender, ChatData data)
       {
          PeriodicallyClearScreen();
          AddMessage($"{data.Action} [{data.Data}]");
+
+         ServerViewModel.Current.OnDataMessage(sender as ChatServer, data);
       }
 
       int i = 0;
