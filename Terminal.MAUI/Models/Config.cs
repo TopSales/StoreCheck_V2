@@ -32,6 +32,7 @@ namespace ZPF
       public string ClientName { get; internal set; } = "Client";
 
       public const string ServerIP1 = "69.10.45.253"; // vps.Diplodocus.dev
+      public const string ServerIP2 = "130.180.212.46"; // Limours.ZPF.fr
 
 #if DEBUG
       public string ServerIP
@@ -40,12 +41,12 @@ namespace ZPF
          {
             if (DeviceInfo.Platform == DevicePlatform.Android)
             {
-               return ServerIP1;
+               return ServerIP2;
             }
             else
             {
-               return "127.0.0.1";
-               //return ServerIP1;
+               //return "127.0.0.1";
+               return ServerIP2;
             };
          }
       }

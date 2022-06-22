@@ -64,7 +64,7 @@ namespace _03_ChatServerWPF
 
       private void Window_Loaded(object sender, RoutedEventArgs e)
       {
-         btnStartStop_Click(sender, e);
+         //btnStartStop_Click(sender, e);
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
@@ -93,14 +93,14 @@ namespace _03_ChatServerWPF
       /// <param name="message"></param>
       private void AddMessage(string message)
       {
-         //Dispatcher.Invoke(() => listChats.Items.Add(message));
+         Dispatcher.Invoke(() => listChats.Items.Add(message));
 
          System.Diagnostics.Debug.WriteLine(message);
       }
 
       private void ClearMessage()
       {
-         //Dispatcher.Invoke(() => listChats.Items.Clear());
+         Dispatcher.Invoke(() => listChats.Items.Clear());
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -

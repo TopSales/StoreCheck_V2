@@ -14,6 +14,7 @@ public class Params
 #if DEBUG
    public string ServerIP { get; set; } = "0.0.0.0";
    //public string ServerIP { get; set; } = "69.10.45.253"; //  vps.diplodocus.dev
+   //public string ServerIP { get; set; } = "130.180.212.46"; // Limours.ZPF.fr
    public string ServerPort { get; set; } = "8080";
 #else
       public string ServerIP { get; set; } = "69.10.45.253"; //  vps.diplodocus.dev
