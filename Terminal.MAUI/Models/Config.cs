@@ -41,7 +41,7 @@ namespace ZPF
          {
             if (DeviceInfo.Platform == DevicePlatform.Android)
             {
-               return ServerIP2;
+               return ServerIP1;
             }
             else
             {
