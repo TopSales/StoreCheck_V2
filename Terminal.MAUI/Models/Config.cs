@@ -46,7 +46,7 @@ namespace ZPF
             else
             {
                //return "127.0.0.1";
-               return ServerIP2;
+               return ServerIP1;
             };
          }
       }
