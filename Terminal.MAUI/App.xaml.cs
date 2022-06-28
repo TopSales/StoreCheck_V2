@@ -1,4 +1,6 @@
-﻿namespace StoreCheck;
+﻿using Microsoft.Maui.Handlers;
+
+namespace StoreCheck;
 #if WINDOWS
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -11,8 +13,8 @@ public partial class App : Application
    const int WindowWidth = 900;
 
    public App()
-	{
-		InitializeComponent();
+   {
+      InitializeComponent();
 
       Microsoft.Maui.Handlers.WindowHandler.Mapper.AppendToMapping(nameof(IWindow), (handler, view) =>
       {
@@ -29,6 +31,13 @@ public partial class App : Application
 
 
       MainPage = new AppShell();
-        //MainPage = new NavigationPage(new MainPage());
-    }
+      //MainPage = new NavigationPage(new MainPage());
+      WindowHandler.Mapper.ModifyMapping(nameof(IWindow.Content), OnWorkaround);
+   }
+
+   // https://github.com/dotnet/maui/issues/8062
+   private void OnWorkaround(IWindowHandler arg1, IWindow arg2, Action<IElementHandler, IElement> arg3)
+   {
+      WindowHandler.MapContent(arg1, arg2);
+   }
 }
