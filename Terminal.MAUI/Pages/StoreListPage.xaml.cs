@@ -127,6 +127,43 @@ public partial class StoreListPage : PageEx
             };
 
             {
+               var rb = new ZPF.XF.Compos.Tile
+               {
+                  IconChar = ZPF.Fonts.IF.Check_Mark_01,
+                  Text = "",
+                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+                  TextColor = ColorViewModel.Current.TextColor,
+                  HorizontalOptions = LayoutOptions.Start,
+                  Margin = new Thickness(60, 0, 0, 0),
+                  HeightRequest = 22,
+                  WidthRequest = 22,
+               };
+
+               s.Children.Add(rb);
+            };
+
+
+            {
+               var rb = new ZPF.XF.Compos.CheckBoxZPF
+               {
+                  Text = "by distance",
+                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
+                  Checked = Order == Orders.byDistance,
+                  TextColor = ColorViewModel.Current.TextColor,
+                  HorizontalOptions = LayoutOptions.Start,
+                  Margin = new Thickness(60, 0, 0, 0),
+                  BackgroundColor = Microsoft.Maui.Graphics.Colors.Bisque,
+               };
+               rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
+               {
+                  Order = (rb.Checked ? Orders.byDistance : Order);
+               };
+
+               s.Children.Add(rb);
+            };
+
+
+            {
                var rb = new ZPF.XF.Compos.RadioButton
                {
                   Text = "by distance",

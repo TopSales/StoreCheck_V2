@@ -66,6 +66,8 @@
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\DBSQL_Helper.cs" Link="Controls\DBSQL_Helper.cs" />
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="Controls\SQLServerEngine.cs" />
     <Compile Include="..\..\..\..\Nugets\ZPF_DBSQL\ToDo\OpenDBPage.xaml.cs" Link="_ToDo_\OpenDBPage.xaml.cs" />
+    <Compile Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\Platforms\WPF\ZPFFonts.cs" Link="Fonts\WPF\ZPFFonts.cs" />
+    <Compile Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\ZPFFonts.cs" Link="Fonts\ZPFFonts.cs" />
     <Compile Include="..\..\..\..\_Units_\CS\ConfigHelper.cs">
       <Link>ConfigHelper.cs</Link>
     </Compile>
@@ -98,13 +100,16 @@
     <Resource Include="Images\Tiles\Magic-Wand.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\EMB_Fonts\desyrel.ttf" Link="ZPF_Fonts\desyrel.ttf">
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\File_Fonts\desyrel.ttf" Link="File_Fonts\desyrel.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\EMB_Fonts\IconFont.ttf" Link="ZPF_Fonts\IconFont.ttf">
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\File_Fonts\IconFont.ttf" Link="File_Fonts\IconFont.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\EMB_Fonts\MediaPlayerFont.ttf" Link="ZPF_Fonts\MediaPlayerFont.ttf">
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\File_Fonts\MediaPlayerFont.ttf" Link="File_Fonts\MediaPlayerFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\File_Fonts\Montserrat.ttf" Link="File_Fonts\Montserrat.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Background.jpg">
@@ -164,7 +169,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Nugets\Microcharts\MicrochartsProxy\MicrochartsProxy.csproj" />
     <ProjectReference Include="..\..\..\..\Nugets\Microcharts\Sources\Microcharts.csproj" />
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_Basics_WPF\ZPF_Basics_WPF\ZPF.WPF.Compos.csproj" />
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_DBSQL\ZPF_DBSQL_WPF\ZPF_DBSQL_WPF.csproj" />
     <ProjectReference Include="..\..\..\..\Nugets\ZPF_Reporting\ZPFLib_Reporting\ZPFLib_Reporting.csproj" />
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_Users\ZPF_Users_Rights_WPF\ZPF_Users_Rights_WPF.csproj" />
     <ProjectReference Include="..\..\..\StoreCheck.Core\StoreCheck.Core\StoreCheck.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -240,19 +248,11 @@
     <PackageReference Include="System.Windows.Interactivity.WPF">
       <Version>2.0.20525</Version>
     </PackageReference>
-    <PackageReference Include="ZPF_Basics_WPF" Version="1.0.5.26">
-      <TreatAsUsed>true</TreatAsUsed>
-    </PackageReference>
+    <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
     <PackageReference Include="ZPF_ChatHelper" Version="1.0.0.5" />
     <PackageReference Include="ZPF_DBSQL">
       <Version>0.1.8.57</Version>
       <TreatAsUsed>true</TreatAsUsed>
-    </PackageReference>
-    <PackageReference Include="ZPF_DBSQL_WPF">
-      <Version>1.0.0.60</Version>
-    </PackageReference>
-    <PackageReference Include="ZPF_Users_Rights_WPF">
-      <Version>1.1.0.34</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.326103">
       <PrivateAssets>all</PrivateAssets>
