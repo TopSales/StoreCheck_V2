@@ -164,7 +164,7 @@ namespace StoreCheck
 
       private void Button_Click(object sender, RoutedEventArgs e)
       {
-         MainViewModel.Current.PrinterSettings.Landscape = !MainViewModel.Current.PrinterSettings.Landscape;
+         //MainViewModel.Current.PrinterSettings.Landscape = !MainViewModel.Current.PrinterSettings.Landscape;
          MainViewModel.Current.UpdatePrinterSettings();
       }
 

@@ -222,7 +222,7 @@ namespace StoreCheck
                         fields.Add("Title", UserViewModel.Current.CurrentUser.Login);
                         fields.Add("Barcode", UserViewModel.Current.CurrentUser.Ref);
 
-                        PrintLabelHelper.PrintOld(fields);
+                        //PrintLabelHelper.PrintOld(fields);
                      };
                   });
 
