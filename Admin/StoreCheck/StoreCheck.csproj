@@ -100,15 +100,6 @@
     <Resource Include="Images\Tiles\Magic-Wand.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\EMB_Fonts\desyrel.ttf" Link="ZPF_Fonts\desyrel.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\EMB_Fonts\IconFont.ttf" Link="ZPF_Fonts\IconFont.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\EMB_Fonts\MediaPlayerFont.ttf" Link="ZPF_Fonts\MediaPlayerFont.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\..\..\..\Nugets\ZPF_Fonts\ZPF_Fonts\File_Fonts\desyrel.ttf" Link="File_Fonts\desyrel.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -178,7 +169,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Nugets\Microcharts\MicrochartsProxy\MicrochartsProxy.csproj" />
     <ProjectReference Include="..\..\..\..\Nugets\Microcharts\Sources\Microcharts.csproj" />
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_Basics_WPF\ZPF_Basics_WPF\ZPF.WPF.Compos.csproj" />
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_DBSQL\ZPF_DBSQL_WPF\ZPF_DBSQL_WPF.csproj" />
     <ProjectReference Include="..\..\..\..\Nugets\ZPF_Reporting\ZPFLib_Reporting\ZPFLib_Reporting.csproj" />
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_Users\ZPF_Users_Rights_WPF\ZPF_Users_Rights_WPF.csproj" />
     <ProjectReference Include="..\..\..\StoreCheck.Core\StoreCheck.Core\StoreCheck.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
