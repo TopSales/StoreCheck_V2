@@ -22,9 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_MCE.Maui", "..\..\..\Nu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreCheck.Service", "..\Service\StoreCheck.Service.csproj", "{A27FC2C1-8C9F-4211-8D47-C9062D30EA8C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_ChatHelper", "..\..\..\Nugets\ZPF_ChatHelper\R&D\ClientServer\ZPF_ChatHelper\ZPF_ChatHelper.csproj", "{79F9304C-9824-4FEB-AA14-7EC4888625F2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_Maui_Tools", "..\..\..\Nugets\ZPF_Maui_Tools\ZPF_Maui_Tools\ZPF_Maui_Tools.csproj", "{E3877441-B553-4D5A-B655-30B60FB244AD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_ChatHelper", "..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper.csproj", "{77A9560A-279B-4417-9BEB-087EE37BA295}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,14 +62,14 @@ Global
 		{A27FC2C1-8C9F-4211-8D47-C9062D30EA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A27FC2C1-8C9F-4211-8D47-C9062D30EA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A27FC2C1-8C9F-4211-8D47-C9062D30EA8C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79F9304C-9824-4FEB-AA14-7EC4888625F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79F9304C-9824-4FEB-AA14-7EC4888625F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79F9304C-9824-4FEB-AA14-7EC4888625F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79F9304C-9824-4FEB-AA14-7EC4888625F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E3877441-B553-4D5A-B655-30B60FB244AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E3877441-B553-4D5A-B655-30B60FB244AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3877441-B553-4D5A-B655-30B60FB244AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3877441-B553-4D5A-B655-30B60FB244AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A9560A-279B-4417-9BEB-087EE37BA295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A9560A-279B-4417-9BEB-087EE37BA295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A9560A-279B-4417-9BEB-087EE37BA295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A9560A-279B-4417-9BEB-087EE37BA295}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

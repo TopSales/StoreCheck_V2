@@ -1,4 +1,6 @@
 ﻿using Microsoft.Maui.Handlers;
+using SkiaSharp;
+using ZPF.XF.Compos;
 
 namespace StoreCheck;
 #if WINDOWS
@@ -39,5 +41,39 @@ public partial class App : Application
    private void OnWorkaround(IWindowHandler arg1, IWindow arg2, Action<IElementHandler, IElement> arg3)
    {
       WindowHandler.MapContent(arg1, arg2);
+   }
+
+   protected override async void OnStart()
+   {
+      base.OnStart();
+
+      var fn = await CopyFile("IconFont.ttf");
+      Tile.IconFont = SKTypeface.FromFile(fn);
+   }
+
+   public async Task<string> CopyFile(string name)
+   {
+      string basePath = "";
+
+      basePath = FileSystem.AppDataDirectory;
+      var finalPath = Path.Combine(basePath, name);
+
+      if (File.Exists(finalPath))
+      {
+         return finalPath;
+         //File.Delete(finalPath);
+      };
+
+      using var stream = await FileSystem.OpenAppPackageFileAsync(name);
+
+      using (var tempFileStream = await FileSystem.OpenAppPackageFileAsync(name))
+      {
+         using (var fileStream = File.Open(finalPath, FileMode.CreateNew))
+         {
+            await tempFileStream.CopyToAsync(fileStream);
+         };
+      };
+
+      return finalPath;
    }
 }
