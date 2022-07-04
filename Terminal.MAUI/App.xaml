@@ -3,14 +3,25 @@
    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
    xmlns:local="clr-namespace:StoreCheck"
+   xmlns:ZPF="clr-namespace:ZPF.XF.Compos;assembly=ZPF_MAUI_Tools"   
    x:Class="StoreCheck.App">
 
    <Application.Resources>
       <ResourceDictionary>
-         <!--https://github.com/dotnet/maui/pull/5811-->         
+         <!--https://github.com/dotnet/maui/pull/5811-->
          <DataTemplate x:Key="MauiAppTitleBarTemplate">
             <Grid HeightRequest="0"/>
          </DataTemplate>
+
+         <Style TargetType="ZPF:Tile">
+            <Setter Property="BackgroundColor" Value="CornflowerBlue" />
+            <Setter Property="BorderColor" Value="CornflowerBlue" />
+            <Setter Property="BorderWidth" Value="0" />
+            <Setter Property="CornerRadius" Value="15" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="VerticalOptions" Value="FillAndExpand" />
+            <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+         </Style>
 
          <ResourceDictionary.MergedDictionaries>
             <ResourceDictionary Source="Resources/Colors.xaml" />

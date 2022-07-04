@@ -163,9 +163,9 @@ public class EANViewModel : BaseViewModel
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
    public EAN_Article CurrentArticleEAN { get => _CurrentArticleEAN; set => SetField(ref _CurrentArticleEAN, value); }
-   public string TxtFileName { get; private set; }
-
    EAN_Article _CurrentArticleEAN = null;
+
+   public string TxtFileName { get; private set; }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
