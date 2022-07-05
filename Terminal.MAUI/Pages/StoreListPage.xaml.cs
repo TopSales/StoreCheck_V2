@@ -27,6 +27,7 @@ public partial class StoreListPage : PageEx
       tiles[0].FontSize = 16;
       tiles[0].Clicked += async (object sender, System.EventArgs e) =>
       {
+#if true
          //var st = await MDDlgOnTop("#To be done ...\n * passé / en cours / futures\n * filtrable / triable");
 
          #region - - - Régénération - - -
@@ -58,11 +59,9 @@ public partial class StoreListPage : PageEx
                var rb = new ZPF.XF.Compos.RadioButton
                {
                   Text = "all",
-                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                   Checked = Filter == Filters.all,
                   TextColor = ColorViewModel.Current.TextColor,
                   HorizontalOptions = LayoutOptions.Start,
-                  Margin = new Thickness(60, 0, 0, 0),
                };
                rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
                {
@@ -76,11 +75,9 @@ public partial class StoreListPage : PageEx
                var rb = new ZPF.XF.Compos.RadioButton
                {
                   Text = "already visited",
-                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                   Checked = Filter == Filters.past,
                   TextColor = ColorViewModel.Current.TextColor,
                   HorizontalOptions = LayoutOptions.Start,
-                  Margin = new Thickness(60, 0, 0, 0),
                };
                rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
                {
@@ -95,11 +92,9 @@ public partial class StoreListPage : PageEx
                var rb = new ZPF.XF.Compos.RadioButton
                {
                   Text = "to do",
-                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                   Checked = Filter == Filters.todo,
                   TextColor = ColorViewModel.Current.TextColor,
                   HorizontalOptions = LayoutOptions.Start,
-                  Margin = new Thickness(60, 0, 0, 0),
                };
                rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
                {
@@ -127,51 +122,12 @@ public partial class StoreListPage : PageEx
             };
 
             {
-               var rb = new ZPF.XF.Compos.Tile
-               {
-                  IconChar = ZPF.Fonts.IF.Check_Mark_01,
-                  Text = "",
-                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-                  TextColor = ColorViewModel.Current.TextColor,
-                  HorizontalOptions = LayoutOptions.Start,
-                  Margin = new Thickness(60, 0, 0, 0),
-                  HeightRequest = 22,
-                  WidthRequest = 22,
-               };
-
-               s.Children.Add(rb);
-            };
-
-
-            {
-               var rb = new ZPF.XF.Compos.CheckBoxZPF
-               {
-                  Text = "by distance",
-                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
-                  Checked = Order == Orders.byDistance,
-                  TextColor = ColorViewModel.Current.TextColor,
-                  HorizontalOptions = LayoutOptions.Start,
-                  Margin = new Thickness(60, 0, 0, 0),
-                  BackgroundColor = Microsoft.Maui.Graphics.Colors.Bisque,
-               };
-               rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
-               {
-                  Order = (rb.Checked ? Orders.byDistance : Order);
-               };
-
-               s.Children.Add(rb);
-            };
-
-
-            {
                var rb = new ZPF.XF.Compos.RadioButton
                {
                   Text = "by distance",
-                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                   Checked = Order == Orders.byDistance,
                   TextColor = ColorViewModel.Current.TextColor,
                   HorizontalOptions = LayoutOptions.Start,
-                  Margin = new Thickness(60, 0, 0, 0),
                };
                rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
                {
@@ -185,11 +141,9 @@ public partial class StoreListPage : PageEx
                var rb = new ZPF.XF.Compos.RadioButton
                {
                   Text = "by zone",
-                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                   Checked = Order == Orders.byCP,
                   TextColor = ColorViewModel.Current.TextColor,
                   HorizontalOptions = LayoutOptions.Start,
-                  Margin = new Thickness(60, 0, 0, 0),
                };
                rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
                {
@@ -202,11 +156,9 @@ public partial class StoreListPage : PageEx
                var rb = new ZPF.XF.Compos.RadioButton
                {
                   Text = "by CP",
-                  FontSize = Device.GetNamedSize(NamedSize.Subtitle, typeof(Label)),
                   Checked = Order == Orders.byCP,
                   TextColor = ColorViewModel.Current.TextColor,
                   HorizontalOptions = LayoutOptions.Start,
-                  Margin = new Thickness(60, 0, 0, 0),
                };
                rb.CheckedChanged += (object sender2, System.EventArgs e2) =>
                {
@@ -216,6 +168,7 @@ public partial class StoreListPage : PageEx
             };
             s2.Children.Add(s);
          };
+         #endregion
 
          var Result = await GridDlgOnTop.DlgOnTop(mainGrid, s2, GridDlgOnTop.OkCancelTiles());
 
@@ -229,7 +182,11 @@ public partial class StoreListPage : PageEx
             Order = _Order;
          };
 
-         #endregion
+#else
+         var Result = await GridDlgOnTop.DlgOnTop(mainGrid, null, GridDlgOnTop.OkCancelTiles());
+#endif
+
+
       };
 
       tiles[1].FontSize = 16;

@@ -9,6 +9,15 @@
    Title="StorePage">
 
    <ContentPage.Resources>
+      <Style TargetType="ZPF:RadioButton">
+         <Setter Property="WidthRequest" Value="180"/>
+         <Setter Property="HeightRequest" Value="25"/>
+
+         <Setter Property="FontSize" Value="24"/>
+         <Setter Property="Margin" Value="45,0,0,0"/>
+         <Setter Property="BackgroundColor" Value="Transparent"/>
+      </Style>
+      
       <ResourceDictionary>
          <ZPFConv:ToVisibilityConverter x:Key="ToVisibility" />
          <ZPFConv:ToColorConverter x:Key="ToColor" />
