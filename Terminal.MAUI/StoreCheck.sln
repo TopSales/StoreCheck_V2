@@ -24,7 +24,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreCheck.Service", "..\Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_Maui_Tools", "..\..\..\Nugets\ZPF_Maui_Tools\ZPF_Maui_Tools\ZPF_Maui_Tools.csproj", "{E3877441-B553-4D5A-B655-30B60FB244AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_ChatHelper", "..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper\ZPF_ChatHelper.csproj", "{77A9560A-279B-4417-9BEB-087EE37BA295}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_ChatHelper", "..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper.Socket\ZPF_ChatHelper\ZPF_ChatHelper.csproj", "{0AA25865-5042-4792-A02B-DAE4AA9689D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,10 +66,10 @@ Global
 		{E3877441-B553-4D5A-B655-30B60FB244AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3877441-B553-4D5A-B655-30B60FB244AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3877441-B553-4D5A-B655-30B60FB244AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77A9560A-279B-4417-9BEB-087EE37BA295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77A9560A-279B-4417-9BEB-087EE37BA295}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77A9560A-279B-4417-9BEB-087EE37BA295}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77A9560A-279B-4417-9BEB-087EE37BA295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA25865-5042-4792-A02B-DAE4AA9689D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA25865-5042-4792-A02B-DAE4AA9689D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA25865-5042-4792-A02B-DAE4AA9689D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA25865-5042-4792-A02B-DAE4AA9689D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

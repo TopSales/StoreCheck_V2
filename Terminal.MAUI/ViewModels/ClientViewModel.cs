@@ -37,8 +37,9 @@ public class ClientViewModel : BaseViewModel
       ChatCore.DataFolder = System.IO.Path.GetTempPath();
 
       Connect();
-      //chatClient = new ChatClient();
-      //chatClient.OnChatEvent += ChatClient_OnChatEvent;
+      chatClient = new ChatClient();
+      chatClient.OnSystemMessage += ChatClient_OnSystemMessage;
+      chatClient.OnDataEvent += ChatClient_OnDataEvent;
 
       #endregion
    }
@@ -48,20 +49,21 @@ public class ClientViewModel : BaseViewModel
    ChatClient chatClient = null;
 
    // Write the host messages to the console
-   void OnHostMessage(string input)
-   {
+   private void ChatClient_OnSystemMessage(object sender, ChatCore.EventType eventType, string message = "")
+{
       PeriodicallyClearScreen();
-      AddMessage(input);
+      AddMessage(message);
    }
 
-   // Write the host messages to the console
-   void OnDataMessage(Object sender, ChatData data)
+   private void ChatClient_OnDataEvent(object sender, System.Net.Sockets.TcpClient tcpClient, ChatData data)
    {
       PeriodicallyClearScreen();
       AddMessage($"{data.Action} [{data.Data}]");
 
       OnDataMessage(sender as ChatClient, data);
    }
+
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
    int i = 0;
    void PeriodicallyClearScreen()
@@ -95,7 +97,7 @@ public class ClientViewModel : BaseViewModel
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
-   public void OnDataMessage(ChatClient chatClient, ChatData data)
+   public async void OnDataMessage(ChatClient chatClient, ChatData data)
    {
       switch (data.Action.ToLower())
       {
@@ -120,8 +122,11 @@ public class ClientViewModel : BaseViewModel
 
                      MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
 
-                     chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
-                     chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                     await chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                     await chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+
+                     //chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                     //chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
                   };
                };
             };
@@ -186,7 +191,7 @@ public class ClientViewModel : BaseViewModel
    {
       ClientViewModel.Current.Connect();
 
-      chatClient.SendDataToServer("entry", deviceID);
+      await chatClient.SendDataToServer("entry", deviceID);
    }
 
 
@@ -207,47 +212,48 @@ public class ClientViewModel : BaseViewModel
    //   await chatClient.SendDataToServer("remove", spooler);
    //}
 
-   public void GetStats()
+   public async void GetStats()
    {
-      chatClient.SendDataToServer("GetStats", new QueryParams());
+      await chatClient.SendDataToServer("GetStats", new QueryParams());
    }
 
-   public void GetStats(DateTime begin, DateTime end)
+   public async void GetStats(DateTime begin, DateTime end)
    {
-      chatClient.SendDataToServer("GetStats", new QueryParams { Begin = begin, End = end });
+      await chatClient.SendDataToServer("GetStats", new QueryParams { Begin = begin, End = end });
    }
 
-   public void ClearSpooler()
+   public async void ClearSpooler()
    {
-      chatClient.SendDataToServer("ClearSpooler", "");
+      await chatClient.SendDataToServer("ClearSpooler", "");
    }
 
-   public void GetSpooler()
+   public async void GetSpooler()
    {
       // // Get(@"/Spooler/GetCurrent");
-      chatClient.SendDataToServer("GetSpooler", "");
+      await chatClient.SendDataToServer("GetSpooler", "");
    }
 
-   public void SendMessage(string msg)
+   public async void SendMessage(string msg)
    {
-      chatClient.SendMessageToServer(msg);
+      await chatClient.SendMessageToServer(msg);
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
-   public void Connect()
+   public async void Connect()
    {
       string ipAddress = MainViewModel.Current.Config.ServerIP;
       int port = int.Parse(MainViewModel.Current.Config.ServerPort);
       string clientName = MainViewModel.Current.Config.ClientName;
-      //int bufferSize = 1024;
+      int bufferSize = 1024;
 
-      //await chatClient.CreateConnection(ipAddress, port, clientName, bufferSize);
-      if (chatClient == null)
-      {
-         chatClient = new ZPF.Chat.ChatClient(OnHostMessage, OnDataMessage, ipAddress, port);
-         chatClient.StartClient();
-      };
+      await chatClient.CreateConnection(ipAddress, port, clientName, bufferSize);
+
+      //if (chatClient == null)
+      //{
+      //   chatClient = new ZPF.Chat.ChatClient(OnHostMessage, OnDataMessage, ipAddress, port);
+      //   chatClient.StartClient();
+      //};
    }
 
    public bool IsConnected()
