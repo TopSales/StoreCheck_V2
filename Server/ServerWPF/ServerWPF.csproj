@@ -219,8 +219,8 @@
     <Resource Include="Images\StoreCheck.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Nugets\ZPF_ChatHelper\R&amp;D\ClientServer\ZPF_ChatHelper\ZPF_ChatHelper.csproj">
-      <Project>{ca060f26-e34e-43b2-9d6d-06f0f50b03ce}</Project>
+    <ProjectReference Include="..\..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper.Socket\ZPF_ChatHelper\ZPF_ChatHelper.csproj">
+      <Project>{ec673e6f-7aea-4a42-8391-6e8ffe98143a}</Project>
       <Name>ZPF_ChatHelper</Name>
     </ProjectReference>
   </ItemGroup>
