@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Diagnostics;
 using StoreCheck.Pages;
 using ZPF.SQL;
 
@@ -16,7 +17,7 @@ public partial class MainPage : ContentPage
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
-   protected override void OnAppearing()
+   protected async override void OnAppearing()
    {
       base.OnAppearing();
 
@@ -24,6 +25,23 @@ public partial class MainPage : ContentPage
       {
          MainViewModel.Current.Load();
          MainViewModel.Current.LoadLocalDB();
+
+         // Microsoft.Maui
+         var strType = typeof(Microsoft.Maui.Controls.Application);
+         var assemblyUri = strType.Assembly.Location;
+         var versionInfo = FileVersionInfo.GetVersionInfo(new Uri(assemblyUri).LocalPath);
+
+         await DisplayAlert(versionInfo.ProductName, versionInfo.FileVersion, "ok");
+
+
+         // .Net Core
+         //var strType = typeof(System.String);
+         //var assemblyUri = strType.Assembly.CodeBase;
+         //var versionInfo = FileVersionInfo.GetVersionInfo(new Uri(assemblyUri).LocalPath);
+
+         //await DisplayAlert("Version", versionInfo.ToString(), "ok");
+
+         //6.0.6  await DisplayAlert("Version", Environment.Version.ToString(), "ok");
       }
       catch { };
    }

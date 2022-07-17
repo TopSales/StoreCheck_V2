@@ -41,7 +41,7 @@ namespace ZPF
          {
             if (DeviceInfo.Platform == DevicePlatform.Android)
             {
-               return ServerIP1;
+               return ServerIP2;
             }
             else
             {
@@ -52,7 +52,7 @@ namespace ZPF
       }
 
 
-      public string ServerPort { get; set; } = "8080";
+      public string ServerPort { get; set; } = "9000";
 #else
       public string ServerIP { get; set; } = ServerIP1;
       public string ServerPort { get; set; } = "9000";

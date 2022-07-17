@@ -59,7 +59,7 @@ public class ClientViewModel : BaseViewModel
    private void ChatClient_OnDataEvent(object sender, System.Net.Sockets.TcpClient tcpClient, ChatData data)
    {
       PeriodicallyClearScreen();
-      AddMessage($"{data.Action} [{data.Data}]");
+      //AddMessage($"{data.Action} [{data.Data}]");
 
       OnDataMessage(sender as ChatClient, data);
    }
@@ -123,8 +123,11 @@ public class ClientViewModel : BaseViewModel
 
                      MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
 
+                     GC.Collect();
                      await chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                     GC.Collect();
                      await chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                     GC.Collect();
 
                      //chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
                      //chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
