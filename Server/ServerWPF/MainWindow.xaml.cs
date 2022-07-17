@@ -20,22 +20,12 @@ namespace _03_ChatServerWPF
    /// </summary>
    public partial class MainWindow
    {
-      ChatServer chatServer = null;
 
       // Write the host messages to the console
       void OnHostMessage(string input)
       {
          PeriodicallyClearScreen();
          AddMessage(input);
-      }
-
-      // Write the host messages to the console
-      void OnDataMessage(Object sender, ChatData data)
-      {
-         PeriodicallyClearScreen();
-         AddMessage($"{data.Action} [{data.Data}]");
-
-         ServerViewModel.Current.OnDataMessage(sender as ChatServer, data);
       }
 
       int i = 0;
@@ -61,20 +51,19 @@ namespace _03_ChatServerWPF
          serverIpAddress.Text = MainViewModel.Current.Config.ServerIP;
          serverPortValue.Text = MainViewModel.Current.Config.ServerPort;
 
-         chatServer = (ChatServer)ChatServer.Current;
-         chatServer.OnSystemMessage += ChatServer_OnSystemMessage;
-         //chatServer.OnDataEvent += ChatClient_OnChatEvent;
+         ServerViewModel.Current.chatServer = (ChatServer)ChatServer.Current;
+         ServerViewModel.Current.chatServer.OnSystemMessage += ChatServer_OnSystemMessage;
+         ServerViewModel.Current.chatServer.OnDataEvent += ServerViewModel.Current.ChatServer_OnDataEvent;
       }
 
       private void Window_Loaded(object sender, RoutedEventArgs e)
       {
-         //btnStartStop_Click(sender, e);
+         btnStartStop_Click(sender, e);
       }
 
       // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
-      //private async Task<bool> ChatServer_OnSystemMessage(object sender, TcpClient tcpClient, ChatCore.EventType eventType, string message = "")
-      private void ChatServer_OnSystemMessage(object sender, ChatCore.EventType eventType, string message = "")
+      private void ChatServer_OnSystemMessage(object sender, TcpClient tcpClient, ChatCore.EventType eventType, string message = "")
       {
          switch (eventType)
          {
@@ -99,7 +88,7 @@ namespace _03_ChatServerWPF
                   Dispatcher.Invoke(() =>
                   {
                      listClients.ItemsSource = null;
-                     listClients.ItemsSource = ChatServer.Current.Clients;
+                     listClients.ItemsSource = ServerViewModel.Current.chatServer.Clients;
                   });
                }
                break;
@@ -126,7 +115,7 @@ namespace _03_ChatServerWPF
                   Dispatcher.Invoke(() =>
                   {
                      listClients.ItemsSource = null;
-                     listClients.ItemsSource = ChatServer.Current.Clients;
+                     listClients.ItemsSource = ServerViewModel.Current.chatServer.Clients;
                   });
                }
                break;
@@ -190,7 +179,7 @@ namespace _03_ChatServerWPF
                   var serverPort = ChatCore.ParseStringToInt(serverPortValue.Text);
                   var serverBufferSize = ChatCore.ParseStringToInt(serverBufferSizeValue.Text);
                   IPAddress.TryParse(serverIpAddress.Text, out var ipAddress);
-                  await chatServer.Listener(ipAddress, serverPort, serverBufferSize);
+                  await ServerViewModel.Current.chatServer.Listener(ipAddress, serverPort, serverBufferSize);
                }
                else
                {
@@ -215,7 +204,7 @@ namespace _03_ChatServerWPF
       /// </summary>
       private async void StopServer()
       {
-         await chatServer.SendStatusToAllClients(ChatCore.ServerDisconnectSignal);
+         await ServerViewModel.Current.chatServer.SendMessageToAllClients("ServerDisconnectSignal");
 
          //Dispatcher.Invoke(() => listClients.Items.Clear());
          AddMessage("[SERVER]: Server is closed!");
@@ -223,9 +212,9 @@ namespace _03_ChatServerWPF
          var serverPort = ChatCore.ParseStringToInt(serverPortValue.Text);
          var serverBufferSize = ChatCore.ParseStringToInt(serverBufferSizeValue.Text);
          IPAddress.TryParse(serverIpAddress.Text, out var ipAddress);
-         await chatServer.Listener(ipAddress, serverPort, serverBufferSize, true);
+         await ServerViewModel.Current.chatServer.Listener(ipAddress, serverPort, serverBufferSize, true);
 
-         await chatServer.StopServer();
+         await ServerViewModel.Current.chatServer.StopServer();
       }
 
 
@@ -237,7 +226,7 @@ namespace _03_ChatServerWPF
       /// <param name="e"></param>
       private async void CloseServerConnection(object sender, CancelEventArgs e)
       {
-         await chatServer.CloseConnection();
+         await ServerViewModel.Current.chatServer.CloseConnection();
       }
 
       private async void listClients_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -248,7 +237,7 @@ namespace _03_ChatServerWPF
          {
             var c = (l.SelectedItem as Client);
 
-            await chatServer.SendMessageToClient(c.Tcp, "Beuh?");
+            await ServerViewModel.Current.chatServer.SendMessageToClient(c.Tcp, "Beuh?");
          };
       }
 
@@ -262,7 +251,7 @@ namespace _03_ChatServerWPF
 
             AddMessage($"[{c.Name}]: Send file '{openFileDialog.FileName}'");
 
-            await chatServer.SendFileToClient(c.Tcp, openFileDialog.FileName);
+            await ServerViewModel.Current.chatServer.SendFileToClient(c.Tcp, openFileDialog.FileName);
          };
       }
    }

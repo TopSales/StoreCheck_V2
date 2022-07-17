@@ -36,10 +36,11 @@ public class ClientViewModel : BaseViewModel
 
       ChatCore.DataFolder = System.IO.Path.GetTempPath();
 
-      Connect();
       chatClient = new ChatClient();
-      chatClient.OnSystemMessage += ChatClient_OnSystemMessage;
+      chatClient.OnSystemMessage += ChatClient_OnSystemMessage1;
       chatClient.OnDataEvent += ChatClient_OnDataEvent;
+
+      Connect();
 
       #endregion
    }
@@ -49,8 +50,8 @@ public class ClientViewModel : BaseViewModel
    ChatClient chatClient = null;
 
    // Write the host messages to the console
-   private void ChatClient_OnSystemMessage(object sender, ChatCore.EventType eventType, string message = "")
-{
+   private void ChatClient_OnSystemMessage1(object sender, System.Net.Sockets.TcpClient tcpClient, ChatCore.EventType eventType, string message = "")
+   {
       PeriodicallyClearScreen();
       AddMessage(message);
    }
