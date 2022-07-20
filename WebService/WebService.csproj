@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,17 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <Compile Include="..\..\..\Nugets\ZPF_Basics\AuditTrail\AuditTrailWriterHelper.cs" Link="CS\AuditTrailWriterHelper.cs" />
-	  <Compile Include="..\..\..\Nugets\ZPF_Basics\AuditTrail\DBAuditTrailWriter.cs" Link="CS\DBAuditTrailWriter.cs" />
-	  <Compile Include="..\..\..\Nugets\ZPF_Basics\Sources\CS\MimeType.cs" Link="CS\MimeType.cs" />
-	  <Compile Include="..\..\..\Nugets\ZPF_Basics\Sources\CS\wsHelper.cs" Link="CS\wsHelper.cs" />
-	  <Compile Include="..\..\..\Nugets\ZPF_Basics\Sources\CS\ZIPHelper.cs" Link="CS\ZIPHelper.cs" />
-	  <Compile Include="..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="CS\SQLServerEngine.cs" />
-	  <Compile Include="..\..\StoreCheck.Core\StoreCheck.UT\ViewModels\SmarterASPViewModel.cs" Link="ViewModels\SmarterASPViewModel.cs" />
+    <Compile Include="..\..\..\Nugets\ZPF_Basics\AuditTrail\AuditTrailWriterHelper.cs" Link="CS\AuditTrailWriterHelper.cs" />
+    <Compile Include="..\..\..\Nugets\ZPF_Basics\AuditTrail\DBAuditTrailWriter.cs" Link="CS\DBAuditTrailWriter.cs" />
+    <Compile Include="..\..\..\Nugets\ZPF_Basics\Sources\CS\MimeType.cs" Link="CS\MimeType.cs" />
+    <Compile Include="..\..\..\Nugets\ZPF_Basics\Sources\CS\wsHelper.cs" Link="CS\wsHelper.cs" />
+    <Compile Include="..\..\..\Nugets\ZPF_Basics\Sources\CS\ZIPHelper.cs" Link="CS\ZIPHelper.cs" />
+    <Compile Include="..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="CS\SQLServerEngine.cs" />
+    <Compile Include="..\..\StoreCheck.Core\StoreCheck.UT\ViewModels\SmarterASPViewModel.cs" Link="ViewModels\SmarterASPViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
     <PackageReference Include="ZPF_DBSQL" Version="0.1.8.57" />
