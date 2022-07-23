@@ -120,6 +120,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	  <PackageReference Include="Normalisation.Core" Version="1.0.0.5" />
 	  <PackageReference Include="StoreCheck.Core" Version="1.0.0.36" />
 	  <PackageReference Include="System.DirectoryServices" Version="6.0.0" />
@@ -128,7 +129,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\..\Apps\TestSQLite-Maui\ZPF_DBSQL\ZPF_DBSQL.csproj" />
-	  <ProjectReference Include="..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper.Socket\ZPF_ChatHelper\ZPF_ChatHelper.csproj" />
       <ProjectReference Include="..\..\..\Nugets\ZPF_Maui_Tools\ZPF_Maui_Tools\ZPF_Maui_Tools.csproj" />
       <ProjectReference Include="..\..\..\Nugets\ZPF_MCE\ZPF_MCE.Maui\ZPF_MCE.Maui.csproj" />
 	  <ProjectReference Include="..\..\..\Nugets\ZPF_MCE\ZPF_MCE\ZPF_MCE\ZPF_MCE.csproj" />

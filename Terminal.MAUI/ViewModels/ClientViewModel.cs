@@ -47,7 +47,7 @@ public class ClientViewModel : BaseViewModel
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
-   ChatClient chatClient = null;
+   //ChatClient chatClient = null;
 
    // Write the host messages to the console
    private void ChatClient_OnSystemMessage1(object sender, System.Net.Sockets.TcpClient tcpClient, ChatCore.EventType eventType, string message = "")
@@ -61,7 +61,7 @@ public class ClientViewModel : BaseViewModel
       PeriodicallyClearScreen();
       //AddMessage($"{data.Action} [{data.Data}]");
 
-      OnDataMessage(sender as ChatClient, data);
+      OnDataMessage(null, data);
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
