@@ -1,0 +1,323 @@
+﻿<Page 
+   xmlns:WPF1="clr-namespace:ZPF.WPF;assembly=StoreCheck_Core"  
+   xmlns:WPF="clr-namespace:ZPF.WPF"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:Printing="clr-namespace:System.Drawing.Printing;assembly=System.Drawing"
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+   xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+   xmlns:ZPF="clr-namespace:ZPF.WPF.Compos;assembly=ZPF.WPF.Compos"  
+   xmlns:ZPF1="clr-namespace:ZPF;assembly=ZPF_Basics"  
+   xmlns:local="clr-namespace:StoreCheck"
+   xmlns:lWPF="clr-namespace:ZPF.WPF"
+   xmlns:System="clr-namespace:System;assembly=mscorlib" 
+   x:Class="StoreCheck.SettingsPage"
+   mc:Ignorable="d" 
+   d:DesignHeight="600" d:DesignWidth="800"
+   Title="SettingsPage" >
+
+   <Grid Background="#60FFFFFF" Margin="5,0,0,0" >
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="*"/>
+         <ColumnDefinition Width="116"/>
+      </Grid.ColumnDefinitions>
+
+      <Image Source="/StoreCheck;component/Images/Tiles/Settings - 09.png" 
+             HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+             Width="256" Margin="0,0,40,40" Opacity=".3" />
+
+      <Controls:MetroAnimatedTabControl  >
+
+         <!--general-->
+         <Controls:MetroTabItem >
+            <Controls:MetroTabItem.Header>
+               <ZPF:MetroTabHeaderEX Text="general" />
+            </Controls:MetroTabItem.Header>
+
+            <Border Background="#3FFF"
+               IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.Update, Converter={StaticResource HasUserLevel}}" >
+
+               <StackPanel Orientation="Vertical">
+
+                  <StackPanel Margin="10" Background="{StaticResource Brush03}" Visibility="Visible" >
+
+                     <StackPanel Orientation="Horizontal" Margin="0,10,0,5">
+                        <Label Width="140" HorizontalContentAlignment="Right" Content="template" />
+                        <ComboBox x:Name="cbTemplate" Width="80"  VerticalContentAlignment="Center" />
+                        <Label Content="changement du thème de couleur de l'application" Foreground="DarkGray" />
+                     </StackPanel>
+
+                     <ZPF:CheckBoxEx 
+                        Indent="250" Width="340" FontSize="12" FontFamily="Segoe UI" Margin="0,5,0,10" VerticalContentAlignment="Center" HorizontalAlignment="Left" 
+                        Label="Sortir de l'écran après validation (articles)" />
+
+                  </StackPanel>
+
+                  <StackPanel Margin="10" Background="{StaticResource Brush03}" >
+
+                     <StackPanel Orientation="Horizontal" Margin="10" 
+                        IsEnabled="{Binding Main.IsDemo, Converter={StaticResource ToNotBool}, Mode=OneWay}" >
+
+                        <ZPF:TextBoxEx Label="Chemin du logo" Indent="130" Width="400" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" Text="{Binding LogoPath, Mode=TwoWay}" VerticalContentAlignment="Center" Height="26" />
+                        <Controls:Tile Foreground="White" Background="{StaticResource Brush_Tile}" Margin="0,8,0,4" Width="26" Height="26" TiltFactor="2"
+                           Click="btnLoadImage_Click" >
+
+                           <StackPanel Orientation="Vertical" Margin="5">
+                              <TextBlock Text="•••" Foreground="White" HorizontalAlignment="Center" />
+                           </StackPanel>
+                        </Controls:Tile>
+                     </StackPanel>
+
+                     <ZPF:TextBoxEx Margin="10,10,10,0" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
+                        Label="Pied de page ligne 1" Indent="130"  
+                        Text="{Binding Footer1, Mode=TwoWay}" 
+                        IsEnabled="{Binding Main.IsDemo, Converter={StaticResource ToNotBool}, Mode=OneWay}" />
+
+                     <ZPF:TextBoxEx Margin="10" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
+                        Label="ligne 2" Indent="130"  
+                        Text="{Binding Footer2, Mode=TwoWay}" 
+                        IsEnabled="{Binding Main.IsDemo, Converter={StaticResource ToNotBool}, Mode=OneWay}" />
+
+                  </StackPanel>
+
+                  <StackPanel Orientation="Vertical" Margin="10" Background="{StaticResource Brush03}" >
+                     <TextBlock Text="Imprimante étiquette" Margin="10,10,10,0" />
+                     <ComboBox x:Name="cboPrinters" Margin="10,0,10,10"  
+                      ItemsSource="{x:Static Printing:PrinterSettings.InstalledPrinters}" SelectedValue="{Binding PrinterSettings.Name, Mode=TwoWay}"  />
+
+                     <Grid HorizontalAlignment="Center" >
+                        <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="55"/>
+                           <ColumnDefinition Width="80"/>
+                           <ColumnDefinition Width="55"/>
+                           <ColumnDefinition Width="5"/>
+                           <ColumnDefinition Width="55"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                           <RowDefinition Height="55" />
+                           <RowDefinition Height="80" />
+                           <RowDefinition Height="55" />
+                           <RowDefinition Height="55" />
+                        </Grid.RowDefinitions>
+
+                        <Button Grid.Column="1" Grid.Row="1" Background="Transparent" BorderBrush="Transparent"
+                            Click="Button_Click" >
+                           <StackPanel>
+                              <Image Source="/StoreCheck;component/Images/Tiles/Document-WF(Landscape).png" Visibility="{Binding PrinterSettings.Landscape, ConverterParameter=!, Converter={StaticResource ToVisibility}}" />
+                              <Image Source="/StoreCheck;component/Images/Tiles/Document-WF.png" Visibility="{Binding PrinterSettings.Landscape, Converter={StaticResource ToVisibility}}" />
+                           </StackPanel>
+                        </Button>
+
+                        <StackPanel Grid.Column="1" Grid.Row="0">
+                           <Label Content="marge haute" HorizontalAlignment="Center" />
+                           <xctk:IntegerUpDown HorizontalAlignment="Center" Width="50" 
+                           Value="{Binding PrinterSettings.Top, Mode=TwoWay}" 
+                           FormatString="N0" Increment="1" Minimum="0" Maximum="50"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,12,0,0" >
+                           <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
+                              Text="marge gauche" />
+                           <xctk:IntegerUpDown HorizontalAlignment="Center" Width="50" 
+                           Value="{Binding PrinterSettings.Left, Mode=TwoWay}" 
+                           FormatString="N0" Increment="1" Minimum="0" Maximum="50"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Grid.Row="1" Margin="0,12,0,0" >
+                           <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
+                              Text="marge droite"/>
+                           <xctk:IntegerUpDown HorizontalAlignment="Center" Width="50" 
+                           Value="{Binding PrinterSettings.Right, Mode=TwoWay}" 
+                           FormatString="N0" Increment="1" Minimum="0" Maximum="50"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Grid.Row="2">
+                           <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
+                              Text="marge basse" HorizontalAlignment="Center" />
+                           <xctk:IntegerUpDown HorizontalAlignment="Center" Width="50" 
+                           Value="{Binding PrinterSettings.Bottom, Mode=TwoWay}" 
+                           FormatString="N0" Increment="1" Minimum="0" Maximum="50"/>
+                        </StackPanel>
+
+
+                        <StackPanel Grid.Column="4" Grid.Row="1" Margin="0,12,0,0" >
+                           <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
+                              Text="largeur de l'étiquette" HorizontalAlignment="Center" Margin="2,0,-2.333,0" />
+                           <xctk:IntegerUpDown HorizontalAlignment="Center" Width="50" 
+                           Value="{Binding PrinterSettings.Width, Mode=TwoWay}" 
+                           FormatString="N0" Increment="1" Minimum="0" Maximum="297"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Grid.Row="3">
+                           <TextBlock TextWrapping="Wrap" TextAlignment="Center" 
+                              Text="hauteur de l'étiquette" HorizontalAlignment="Center" />
+                           <xctk:IntegerUpDown HorizontalAlignment="Center" Width="50" 
+                           Value="{Binding PrinterSettings.Height, Mode=TwoWay}" 
+                           FormatString="N0" Increment="1" Minimum="0" Maximum="297"/>
+                        </StackPanel>
+
+                     </Grid>
+                  </StackPanel>
+               </StackPanel>
+            </Border>
+         </Controls:MetroTabItem>
+
+         <!--stock-->
+         <Controls:MetroTabItem >
+            <Controls:MetroTabItem.Header>
+               <ZPF:MetroTabHeaderEX Text="stock" />
+            </Controls:MetroTabItem.Header>
+
+            <Border Margin="64" Background="#3FFF" 
+               IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.Stock.Update, Converter={StaticResource HasUserLevel}}">
+
+               <StackPanel Orientation="Vertical">
+
+                  <StackPanel Margin="10" Background="{StaticResource Brush03}" Visibility="Visible" >
+
+                     <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                        <Label Width="140" HorizontalContentAlignment="Right" Content="Derniers mouvements" />
+                        <ComboBox x:Name="cbLastMVT" Width="80"  VerticalContentAlignment="Center" DisplayMemberPath="Name" SelectedValuePath="Value" />
+                        <Label Content="période affiché dans les 'derniers mouvements'" Foreground="DarkGray" />
+                     </StackPanel>
+
+                  </StackPanel>
+               </StackPanel>
+
+            </Border>
+         </Controls:MetroTabItem>
+
+
+         <!--importation-->
+         <Controls:MetroTabItem Visibility="Collapsed" >
+            <Controls:MetroTabItem.Header>
+               <ZPF:MetroTabHeaderEX Text="importation" />
+            </Controls:MetroTabItem.Header>
+
+            <Border Margin="64" Background="#3FFF" 
+               IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.Import.Update, Converter={StaticResource HasUserLevel}}">
+
+               <StackPanel Orientation="Vertical">
+
+                  <StackPanel Orientation="Horizontal">
+                     <ZPF:TextBoxEx Label="Chemin d'importation du terminal" Indent="300" 
+                              Width="514" FontSize="12" FontFamily="Segoe UI" 
+                              Margin="0,4,0,0" Text="{Binding ImportPath, Mode=TwoWay}" VerticalContentAlignment="Center" Height="26" />
+                     <Controls:Tile Foreground="White" Background="{StaticResource Brush_Tile}" Margin="0,8,0,4" Width="26" Height="26" TiltFactor="2"
+                        Click="btnImportPath_Click" >
+
+                        <StackPanel Orientation="Vertical" Margin="5">
+                           <TextBlock Text="•••" Foreground="White" HorizontalAlignment="Center" />
+                        </StackPanel>
+                     </Controls:Tile>
+                  </StackPanel>
+
+                  <StackPanel Orientation="Horizontal">
+                     <ZPF:TextBoxEx Label="Chemin d'archivage" Indent="300" 
+                              Width="514" FontSize="12" FontFamily="Segoe UI" 
+                              Margin="0,4,0,0" Text="{Binding ArchivPath, Mode=TwoWay}" VerticalContentAlignment="Center" Height="26" />
+                     <Controls:Tile Foreground="White" Background="{StaticResource Brush_Tile}" Margin="0,8,0,4" Width="26" Height="26" TiltFactor="2"
+                        Click="btnArchivPath_Click" >
+
+                        <StackPanel Orientation="Vertical" Margin="5">
+                           <TextBlock Text="•••" Foreground="White" HorizontalAlignment="Center" />
+                        </StackPanel>
+                     </Controls:Tile>
+                  </StackPanel>
+
+                  <ZPF:CheckBoxEx 
+                     Indent="300" Width="340" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" VerticalContentAlignment="Center" HorizontalAlignment="Left" 
+                     Label="Création auto. d'articles lors de l'inventaire (terminal)" 
+                     IsChecked="{Binding Stock.AutoCreateArticle}" />
+
+               </StackPanel>
+            </Border>
+         </Controls:MetroTabItem>
+
+         <!--bon-->
+         <Controls:MetroTabItem >
+            <Controls:MetroTabItem.Header>
+               <ZPF:MetroTabHeaderEX Text="bon" />
+            </Controls:MetroTabItem.Header>
+
+            <Border Margin="64" Background="#3FFF" 
+               IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Config.List.Update, Converter={StaticResource HasUserLevel}}">
+
+               <StackPanel Orientation="Vertical">
+
+                  <StackPanel Margin="10" Background="{StaticResource Brush03}" >
+                     <Label Content="entrées" FontSize="16" Margin="10,10,0,0" Opacity="0.5" FontWeight="Bold"/>
+
+                     <ZPF:TextBoxEx Margin="10,10,10,0" Width="250" HorizontalAlignment="Left" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
+                        Label="Prefixe des bons" Indent="130"  
+                        Text="{Binding BonE_Prefix, Mode=TwoWay}" />
+
+                     <ZPF:TextBoxEx Margin="10,10,10,0" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
+                        Label="Titre des bons" Indent="130"  
+                        Text="{Binding BonE_Titre, Mode=TwoWay}" />
+
+                     <ZPF:TextBoxEx Margin="10,10,10,10" Height="60" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
+                        Label="Description par def." Indent="130"  
+                        Text="{Binding BonE_Desc, Mode=TwoWay}" Filter="Memo" />
+
+                  </StackPanel>
+
+                  <StackPanel Margin="10" Background="{StaticResource Brush03}" >
+                     <Label Content="sorties" FontSize="16" Margin="10,10,0,0" Opacity="0.5" FontWeight="Bold"/>
+
+                     <ZPF:TextBoxEx Margin="10,10,10,0" Width="250" HorizontalAlignment="Left" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
+                        Label="Prefixe des bons" Indent="130"  
+                        Text="{Binding BonS_Prefix, Mode=TwoWay}" />
+
+                     <ZPF:TextBoxEx Margin="10,10,10,0" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
+                        Label="Titre des bons" Indent="130"  
+                        Text="{Binding BonS_Titre, Mode=TwoWay}" />
+
+                     <ZPF:TextBoxEx Margin="10,10,10,10" Height="60" FontSize="12" FontFamily="Segoe UI" VerticalContentAlignment="Center" 
+                        Label="Description par def." Indent="130"  
+                        Text="{Binding BonS_Desc, Mode=TwoWay}" Filter="Memo" />
+
+                  </StackPanel>
+
+               </StackPanel>
+            </Border>
+         </Controls:MetroTabItem>
+
+      </Controls:MetroAnimatedTabControl>
+
+      <Grid Grid.Column="1">
+         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="224" />
+         </Grid.RowDefinitions>
+
+         <StackPanel Grid.Row="1" >
+            <Controls:Tile x:Name="btnOK"
+               Foreground="White" Background="{StaticResource Brush_Tile}"
+               Margin="0,8,0,4" Width="100" Height="100" TiltFactor="2"
+               Click="btnOK_Click" >
+
+               <StackPanel Orientation="Vertical" Margin="8">
+                  <Image Source="/StoreCheck;component/Images/Dialog/Right tick - 01.png" Width="60" />
+                  <TextBlock Text="OK" Foreground="White" HorizontalAlignment="Center" />
+               </StackPanel>
+            </Controls:Tile>
+
+            <Controls:Tile  x:Name="btnCancel"
+               Foreground="White" Background="{StaticResource Brush_Tile}"
+               Margin="0,4,0,4" Width="100" Height="100" TiltFactor="2"
+               Click="btnCancel_Click" >
+
+               <StackPanel Orientation="Vertical" Margin="8">
+                  <Image Source="/StoreCheck;component/Images/Dialog/Delete.png" Width="60" />
+                  <TextBlock Text="annuler" Foreground="White" HorizontalAlignment="Center" />
+               </StackPanel>
+            </Controls:Tile>
+         </StackPanel>
+      </Grid>
+
+   </Grid>
+</Page>

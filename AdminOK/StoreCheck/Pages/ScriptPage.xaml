@@ -1,0 +1,186 @@
+﻿<Page 
+   x:Class="ZPF.ScriptPage" Title="ScriptPage"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:ZPF="clr-namespace:ZPF.WPF.Compos;assembly=ZPF.WPF.Compos"  
+   xmlns:lZPF="clr-namespace:ZPF" 
+   xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"      
+   xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+   mc:Ignorable="d" 
+   d:DesignHeight="480" d:DesignWidth="800" >
+
+   <Grid Background="#6FFF" Margin="10,0,0,0">
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="*"/>
+         <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+
+      <Controls:MetroAnimatedTabControl >
+
+         <!--params-->
+         <Controls:MetroTabItem GotFocus="MetroTabItem_GotFocus" >
+            <Controls:MetroTabItem.Header>
+               <ZPF:MetroTabHeaderEX Text="params"/>
+            </Controls:MetroTabItem.Header>
+            
+            <Grid>
+               <Grid.RowDefinitions>
+                  <RowDefinition Height="120"/>
+                  <RowDefinition Height="*"/>
+               </Grid.RowDefinitions>
+
+               <StackPanel Margin="5">
+                  <Button Margin="5,5,5,0" Content="Load" Click="btnLoad_Click" />
+
+                  <Grid>
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                     </Grid.ColumnDefinitions>
+
+                     <Button Margin="5,5,5,0" Click="btnSave_Click" >
+                        <TextBlock Text="{Binding Script.SelectedProjet.ShortTemplateFileName, Mode=OneWay, StringFormat={}Save (\{0\}) }"  />
+                     </Button>
+                     <Button Grid.Column="1" Margin="5,5,5,0" Content="Save as" Click="btnSaveAs_Click" />
+                  </Grid>
+
+                  <TextBox Background="#8FFF" Grid.Row="1" Margin="5" Text="{Binding Script.SelectedProjet.Name}" />
+               </StackPanel>
+            </Grid>
+
+
+         </Controls:MetroTabItem>
+         
+         <!--code-->
+         <Controls:MetroTabItem GotFocus="MetroTabItem_GotFocus" >
+            <Controls:MetroTabItem.Header>
+               <ZPF:MetroTabHeaderEX Text="code"/>
+            </Controls:MetroTabItem.Header>
+            
+            <Grid>
+               <Grid.RowDefinitions>
+                  <RowDefinition Height="0"/>
+                  <RowDefinition Height="*"/>
+               </Grid.RowDefinitions>
+
+               <!-- http://avalonedit.net/ -->
+               <!-- https://www.codeproject.com/kb/edit/avalonedit.aspx -->
+
+               <avalonEdit:TextEditor x:Name="codeEditor" Grid.Row="1" Margin="10"
+                  xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                  FontFamily="Consolas"
+                  SyntaxHighlighting="C#"
+                  FontSize="10pt" >
+
+                  <i:Interaction.Behaviors>
+                     <lZPF:AvalonEditBehaviour GiveMeTheText="{Binding Script.SelectedProjet.Code, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                  </i:Interaction.Behaviors>
+               </avalonEdit:TextEditor>
+            </Grid>
+         </Controls:MetroTabItem>
+
+      </Controls:MetroAnimatedTabControl>
+
+
+      <Controls:MetroAnimatedTabControl  Grid.Column="1" >
+
+         <!--input-->
+         <Controls:MetroTabItem >
+            <Controls:MetroTabItem.Header>
+               <ZPF:MetroTabHeaderEX Text="input"/>
+            </Controls:MetroTabItem.Header>
+            
+            <ScrollViewer 
+               Margin="10,10,10,10" >
+               <StackPanel>
+                  <TextBlock Text="{Binding PDF2Data.Text}" Background="#3FFF" >
+                     <TextBlock.ContextMenu>
+                        <ContextMenu>
+                           <MenuItem Header="copy" Click="MenuItem_CopyText_Click"/>
+                        </ContextMenu>
+                     </TextBlock.ContextMenu>
+                  </TextBlock>
+               </StackPanel>
+            </ScrollViewer>
+         </Controls:MetroTabItem>
+
+         <!--errors-->
+         <Controls:MetroTabItem >
+            <Controls:MetroTabItem.Header>
+               <ZPF:MetroTabHeaderEX Text="errors"/>
+            </Controls:MetroTabItem.Header>
+            
+            <Grid>
+               <TextBox Background="#8FFF" Margin="5"
+                  Text="{Binding PDF2Data.LastError}" 
+                  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" FontFamily="Courier New"  />
+            </Grid>
+         </Controls:MetroTabItem>
+
+         <!--output-->
+         <Controls:MetroTabItem >
+            <Controls:MetroTabItem.Header>
+               <ZPF:MetroTabHeaderEX Text="output"/>
+            </Controls:MetroTabItem.Header>
+            
+            <Grid>
+               <Grid.RowDefinitions>
+                  <RowDefinition Height="64"/>
+                  <RowDefinition Height="*"/>
+               </Grid.RowDefinitions>
+
+               <StackPanel Orientation="Horizontal">
+                  <StackPanel Margin="4">
+                     <Label Content="#"/>
+                     <TextBox Height="28" Width="50" SpellCheck.IsEnabled="True" Text="{Binding PDF2Data.SearchNo}" />
+                  </StackPanel>
+                  <StackPanel Margin="4">
+                     <Label Content="text"/>
+                     <TextBox Height="28" Width="120" SpellCheck.IsEnabled="True" Text="{Binding PDF2Data.SearchText}" />
+                  </StackPanel>
+
+                  <Controls:Tile 
+                     Foreground="White" Background="#A0800080" 
+                     Margin="8,8,8,4" Width="120" Height="48" TiltFactor="2"
+                     Click="btnSearch_Click" >
+
+                     <StackPanel Orientation="Horizontal" Margin="4">
+                        <Image Source="/PDF2AllotStd;component/Images/Tiles/Search.png" Width="48" VerticalAlignment="Center" />
+                        <TextBlock Margin="8" Text="chercher" Foreground="White" VerticalAlignment="Center" />
+                     </StackPanel>
+                  </Controls:Tile>
+               </StackPanel>
+
+               <DataGrid x:Name="dgData" Grid.Row="1"
+                  ItemsSource="{Binding PDF2Data.ImportedLines}" 
+                  Margin="10,10,10,10"
+                  Background="#2FFF"    
+                  IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
+                  CanUserDeleteRows="False" CanUserAddRows="False" RowHeight="18" >
+
+                  <DataGrid.ContextMenu >
+                     <ContextMenu DataContext="{Binding Path=PlacementTarget.SelectedItem, RelativeSource={RelativeSource Self}}" >
+                        <MenuItem Header="copy" Click="MenuItem_CopyRAW_Click"/>
+                     </ContextMenu>
+                  </DataGrid.ContextMenu>
+
+                  <DataGrid.Columns>
+                     <DataGridTextColumn Binding="{Binding Tag}" Header="Tag" Width="25" CellStyle="{StaticResource CellCenterAligned}"/>
+                     <DataGridTextColumn Binding="{Binding Label}" Header="Label" Width="50" />
+                     <DataGridTextColumn Binding="{Binding raw}" Header="raw" Width="*" />
+                     <!--<DataGridTextColumn Binding="{Binding NoLot}" Header="NoLot" Width="25" />
+                  <DataGridTextColumn Binding="{Binding Lot}" Header="Lot" Width="150"/>
+                  <DataGridTextColumn Binding="{Binding NoSousLot}" Header="NoSousLot" Width="25"/>
+                  <DataGridTextColumn Binding="{Binding SousLot}" Header="SousLot" Width="150" CellStyle="{StaticResource CellRightAligned}" />-->
+                  </DataGrid.Columns>
+               </DataGrid>
+
+
+            </Grid>
+         </Controls:MetroTabItem>
+
+      </Controls:MetroAnimatedTabControl>
+   </Grid>
+</Page>
