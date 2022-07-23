@@ -24,9 +24,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_Maui_Tools", "..\..\..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZPF_ChatHelper", "..\..\..\Nugets\ZPF_ChatHelper\ZPF_ChatHelper.Socket\ZPF_ChatHelper\ZPF_ChatHelper.csproj", "{0AA25865-5042-4792-A02B-DAE4AA9689D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService", "..\WebService\WebService.csproj", "{520A3786-DC42-4C61-B667-9DFDEA71C66D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreCheck.Core.V2", "..\..\StoreCheck.Core.V2\StoreCheck.Core\StoreCheck.Core.V2.csproj", "{A5121EF1-AF9B-49BD-AE46-7BB1C584E4C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "..\WebService\WebService.csproj", "{237150CF-95A5-4EAC-861C-15D1B975C893}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SiteWebService", "..\SiteWebService\SiteWebService.csproj", "{7C90544F-6526-42CC-A266-49FDA892DE4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,14 +70,18 @@ Global
 		{0AA25865-5042-4792-A02B-DAE4AA9689D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AA25865-5042-4792-A02B-DAE4AA9689D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AA25865-5042-4792-A02B-DAE4AA9689D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{520A3786-DC42-4C61-B667-9DFDEA71C66D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{520A3786-DC42-4C61-B667-9DFDEA71C66D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{520A3786-DC42-4C61-B667-9DFDEA71C66D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{520A3786-DC42-4C61-B667-9DFDEA71C66D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5121EF1-AF9B-49BD-AE46-7BB1C584E4C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5121EF1-AF9B-49BD-AE46-7BB1C584E4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5121EF1-AF9B-49BD-AE46-7BB1C584E4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5121EF1-AF9B-49BD-AE46-7BB1C584E4C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{237150CF-95A5-4EAC-861C-15D1B975C893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{237150CF-95A5-4EAC-861C-15D1B975C893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{237150CF-95A5-4EAC-861C-15D1B975C893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{237150CF-95A5-4EAC-861C-15D1B975C893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C90544F-6526-42CC-A266-49FDA892DE4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C90544F-6526-42CC-A266-49FDA892DE4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C90544F-6526-42CC-A266-49FDA892DE4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C90544F-6526-42CC-A266-49FDA892DE4E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
