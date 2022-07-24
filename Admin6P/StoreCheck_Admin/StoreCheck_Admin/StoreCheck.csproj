@@ -25,12 +25,89 @@
 		<Reference Include="System.Printing" />
 	</ItemGroup>
   <ItemGroup>
+	
     <None Remove="DBSQL_WPF\Assets\File-Format-PDF.png" />
     <None Remove="DBSQL_WPF\Assets\Filter-Delete.png" />
     <None Remove="DBSQL_WPF\Assets\Filter-Standard.png" />
     <None Remove="DBSQL_WPF\Assets\Filter-Standard.Red.png" />
     <None Remove="DBSQL_WPF\Assets\Foot print - 02.512.png" />
     <None Remove="DBSQL_WPF\Assets\Microsoft-Excel-2013-01.png" />
+    <None Remove="File_Fonts\desyrel.ttf" />
+    <None Remove="File_Fonts\IconFont.ttf" />
+    <None Remove="File_Fonts\MediaPlayerFont.ttf" />
+    <None Remove="File_Fonts\Montserrat.ttf" />
+    <None Remove="Images\Background.jpg" />
+    <None Remove="Images\Background.png" />
+    <None Remove="Images\Default.png" />
+    <None Remove="Images\Dialog\Delete.png" />
+    <None Remove="Images\Dialog\Right tick - 01.png" />
+    <None Remove="Images\Dialog\Search.png" />
+    <None Remove="Images\Loading - 01.Black.png" />
+    <None Remove="Images\Loading - 01.png" />
+    <None Remove="Images\Preview\Media First.png" />
+    <None Remove="Images\Preview\Media Last.png" />
+    <None Remove="Images\Preview\Media Next.png" />
+    <None Remove="Images\Preview\Media Previous.png" />
+    <None Remove="Images\StoreCheck.ico" />
+    <None Remove="Images\Tiles\Add-New.png" />
+    <None Remove="Images\Tiles\Barcode-01.png" />
+    <None Remove="Images\Tiles\Clipboard1-WF.png" />
+    <None Remove="Images\Tiles\Contact.png" />
+    <None Remove="Images\Tiles\Contacts info.png" />
+    <None Remove="Images\Tiles\Counting-Machine.png" />
+    <None Remove="Images\Tiles\Credit Card1-WF.png" />
+    <None Remove="Images\Tiles\Data Sync-WF.png" />
+    <None Remove="Images\Tiles\Data-Delete.png" />
+    <None Remove="Images\Tiles\Data-Down.png" />
+    <None Remove="Images\Tiles\Data-Edit.png" />
+    <None Remove="Images\Tiles\Data-Export.png" />
+    <None Remove="Images\Tiles\Data-Files.png" />
+    <None Remove="Images\Tiles\Data-Import.png" />
+    <None Remove="Images\Tiles\Data-Information.png" />
+    <None Remove="Images\Tiles\Database Connection-WF.png" />
+    <None Remove="Images\Tiles\delivery-packages-on-a-trolley.png" />
+    <None Remove="Images\Tiles\Dialog-Box-About.png" />
+    <None Remove="Images\Tiles\Document-WF%28Landscape%29.png" />
+    <None Remove="Images\Tiles\Document-WF.png" />
+    <None Remove="Images\Tiles\Drag-01-WF.png" />
+    <None Remove="Images\Tiles\Engineer.png" />
+    <None Remove="Images\Tiles\Excel Online.Black.png" />
+    <None Remove="Images\Tiles\Excel Online.png" />
+    <None Remove="Images\Tiles\File-Format-PDF.png" />
+    <None Remove="Images\Tiles\Foot print - 02.png" />
+    <None Remove="Images\Tiles\House-07.png" />
+    <None Remove="Images\Tiles\Item-New.png" />
+    <None Remove="Images\Tiles\JSON.png" />
+    <None Remove="Images\Tiles\Magic-Wand.png" />
+    <None Remove="Images\Tiles\Mobile-Phone.png" />
+    <None Remove="Images\Tiles\Msg_sent_WF.png" />
+    <None Remove="Images\Tiles\Parcel.png" />
+    <None Remove="Images\Tiles\Preview.png" />
+    <None Remove="Images\Tiles\Print - 01.Black.png" />
+    <None Remove="Images\Tiles\Print - 01.png" />
+    <None Remove="Images\Tiles\Reload.png" />
+    <None Remove="Images\Tiles\Save.png" />
+    <None Remove="Images\Tiles\scheme.png" />
+    <None Remove="Images\Tiles\Search.png" />
+    <None Remove="Images\Tiles\Settings - 09.png" />
+    <None Remove="Images\Tiles\Shopping-Cart-02.png" />
+    <None Remove="Images\Tiles\Show-01-WF.png" />
+    <None Remove="Images\Tiles\Slash.png" />
+    <None Remove="Images\Tiles\Step-WF.png" />
+    <None Remove="Images\Tiles\Text Decoration - 15.Black.png" />
+    <None Remove="Images\Tiles\Text Decoration - 15.png" />
+    <None Remove="Images\Tiles\To Do List-WF.png" />
+    <None Remove="Images\Tiles\Tools-02.png" />
+    <None Remove="Images\Tiles\Trash can - 03.png" />
+    <None Remove="Images\Tiles\User-Group.png" />
+    <None Remove="Images\Tiles\Warehouse-01-WF.png" />
+    <None Remove="Images\Tiles\Web.png" />
+    <None Remove="Images\ZeProgramFactory.350.png" />
+    <None Remove="Users_Rights_WPF\Images\Default.png" />
+    <None Remove="ZPF_Fonts\desyrel.ttf" />
+    <None Remove="ZPF_Fonts\IconFont.ttf" />
+    <None Remove="ZPF_Fonts\MediaPlayerFont.ttf" />
+    <None Remove="ZPF_Fonts\Montserrat.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +121,45 @@
     <Compile Include="..\..\..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="DBSQL\SQLServerEngine.cs" />
     <Compile Include="..\..\..\..\..\_Units_\CS.Converter\CalcConverter.cs" Link="DBSQL_WPF\CS\CalcConverter.cs" />
     <Compile Include="..\..\..\..\..\_Units_\CS.Converter\TimeSpanToStringConverter.cs" Link="DBSQL_WPF\CS\TimeSpanToStringConverter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="File_Fonts\desyrel.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="File_Fonts\IconFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="File_Fonts\MediaPlayerFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="File_Fonts\Montserrat.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Default.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\StoreCheck.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Users_Rights_WPF\Images\Default.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZPF_Fonts\desyrel.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZPF_Fonts\IconFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZPF_Fonts\MediaPlayerFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZPF_Fonts\Montserrat.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -87,6 +203,70 @@
     <Resource Include="DBSQL_WPF\Assets\Filter-Standard.Red.png" />
     <Resource Include="DBSQL_WPF\Assets\Foot print - 02.512.png" />
     <Resource Include="DBSQL_WPF\Assets\Microsoft-Excel-2013-01.png" />
+    <Resource Include="Images\Background.png" />
+    <Resource Include="Images\Dialog\Delete.png" />
+    <Resource Include="Images\Dialog\Right tick - 01.png" />
+    <Resource Include="Images\Dialog\Search.png" />
+    <Resource Include="Images\Loading - 01.Black.png" />
+    <Resource Include="Images\Loading - 01.png" />
+    <Resource Include="Images\Preview\Media First.png" />
+    <Resource Include="Images\Preview\Media Last.png" />
+    <Resource Include="Images\Preview\Media Next.png" />
+    <Resource Include="Images\Preview\Media Previous.png" />
+    <Resource Include="Images\Tiles\Add-New.png" />
+    <Resource Include="Images\Tiles\Barcode-01.png" />
+    <Resource Include="Images\Tiles\Clipboard1-WF.png" />
+    <Resource Include="Images\Tiles\Contact.png" />
+    <Resource Include="Images\Tiles\Contacts info.png" />
+    <Resource Include="Images\Tiles\Counting-Machine.png" />
+    <Resource Include="Images\Tiles\Credit Card1-WF.png" />
+    <Resource Include="Images\Tiles\Data Sync-WF.png" />
+    <Resource Include="Images\Tiles\Data-Delete.png" />
+    <Resource Include="Images\Tiles\Data-Down.png" />
+    <Resource Include="Images\Tiles\Data-Edit.png" />
+    <Resource Include="Images\Tiles\Data-Export.png" />
+    <Resource Include="Images\Tiles\Data-Files.png" />
+    <Resource Include="Images\Tiles\Data-Import.png" />
+    <Resource Include="Images\Tiles\Data-Information.png" />
+    <Resource Include="Images\Tiles\Database Connection-WF.png" />
+    <Resource Include="Images\Tiles\delivery-packages-on-a-trolley.png" />
+    <Resource Include="Images\Tiles\Dialog-Box-About.png" />
+    <Resource Include="Images\Tiles\Document-WF(Landscape).png" />
+    <Resource Include="Images\Tiles\Document-WF.png" />
+    <Resource Include="Images\Tiles\Drag-01-WF.png" />
+    <Resource Include="Images\Tiles\Engineer.png" />
+    <Resource Include="Images\Tiles\Excel Online.Black.png" />
+    <Resource Include="Images\Tiles\Excel Online.png" />
+    <Resource Include="Images\Tiles\File-Format-PDF.png" />
+    <Resource Include="Images\Tiles\Foot print - 02.png" />
+    <Resource Include="Images\Tiles\House-07.png" />
+    <Resource Include="Images\Tiles\Item-New.png" />
+    <Resource Include="Images\Tiles\JSON.png" />
+    <Resource Include="Images\Tiles\Magic-Wand.png" />
+    <Resource Include="Images\Tiles\Mobile-Phone.png" />
+    <Resource Include="Images\Tiles\Msg_sent_WF.png" />
+    <Resource Include="Images\Tiles\Parcel.png" />
+    <Resource Include="Images\Tiles\Preview.png" />
+    <Resource Include="Images\Tiles\Print - 01.Black.png" />
+    <Resource Include="Images\Tiles\Print - 01.png" />
+    <Resource Include="Images\Tiles\Reload.png" />
+    <Resource Include="Images\Tiles\Save.png" />
+    <Resource Include="Images\Tiles\scheme.png" />
+    <Resource Include="Images\Tiles\Search.png" />
+    <Resource Include="Images\Tiles\Settings - 09.png" />
+    <Resource Include="Images\Tiles\Shopping-Cart-02.png" />
+    <Resource Include="Images\Tiles\Show-01-WF.png" />
+    <Resource Include="Images\Tiles\Slash.png" />
+    <Resource Include="Images\Tiles\Step-WF.png" />
+    <Resource Include="Images\Tiles\Text Decoration - 15.Black.png" />
+    <Resource Include="Images\Tiles\Text Decoration - 15.png" />
+    <Resource Include="Images\Tiles\To Do List-WF.png" />
+    <Resource Include="Images\Tiles\Tools-02.png" />
+    <Resource Include="Images\Tiles\Trash can - 03.png" />
+    <Resource Include="Images\Tiles\User-Group.png" />
+    <Resource Include="Images\Tiles\Warehouse-01-WF.png" />
+    <Resource Include="Images\Tiles\Web.png" />
+    <Resource Include="Images\ZeProgramFactory.350.png" />
   </ItemGroup>
 
   <ItemGroup>

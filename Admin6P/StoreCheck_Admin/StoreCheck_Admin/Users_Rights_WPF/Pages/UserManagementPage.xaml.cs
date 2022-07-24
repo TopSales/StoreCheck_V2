@@ -425,6 +425,15 @@ namespace ZPF
          UserAdminViewModel.Current.UpdateCurrentUser_Role_Add();
       }
 
-      // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-   }
+        private void btnSet_Password_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = new PasswordDlg();
+            if (dlg.ShowDialog() == true)
+            {
+              // Save auto?  btnOK_Click(sender, e);
+            }
+        }
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    }
 }
