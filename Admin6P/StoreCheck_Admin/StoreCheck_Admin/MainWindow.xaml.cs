@@ -301,27 +301,27 @@ namespace StoreCheck
             };
          };
 
-         this.Title = this.Title + " - " + DBViewModel.Current.Name;
+//         this.Title = this.Title + " - " + DBViewModel.Current.Name;
 
-         {
-#if DEBUG
-            dlg = new LoginWindow(true);
-#else
-            dlg = new LoginWindow(false);
-#endif
+//         {
+//#if DEBUG
+//            dlg = new LoginWindow(true);
+//#else
+//            dlg = new LoginWindow(false);
+//#endif
 
-            dlg.Owner = this;
-            bool Result = dlg.ShowDialog() == true;
+//            dlg.Owner = this;
+//            bool Result = dlg.ShowDialog() == true;
 
-            if (!Result)
-            {
-               this.Close();
-               App.Current.Dispatcher.InvokeShutdown();
-            };
+//            if (!Result)
+//            {
+//               this.Close();
+//               App.Current.Dispatcher.InvokeShutdown();
+//            };
 
-            BackboneViewModel.Current.DecBusy();
-            BackboneViewModel.Current.IsBusy = false;
-         };
+         //   BackboneViewModel.Current.DecBusy();
+         //   BackboneViewModel.Current.IsBusy = false;
+         //};
 
          MainViewModel.Current.TestUnitaires = false;
 
