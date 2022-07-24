@@ -1,0 +1,58 @@
+﻿<ResourceDictionary 
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   mc:Ignorable="d">
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+   <ImageSource x:Key="BackgroundImageSource">/Styles/Default.png</ImageSource>
+
+   <!-- - - - colors & brushes - - - - - - - - - - - - - - - - - - - - - - - -->
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+   <!--Base Colors-->
+   <Color x:Key="Color_000">#FFffffff</Color>
+   <Color x:Key="Color_000T">#66ffffff</Color>
+   <Color x:Key="Color_001">#FFbadde9</Color>
+   <Color x:Key="Color_002">#FF80397b</Color>
+   <Color x:Key="Color_003">#FFd7e4f2</Color>
+   <Color x:Key="Color_003T">#66d7e4f2</Color>
+   <Color x:Key="Color_004">#FF558ed5</Color>
+   <Color x:Key="Color_005">#FF80397b</Color>
+   <Color x:Key="Color_006">#FF558ed5</Color>
+   <Color x:Key="Color_007">#FF013858</Color>
+
+   <!--<Color x:Key="Color_Tile">#A0800080</Color>-->
+   <Color x:Key="Color_Tile">#A0000066</Color>
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+   <!--Base Brushes-->
+   <SolidColorBrush x:Key="Brush00" Color="{StaticResource Color_000}"/>
+   <SolidColorBrush x:Key="Brush01" Color="{StaticResource Color_001}"/>
+   <SolidColorBrush x:Key="Brush02" Color="{StaticResource Color_002}"/>
+   <SolidColorBrush x:Key="Brush03" Color="{StaticResource Color_003}"/>
+   <SolidColorBrush x:Key="Brush04" Color="{StaticResource Color_004}"/>
+   <SolidColorBrush x:Key="Brush05" Color="{StaticResource Color_005}"/>
+   <SolidColorBrush x:Key="Brush06" Color="{StaticResource Color_006}"/>
+   <SolidColorBrush x:Key="Brush07" Color="{StaticResource Color_007}"/>
+
+   <SolidColorBrush x:Key="Brush_Tile" Color="{StaticResource Color_Tile}"/>
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+   <SolidColorBrush x:Key="ButtonBackgroundBrush" Color="{StaticResource Color_006}"/>
+   <SolidColorBrush x:Key="ButtonForegroundBrush" Color="White"/>
+
+   <SolidColorBrush x:Key="Alternation1Brush" Color="{StaticResource Color_000T}"/>
+   <SolidColorBrush x:Key="Alternation2Brush" Color="{StaticResource Color_003T}"/>
+
+   <SolidColorBrush x:Key="CellBorderBrush" Color="{StaticResource Color_004}"/>
+
+   <SolidColorBrush x:Key="BorderBackgroundBrush" Color="{StaticResource Color_001}"/>
+
+   <SolidColorBrush x:Key="ControlBackgroundBrush" Color="#66FFFFFF"/>
+
+   <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</ResourceDictionary>

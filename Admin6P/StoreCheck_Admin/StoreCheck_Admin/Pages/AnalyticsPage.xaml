@@ -1,0 +1,102 @@
+﻿<Page x:Class="StoreCheck.Pages.AnalyticsPage" Title="AnalyticsPage"
+   xmlns:ZPF="clr-namespace:ZPF;assembly=ZPFLib_WPF" 
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"   
+   xmlns:local="clr-namespace:StoreCheck.Pages"
+   mc:Ignorable="d" 
+   d:DesignHeight="500" d:DesignWidth="900">
+
+   <Grid Margin="10,0,0,0" Background="#6FFF" >
+      <!--<Grid.Background>
+         <ImageBrush ImageSource="/StoreCheck;component/Images/Background.png" Opacity="0.25" />
+      </Grid.Background>-->
+
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="*"/>
+         <ColumnDefinition Width="160"/>
+      </Grid.ColumnDefinitions>
+
+         <WrapPanel Orientation="Vertical" ScrollViewer.CanContentScroll="True" >
+
+         <Expander Margin="10" IsExpanded="True" Background="#6FFF" Width="400">
+            <Expander.Header>
+               <Label Content="Articles par volume" FontWeight="DemiBold" FontSize="16" Margin="0,0,5,0" />
+            </Expander.Header>
+            <Expander.Content>
+               <Grid Height="380" >
+                  <skia:SKElement Margin="10" PaintSurface="SKElement_PaintSurfaceE" />
+               </Grid>
+            </Expander.Content>
+         </Expander>
+
+         <Expander Margin="10" IsExpanded="True" Background="#6FFF" Width="400">
+            <Expander.Header>
+               <Label Content="Répartition des articles (qté) par familles" FontWeight="DemiBold" FontSize="16" Margin="0,0,5,0" />
+            </Expander.Header>
+            <Expander.Content>
+               <Grid Height="250" >
+                  <skia:SKElement Margin="10" PaintSurface="SKElement_PaintSurfaceA"  />
+               </Grid>
+            </Expander.Content>
+         </Expander>
+
+         <Expander Margin="10" IsExpanded="True" Background="#6FFF" Width="400">
+            <Expander.Header>
+               <Label Content="Répartition des emplacements par client" FontWeight="DemiBold" FontSize="16" Margin="0,0,5,0" />
+            </Expander.Header>
+            <Expander.Content>
+               <Grid Height="250" >
+                  <skia:SKElement Margin="10" PaintSurface="SKElement_PaintSurfaceB"  />
+               </Grid>
+            </Expander.Content>
+         </Expander>
+
+         <Expander Margin="10" IsExpanded="True" Background="#6FFF" Width="400">
+            <Expander.Header>
+               <Label Content="Répartition des transactions" FontWeight="DemiBold" FontSize="16" Margin="0,0,5,0" />
+            </Expander.Header>
+            <Expander.Content>
+               <Grid Height="250" >
+                  <skia:SKElement Margin="10" PaintSurface="SKElement_PaintSurfaceC" />
+               </Grid>
+            </Expander.Content>
+         </Expander>
+
+         <Expander Margin="10" IsExpanded="True" Background="#6FFF" Width="400">
+            <Expander.Header>
+               <Label Content="Familles par volume" FontWeight="DemiBold" FontSize="16" Margin="0,0,5,0" />
+            </Expander.Header>
+            <Expander.Content>
+               <Grid Height="250" >
+                  <skia:SKElement Margin="10" PaintSurface="SKElement_PaintSurfaceD" />
+               </Grid>
+            </Expander.Content>
+         </Expander>
+
+         <Expander Margin="10" IsExpanded="False" Background="#6FFF" Width="400">
+            <Expander.Header>
+               <Label Content="Test" FontWeight="DemiBold" FontSize="16" Margin="0,0,5,0" />
+            </Expander.Header>
+            <Expander.Content>
+               <Grid Height="250" >
+                  <skia:SKElement Margin="10" PaintSurface="SKElement_PaintSurface"  />
+               </Grid>
+            </Expander.Content>
+         </Expander>
+
+      </WrapPanel>
+
+      <StackPanel Grid.Column="1">
+         <Label Content="Filter" FontWeight="Bold"/>
+         <Label Content="Time (week/month/year)"/>
+         <Label Content="User"/>
+         <Label Content="Zone"/>
+         <Label Content="Config" FontWeight="Bold"/>
+         <Label Content="Size"/>
+         <Label Content="SortOrder"/>
+      </StackPanel>
+   </Grid>
+</Page>

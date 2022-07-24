@@ -1,0 +1,149 @@
+﻿<Page 
+   x:Class="ZPF.WPF.ReferentielPage"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:ZPF="clr-namespace:ZPF.WPF.Compos;assembly=ZPF.WPF.Compos" 
+   xmlns:ZPFFonts="clr-namespace:ZPF.Fonts;assembly=ZPF_Fonts" 
+   mc:Ignorable="d" 
+   d:DesignHeight="600" d:DesignWidth="800"
+   Title="ReferentielPage" Unloaded="Page_Unloaded" Loaded="Page_Loaded">
+
+   <Page.Resources>
+  
+      
+         
+         <!--<Style x:Key="IconFont">
+            <Setter Property="TextElement.FontFamily" Value="/ZPF_Fonts;Component/fonts/#IconFont"/>
+            <Setter Property="TextElement.FontSize" Value="18"/>
+         </Style>-->
+
+         <!--<conv:UTC2LocalConverter x:Key="UTC2Local" />-->
+      <ResourceDictionary>
+         <Style x:Key="IconFont">
+            <Setter Property="TextElement.FontFamily" Value="/ZPF_Fonts;Component/fonts/#IconFont"/>
+            <Setter Property="TextElement.FontSize" Value="18"/>
+         </Style>
+         <DataTemplate x:Key="dtTables">
+            <Grid >
+               <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="150"/>
+               </Grid.ColumnDefinitions>
+
+               <Label Grid.Column="0" Content="{Binding Name}" />
+            </Grid>
+         </DataTemplate>
+
+      </ResourceDictionary>
+      
+   </Page.Resources>
+
+   
+   
+   
+   <Grid>
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="180"/>
+         <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+
+      <!--<Image Grid.ColumnSpan="2" Source="/ZPF_DBSQL_WPF;component/Assets/Data-Files.512.png" Width="256" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40" />-->
+      <TextBlock Grid.ColumnSpan="2" Opacity="0.2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40" 
+                 Style="{DynamicResource IconFont}" FontSize="256" Text="{x:Static ZPFFonts:IF.Data_Files}" />
+      
+      <!--ItemsSource="{Binding EditReferentiel.Tables, Source={StaticResource Locator}}"-->
+      <ListBox Margin="10,10,5,10" 
+               Background="#CCFFFFFF" 
+               ItemsSource="{Binding Tables}" 
+               ItemTemplate="{StaticResource dtTables}" SelectionChanged="ListBox_SelectionChanged" />
+
+      <Grid Grid.Column="1" Margin="0,10,5,5"  >
+         
+         <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+         </Grid.RowDefinitions>
+
+         <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"  
+                     Orientation="Horizontal" Margin="5,0,5,5" Background="{StaticResource BorderBackgroundBrush}" >
+            <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="20"  Text="{Binding SelectedTable.Name}"/>
+            <TextBlock Margin="20,0,0,11" VerticalAlignment="Bottom" Text="{Binding TableCountItems, ConverterParameter=(\{0\} enregistrements)|(Aucun enregistrement), Converter={StaticResource IIF}, Mode=OneWay}" FontSize="12" Visibility="{Binding SelectedTable, Converter={StaticResource ToVisibility}}" />
+         </StackPanel>
+         <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="260"/>
+               <ColumnDefinition Width="8"/>
+               <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--filter:DataGridExtensions.UseBackgroundWorkerForFiltering="True"
+               filter:DataGridExtensions.IsFilterVisible="True"
+               ColumnHeaderStyle="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, ResourceId=DataGridHeaderFilterControlStyle}}"
+               filter:DataGridExtensions.HeaderBackground="{StaticResource CellBorderBrush}"-->
+
+            <!--<DataGrid x:Name="dgReferentiel" Grid.Column="0" Grid.Row="1" Margin="5" 
+               SelectionChanged="ListView_SelectionChanged"  
+               CommandManager.PreviewExecuted="dgData_PreviewExecuted"
+               IsReadOnly="{Binding IsGridReadOnly}" CanUserAddRows="{Binding IsGridReadOnly, Converter={StaticResource ToNotBool}}" CanUserDeleteRows="{Binding IsGridReadOnly, Converter={StaticResource ToNotBool}}"
+                   AutoGenerateColumns="True" SelectionMode="Single" 
+               ItemsSource="{Binding TableDataView, Mode=TwoWay}" 
+               RowEditEnding="dgReferentiel_RowEditEnding" 
+               CanUserResizeRows="False" CellEditEnding="dgReferentiel_CellEditEnding" CanUserReorderColumns="False" >
+         </DataGrid>-->
+
+            <DataGrid x:Name="dgReferentiel" Grid.Column="0" Grid.Row="1" Margin="5" 
+               SelectionChanged="ListView_SelectionChanged"  
+               Loaded="dgReferentiel_Loaded"
+               IsReadOnly="True" AutoGenerateColumns="True" SelectionMode="Single" 
+               ItemsSource="{Binding TableDataView, Mode=TwoWay}" 
+               CanUserResizeRows="False" CanUserReorderColumns="False" >
+            </DataGrid>
+
+            <GridSplitter ResizeDirection="Columns" Grid.Column="1" Grid.Row="1" ShowsPreview="True" Width="8"  />
+
+            <Grid Grid.Column="2" Grid.Row="1" Margin="5" Background="#CCFFFFFF" >
+               <Grid.RowDefinitions>
+                  <RowDefinition Height="50" />
+                  <RowDefinition Height="*" />
+               </Grid.RowDefinitions>
+
+               <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,5" Background="{StaticResource Brush03}"  IsEnabled="{Binding SelectedTable, Converter={StaticResource ToBool}}" >
+
+                  <!--IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Referentiel.Insert, Converter={StaticResource HasUserLevel}, Source={StaticResource Locator}}"-->
+                  <Button x:Name="btnNew" Content="nouveau" Click="btnNew_Click"
+                  Width="70" Height="30" Margin="5" />
+
+                  <StackPanel Orientation="Horizontal" IsEnabled="{Binding SelectedRecord, Converter={StaticResource ToBool}}" >
+
+                     <!--IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Referentiel.Insert, Converter={StaticResource HasUserLevel}, Source={StaticResource Locator}}"-->
+                     <Button x:Name="btnCopy" Content="copie" Click="btnCopy_Click" 
+                     Width="70" Height="30" Margin="5" Visibility="Collapsed" />
+
+                     <!--IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Referentiel.Update, Converter={StaticResource HasUserLevel}, Source={StaticResource Locator}}"-->
+                     <Button x:Name="btnOK" Content="enregistrer" Click="btnSave_Click" 
+                     Width="70" Height="30" Margin="5" />
+
+                     <Button x:Name="btnCancel" Content="annuler"  Click="btnCancel_Click" 
+                     Width="70" Height="30" Margin="5" Visibility="Collapsed" />
+
+                     <!--IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Referentiel.Delete, Converter={StaticResource HasUserLevel}, Source={StaticResource Locator}}"-->
+                     <Button x:Name="btnDelete" Content="supprimer"  Click="btnDelete_Click" 
+                     Width="70" Height="30" Margin="5" />
+
+                  </StackPanel>
+               </StackPanel>
+
+               <ScrollViewer Grid.Row="1" Margin="5" >
+                  <StackPanel x:Name="sdDetails" Orientation="Vertical" >
+
+                  </StackPanel>
+               </ScrollViewer>
+            </Grid>
+         </Grid>
+      </Grid>
+
+
+
+   </Grid>
+</Page>

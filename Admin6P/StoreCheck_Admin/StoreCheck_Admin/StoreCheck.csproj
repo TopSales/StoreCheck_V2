@@ -1,0 +1,126 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;WPF</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;WPF</DefineConstants>
+  </PropertyGroup>
+	<ItemGroup>
+		<Reference Include="PdfFileWriter">
+			<HintPath>..\..\..\..\_units_\Dlls\PdfFileWriter.dll</HintPath>
+		</Reference>
+		<Reference Include="PdfSharp">
+			<HintPath>DLLs\PdfSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="ReachFramework" />
+		<Reference Include="System.Printing" />
+	</ItemGroup>
+  <ItemGroup>
+    <None Remove="DBSQL_WPF\Assets\File-Format-PDF.png" />
+    <None Remove="DBSQL_WPF\Assets\Filter-Delete.png" />
+    <None Remove="DBSQL_WPF\Assets\Filter-Standard.png" />
+    <None Remove="DBSQL_WPF\Assets\Filter-Standard.Red.png" />
+    <None Remove="DBSQL_WPF\Assets\Foot print - 02.512.png" />
+    <None Remove="DBSQL_WPF\Assets\Microsoft-Excel-2013-01.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\..\..\Apps\AuditTrailViewer\Pages.WPF\AuditTrailPage.xaml.cs" Link="DBSQL_WPF\Pages\AuditTrailPage.xaml.cs" />
+    <Compile Include="..\..\..\..\..\Apps\AuditTrailViewer\Pages.WPF\AuditTrail_Details_Page.xaml.cs" Link="DBSQL_WPF\Pages\AuditTrail_Details_Page.xaml.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_Basics\AuditTrail\AuditTrailWriterHelper.cs" Link="DBSQL_WPF\CS\AuditTrailWriterHelper.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_Basics\AuditTrail\DBAndFileAuditTrailWriter.cs" Link="DBSQL_WPF\CS\DBAndFileAuditTrailWriter.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_Basics\AuditTrail\DBAuditTrailWriter.cs" Link="DBSQL_WPF\CS\DBAuditTrailWriter.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_DBSQL\CS\DBSQL_Helper.cs" Link="DBSQL\DBSQL_Helper.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_DBSQL\CS\MSSQLiteEngine.cs" Link="DBSQL\MSSQLiteEngine.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="DBSQL\SQLServerEngine.cs" />
+    <Compile Include="..\..\..\..\..\_Units_\CS.Converter\CalcConverter.cs" Link="DBSQL_WPF\CS\CalcConverter.cs" />
+    <Compile Include="..\..\..\..\..\_Units_\CS.Converter\TimeSpanToStringConverter.cs" Link="DBSQL_WPF\CS\TimeSpanToStringConverter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AvalonEdit" Version="6.1.3.50" />
+    <PackageReference Include="FilterDataGrid" Version="1.2.12" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.9" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.1" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.1" />
+    <PackageReference Include="SkiaSharp.Views.WPF" Version="2.88.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="System.Text.Json" Version="6.0.5" />
+    <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
+    <PackageReference Include="ZPF_DBSQL" Version="0.1.8.57" />
+    <PackageReference Include="ZPF_Fonts" Version="1.0.0.9" />
+    <PackageReference Include="ZPF_LabelPrinter" Version="1.0.0.2" />
+    <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />
+    <PackageReference Include="ZPF_XLSX" Version="2.0.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Nugets\Microcharts\MicrochartsProxy\MicrochartsProxy.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Nugets\Microcharts\Sources\Microcharts.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Nugets\ZPF_Basics_WPF\ZPF_Basics_WPF\ZPF.WPF.Compos.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Nugets\ZPF_Reporting\ZPF_Reporting\ZPF_Reporting.csproj" />
+    <ProjectReference Include="..\..\..\..\StoreCheck.Core.V2\StoreCheck.Core\StoreCheck.Core.V2.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="..\..\..\..\..\Apps\AuditTrailViewer\Pages.WPF\AuditTrailPage.xaml" Link="DBSQL_WPF\Pages\AuditTrailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="..\..\..\..\..\Apps\AuditTrailViewer\Pages.WPF\AuditTrail_Details_Page.xaml" Link="DBSQL_WPF\Pages\AuditTrail_Details_Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="DBSQL_WPF\Assets\File-Format-PDF.png" />
+    <Resource Include="DBSQL_WPF\Assets\Filter-Delete.png" />
+    <Resource Include="DBSQL_WPF\Assets\Filter-Standard.png" />
+    <Resource Include="DBSQL_WPF\Assets\Filter-Standard.Red.png" />
+    <Resource Include="DBSQL_WPF\Assets\Foot print - 02.512.png" />
+    <Resource Include="DBSQL_WPF\Assets\Microsoft-Excel-2013-01.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="DBSQL_WPF\Pages\DataGridTools.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="DBSQL_WPF\Pages\ReferentielPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Users_Rights_WPF\Pages\LoginWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Users_Rights_WPF\Pages\UserManagementPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DBSQL\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>
