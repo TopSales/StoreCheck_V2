@@ -10,448 +10,457 @@
    xmlns:ZPF_USR="clr-namespace:ZPF.USR" 
    xmlns:ZPFWPF="clr-namespace:ZPF.WPF.Compos;assembly=ZPF.WPF.Compos" 
    xmlns:conv="clr-namespace:ZPF.Conv;assembly=ZPF.WPF.Compos"
-   d:DesignHeight="500" d:DesignWidth="700"
+   d:DesignHeight="700" d:DesignWidth="700"
    Title="UserManagementPage" Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 
-   <Page.Resources>
-      <ResourceDictionary>
-         <ZPF_USR:HasUserLevelConverter x:Key="HasUserLevel" />
-         <conv:UTC2LocalConverter x:Key="UTC2Local" />
+    <Page.Resources>
+        <ResourceDictionary>
+            <ZPF_USR:HasUserLevelConverter x:Key="HasUserLevel" />
+            <conv:UTC2LocalConverter x:Key="UTC2Local" />
 
-         <Style x:Key="IconFont">
-            <Setter Property="TextElement.FontFamily" Value="/ZPF_Fonts;Component/fonts/#IconFont"/>
-            <Setter Property="TextElement.FontSize" Value="18"/>
-         </Style>
-         
-      </ResourceDictionary>
-   </Page.Resources>
+            <Style x:Key="IconFont">
+                <Setter Property="TextElement.FontFamily" Value="/ZPF_Fonts;Component/fonts/#IconFont"/>
+                <Setter Property="TextElement.FontSize" Value="18"/>
+            </Style>
 
-   <Grid Background="#6FFF" Margin="5,0,0,0">
-      <!--<Image x:Name="imgBackground" Grid.ColumnSpan="2" Opacity="0.2" Source="/ZPF_Users_Rights_WPF;component/Assets/User-Group.512.png" Width="256" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40" />-->
-      <TextBlock Grid.ColumnSpan="2" Opacity="0.2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40" 
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="#6FFF" Margin="5,0,0,0">
+        <!--<Image x:Name="imgBackground" Grid.ColumnSpan="2" Opacity="0.2" Source="/ZPF_Users_Rights_WPF;component/Assets/User-Group.512.png" Width="256" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40" />-->
+        <TextBlock Grid.ColumnSpan="2" Opacity="0.2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40" 
                  Style="{DynamicResource IconFont}" FontSize="256" Text="{x:Static ZPFFonts:IF.User_Group}" />
 
-      <Controls:MetroAnimatedTabControl Background="Transparent" >
+        <Controls:MetroAnimatedTabControl Background="Transparent" >
 
-         <Controls:MetroTabItem>
-            <Controls:MetroTabItem.Header>
-               <Grid>
-                  <StackPanel Orientation="Horizontal">
-                     <!--<Image x:Name="imgUser" Source="/ZPF_Users_Rights_WPF;component/Assets/User-Profile.png" Width="30" Margin="10,0,0,0" />-->
-                     <TextBlock Style="{DynamicResource IconFont}" FontSize="26" Text="{x:Static ZPFFonts:IF.User_Profile}"  Margin="10,0,0,0"  />
-                     <TextBlock Text="utilisateurs" Margin="0,0,10,0" Style="{StaticResource ResourceKey=MetroTab}"/>
-                  </StackPanel>
-                  <Border Style="{StaticResource ResourceKey=MetroTabLine}" />
-               </Grid>
-            </Controls:MetroTabItem.Header>
+            <Controls:MetroTabItem>
+                <Controls:MetroTabItem.Header>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Image x:Name="imgUser" Source="/ZPF_Users_Rights_WPF;component/Assets/User-Profile.png" Width="30" Margin="10,0,0,0" />-->
+                            <TextBlock Style="{DynamicResource IconFont}" FontSize="26" Text="{x:Static ZPFFonts:IF.User_Profile}"  Margin="10,0,0,0"  />
+                            <TextBlock Text="utilisateurs" Margin="0,0,10,0" Style="{StaticResource ResourceKey=MetroTab}"/>
+                        </StackPanel>
+                        <Border Style="{StaticResource ResourceKey=MetroTabLine}" />
+                    </Grid>
+                </Controls:MetroTabItem.Header>
 
-            <Grid >
-               <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="250"/>
-                  <ColumnDefinition Width="*"/>
-               </Grid.ColumnDefinitions>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-               <DataGrid Grid.Column="0" Margin="5" ItemsSource="{Binding Users}" SelectionChanged="DataGridUser_SelectionChanged" 
+                    <DataGrid Grid.Column="0" Margin="5" ItemsSource="{Binding Users}" SelectionChanged="DataGridUser_SelectionChanged" 
                   Background="#2FFF"       
                   IsReadOnly="True" AutoGenerateColumns="False"  VerticalGridLinesBrush="Transparent" >
 
-                  <DataGrid.Columns>
-                     <DataGridTextColumn Binding="{Binding Login}" Header="Login" Width="80"/>
-                     <DataGridTextColumn Binding="{Binding FullName}" Header="Nom" Width="150"/>
-                  </DataGrid.Columns>
-               </DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Login}" Header="Login" Width="80"/>
+                            <DataGridTextColumn Binding="{Binding FullName}" Header="Nom" Width="150"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-               <Grid Grid.Column="1" Margin="5" Background="#2000">
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="272"/>
-                     <ColumnDefinition Width="*"/>
-                     <ColumnDefinition Width="auto"/>
-                  </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1" Margin="5" Background="#2000">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="272"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
 
-                  <Grid.RowDefinitions>
-                     <RowDefinition Height="50" />
-                     <RowDefinition Height="235" />
-                     <RowDefinition Height="*" />
-                  </Grid.RowDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="280" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                  <!--IsEnabled="{Binding SelectedTable, Converter={StaticResource ToBool}}"-->
-                  <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,5" Background="{StaticResource Brush03}" >
+                        <!--IsEnabled="{Binding SelectedTable, Converter={StaticResource ToBool}}"-->
+                        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,5" Background="{StaticResource Brush03}" >
 
-                     <Button x:Name="btnUser_New" Content="ajouter" Click="btnUser_New_Click"
+                            <Button x:Name="btnUser_New" Content="ajouter" Click="btnUser_New_Click"
                         IsEnabled="{Binding ErrorMessage, ConverterParameter=User.Insert, Converter={StaticResource HasUserLevel}}"
                         Width="75" Height="30" Margin="5" />
 
-                     <!--IsEnabled="{Binding SelectedRecord, Converter={StaticResource ToBool}}"-->
-                     <StackPanel Orientation="Horizontal">
+                            <!--IsEnabled="{Binding SelectedRecord, Converter={StaticResource ToBool}}"-->
+                            <StackPanel Orientation="Horizontal">
 
-                        <Button x:Name="btnUser_Copy" Content="copier" Click="btnUser_Copy_Click" 
+                                <Button x:Name="btnUser_Copy" Content="copier" Click="btnUser_Copy_Click" 
                            IsEnabled="{Binding ErrorMessage, ConverterParameter=User.Insert, Converter={StaticResource HasUserLevel}}"
                            Width="75" Height="30" Margin="5" Visibility="Collapsed" />
 
-                        <Button x:Name="btnUser_OK" Content="enregistrer" Click="btnUser_Save_Click" 
+                                <Button x:Name="btnUser_OK" Content="enregistrer" Click="btnUser_Save_Click" 
                            IsEnabled="{Binding ErrorMessage, ConverterParameter=User.Update, Converter={StaticResource HasUserLevel}}"
                            Width="75" Height="30" Margin="5" />
 
-                        <Button x:Name="btnUser_Cancel" Content="annuler"  Click="btnUser_Cancel_Click" 
+                                <Button x:Name="btnUser_Cancel" Content="annuler"  Click="btnUser_Cancel_Click" 
                            Width="75" Height="30" Margin="5" Visibility="Collapsed" />
 
-                        <Button x:Name="btnUser_Delete" Content="supprimer"  Click="btnUser_Delete_Click" 
+                                <Button x:Name="btnUser_Delete" Content="supprimer"  Click="btnUser_Delete_Click" 
                            IsEnabled="{Binding ErrorMessage, ConverterParameter=User.Delete, Converter={StaticResource HasUserLevel}}"
                            Width="75" Height="30" Margin="5" />
 
-                     </StackPanel>
+                            </StackPanel>
 
-                  </StackPanel>
+                        </StackPanel>
 
-                  <!--IsEnabled="{Binding SelectedTable, Converter={StaticResource ToBool}}"-->
-                  <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,5" Background="{StaticResource Brush03}" >
+                        <!--IsEnabled="{Binding SelectedTable, Converter={StaticResource ToBool}}"-->
+                        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal" Margin="0,0,0,5" Background="{StaticResource Brush03}" >
 
-                     <!--IsEnabled="{Binding SelectedRecord, Converter={StaticResource ToBool}}"-->
-                     <StackPanel Orientation="Horizontal">
+                            <!--IsEnabled="{Binding SelectedRecord, Converter={StaticResource ToBool}}"-->
+                            <StackPanel Orientation="Horizontal">
 
-                        <Button x:Name="btnUser_Badge" Content="badge" Click="btnUser_Print_Click"
+                                <Button x:Name="btnUser_Badge" Content="badge" Click="btnUser_Print_Click"
                               IsEnabled="{Binding ErrorMessage, ConverterParameter=User.Update, Converter={StaticResource HasUserLevel}}"
                               Width="75" Height="30" Margin="5" />
 
-                     </StackPanel>
+                            </StackPanel>
 
-                  </StackPanel>
+                        </StackPanel>
 
-                  <StackPanel Grid.Row="1" Margin="5" Orientation="Vertical"  
+                        <StackPanel Grid.Row="1" Margin="5" Orientation="Vertical"  
                               DataContext="{Binding SelectedUser}" 
                               IsEnabled="{Binding SelectedUser, Converter={StaticResource ToBool}}" >
 
-                     <ZPFWPF:TextBoxEx Label="Login" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="12,4,10,0" Text="{Binding Login,Mode=TwoWay}" />
-                     <ZPFWPF:TextBoxEx Label="Ref" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="12,4,10,0" Text="{Binding Ref,Mode=TwoWay}" />
-                     <ZPFWPF:TextBoxEx Label="Password" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" Text="{Binding Password,Mode=TwoWay}" />
-                     <ZPFWPF:TextBoxEx Label="Nom complet" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" Text="{Binding FullName,Mode=TwoWay}" />
-                     <ZPFWPF:TextBoxEx Label="Email" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" Text="{Binding Email,Mode=TwoWay}" />
-                     <ZPFWPF:CheckBoxEx Label="Actif" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" IsChecked="{Binding IsEnabled,Mode=TwoWay}" VerticalContentAlignment="Center" />
-                     <ZPFWPF:TextBoxEx Label="Description" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" 
+                            <ZPFWPF:TextBoxEx Label="Login" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="12,4,10,0" Text="{Binding Login,Mode=TwoWay}" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"  Visibility="Collapsed" >
+                                <Button x:Name="btnSet_Password" Content="Affecter un mot de passe" Click="btnSet_Password_Click"
+                        Width="185" Height="22" Margin="5,5,5,5" Background="Goldenrod" />
+                            </StackPanel>
+                            <ZPFWPF:TextBoxEx Label="Ref" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="12,4,10,0" Text="{Binding Ref,Mode=TwoWay}" />
+
+
+                            <ZPFWPF:TextBoxEx Label="Password" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" Text="{Binding Password,Mode=TwoWay}"/>
+                            <ZPFWPF:TextBoxEx Label="Nom complet" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" Text="{Binding FullName,Mode=TwoWay}" />
+                            <ZPFWPF:TextBoxEx Label="Email" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" Text="{Binding Email,Mode=TwoWay}" />
+                            <ZPFWPF:CheckBoxEx Label="Actif" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" Margin="0,4,0,0" IsChecked="{Binding IsEnabled,Mode=TwoWay}" VerticalContentAlignment="Center" />
+                            <ZPFWPF:TextBoxEx Label="Terminal ID" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" 
+                                       Height="40" Filter="Memo"
+                                       Margin="0,4,0,0" Text="{Binding TerminalID,Mode=TwoWay}"  />
+                            <ZPFWPF:TextBoxEx Label="Description" Indent="100" Width="240" FontSize="12" FontFamily="Segoe UI" 
                                        Height="40" Filter="Memo"
                                        Margin="0,4,0,0" Text="{Binding Description,Mode=TwoWay}"  />
 
-                  </StackPanel>
+                        </StackPanel>
 
-                  <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" 
+                        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" 
                         IsEnabled="{Binding SelectedUser, Converter={StaticResource ToBool}}" >
-                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="*"/>
-                     </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                     <StackPanel Margin="5" Orientation="Vertical"  DataContext="{Binding SelectedUser}">
+                            <StackPanel Margin="5" Orientation="Vertical"  DataContext="{Binding SelectedUser}">
 
-                        <TextBlock Text="{Binding LoginFailures}" />
-                        <TextBlock Text="{Binding LastLogin, Converter={StaticResource UTC2Local}}" />
-                        <TextBlock Text="{Binding LastFailure, Converter={StaticResource UTC2Local}}" />
-                        <TextBlock Text="{Binding LoginExpiration, Converter={StaticResource UTC2Local}}" />
-                     </StackPanel>
+                                <TextBlock Text="{Binding LoginFailures}" />
+                                <TextBlock Text="{Binding LastLogin, Converter={StaticResource UTC2Local}}" />
+                                <TextBlock Text="{Binding LastFailure, Converter={StaticResource UTC2Local}}" />
+                                <TextBlock Text="{Binding LoginExpiration, Converter={StaticResource UTC2Local}}" />
+                            </StackPanel>
 
 
-                     <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding UserRoles}" Width="160"
+                            <DataGrid Grid.Row="1" Margin="5" ItemsSource="{Binding UserRoles}" Width="160"
                         Background="#2FFF"       
                         AutoGenerateColumns="False"  VerticalGridLinesBrush="Transparent" HorizontalAlignment="Left"
                         IsReadOnly="True" BorderBrush="Gray" >
 
-                        <DataGrid.Columns>
-                           <DataGridTextColumn Binding="{Binding Label}" Header="droits résultants" Width="125" FontSize="10"  />
-                        </DataGrid.Columns>
-                     </DataGrid>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Label}" Header="droits résultants" Width="125" FontSize="10"  />
+                                </DataGrid.Columns>
+                            </DataGrid>
 
-                  </Grid>
+                        </Grid>
 
-                  <Border Grid.ColumnSpan="3" Grid.Row="2" >
-                     <Controls:MetroAnimatedTabControl Background="#5FFF" 
+                        <Border Grid.ColumnSpan="3" Grid.Row="2" >
+                            <Controls:MetroAnimatedTabControl Background="#5FFF" 
                         IsEnabled="{Binding SelectedUser, Converter={StaticResource ToBool}}" Margin="10" >
-                        <Controls:MetroTabItem >
-                           <Controls:MetroTabItem.Header>
-                              <ZPFWPF:MetroTabHeaderEX Text="profils"/>
-                           </Controls:MetroTabItem.Header>
+                                <Controls:MetroTabItem >
+                                    <Controls:MetroTabItem.Header>
+                                        <ZPFWPF:MetroTabHeaderEX Text="profils"/>
+                                    </Controls:MetroTabItem.Header>
 
-                           <Grid >
-                              <Grid.ColumnDefinitions>
-                                 <ColumnDefinition Width="*"/>
-                                 <ColumnDefinition Width="170"/>
-                                 <ColumnDefinition Width="50"/>
-                                 <ColumnDefinition Width="170"/>
-                                 <ColumnDefinition Width="*"/>
-                              </Grid.ColumnDefinitions>
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="170"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="170"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
-                              <Grid.RowDefinitions>
-                                 <RowDefinition Height="*" />
-                                 <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
 
-                              <DataGrid x:Name="dgUser_AllProfiles" Grid.Column="1" Grid.RowSpan="2" Margin="5" AutoGenerateColumns="False" VerticalGridLinesBrush="Transparent"
+                                        <DataGrid x:Name="dgUser_AllProfiles" Grid.Column="1" Grid.RowSpan="2" Margin="5" AutoGenerateColumns="False" VerticalGridLinesBrush="Transparent"
                                Background="#2FFF"       
                                ItemsSource="{Binding Profiles}" 
                                MouseDoubleClick="btnUserAddProfile_Click"
                                IsReadOnly="True" >
-                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Label}" Header="profils disponibles" Width="135"/>
-                                 </DataGrid.Columns>
-                              </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Label}" Header="profils disponibles" Width="135"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
 
-                              <Button Grid.Column="2" Grid.Row="0"  Margin="5" Click="btnUserAddProfile_Click" >
-                                 <Button.Content>
-                                    <TextBlock Text=">" FontWeight="Bold" FontSize="24"  />
-                                 </Button.Content>
-                              </Button>
+                                        <Button Grid.Column="2" Grid.Row="0"  Margin="5" Click="btnUserAddProfile_Click" >
+                                            <Button.Content>
+                                                <TextBlock Text=">" FontWeight="Bold" FontSize="24"  />
+                                            </Button.Content>
+                                        </Button>
 
-                              <Button Grid.Column="2" Grid.Row="1"  Margin="5" Click="btnUserDelProfile_Click" >
-                                 <Button.Content>
-                                    <TextBlock Text="&lt;" FontWeight="Bold" FontSize="24" />
-                                 </Button.Content>
-                              </Button>
+                                        <Button Grid.Column="2" Grid.Row="1"  Margin="5" Click="btnUserDelProfile_Click" >
+                                            <Button.Content>
+                                                <TextBlock Text="&lt;" FontWeight="Bold" FontSize="24" />
+                                            </Button.Content>
+                                        </Button>
 
-                              <DataGrid x:Name="dgUser_GrantedProfiles" Grid.Column="3" Grid.RowSpan="2" Margin="0,4,4,4" 
+                                        <DataGrid x:Name="dgUser_GrantedProfiles" Grid.Column="3" Grid.RowSpan="2" Margin="0,4,4,4" 
                               Background="#2FFF"       
                               ItemsSource="{Binding UserProfiles}" AutoGenerateColumns="False"  VerticalGridLinesBrush="Transparent"
                               MouseDoubleClick="btnUserDelProfile_Click"
                               IsReadOnly="True" HorizontalAlignment="Right" Width="162" >
 
-                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Label}" Header="profils attribués" Width="135" FontWeight="Bold"/>
-                                 </DataGrid.Columns>
-                              </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Label}" Header="profils attribués" Width="135" FontWeight="Bold"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
 
-                           </Grid>
-                        </Controls:MetroTabItem>
+                                    </Grid>
+                                </Controls:MetroTabItem>
 
-                        <Controls:MetroTabItem >
-                           <Controls:MetroTabItem.Header>
-                              <ZPFWPF:MetroTabHeaderEX Text="rôles"/>
-                           </Controls:MetroTabItem.Header>
+                                <Controls:MetroTabItem >
+                                    <Controls:MetroTabItem.Header>
+                                        <ZPFWPF:MetroTabHeaderEX Text="rôles"/>
+                                    </Controls:MetroTabItem.Header>
 
-                           <Grid>
-                              <Grid.ColumnDefinitions>
-                                 <ColumnDefinition Width="*"/>
-                                 <ColumnDefinition Width="180"/>
-                                 <ColumnDefinition Width="50"/>
-                                 <ColumnDefinition Width="180"/>
-                                 <ColumnDefinition Width="*"/>
-                              </Grid.ColumnDefinitions>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="180"/>
+                                            <ColumnDefinition Width="50"/>
+                                            <ColumnDefinition Width="180"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
 
-                              <Grid.RowDefinitions>
-                                 <RowDefinition />
-                                 <RowDefinition />
-                                 <RowDefinition Height="4" />
-                                 <RowDefinition />
-                                 <RowDefinition />
-                              </Grid.RowDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition Height="4" />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
 
-                              <DataGrid x:Name="dgUser_AllRoles" Grid.Column="1" Grid.RowSpan="5" Margin="5" AutoGenerateColumns="False" VerticalGridLinesBrush="Transparent"
+                                        <DataGrid x:Name="dgUser_AllRoles" Grid.Column="1" Grid.RowSpan="5" Margin="5" AutoGenerateColumns="False" VerticalGridLinesBrush="Transparent"
                                ItemsSource="{Binding Roles}" 
                                SelectionMode="Single"
                                IsReadOnly="True" >
-                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Label}" Header="rôles disponibles" Width="145"/>
-                                 </DataGrid.Columns>
-                              </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Label}" Header="rôles disponibles" Width="145"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
 
-                              <Button Grid.Column="2" Grid.Row="0"  Margin="5" Click="btnUserAddAddRole_Click" >
-                                 <Button.Content>
-                                    <TextBlock Text=">" FontWeight="Bold" FontSize="24"  />
-                                 </Button.Content>
-                              </Button>
+                                        <Button Grid.Column="2" Grid.Row="0"  Margin="5" Click="btnUserAddAddRole_Click" >
+                                            <Button.Content>
+                                                <TextBlock Text=">" FontWeight="Bold" FontSize="24"  />
+                                            </Button.Content>
+                                        </Button>
 
-                              <Button Grid.Column="2" Grid.Row="1"  Margin="5" Click="btnUserDelAddRole_Click" >
-                                 <Button.Content>
-                                    <TextBlock Text="&lt;" FontWeight="Bold" FontSize="24"  />
-                                 </Button.Content>
-                              </Button>
+                                        <Button Grid.Column="2" Grid.Row="1"  Margin="5" Click="btnUserDelAddRole_Click" >
+                                            <Button.Content>
+                                                <TextBlock Text="&lt;" FontWeight="Bold" FontSize="24"  />
+                                            </Button.Content>
+                                        </Button>
 
-                              <Button Grid.Column="2" Grid.Row="3"  Margin="5" Click="btnUserAddDelRole_Click" >
-                                 <Button.Content>
-                                    <TextBlock Text=">" FontWeight="Bold" FontSize="24"  />
-                                 </Button.Content>
-                              </Button>
+                                        <Button Grid.Column="2" Grid.Row="3"  Margin="5" Click="btnUserAddDelRole_Click" >
+                                            <Button.Content>
+                                                <TextBlock Text=">" FontWeight="Bold" FontSize="24"  />
+                                            </Button.Content>
+                                        </Button>
 
-                              <Button Grid.Column="2" Grid.Row="4"  Margin="5" Click="btnUserDelDelRole_Click" >
-                                 <Button.Content>
-                                    <TextBlock Text="&lt;" FontWeight="Bold" FontSize="24"  />
-                                 </Button.Content>
-                              </Button>
+                                        <Button Grid.Column="2" Grid.Row="4"  Margin="5" Click="btnUserDelDelRole_Click" >
+                                            <Button.Content>
+                                                <TextBlock Text="&lt;" FontWeight="Bold" FontSize="24"  />
+                                            </Button.Content>
+                                        </Button>
 
-                              <DataGrid x:Name="dgUser_AddRoles" Grid.Column="3" Grid.RowSpan="2" Margin="5" 
+                                        <DataGrid x:Name="dgUser_AddRoles" Grid.Column="3" Grid.RowSpan="2" Margin="5" 
                                   ItemsSource="{Binding User_AddRoles}" AutoGenerateColumns="False"  VerticalGridLinesBrush="Transparent"
                                   SelectionMode="Single"
                                   MouseDoubleClick="btnUserDelAddRole_Click"
                                   SelectionChanged="dgUser_AddRoles_SelectionChanged"
                                   IsReadOnly="True" >
-                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Label}" Header="Rôles ajoutés" Width="145"/>
-                                 </DataGrid.Columns>
-                              </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Label}" Header="Rôles ajoutés" Width="145"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
 
-                              <DataGrid x:Name="dgUser_DelRoles" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" Margin="5" 
+                                        <DataGrid x:Name="dgUser_DelRoles" Grid.Column="3" Grid.Row="3" Grid.RowSpan="2" Margin="5" 
                                ItemsSource="{Binding User_DelRoles}" AutoGenerateColumns="False"  VerticalGridLinesBrush="Transparent"
                                SelectionMode="Single"
                                MouseDoubleClick="btnUserDelDelRole_Click"
                                IsReadOnly="True" >
-                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Label}" Header="Rôles retirés" Width="145"/>
-                                 </DataGrid.Columns>
-                              </DataGrid>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Label}" Header="Rôles retirés" Width="145"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
 
-                              <StackPanel Grid.Column="4" Grid.Row="0" Grid.RowSpan="5" Margin="5,5,10,5" Background="#4FFF" 
+                                        <StackPanel Grid.Column="4" Grid.Row="0" Grid.RowSpan="5" Margin="5,5,10,5" Background="#4FFF" 
                                  IsEnabled="{Binding CurrentUser_Role_DelAdd, Converter={StaticResource ToBool}}" 
                                  Visibility="{Binding WithRoleData, Converter={StaticResource ToVisibility}}" >
 
-                                 <Label Content="Expiration du rôle" Margin="5,10,0,0"/>
-                                 <StackPanel Orientation="Horizontal">
-                                    <ZPFWPF:TextBoxEx x:Name="tbDate" Label=" " Indent="1" Width="80" Margin="10,0,0,0" OnReturn="OnReturn"
+                                            <Label Content="Expiration du rôle" Margin="5,10,0,0"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <ZPFWPF:TextBoxEx x:Name="tbDate" Label=" " Indent="1" Width="80" Margin="10,0,0,0" OnReturn="OnReturn"
                                                 Text="{Binding CurrentUser_Role_DelAdd.Expiration, Converter={StaticResource DateTimeToString}, ConverterParameter=dd/MM/yyyy }" Filter="Date" />
-                                    <Button Content="today"  Width="60" Margin="5,0,0,0" Click="btnToday_Click" />
-                                    <Button Content="infini"  Width="60" Margin="5,0,0,0" Click="Button_Click" />
-                                 </StackPanel>
+                                                <Button Content="today"  Width="60" Margin="5,0,0,0" Click="btnToday_Click" />
+                                                <Button Content="infini"  Width="60" Margin="5,0,0,0" Click="Button_Click" />
+                                            </StackPanel>
 
-                                 <Label Content="RoleData" Margin="5,10,0,0"/>
-                                 <ZPFWPF:TextBoxEx Label=" " Indent="1" Margin="10,0,0,0" OnReturn="OnReturnData" Height="100"  LostFocus="TextBoxEx_LostFocus"
+                                            <Label Content="RoleData" Margin="5,10,0,0"/>
+                                            <ZPFWPF:TextBoxEx Label=" " Indent="1" Margin="10,0,0,0" OnReturn="OnReturnData" Height="100"  LostFocus="TextBoxEx_LostFocus"
                                                 Text="{Binding CurrentUser_Role_DelAdd.RoleData}" Filter="Memo" />
-                              </StackPanel>
-                           </Grid>
-                        </Controls:MetroTabItem>
-                     </Controls:MetroAnimatedTabControl>
-                  </Border>
-               </Grid>
+                                        </StackPanel>
+                                    </Grid>
+                                </Controls:MetroTabItem>
+                            </Controls:MetroAnimatedTabControl>
+                        </Border>
+                    </Grid>
 
-            </Grid>
-         </Controls:MetroTabItem>
+                </Grid>
+            </Controls:MetroTabItem>
 
-         <Controls:MetroTabItem
+            <Controls:MetroTabItem
             IsEnabled="{Binding ErrorMessage, ConverterParameter=Profile.View, Converter={StaticResource HasUserLevel}}" >
 
-            <Controls:MetroTabItem.Header>
-               <Grid>
-                  <StackPanel Orientation="Horizontal">
-                     <!--<Image x:Name="imgUserGroup" Source="/ZPF_Users_Rights_WPF;component/Assets/User-Group.png" Width="38" Margin="10,0,0,0" />-->
-                     <TextBlock Style="{DynamicResource IconFont}" FontSize="32" Text="{x:Static ZPFFonts:IF.User_Group}" Margin="10,0,0,0" />
-                     <TextBlock Text="profils" Margin="0,0,10,0" Style="{StaticResource ResourceKey=MetroTab}"/>
-                  </StackPanel>
-                  <Border Style="{StaticResource ResourceKey=MetroTabLine}" />
-               </Grid>
-            </Controls:MetroTabItem.Header>
+                <Controls:MetroTabItem.Header>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<Image x:Name="imgUserGroup" Source="/ZPF_Users_Rights_WPF;component/Assets/User-Group.png" Width="38" Margin="10,0,0,0" />-->
+                            <TextBlock Style="{DynamicResource IconFont}" FontSize="32" Text="{x:Static ZPFFonts:IF.User_Group}" Margin="10,0,0,0" />
+                            <TextBlock Text="profils" Margin="0,0,10,0" Style="{StaticResource ResourceKey=MetroTab}"/>
+                        </StackPanel>
+                        <Border Style="{StaticResource ResourceKey=MetroTabLine}" />
+                    </Grid>
+                </Controls:MetroTabItem.Header>
 
-            <Grid >
-               <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="200"/>
-                  <ColumnDefinition Width="*"/>
-               </Grid.ColumnDefinitions>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
 
-               <DataGrid Grid.Column="0" Margin="5" ItemsSource="{Binding Profiles}" SelectionChanged="DataGridProfile_SelectionChanged"
+                    <DataGrid Grid.Column="0" Margin="5" ItemsSource="{Binding Profiles}" SelectionChanged="DataGridProfile_SelectionChanged"
                   Background="#2FFF"       
                   IsReadOnly="True" AutoGenerateColumns="False"  VerticalGridLinesBrush="Transparent" >
 
-                  <DataGrid.Columns>
-                     <DataGridTextColumn Binding="{Binding Label}" Header="Profils" Width="180"/>
-                  </DataGrid.Columns>
-               </DataGrid>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Label}" Header="Profils" Width="180"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
 
-               <Grid Grid.Column="1" Margin="5" Background="#2000" >
-                  <Grid.RowDefinitions>
-                     <RowDefinition Height="50" />
-                     <RowDefinition Height="100" />
-                     <RowDefinition Height="*" />
-                  </Grid.RowDefinitions>
+                    <Grid Grid.Column="1" Margin="5" Background="#2000" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="100" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
 
-                  <!--IsEnabled="{Binding SelectedTable, Converter={StaticResource ToBool}}"-->
-                  <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,5" Background="{StaticResource Brush03}"  >
+                        <!--IsEnabled="{Binding SelectedTable, Converter={StaticResource ToBool}}"-->
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,5" Background="{StaticResource Brush03}"  >
 
-                     <Button x:Name="btnProfile_New" Content="nouveau" Click="btnProfile_New_Click"
+                            <Button x:Name="btnProfile_New" Content="nouveau" Click="btnProfile_New_Click"
                         IsEnabled="{Binding ErrorMessage, ConverterParameter=Profile.Insert, Converter={StaticResource HasUserLevel}}"
                         Width="70" Height="30" Margin="5" />
 
-                     <!--IsEnabled="{Binding SelectedRecord, Converter={StaticResource ToBool}}"-->
-                     <StackPanel Orientation="Horizontal">
+                            <!--IsEnabled="{Binding SelectedRecord, Converter={StaticResource ToBool}}"-->
+                            <StackPanel Orientation="Horizontal">
 
-                        <Button x:Name="btnProfile_Copy" Content="copie" Click="btnProfile_Copy_Click" 
+                                <Button x:Name="btnProfile_Copy" Content="copie" Click="btnProfile_Copy_Click" 
                            IsEnabled="{Binding ErrorMessage, ConverterParameter=Profile.Insert, Converter={StaticResource HasUserLevel}}"
                            Width="70" Height="30" Margin="5" Visibility="Collapsed" />
 
-                        <Button x:Name="btnProfile_OK" Content="enregistrer" Click="btnProfile_Save_Click" 
+                                <Button x:Name="btnProfile_OK" Content="enregistrer" Click="btnProfile_Save_Click" 
                            IsEnabled="{Binding ErrorMessage, ConverterParameter=Profile.Update, Converter={StaticResource HasUserLevel}}"
                            Width="70" Height="30" Margin="5" />
 
-                        <Button x:Name="btnProfile_Cancel" Content="annuler"  Click="btnProfile_Cancel_Click" 
+                                <Button x:Name="btnProfile_Cancel" Content="annuler"  Click="btnProfile_Cancel_Click" 
                            Width="70" Height="30" Margin="5" Visibility="Collapsed" />
 
-                        <Button x:Name="btnProfile_Delete" Content="supprimer"  Click="btnProfile_Delete_Click" 
+                                <Button x:Name="btnProfile_Delete" Content="supprimer"  Click="btnProfile_Delete_Click" 
                            IsEnabled="{Binding ErrorMessage, ConverterParameter=Profile.Delete, Converter={StaticResource HasUserLevel}}"
                            Width="70" Height="30" Margin="5" />
 
-                     </StackPanel>
-                  </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
 
-                  <StackPanel Grid.Row="1" Margin="5"  Orientation="Vertical"  DataContext="{Binding SelectedProfile}" >
+                        <StackPanel Grid.Row="1" Margin="5"  Orientation="Vertical"  DataContext="{Binding SelectedProfile}" >
 
-                     <ZPFWPF:TextBoxEx Label="Libellé" Indent="100" Width="300" FontSize="12" FontFamily="Segoe UI" 
+                            <ZPFWPF:TextBoxEx Label="Libellé" Indent="100" Width="300" FontSize="12" FontFamily="Segoe UI" 
                         HorizontalAlignment="Left" Margin="0,4,0,0" Text="{Binding Label,Mode=TwoWay}" />
-                     <ZPFWPF:TextBoxEx Label="Description" Indent="100" 
+                            <ZPFWPF:TextBoxEx Label="Description" Indent="100" 
                         Width="300" FontSize="12" FontFamily="Segoe UI" 
                         HorizontalAlignment="Left" Margin="0,4,0,0" Text="{Binding Description,Mode=TwoWay}" />
 
-                  </StackPanel>
+                        </StackPanel>
 
-                  <Grid Grid.Row="2">
-                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="180"/>
-                        <ColumnDefinition Width="50"/>
-                        <ColumnDefinition Width="180"/>
-                        <ColumnDefinition Width="*"/>
-                     </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                     </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
 
-                     <DataGrid x:Name="dgProfile_AllRoles" Grid.Column="1" Grid.RowSpan="2" Margin="5" AutoGenerateColumns="False" VerticalGridLinesBrush="Transparent"
+                            <DataGrid x:Name="dgProfile_AllRoles" Grid.Column="1" Grid.RowSpan="2" Margin="5" AutoGenerateColumns="False" VerticalGridLinesBrush="Transparent"
                         Background="#2FFF"       
                         ItemsSource="{Binding Roles}" 
                         MouseDoubleClick="btnProfileAddRole_Click"
                         SelectionMode="Single"
                         IsReadOnly="True" >
 
-                        <DataGrid.Columns>
-                           <DataGridTextColumn Binding="{Binding Label}" Header="rôles disponibles" Width="145"/>
-                        </DataGrid.Columns>
-                     </DataGrid>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Label}" Header="rôles disponibles" Width="145"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
 
-                     <Button Grid.Column="2" Grid.Row="0"  Margin="5" Click="btnProfileAddRole_Click" >
-                        <Button.Content>
-                           <TextBlock Text=">" FontWeight="Bold" FontSize="24"  />
-                        </Button.Content>
-                     </Button>
+                            <Button Grid.Column="2" Grid.Row="0"  Margin="5" Click="btnProfileAddRole_Click" >
+                                <Button.Content>
+                                    <TextBlock Text=">" FontWeight="Bold" FontSize="24"  />
+                                </Button.Content>
+                            </Button>
 
-                     <Button Grid.Column="2" Grid.Row="1"  Margin="5" Click="btnProfileDelRole_Click" >
-                        <Button.Content>
-                           <TextBlock Text="&lt;" FontWeight="Bold" FontSize="24"  />
-                        </Button.Content>
-                     </Button>
+                            <Button Grid.Column="2" Grid.Row="1"  Margin="5" Click="btnProfileDelRole_Click" >
+                                <Button.Content>
+                                    <TextBlock Text="&lt;" FontWeight="Bold" FontSize="24"  />
+                                </Button.Content>
+                            </Button>
 
-                     <DataGrid x:Name="dgProfile_GrantedRoles" Grid.Column="3" Grid.RowSpan="2" Margin="5" 
+                            <DataGrid x:Name="dgProfile_GrantedRoles" Grid.Column="3" Grid.RowSpan="2" Margin="5" 
                         Background="#2FFF"       
                         ItemsSource="{Binding ProfileRoles}" AutoGenerateColumns="False"  VerticalGridLinesBrush="Transparent"
                         MouseDoubleClick="btnProfileDelRole_Click"
                         SelectionMode="Single"
                         IsReadOnly="True" >
 
-                        <DataGrid.Columns>
-                           <DataGridTextColumn Binding="{Binding Label}" Header="rôles attribués" Width="145" FontWeight="Bold"/>
-                        </DataGrid.Columns>
-                     </DataGrid>
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Label}" Header="rôles attribués" Width="145" FontWeight="Bold"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
 
-                  </Grid>
+                        </Grid>
 
-               </Grid>
+                    </Grid>
 
-            </Grid>
-         </Controls:MetroTabItem>
+                </Grid>
+            </Controls:MetroTabItem>
 
-      </Controls:MetroAnimatedTabControl>
+        </Controls:MetroAnimatedTabControl>
 
-   </Grid>
+    </Grid>
 </Page>
