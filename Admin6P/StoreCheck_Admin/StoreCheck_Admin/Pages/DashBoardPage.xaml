@@ -40,7 +40,7 @@
 
 
       <Border Grid.Column="0" Grid.Row="0" Background="#8FFF" Margin="10,0,5,5" >
-         <controls:ChartView x:Name="chartView" />
+         <!--<controls:ChartView x:Name="chartView" />-->
       </Border>
 
 
@@ -130,10 +130,10 @@
                Text="{Binding Stock.NbItems, Mode=OneWay, StringFormat=\{0\} articles en stock}" 
                Foreground="White" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" />
 
-            <TextBlock 
+            <!--<TextBlock 
                Text="{Binding Stock.Valeur, Converter={StaticResource Dot2Comma}, StringFormat=valeur \{0:# ### ##0.000\} €}" 
                Foreground="White" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" 
-               Visibility="{Binding User.CurrentUserRoles, ConverterParameter=Stock.Valorisation, Converter={StaticResource VisibilityUserLevel}}" />
+               Visibility="{Binding User.CurrentUserRoles, ConverterParameter=Stock.Valorisation, Converter={StaticResource VisibilityUserLevel}}" />-->
 
          </StackPanel>
       </Border>

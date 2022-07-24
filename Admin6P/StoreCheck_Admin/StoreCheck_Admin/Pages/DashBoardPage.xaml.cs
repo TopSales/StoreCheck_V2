@@ -33,14 +33,14 @@ namespace StoreCheck.Pages
 
             // - - -  - - - 
 
-            chartView.Visibility = Visibility.Visible;
+            //chartView.Visibility = Visibility.Visible;
 
-            chartView.Chart = new DonutChart();
-            chartView.Chart.LabelTextSize = 12;
-            chartView.Chart.MinValue = -1000;
-            chartView.Chart.MaxValue = 1000;
+            //chartView.Chart = new DonutChart();
+            //chartView.Chart.LabelTextSize = 12;
+            //chartView.Chart.MinValue = -1000;
+            //chartView.Chart.MaxValue = 1000;
 
-            chartView.Chart.Entries = GenerateEntries();
+            //chartView.Chart.Entries = GenerateEntries();
          };
       }
 

@@ -234,9 +234,9 @@ namespace StoreCheck
             case "CONFIG":
                if (UserViewModel.Current.CheckRights("Config.View"))
                {
-                  MainViewModel.Current.LoadEditReferentiel(); // Refresh data
+                  //MainViewModel.Current.LoadEditReferentiel(); // Refresh data
 
-                  NavigatePage("Tools / paramètres", new SettingsPage());
+                  //NavigatePage("Tools / paramètres", new SettingsPage());
                };
                break;
 
