@@ -14,7 +14,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;WPF</DefineConstants>
   </PropertyGroup>
-
+	<ItemGroup>
+		<Reference Include="PdfFileWriter">
+			<HintPath>..\..\..\..\_units_\Dlls\PdfFileWriter.dll</HintPath>
+		</Reference>
+		<Reference Include="PdfSharp">
+			<HintPath>DLLs\PdfSharp.dll</HintPath>
+		</Reference>
+		<Reference Include="ReachFramework" />
+		<Reference Include="System.Printing" />
+	</ItemGroup>
   <ItemGroup>
     <None Remove="DBSQL_WPF\Assets\File-Format-PDF.png" />
     <None Remove="DBSQL_WPF\Assets\Filter-Delete.png" />
@@ -39,17 +48,25 @@
 
   <ItemGroup>
     <PackageReference Include="FilterDataGrid" Version="1.2.12" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.9" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.1" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.1" />
+    <PackageReference Include="SkiaSharp.Views.WPF" Version="2.88.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
     <PackageReference Include="System.Text.Json" Version="6.0.5" />
     <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
     <PackageReference Include="ZPF_DBSQL" Version="0.1.8.57" />
+    <PackageReference Include="ZPF_Fonts" Version="1.0.0.9" />
+    <PackageReference Include="ZPF_LabelPrinter" Version="1.0.0.2" />
     <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />
+    <PackageReference Include="ZPF_XLSX" Version="2.0.0.16" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Nugets\Microcharts\MicrochartsProxy\MicrochartsProxy.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Nugets\Microcharts\Sources\Microcharts.csproj" />
     <ProjectReference Include="..\..\..\..\..\Nugets\ZPF_Basics_WPF\ZPF_Basics_WPF\ZPF.WPF.Compos.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Nugets\ZPF_Reporting\ZPF_Reporting\ZPF_Reporting.csproj" />
     <ProjectReference Include="..\..\..\..\StoreCheck.Core.V2\StoreCheck.Core\StoreCheck.Core.V2.csproj" />
   </ItemGroup>
 
@@ -78,10 +95,31 @@
     <Page Update="DBSQL_WPF\Pages\ReferentielPage.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
     </Page>
+    <Page Update="Users_Rights_WPF\Pages\LoginWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="Users_Rights_WPF\Pages\UserManagementPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="DBSQL\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

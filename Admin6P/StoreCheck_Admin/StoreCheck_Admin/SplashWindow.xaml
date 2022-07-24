@@ -1,0 +1,39 @@
+﻿<Window x:Class="StoreCheck.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ZPF2="clr-namespace:ZPF"
+        Title="StoreCheck" 
+        Height="260" Width="320" Background="#FF558ed5" 
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" 
+        Icon="/Images/StoreCheck.ico" ShowInTaskbar="False">
+
+   <Grid>
+      <Grid.Background>
+         <ImageBrush ImageSource="/Images/Background.jpg" Stretch="UniformToFill"/>
+      </Grid.Background>
+
+      <Image Source="Images/Loading - 01.png" RenderTransformOrigin="0.5,0.5" >
+         <Image.RenderTransform>
+            <TransformGroup>
+               <ScaleTransform/>
+               <SkewTransform/>
+               <RotateTransform x:Name="rotate"  Angle="45"/>
+               <TranslateTransform/>
+            </TransformGroup>
+         </Image.RenderTransform>
+         <Image.Triggers>
+            <EventTrigger RoutedEvent="Window.Loaded">
+               <BeginStoryboard>
+                  <Storyboard>
+                     <DoubleAnimation Storyboard.TargetName="rotate" 
+                        Storyboard.TargetProperty="Angle" From="0" To="360" 
+                        Duration="0:0:2" BeginTime="0:0:0" 
+                        RepeatBehavior="Forever"/>
+                  </Storyboard>
+               </BeginStoryboard>
+            </EventTrigger>
+         </Image.Triggers>
+      </Image>
+
+   </Grid>
+</Window>

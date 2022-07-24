@@ -17,7 +17,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 
-namespace StoreCheck_Admin
+namespace StoreCheck
 {
     /// <summary>
     /// Interaction logic for App.xaml

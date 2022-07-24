@@ -1,0 +1,162 @@
+﻿<Page 
+   x:Name="page" x:Class="ZPF.WPF.OpenDBPage"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+   xmlns:ZPF="clr-namespace:ZPF.WPF.Compos;assembly=ZPF.WPF.Compos"
+   xmlns:local="clr-namespace:ZPF.WPF"
+   xmlns:ZPFFonts="clr-namespace:ZPF.Fonts;assembly=ZPF_Fonts"  
+   mc:Ignorable="d" 
+   d:DesignHeight="480" d:DesignWidth="800"
+   Title="OpenDBPage" Unloaded="page_Unloaded">
+
+   <Page.Resources>
+      <!--<ResourceDictionary>
+
+         <Style x:Key="IconFont">
+            <Setter Property="TextElement.FontFamily" Value="/File_Fonts;Component/fonts/#IconFont"/>
+            --><!--<Setter Property="TextElement.FontFamily" Value="IconFont"/>--><!--
+         </Style>
+
+      </ResourceDictionary>-->
+
+      <Style x:Key="IconFont">
+         <Setter Property="TextElement.FontFamily" Value="/File_Fonts/#IconFont"/>
+         <Setter Property="TextElement.FontSize" Value="18"/>
+      </Style>
+   </Page.Resources>
+
+   <Grid >
+      <!--<Image Source="/Images/Tiles/Database Connection-WF.png" 
+             HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+             Width="256" Margin="0,0,40,40" Opacity=".5" />-->
+      <TextBlock Opacity="0.2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,40,40" 
+                 FontSize="256" FontFamily="/File_Fonts/#IconFont" Text="{x:Static ZPFFonts:IF.Database_Connection_WF}" /> <!--style="{dynamicresource iconfont}"-->
+
+      <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Width="700" Height="400" Background="#4FFF">
+         <Controls:MetroAnimatedTabControl x:Name="metroAnimatedTabControl" Background="#4FFF">
+
+            <Controls:MetroTabItem Background="#4FFF">
+               <Controls:MetroTabItem.Header>
+                  <ZPF:MetroTabHeaderEX Text="open" />
+               </Controls:MetroTabItem.Header>
+
+               <Grid Background="#4FFF">
+                  <Grid.ColumnDefinitions>
+                     <ColumnDefinition Width="*"/>
+                     <ColumnDefinition Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  
+                  <DataGrid x:Name="dataGrid" Margin="5" 
+                     Background="#4FFF"       
+                     IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
+                     CanUserDeleteRows="False" CanUserAddRows="False" 
+                     CanUserReorderColumns="False" CanUserResizeColumns="False" 
+                     ItemsSource="{Binding PrevConnections, Mode=TwoWay}" 
+                     MouseDoubleClick="ListView_MouseDoubleClick"
+                     SelectionChanged="ListView_SelectionChanged" >
+
+                     <DataGrid.ContextMenu>
+                        <ContextMenu DataContext="{Binding RelativeSource={RelativeSource Mode=Self}, Path=PlacementTarget}">
+                           <MenuItem Header="delete" Click="delConnection_Click"  />
+                           <MenuItem Header="copy" Click="copyConnection_Click"  />
+                           <MenuItem Header="paste" Click="pasteConnection_Click"  />
+                        </ContextMenu>
+                     </DataGrid.ContextMenu>
+
+                     <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="200" />
+                        <DataGridTextColumn Binding="{Binding DBType}" Header="DBType" Width="80" />
+                        <DataGridTextColumn Binding="{Binding Server}" Header="Server" Width="200"  />
+                        <DataGridTextColumn Binding="{Binding DBase}" Header="DBase" Width="200"  />
+                        <DataGridTextColumn Binding="{Binding User}" Header="User" Width="80"  />
+                     </DataGrid.Columns>
+                  </DataGrid>
+
+                  <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" >
+                     <Controls:Tile 
+                        
+                        Foreground="White" Background="{StaticResource Brush_Tile}" 
+                        Margin="5" Width="120" Height="48" TiltFactor="2"
+                        Click="btnOpen_Click" IsEnabled="{Binding SelectedValue, Converter={StaticResource ToBool}, ElementName=dataGrid}" >
+
+                        <StackPanel Orientation="Horizontal" Margin="4">
+                           <!--<Image Source="/Images/Dialog/Right tick - 01.png" Width="48" VerticalAlignment="Center" />-->
+                           <!--<TextBlock Style="{DynamicResource IconFont}" FontSize="32" Text="{x:Static ZPFFonts:IF.Check_Mark_01}"  Margin="10,0,0,0"  />-->
+                           <TextBlock FontFamily="/File_Fonts/#IconFont" FontSize="32" Text="{x:Static ZPFFonts:IF.Check_Mark_01}"  Margin="10,0,0,0"  />
+                           <TextBlock Margin="8" Text="open" Foreground="White" VerticalAlignment="Center" />
+                        </StackPanel>
+                     </Controls:Tile>
+
+                  </StackPanel>
+               </Grid>
+            </Controls:MetroTabItem>
+
+            <Controls:MetroTabItem>
+               <Controls:MetroTabItem.Header>
+                  <ZPF:MetroTabHeaderEX Text="new" />
+               </Controls:MetroTabItem.Header>
+
+               <Grid>
+
+                  <StackPanel Margin="5" >
+                     <ZPF:ComboBoxEx x:Name="cbDBType" Label="DBType" Indent="100" Margin="5" />
+                     <ZPF:TextBoxEx Label="Name" Indent="100" Margin="5" Text="{Binding Connection.Name, ElementName=page}" />
+                     <ZPF:TextBoxEx x:Name="tbServer" Label="Server" Indent="100" Margin="5" Text="{Binding Connection.Server, ElementName=page}" />
+
+                     <Grid>
+                        <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="*"/>
+                           <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <ZPF:TextBoxEx Label="DBase" Indent="100" Margin="5" Text="{Binding Connection.DBase, ElementName=page}" />
+
+                        <Controls:Tile x:Name="tileGetFile"  Grid.Column="1" Foreground="White" 
+                           Background="{StaticResource Brush_Tile}" Margin="0,5,5,5" Width="26" Height="26" TiltFactor="2"
+                           Click="tileGetFile_Click" Visibility="Collapsed" >
+
+                           <StackPanel Orientation="Vertical" Margin="5">
+                              <TextBlock Text="•••" Foreground="White" HorizontalAlignment="Center" />
+                           </StackPanel>
+                        </Controls:Tile>
+                     </Grid>
+
+                     <ZPF:TextBoxEx Label="User" Indent="100" Margin="5" Text="{Binding Connection.User, ElementName=page}" />
+                     <ZPF:PasswordBoxEx x:Name="tbPassword" Label="Password" Indent="100" Margin="5" Text="{Binding Connection.Password, ElementName=page}"  />
+                  </StackPanel>
+
+                  <StackPanel Margin="5" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right" >
+                     <Controls:Tile 
+                        Foreground="White" Background="{StaticResource Brush_Tile}" 
+                        Margin="5" Width="120" Height="48" TiltFactor="2"
+                        Click="btnOpen_Click" >
+
+                        <StackPanel Orientation="Horizontal" Margin="4">
+                           <!--<Image Source="/Images/Dialog/Right tick - 01.png" Width="48" VerticalAlignment="Center" />-->
+                           <TextBlock Style="{DynamicResource IconFont}" FontSize="32" Text="{x:Static ZPFFonts:IF.Check_Mark_01}"  Margin="10,0,0,0"  />
+                           <TextBlock Margin="8" Text="open" Foreground="White" VerticalAlignment="Center" />
+                        </StackPanel>
+                     </Controls:Tile>
+
+                     <Controls:Tile 
+                        Foreground="White" Background="{StaticResource Brush_Tile}" 
+                        Margin="5" Width="120" Height="48" TiltFactor="2"
+                        Click="btnCancel_Click" >
+
+                        <StackPanel Orientation="Horizontal" Margin="4">
+                           <!--<Image Source="/Images/Dialog/Delete.png" Width="48" VerticalAlignment="Center" />-->
+                           <TextBlock Style="{DynamicResource IconFont}" FontSize="32" Text="{x:Static ZPFFonts:IF.Delete}"  Margin="10,0,0,0"  />
+                           <TextBlock Margin="8" Text="clear" Foreground="White" VerticalAlignment="Center" />
+                        </StackPanel>
+                     </Controls:Tile>
+                  </StackPanel>
+               </Grid>
+            </Controls:MetroTabItem>
+
+         </Controls:MetroAnimatedTabControl>
+
+      </Grid>
+   </Grid>
+</Page>
