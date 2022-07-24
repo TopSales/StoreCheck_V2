@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;WPF</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants)TRACE;WPF</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DBSQL_WPF\Assets\File-Format-PDF.png" />
+    <None Remove="DBSQL_WPF\Assets\Filter-Delete.png" />
+    <None Remove="DBSQL_WPF\Assets\Filter-Standard.png" />
+    <None Remove="DBSQL_WPF\Assets\Filter-Standard.Red.png" />
+    <None Remove="DBSQL_WPF\Assets\Foot print - 02.512.png" />
+    <None Remove="DBSQL_WPF\Assets\Microsoft-Excel-2013-01.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\..\..\Apps\AuditTrailViewer\Pages.WPF\AuditTrailPage.xaml.cs" Link="DBSQL_WPF\Pages\AuditTrailPage.xaml.cs" />
+    <Compile Include="..\..\..\..\..\Apps\AuditTrailViewer\Pages.WPF\AuditTrail_Details_Page.xaml.cs" Link="DBSQL_WPF\Pages\AuditTrail_Details_Page.xaml.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_Basics\AuditTrail\AuditTrailWriterHelper.cs" Link="DBSQL_WPF\CS\AuditTrailWriterHelper.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_Basics\AuditTrail\DBAndFileAuditTrailWriter.cs" Link="DBSQL_WPF\CS\DBAndFileAuditTrailWriter.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_Basics\AuditTrail\DBAuditTrailWriter.cs" Link="DBSQL_WPF\CS\DBAuditTrailWriter.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_DBSQL\CS\DBSQL_Helper.cs" Link="DBSQL\DBSQL_Helper.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_DBSQL\CS\MSSQLiteEngine.cs" Link="DBSQL\MSSQLiteEngine.cs" />
+    <Compile Include="..\..\..\..\..\Nugets\ZPF_DBSQL\CS\SQLServerEngine.cs" Link="DBSQL\SQLServerEngine.cs" />
+    <Compile Include="..\..\..\..\..\_Units_\CS.Converter\CalcConverter.cs" Link="DBSQL_WPF\CS\CalcConverter.cs" />
+    <Compile Include="..\..\..\..\..\_Units_\CS.Converter\TimeSpanToStringConverter.cs" Link="DBSQL_WPF\CS\TimeSpanToStringConverter.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="ZPF_Basics" Version="2.0.0.31" />
+    <PackageReference Include="ZPF_DBSQL" Version="0.1.8.57" />
+    <PackageReference Include="ZPF_Users_Rights" Version="1.1.32" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Nugets\ZPF_Basics_WPF\ZPF_Basics_WPF\ZPF.WPF.Compos.csproj" />
+    <ProjectReference Include="..\..\..\..\StoreCheck.Core.V2\StoreCheck.Core\StoreCheck.Core.V2.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="..\..\..\..\..\Apps\AuditTrailViewer\Pages.WPF\AuditTrailPage.xaml" Link="DBSQL_WPF\Pages\AuditTrailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="..\..\..\..\..\Apps\AuditTrailViewer\Pages.WPF\AuditTrail_Details_Page.xaml" Link="DBSQL_WPF\Pages\AuditTrail_Details_Page.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="DBSQL_WPF\Assets\File-Format-PDF.png" />
+    <Resource Include="DBSQL_WPF\Assets\Filter-Delete.png" />
+    <Resource Include="DBSQL_WPF\Assets\Filter-Standard.png" />
+    <Resource Include="DBSQL_WPF\Assets\Filter-Standard.Red.png" />
+    <Resource Include="DBSQL_WPF\Assets\Foot print - 02.512.png" />
+    <Resource Include="DBSQL_WPF\Assets\Microsoft-Excel-2013-01.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="DBSQL_WPF\Pages\DataGridTools.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="DBSQL_WPF\Pages\ReferentielPage.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DBSQL\" />
+  </ItemGroup>
+
+</Project>
