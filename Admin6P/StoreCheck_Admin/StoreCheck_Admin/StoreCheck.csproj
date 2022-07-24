@@ -25,6 +25,7 @@
 		<Reference Include="System.Printing" />
 	</ItemGroup>
   <ItemGroup>
+	
     <None Remove="DBSQL_WPF\Assets\File-Format-PDF.png" />
     <None Remove="DBSQL_WPF\Assets\Filter-Delete.png" />
     <None Remove="DBSQL_WPF\Assets\Filter-Standard.png" />
