@@ -1,4 +1,6 @@
-﻿using ZPF;
+﻿using System.Net;
+using System.Net.Sockets;
+using ZPF;
 using ZPF.AT;
 using ZPF.Chat;
 
@@ -34,13 +36,13 @@ public class ClientViewModel : BaseViewModel
 
       #region - - - chat client - - -
 
-      ChatCore.DataFolder = System.IO.Path.GetTempPath();
+      //ChatCore.DataFolder = System.IO.Path.GetTempPath();
 
-      chatClient = new ChatClient();
-      chatClient.OnSystemMessage += ChatClient_OnSystemMessage1;
-      chatClient.OnDataEvent += ChatClient_OnDataEvent;
+      //chatClient = new ChatClient();
+      //chatClient.OnSystemMessage += ChatClient_OnSystemMessage1;
+      //chatClient.OnDataEvent += ChatClient_OnDataEvent;
 
-      Connect();
+      //Connect();
 
       #endregion
    }
@@ -98,7 +100,7 @@ public class ClientViewModel : BaseViewModel
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
-   public async void OnDataMessage(ChatClient chatClient, ChatData data)
+   public async void OnDataMessage(object chatClient, ChatData data)
    {
       switch (data.Action.ToLower())
       {
@@ -123,11 +125,11 @@ public class ClientViewModel : BaseViewModel
 
                      MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
 
-                     GC.Collect();
-                     await chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
-                     GC.Collect();
-                     await chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
-                     GC.Collect();
+                     //GC.Collect();
+                     //await chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                     //GC.Collect();
+                     //await chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
+                     //GC.Collect();
 
                      //chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
                      //chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
@@ -190,12 +192,113 @@ public class ClientViewModel : BaseViewModel
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
+   public async Task SendDataToServer(string action, object data)
+   {
+      if (Connectivity.Current.NetworkAccess == Microsoft.Maui.Networking.NetworkAccess.Internet)
+      {
+         Log.Write("Chat", "SendDataToServer: " + action);
+
+         try
+         {
+            var chatData = ChatCore.SerializeData(data);
+            chatData.Action = action;
+
+            var json = await wsHelper.wPost_Stream($@"/SendDataToServer/", chatData);
+
+            //string message = chatData.Serialize() + EndOfFrame;
+
+            //var clientMessageByteArray = Encoding.Unicode.GetBytes(message);
+            //await _networkStream.WriteAsync(clientMessageByteArray, 0, clientMessageByteArray.Length);
+         }
+         catch (Exception ex)
+         {
+            Log.Write(new AuditTrail(ex));
+         };
+      }
+      else
+      {
+         return null;
+      };
+   }
+
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
    public async void Entry(string deviceID)
    {
-      ClientViewModel.Current.Connect();
+      if (Connectivity.Current.NetworkAccess == Microsoft.Maui.Networking.NetworkAccess.Internet)
+      {
+         //var json = await wsHelper.wGet(string.Format("/User/Login/{0}/{1}", username.Text, UserViewModel.Current.Salt(username.Text, password.Text)));
+         var json = await wsHelper.wPost_String($@"/User/Login/{WebUtility.UrlEncode(username.Text)}/{WebUtility.UrlEncode(username.Text)}", UserViewModel.Current.Salt(username.Text, password.Text));
 
-      await chatClient.SendDataToServer("entry", deviceID);
+         string json = await SendDataToServer("entry", deviceID);
+
+         int PK = -1;
+
+         try
+         {
+            PK = int.Parse(json);
+         }
+         catch { };
+
+         if (PK > 0)
+         {
+            //DisplayAlert("PK", PK.ToString(), "ok");
+
+            // - - - ? erase old data - - - 
+
+            if (MainViewModel.Current.Config.Login != username.Text)
+            {
+               MainViewModel.Current.Config.LastSynchro = DateTime.MinValue;
+
+               MainViewModel.Current.Interventions.Clear();
+               MainViewModel.Current.Documents.Clear();
+
+               // - - - clean photo folder - - -
+
+               var folder = ZPF.XF.Basics.Current.FileIO.CleanPath(MainViewModel.Current.DataFolder + @"/Photos/");
+
+               if (!System.IO.Directory.Exists(folder))
+               {
+                  System.IO.Directory.CreateDirectory(folder);
+               };
+
+               var files = System.IO.Directory.GetFiles(folder);
+
+               foreach (var file in files)
+               {
+                  try
+                  {
+                     System.IO.File.Delete(file);
+                  }
+                  catch { };
+               };
+            };
+
+            // - - - remember login status - - - 
+            MainViewModel.Current.Config.IsLogged = true;
+            MainViewModel.Current.Config.Login = username.Text;
+            MainViewModel.Current.Config.UserFK = PK;
+            MainViewModel.Current.SaveLocalConfig();
+
+            MainViewModel.Current.Download(username.Text);
+            BackboneViewModel.Current.DecBusy();
+
+            await Navigation.PopModalAsync();
+         }
+         else
+         {
+            DoIt.OnMainThread(() =>
+            {
+               BackboneViewModel.Current.DecBusy();
+
+               parent.DisplayAlert("Validation Error", "Wrong Username and/or Password", "Re-try");
+            });
+         };
+      }
+      else
+      {
+         return null;
+      };
    }
 
 
@@ -216,54 +319,54 @@ public class ClientViewModel : BaseViewModel
    //   await chatClient.SendDataToServer("remove", spooler);
    //}
 
-   public async void GetStats()
-   {
-      await chatClient.SendDataToServer("GetStats", new QueryParams());
-   }
+   //public async void GetStats()
+   //{
+   //   await chatClient.SendDataToServer("GetStats", new QueryParams());
+   //}
 
-   public async void GetStats(DateTime begin, DateTime end)
-   {
-      await chatClient.SendDataToServer("GetStats", new QueryParams { Begin = begin, End = end });
-   }
+   //public async void GetStats(DateTime begin, DateTime end)
+   //{
+   //   await chatClient.SendDataToServer("GetStats", new QueryParams { Begin = begin, End = end });
+   //}
 
-   public async void ClearSpooler()
-   {
-      await chatClient.SendDataToServer("ClearSpooler", "");
-   }
+   //public async void ClearSpooler()
+   //{
+   //   await chatClient.SendDataToServer("ClearSpooler", "");
+   //}
 
-   public async void GetSpooler()
-   {
-      // // Get(@"/Spooler/GetCurrent");
-      await chatClient.SendDataToServer("GetSpooler", "");
-   }
+   //public async void GetSpooler()
+   //{
+   //   // // Get(@"/Spooler/GetCurrent");
+   //   await chatClient.SendDataToServer("GetSpooler", "");
+   //}
 
-   public async void SendMessage(string msg)
-   {
-      await chatClient.SendMessageToServer(msg);
-   }
+   //public async void SendMessage(string msg)
+   //{
+   //   await chatClient.SendMessageToServer(msg);
+   //}
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 
-   public async void Connect()
-   {
-      string ipAddress = MainViewModel.Current.Config.ServerIP;
-      int port = int.Parse(MainViewModel.Current.Config.ServerPort);
-      string clientName = MainViewModel.Current.Config.ClientName;
-      int bufferSize = 1024;
+   //public async void Connect()
+   //{
+   //   string ipAddress = MainViewModel.Current.Config.ServerIP;
+   //   int port = int.Parse(MainViewModel.Current.Config.ServerPort);
+   //   string clientName = MainViewModel.Current.Config.ClientName;
+   //   int bufferSize = 1024;
 
-      await chatClient.CreateConnection(ipAddress, port, clientName, bufferSize);
+   //   await chatClient.CreateConnection(ipAddress, port, clientName, bufferSize);
 
-      //if (chatClient == null)
-      //{
-      //   chatClient = new ZPF.Chat.ChatClient(OnHostMessage, OnDataMessage, ipAddress, port);
-      //   chatClient.StartClient();
-      //};
-   }
+   //   //if (chatClient == null)
+   //   //{
+   //   //   chatClient = new ZPF.Chat.ChatClient(OnHostMessage, OnDataMessage, ipAddress, port);
+   //   //   chatClient.StartClient();
+   //   //};
+   //}
 
-   public bool IsConnected()
-   {
-      return chatClient.IsConnected();
-   }
+   //public bool IsConnected()
+   //{
+   //   return chatClient.IsConnected();
+   //}
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 }

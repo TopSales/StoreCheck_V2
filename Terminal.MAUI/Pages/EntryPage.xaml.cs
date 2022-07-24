@@ -20,7 +20,8 @@ public partial class EntryPage : PageEx
    {
       base.OnAppearing();
 
-      ClientViewModel.Current.Connect();
+
+      //ClientViewModel.Current.Connect();
 
       if (MainViewModel.Current.Config.FKUser > 0)
       {
@@ -32,7 +33,7 @@ public partial class EntryPage : PageEx
          {
             bool isOK = true;
 
-            if (ClientViewModel.Current.IsConnected())
+            if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
             {
                try
                {
