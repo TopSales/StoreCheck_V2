@@ -31,6 +31,10 @@
     <None Remove="DBSQL_WPF\Assets\Filter-Standard.Red.png" />
     <None Remove="DBSQL_WPF\Assets\Foot print - 02.512.png" />
     <None Remove="DBSQL_WPF\Assets\Microsoft-Excel-2013-01.png" />
+    <None Remove="File_Fonts\desyrel.ttf" />
+    <None Remove="File_Fonts\IconFont.ttf" />
+    <None Remove="File_Fonts\MediaPlayerFont.ttf" />
+    <None Remove="File_Fonts\Montserrat.ttf" />
     <None Remove="Images\Background.jpg" />
     <None Remove="Images\Background.png" />
     <None Remove="Images\Dialog\Delete.png" />
@@ -97,6 +101,10 @@
     <None Remove="Images\Tiles\Warehouse-01-WF.png" />
     <None Remove="Images\Tiles\Web.png" />
     <None Remove="Images\ZeProgramFactory.350.png" />
+    <None Remove="ZPF_Fonts\desyrel.ttf" />
+    <None Remove="ZPF_Fonts\IconFont.ttf" />
+    <None Remove="ZPF_Fonts\MediaPlayerFont.ttf" />
+    <None Remove="ZPF_Fonts\Montserrat.ttf" />
   </ItemGroup>
 
   <ItemGroup>
@@ -113,10 +121,34 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="File_Fonts\desyrel.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="File_Fonts\IconFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="File_Fonts\MediaPlayerFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="File_Fonts\Montserrat.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\StoreCheck.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZPF_Fonts\desyrel.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZPF_Fonts\IconFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZPF_Fonts\MediaPlayerFont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ZPF_Fonts\Montserrat.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
