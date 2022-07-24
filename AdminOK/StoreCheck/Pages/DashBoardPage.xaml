@@ -1,0 +1,181 @@
+﻿<Page 
+   x:Class="StoreCheck.Pages.DashBoardPage"
+   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+   xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+   xmlns:local="clr-namespace:StoreCheck.Pages"
+   xmlns:ZPFFonts="clr-namespace:ZPF.Fonts;assembly=ZPF_Fonts"   
+   xmlns:control="http://filterdatagrid.control.com/2021"
+   xmlns:conv="clr-namespace:ZPF.Conv;assembly=ZPF.WPF.Compos"   
+   xmlns:controls="clr-namespace:ZPF"
+   mc:Ignorable="d" 
+   d:DesignHeight="480" d:DesignWidth="800"
+   Title="DashBoardPage" >
+
+   <Page.Resources>
+      <ResourceDictionary>
+         <conv:UTC2LocalConverter x:Key="UTC2Local" />
+         
+         <Style x:Key="IconFont">
+            <Setter Property="TextElement.FontFamily" Value="/ZPF_Fonts;Component/fonts/#IconFont"/>
+         </Style>
+
+      </ResourceDictionary>
+   </Page.Resources>
+
+   <Grid Loaded="Grid_Loaded" Unloaded="Grid_Unloaded">
+
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="*"/>
+         <ColumnDefinition Width="*"/>
+         <ColumnDefinition Width="250"/>
+      </Grid.ColumnDefinitions>
+
+      <Grid.RowDefinitions>
+         <RowDefinition Height="*"/>
+         <RowDefinition Height="250"/>
+      </Grid.RowDefinitions>
+
+
+      <Border Grid.Column="0" Grid.Row="0" Background="#8FFF" Margin="10,0,5,5" >
+         <controls:ChartView x:Name="chartView" />
+      </Border>
+
+
+      <Border Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Background="#8FFF" Margin="5,0,5,5" >
+
+         <control:FilterDataGrid x:Name="fdgDashboard1" ItemsSource="{Binding atDashboard1, Mode=TwoWay}" Margin="10,25,10,10"
+                  Background="#2FFF"  
+                FilterLanguage="English"
+            DateFormatString="dd/MM/yyyy"
+                  IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
+                  CanUserDeleteRows="False" CanUserAddRows="False" 
+            Style="{StaticResource FilterDatagridStyle}">
+
+            <control:FilterDataGrid.Columns>
+               <control:DataGridTextColumn Binding="{Binding PK}" Header="PK" IsColumnFiltered="True" Width="60" />
+               <control:DataGridTextColumn Header="TimeStamp" Binding="{Binding TimeStamp, Converter={StaticResource UTC2Local}, ConverterParameter=dd.MM HH:mm:ss}" Width="110" />
+               <control:DataGridTextColumn IsColumnFiltered="True" FieldName="sLevel" Binding="{Binding sLevel}" Header="Level" Width="40"/>
+               <control:DataGridTextColumn IsColumnFiltered="True" FieldName="Tag" Binding="{Binding Tag}" Header="Tag" Width="50"/>
+               <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Application}" Header="Application" Width="100"/>
+               <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Message}" Header="Message" />
+               <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding TerminalID}" Header="TerminalID"  Width="100" />
+            </control:FilterDataGrid.Columns>
+            
+         </control:FilterDataGrid>
+      </Border>
+
+      <Border Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#8FFF" Margin="10,5,5,0"  >
+
+         <Grid>
+            <control:FilterDataGrid x:Name="fdgDashboard2" 
+                  ItemsSource="{Binding atDashboard2, UpdateSourceTrigger=PropertyChanged}"  
+                  Margin="10,25,10,10"  
+                  IsReadOnly="True" AutoGenerateColumns="False" SelectionMode="Single"
+                  CanUserDeleteRows="False" CanUserAddRows="False" 
+                 
+                  FilterLanguage="English"
+                  DateFormatString="dd/MM/yyyy" 
+            Style="{StaticResource FilterDatagridStyle}">
+               <control:FilterDataGrid.Columns>
+                  <control:DataGridTextColumn Binding="{Binding PK}" Header="PK" IsColumnFiltered="True" Width="60" />
+                  <control:DataGridTextColumn Header="TimeStamp" Binding="{Binding TimeStamp, Converter={StaticResource UTC2Local}, ConverterParameter=dd.MM HH:mm:ss}" Width="110" />
+                  <control:DataGridTextColumn IsColumnFiltered="True" FieldName="sLevel" Binding="{Binding sLevel}" Header="Level" Width="40"/>
+                  <control:DataGridTextColumn IsColumnFiltered="True" FieldName="Tag" Binding="{Binding Tag}" Header="Tag" Width="50"/>
+                  <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Application}" Header="Application" Width="100"/>
+                  <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding Message}" Header="Message" />
+                  <control:DataGridTextColumn IsColumnFiltered="True" Binding="{Binding TerminalID}" Header="TerminalID"  Width="100" />
+               </control:FilterDataGrid.Columns>
+            </control:FilterDataGrid>
+
+         </Grid>
+      </Border>
+
+      <Label Grid.Column="0" Grid.Row="1" 
+              HorizontalAlignment="Left" VerticalAlignment="Top"
+              Margin="15,5,0,0"
+              Content="Ob dici anno esse ipse" 
+              Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" />
+
+      <Controls:Tile Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5,5,5,150" 
+         Foreground="White" Background="{StaticResource Brush_Tile}"
+         Width="240" Height="60" TiltFactor="2" Click="Tile_Click"
+         Title="" Visibility="{Binding Main.Key, ConverterParameter=EUROMAT, Converter={StaticResource ToVisibility}, Mode=OneWay}" >
+
+         <StackPanel Orientation="Horizontal" Margin="8">
+            <Image Source="/Images/Tiles/Excel Online.png" Width="60" />
+            <TextBlock Text="Export E/S" Foreground="White" VerticalAlignment="Center" />
+         </StackPanel>
+      </Controls:Tile>
+
+      <Border Grid.Column="2" Grid.Row="1" Width="240" Height="134" Background="{StaticResource Brush_Tile}" Margin="0,0,5,0" 
+              HorizontalAlignment="Right" VerticalAlignment="Bottom" >
+
+         <StackPanel Margin="8">
+            <TextBlock 
+             Text="{Binding Stock.InfoEmplacements, Mode=OneWay}" 
+               Foreground="White" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" />
+
+            <TextBlock 
+               Text="{Binding Items.ArticlesView.Count, Mode=OneWay,StringFormat=\{0\} références}" 
+               Foreground="White" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" />
+
+            <TextBlock 
+               Text="{Binding Stock.StockView.Count, Mode=OneWay, StringFormat=\{0\} en stock}" 
+               Foreground="White" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" />
+
+            <TextBlock 
+               Text="{Binding Stock.NbItems, Mode=OneWay, StringFormat=\{0\} articles en stock}" 
+               Foreground="White" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" />
+
+            <TextBlock 
+               Text="{Binding Stock.Valeur, Converter={StaticResource Dot2Comma}, StringFormat=valeur \{0:# ### ##0.000\} €}" 
+               Foreground="White" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" 
+               Visibility="{Binding User.CurrentUserRoles, ConverterParameter=Stock.Valorisation, Converter={StaticResource VisibilityUserLevel}}" />
+
+         </StackPanel>
+      </Border>
+
+
+      <Label  Grid.Column="0" Grid.Row="0" x:Name="labelChart"
+              HorizontalAlignment="Left" VerticalAlignment="Top"
+              Margin="5,0,0,0"
+              Content="labelChart" 
+              Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" />
+
+      <Label  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" 
+              HorizontalAlignment="Left" VerticalAlignment="Top"
+              Margin="10,0"
+              Content="Tetendit ima machinae" 
+              Foreground="#F666" FontSize="16" RenderTransformOrigin="0.5,0.5" />
+
+
+      <!--IsEnabled="{Binding User.ErrorMessage, ConverterParameter=Movements.Export, Converter={StaticResource HasUserLevel}}"-->
+
+      <Controls:Tile Grid.Column="2" Grid.Row="0" 
+                  VerticalAlignment="Top" HorizontalAlignment="Right"
+                  Foreground="White" Opacity="0.4"
+                  Margin="0,6,18,0" Width="17" Height="17" TiltFactor="2"
+                  Click="btnPrintMVT_Click" >
+
+         <StackPanel Orientation="Horizontal" Margin="0">
+            <TextBlock Style="{DynamicResource IconFont}" FontSize="16" Text="{x:Static ZPFFonts:IF.Excel_Online}" />
+         </StackPanel>
+      </Controls:Tile>
+
+      <Controls:Tile Grid.Column="1" Grid.Row="1" 
+         VerticalAlignment="Top" HorizontalAlignment="Right"
+         Foreground="White" Opacity="0.4"
+         Margin="0,10,18,0" Width="17" Height="17" TiltFactor="2"
+         Click="btnPrintAlerte_Click" 
+         Visibility="{Binding Main.IsPro, Converter={StaticResource ToVisibility}, Mode=OneWay}"  >
+
+         <StackPanel Orientation="Horizontal" Margin="0">
+            <!--<Image Source="/StoreCheck;component/Images/Tiles/Excel Online.Black.png" Width="17" VerticalAlignment="Center" />-->
+            <TextBlock Style="{DynamicResource IconFont}" FontSize="16" Text="{x:Static ZPFFonts:IF.Excel_Online}" />
+         </StackPanel>
+      </Controls:Tile>
+   </Grid>
+</Page>
