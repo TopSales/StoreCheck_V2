@@ -19,7 +19,7 @@ namespace ZPF
       public long FKUser { get => _FKUser; set { _FKUser = value; SetUserID(); } }
       long _FKUser = -1;
 
-      public DateTime LastSync { get; set; } = DateTime.MinValue;
+      public DateTime LastSynchro { get; set; } = DateTime.MinValue;
 
       // - - -  - - - 
 
@@ -53,6 +53,7 @@ namespace ZPF
 
 
       public string ServerPort { get; set; } = "9000";
+      public int UserFK { get; internal set; }
 #else
       public string ServerIP { get; set; } = ServerIP1;
       public string ServerPort { get; set; } = "9000";

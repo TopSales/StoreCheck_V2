@@ -1,6 +1,4 @@
-﻿using System.Net;
-using System.Net.Sockets;
-using ZPF;
+﻿using ZPF;
 using ZPF.AT;
 using ZPF.Chat;
 
@@ -192,7 +190,7 @@ public class ClientViewModel : BaseViewModel
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
-   public async Task SendDataToServer(string action, object data)
+   public async Task<string> SendDataToServer(string action, object data)
    {
       if (Connectivity.Current.NetworkAccess == Microsoft.Maui.Networking.NetworkAccess.Internet)
       {
@@ -203,17 +201,22 @@ public class ClientViewModel : BaseViewModel
             var chatData = ChatCore.SerializeData(data);
             chatData.Action = action;
 
-            var json = await wsHelper.wPost_Stream($@"/SendDataToServer/", chatData);
+            Uri uri = wsHelper.CalcURI($@"/SendDataToServer/");
+            var json = await wsHelper.wPost_Stream(uri, chatData);
 
             //string message = chatData.Serialize() + EndOfFrame;
 
             //var clientMessageByteArray = Encoding.Unicode.GetBytes(message);
             //await _networkStream.WriteAsync(clientMessageByteArray, 0, clientMessageByteArray.Length);
+
+            //return json;                                                                                   
          }
          catch (Exception ex)
          {
             Log.Write(new AuditTrail(ex));
          };
+
+         return null;
       }
       else
       {
@@ -228,76 +231,75 @@ public class ClientViewModel : BaseViewModel
       if (Connectivity.Current.NetworkAccess == Microsoft.Maui.Networking.NetworkAccess.Internet)
       {
          //var json = await wsHelper.wGet(string.Format("/User/Login/{0}/{1}", username.Text, UserViewModel.Current.Salt(username.Text, password.Text)));
-         var json = await wsHelper.wPost_String($@"/User/Login/{WebUtility.UrlEncode(username.Text)}/{WebUtility.UrlEncode(username.Text)}", UserViewModel.Current.Salt(username.Text, password.Text));
+         //var json = await wsHelper.wPost_String($@"/User/Login/{WebUtility.UrlEncode(username.Text)}/{WebUtility.UrlEncode(username.Text)}", UserViewModel.Current.Salt(username.Text, password.Text));
 
-         string json = await SendDataToServer("entry", deviceID);
+         string json =  await SendDataToServer("entry", deviceID);
 
          int PK = -1;
+         //try
+         //{
+         //   PK = int.Parse(json);
+         //}
+         //catch { };
 
-         try
-         {
-            PK = int.Parse(json);
-         }
-         catch { };
+         //if (PK > 0)
+         //{
+         //   //DisplayAlert("PK", PK.ToString(), "ok");
 
-         if (PK > 0)
-         {
-            //DisplayAlert("PK", PK.ToString(), "ok");
+         //   // - - - ? erase old data - - - 
 
-            // - - - ? erase old data - - - 
+         //   if (MainViewModel.Current.Config.Login != username.Text)
+         //   {
+         //      MainViewModel.Current.Config.LastSynchro = DateTime.MinValue;
 
-            if (MainViewModel.Current.Config.Login != username.Text)
-            {
-               MainViewModel.Current.Config.LastSynchro = DateTime.MinValue;
+         //      MainViewModel.Current.Interventions.Clear();
+         //      MainViewModel.Current.Documents.Clear();
 
-               MainViewModel.Current.Interventions.Clear();
-               MainViewModel.Current.Documents.Clear();
+         //      // - - - clean photo folder - - -
 
-               // - - - clean photo folder - - -
+         //      var folder = ZPF.XF.Basics.Current.FileIO.CleanPath(MainViewModel.Current.DataFolder + @"/Photos/");
 
-               var folder = ZPF.XF.Basics.Current.FileIO.CleanPath(MainViewModel.Current.DataFolder + @"/Photos/");
+         //      if (!System.IO.Directory.Exists(folder))
+         //      {
+         //         System.IO.Directory.CreateDirectory(folder);
+         //      };
 
-               if (!System.IO.Directory.Exists(folder))
-               {
-                  System.IO.Directory.CreateDirectory(folder);
-               };
+         //      var files = System.IO.Directory.GetFiles(folder);
 
-               var files = System.IO.Directory.GetFiles(folder);
+         //      foreach (var file in files)
+         //      {
+         //         try
+         //         {
+         //            System.IO.File.Delete(file);
+         //         }
+         //         catch { };
+         //      };
+         //   };
 
-               foreach (var file in files)
-               {
-                  try
-                  {
-                     System.IO.File.Delete(file);
-                  }
-                  catch { };
-               };
-            };
+         //   // - - - remember login status - - - 
+         //   MainViewModel.Current.Config.IsLogged = true;
+         //   MainViewModel.Current.Config.Login = username.Text;
+         //   MainViewModel.Current.Config.UserFK = PK;
+         //   MainViewModel.Current.Save();
 
-            // - - - remember login status - - - 
-            MainViewModel.Current.Config.IsLogged = true;
-            MainViewModel.Current.Config.Login = username.Text;
-            MainViewModel.Current.Config.UserFK = PK;
-            MainViewModel.Current.SaveLocalConfig();
+         //   MainViewModel.Current.Download(username.Text);
+         //   BackboneViewModel.Current.DecBusy();
 
-            MainViewModel.Current.Download(username.Text);
-            BackboneViewModel.Current.DecBusy();
+         //   await Navigation.PopModalAsync();
+         //}
+         //else
+         //{
+         //   DoIt.OnMainThread(() =>
+         //   {
+         //      BackboneViewModel.Current.DecBusy();
 
-            await Navigation.PopModalAsync();
-         }
-         else
-         {
-            DoIt.OnMainThread(() =>
-            {
-               BackboneViewModel.Current.DecBusy();
-
-               parent.DisplayAlert("Validation Error", "Wrong Username and/or Password", "Re-try");
-            });
-         };
+         //      parent.DisplayAlert("Validation Error", "Wrong Username and/or Password", "Re-try");
+         //   });
+         //};
       }
       else
       {
-         return null;
+         //return null;
       };
    }
 
