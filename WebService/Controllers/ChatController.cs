@@ -16,16 +16,17 @@ namespace StoreCheck
         [AllowCrossSiteJson]
         [Route("~/SendDataToServer")]
         [HttpPut]
-        public string SendDataToServer([FromHeader] string authorization, [FromBody] ChatData chatData )
+        public ChatData SendDataToServer([FromHeader] string authorization, [FromBody] ChatData chatData )
         {
             if (!string.IsNullOrEmpty(authorization) && MainViewModel.Current.CheckAuthorization(authorization))
             {
                 if (chatData =! null)
                 {
-                    ServerViewModel.Current.ChatServer_OnDataEvent(null, null, chatData);
+                    var r = ServerViewModel.Current.ChatServer_OnDataEvent(null, null, chatData);
+                    return r;
                 };
 
-                return "holla";
+                return null;
             }
             else
             {
