@@ -6,6 +6,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Xml.Linq;
 using ZPF;
+using ZPF.Chat;
 using ZPF.SQL;
 
 namespace StoreCheck
@@ -14,34 +15,14 @@ namespace StoreCheck
     {
         [AllowCrossSiteJson]
         [Route("~/SendDataToServer")]
-        [HttpPost]
-        public string SendDataToServer([FromHeader] string authorization)
+        [HttpPut]
+        public string SendDataToServer([FromHeader] string authorization, [FromBody] ChatData chatData )
         {
             if (!string.IsNullOrEmpty(authorization) && MainViewModel.Current.CheckAuthorization(authorization))
             {
-                if (Request.Form.Files.Count == 1)
+                if (chatData =! null)
                 {
-                    var formFile = Request.Form.Files.First();
-
-                    if (formFile.Length > 0)
-                    {
-                        string json = "";
-
-                        using (var inputStream = formFile.OpenReadStream())
-                        {
-                            // stream to byte array
-                            byte[] array = new byte[inputStream.Length];
-                            inputStream.Seek(0, SeekOrigin.Begin);
-                            inputStream.Read(array, 0, array.Length);
-
-                            json = Encoding.UTF8.GetString(array);
-                        };
-
-                        if( !string.IsNullOrEmpty(json))
-                        {
-
-                        };
-                    };
+                    ServerViewModel.Current.ChatServer_OnDataEvent(null, null, chatData);
                 };
 
                 return "holla";

@@ -70,6 +70,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Include="..\..\..\Nugets\ZPF_Basics\Sources\CS\wsHelper.cs" Link="ToDo\wsHelper.cs" />
 	  <Compile Include="..\..\..\Nugets\ZPF_Users\ZPF_Users_Rights\Models\User.cs" Link="Models\User.cs" />
 	  <Compile Include="..\..\..\_Units_\CS\DoIt.cs" Link="ToDo\DoIt.cs" />
 	</ItemGroup>

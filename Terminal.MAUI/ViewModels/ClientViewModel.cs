@@ -1,4 +1,6 @@
-﻿using ZPF;
+﻿using System.Diagnostics;
+using System.Text;
+using ZPF;
 using ZPF.AT;
 using ZPF.Chat;
 
@@ -201,8 +203,7 @@ public class ClientViewModel : BaseViewModel
             var chatData = ChatCore.SerializeData(data);
             chatData.Action = action;
 
-            Uri uri = wsHelper.CalcURI($@"/SendDataToServer/");
-            var json = await wsHelper.wPost_Stream(uri, chatData);
+            var json = await wPost_ChatData(@"/SendDataToServer", chatData);
 
             //string message = chatData.Serialize() + EndOfFrame;
 
@@ -220,6 +221,57 @@ public class ClientViewModel : BaseViewModel
       }
       else
       {
+         return null;
+      };
+   }
+
+
+   public static async Task<string> wPost_ChatData(string Function, ChatData chatData, string basicAuth = "")
+   {
+      wsHelper.LastError = "";
+      wsHelper.LastData = "";
+
+      Uri uri = wsHelper.CalcURI(Function);
+
+      if (uri == null)
+      {
+         return null;
+      };
+
+      try
+      {
+
+#if __WASM__
+#else
+         if (!string.IsNullOrEmpty(basicAuth))
+         {
+            byte[] byteArray = Encoding.ASCII.GetBytes(basicAuth);
+            wsHelper._httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+         };
+#endif
+
+         var json = ChatData.Serialize(chatData);
+         //var json = new JavaScriptSerializer().Serialize(myObject);
+         //var objAsJson = JsonConvert.SerializeObject(myObject);
+         var content = new StringContent(json, Encoding.UTF8, "application/json");
+         var result = await wsHelper._httpClient.PutAsync(uri, content); //or PostAsync for POST
+
+         result.EnsureSuccessStatusCode();
+
+         wsHelper.LastData = await result.Content.ReadAsStringAsync();
+         return wsHelper.LastData;
+      }
+      catch (Exception ex)
+      {
+         Log.Write(new AuditTrail(ex)
+         {
+            Application = "wsHelper.wPost_String1",
+            //DataOut = json,
+         });
+
+         wsHelper.LastError = ex.Message;
+         Debug.WriteLine(ex.Message);
+
          return null;
       };
    }

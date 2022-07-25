@@ -9,6 +9,17 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseCors(cors => cors
+   .WithOrigins("http://localhost:7149", "https://localhost:7149",
+                  "http://ws.storecheck.pro/", "https://ws.storecheck.pro/",
+                  "http://ws.storecheck.tech/", "https://ws.storecheck.tech/")
+   .AllowAnyMethod()
+   .AllowAnyHeader()
+   //.AllowAnyOrigin()
+   .SetIsOriginAllowed(origin => true)
+   .AllowCredentials()
+);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

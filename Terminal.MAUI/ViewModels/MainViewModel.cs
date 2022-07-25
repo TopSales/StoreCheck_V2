@@ -222,7 +222,7 @@ public partial class MainViewModel : BaseViewModel
 
 #if DEBUG
    //public static string wsServer = "https://wsstorecheck.diplodocus.dev/StoreCheck/";
-   public static string wsServer = "http://localhost:7149/";
+   public static string wsServer = "https://localhost:7149/";
 
    public static string wsServerDoc = "https://wsstorecheckdoc.diplodocus.dev/StoreCheck/";
 #else
