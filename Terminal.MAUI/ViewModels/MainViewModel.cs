@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Text.Json;
 using Newtonsoft.Json;
 using ZPF;
@@ -66,6 +67,8 @@ public partial class MainViewModel : BaseViewModel
       AuditTrailViewModel.Current.Init(new JSONAuditTrailWriter(DataFolder + "AuditTrail.json", JSONAuditTrailWriter.FileTypes.PartialJSON));
       AuditTrailViewModel.Current.Application = "SC_Term";
       AuditTrailViewModel.Current.Clean();
+
+      InitWS();
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
@@ -203,5 +206,45 @@ public partial class MainViewModel : BaseViewModel
       //if (saveDBRange == DBRange.all || saveDBRange == DBRange.Families) SaveListe("Families", Families);
    }
 
+   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
+
+   //#if DEBUG
+   //   //public static string wsServer = "http://ws.StoreCheck.tech/StoreCheck/";
+   //   //public static string wsServer = "http://localhost:6200/StoreCheck/";
+   //   //public static string wsServer = "http://ws.StoreCheck.pro/StoreCheck/";
+
+   //   public static string wsServer = "https://wsstorecheck.diplodocus.dev/StoreCheck/";
+   //#else
+   //   //public static string wsServer = "http://ws.StoreCheck.pro/StoreCheck/";
+
+   //   public static string wsServer = "https://wsstorecheck.diplodocus.dev/StoreCheck/";
+   //#endif
+
+#if DEBUG
+   //public static string wsServer = "https://wsstorecheck.diplodocus.dev/StoreCheck/";
+   public static string wsServer = "http://localhost:7149/";
+
+   public static string wsServerDoc = "https://wsstorecheckdoc.diplodocus.dev/StoreCheck/";
+#else
+   public static string wsServer = "https://wsstorecheck.diplodocus.dev/StoreCheck/";
+   public static string wsServerDoc = "https://wsstorecheckdoc.diplodocus.dev/StoreCheck/";
+#endif
+
+   public void InitWS()
+   {
+      wsHelper.Init();
+      wsHelper.wsServer = wsServer;
+
+      string BasicAuth = "StoreCheck:ZPF";
+
+      if (!string.IsNullOrEmpty(BasicAuth))
+      {
+         byte[] byteArray = Encoding.ASCII.GetBytes(BasicAuth);
+         wsHelper._httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+      };
+
+      wsHelper._httpClient.Timeout = TimeSpan.FromSeconds(60);
+   }
+   
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  -
 }

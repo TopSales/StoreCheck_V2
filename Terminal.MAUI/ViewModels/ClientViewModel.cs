@@ -192,7 +192,7 @@ public class ClientViewModel : BaseViewModel
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
    public async Task<string> SendDataToServer(string action, object data)
    {
-      if (Connectivity.Current.NetworkAccess == Microsoft.Maui.Networking.NetworkAccess.Internet)
+      if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
       {
          Log.Write("Chat", "SendDataToServer: " + action);
 
@@ -228,12 +228,12 @@ public class ClientViewModel : BaseViewModel
 
    public async void Entry(string deviceID)
    {
-      if (Connectivity.Current.NetworkAccess == Microsoft.Maui.Networking.NetworkAccess.Internet)
-      {
-         //var json = await wsHelper.wGet(string.Format("/User/Login/{0}/{1}", username.Text, UserViewModel.Current.Salt(username.Text, password.Text)));
-         //var json = await wsHelper.wPost_String($@"/User/Login/{WebUtility.UrlEncode(username.Text)}/{WebUtility.UrlEncode(username.Text)}", UserViewModel.Current.Salt(username.Text, password.Text));
+         if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+         {
+            //var json = await wsHelper.wGet(string.Format("/User/Login/{0}/{1}", username.Text, UserViewModel.Current.Salt(username.Text, password.Text)));
+            //var json = await wsHelper.wPost_String($@"/User/Login/{WebUtility.UrlEncode(username.Text)}/{WebUtility.UrlEncode(username.Text)}", UserViewModel.Current.Salt(username.Text, password.Text));
 
-         string json =  await SendDataToServer("entry", deviceID);
+            string json =  await SendDataToServer("entry", deviceID);
 
          int PK = -1;
          //try
