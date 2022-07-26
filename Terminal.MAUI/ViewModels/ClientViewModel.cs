@@ -210,7 +210,7 @@ public class ClientViewModel : BaseViewModel
             //var clientMessageByteArray = Encoding.Unicode.GetBytes(message);
             //await _networkStream.WriteAsync(clientMessageByteArray, 0, clientMessageByteArray.Length);
 
-            //return json;                                                                                   
+            return json;                                                                                   
          }
          catch (Exception ex)
          {

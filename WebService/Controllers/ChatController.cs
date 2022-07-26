@@ -1,13 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
-using System.Net;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Xml.Linq;
-using ZPF;
 using ZPF.Chat;
-using ZPF.SQL;
 
 namespace StoreCheck
 {
@@ -18,6 +10,8 @@ namespace StoreCheck
         [HttpPut]
         public ChatData SendDataToServer([FromHeader] string authorization, [FromBody] ChatData chatData )
         {
+            MainViewModel.Current.Prologue(Request);
+
             if (!string.IsNullOrEmpty(authorization) && MainViewModel.Current.CheckAuthorization(authorization))
             {
                 if (chatData != null)

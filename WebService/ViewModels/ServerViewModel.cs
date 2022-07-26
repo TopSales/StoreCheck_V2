@@ -44,19 +44,8 @@ public class ServerViewModel : BaseViewModel
     {
         _Current = this;
 
-        #region - - - chat server - - -
-
         ChatCore.DataFolder = System.IO.Path.GetTempPath();
-
-        //chatServer = (ChatServer)ChatServer.Current;
-        //chatServer.OnChatEvent += ChatServer_OnChatEvent;
-
-        #endregion
     }
-
-    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
-
-    public ChatServer chatServer = null;
 
     // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
