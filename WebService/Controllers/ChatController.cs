@@ -20,7 +20,7 @@ namespace StoreCheck
         {
             if (!string.IsNullOrEmpty(authorization) && MainViewModel.Current.CheckAuthorization(authorization))
             {
-                if (chatData =! null)
+                if (chatData != null)
                 {
                     var r = ServerViewModel.Current.ChatServer_OnDataEvent(null, null, chatData);
                     return r;
