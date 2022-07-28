@@ -96,7 +96,8 @@ public class ServerViewModel : BaseViewModel
 
                     var list = MainViewModel.Current.GetInterventions(qp.Begin, true, qp.FKUser, null, null);
 
-                    //await chatServer.SendDataToClient(tcpClient, "get_interventions", list);
+                    data.SerializeData(list);
+                    return data;
                 };
                 break;
 
@@ -106,7 +107,8 @@ public class ServerViewModel : BaseViewModel
 
                     var list = MainViewModel.Current.GetStores(qp.Begin);
 
-                    //await chatServer.SendDataToClient(tcpClient, "get_stores", list);
+                    data.SerializeData(list);
+                    return data;
                 };
                 break;
         };

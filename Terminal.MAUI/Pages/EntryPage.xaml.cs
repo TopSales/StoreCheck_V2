@@ -20,12 +20,11 @@ public partial class EntryPage : PageEx
    {
       base.OnAppearing();
 
-
       //ClientViewModel.Current.Connect();
 
       if (MainViewModel.Current.Config.FKUser > 0)
       {
-         await Navigation.PopModalAsync(); 
+         await Navigation.PopModalAsync();
       }
       else
       {
@@ -53,18 +52,12 @@ public partial class EntryPage : PageEx
 
             if (isOK)
             {
-               DoIt.OnMainThread(() =>
-               {
-                  MainViewModel.Current.EntryMsg = "ID send ...";
-               });
+               MainViewModel.Current.EntryMsg = "ID send ...";
             }
             else
             {
-               DoIt.OnMainThread(() =>
-               {
-                  DisplayAlert("Error", "Could not connect to the server!", "ok");
-                  MainViewModel.Current.EntryMsg = "Could not connect to the server!";
-               });
+               DisplayAlert("Error", "Could not connect to the server!", "ok");
+               MainViewModel.Current.EntryMsg = "Could not connect to the server!";
             };
          });
       };

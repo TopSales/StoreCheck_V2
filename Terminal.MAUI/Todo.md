@@ -1,4 +1,8 @@
 
+# Questions:
+Quid d'un changement d'utilisateur du PDA? ? Btn RAZ des datas ?
+
+
 # ToDo
 ContactPage
 InterventionPage

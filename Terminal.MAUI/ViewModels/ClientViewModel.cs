@@ -34,36 +34,7 @@ public class ClientViewModel : BaseViewModel
    {
       _Current = this;
 
-      #region - - - chat client - - -
-
       //ChatCore.DataFolder = System.IO.Path.GetTempPath();
-
-      //chatClient = new ChatClient();
-      //chatClient.OnSystemMessage += ChatClient_OnSystemMessage1;
-      //chatClient.OnDataEvent += ChatClient_OnDataEvent;
-
-      //Connect();
-
-      #endregion
-   }
-
-   // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
-
-   //ChatClient chatClient = null;
-
-   // Write the host messages to the console
-   private void ChatClient_OnSystemMessage1(object sender, System.Net.Sockets.TcpClient tcpClient, ChatCore.EventType eventType, string message = "")
-   {
-      PeriodicallyClearScreen();
-      AddMessage(message);
-   }
-
-   private void ChatClient_OnDataEvent(object sender, System.Net.Sockets.TcpClient tcpClient, ChatData data)
-   {
-      PeriodicallyClearScreen();
-      //AddMessage($"{data.Action} [{data.Data}]");
-
-      OnDataMessage(null, data);
    }
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
@@ -100,91 +71,23 @@ public class ClientViewModel : BaseViewModel
 
    // - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -  - -
 
-   public async void OnDataMessage(object chatClient, ChatData data)
+   public async void OnChatData(ChatData data)
    {
       switch (data.Action.ToLower())
       {
-         case "entry":
-            {
-               if (data.Data == null)
-               {
-                  MainViewModel.Current.EntryMsg = $"Call your admin\n\n[{MainViewModel.Current.DeviceID}]";
-               }
-               else
-               {
-                  var u = Newtonsoft.Json.JsonConvert.DeserializeObject<UserAccount>(data.Data);
-
-                  if (u != null)
-                  {
-                     AuditTrailViewModel.Current.TerminalID = u.TerminalID;
-                     AuditTrailViewModel.Current.FKUser = u.PK.ToString();
-
-                     MainViewModel.Current.Config.FKUser = u.PK;
-                     MainViewModel.Current.Config.Login = u.Login;
-                     MainViewModel.Current.Save();
-
-                     MainViewModel.Current.EntryMsg = $"Hello Mr '{u.Login}' ...";
-
-                     //GC.Collect();
-                     //await chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
-                     //GC.Collect();
-                     //await chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
-                     //GC.Collect();
-
-                     //chatClient.SendDataToServer("get_interventions", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
-                     //chatClient.SendDataToServer("get_stores", new QueryParams { FKUser = MainViewModel.Current.Config.FKUser, Begin = MainViewModel.Current.Config.LastSync });
-                  };
-               };
-            };
-            break;
-
-         case "call":
-            {
-               //var s = Newtonsoft.Json.JsonConvert.DeserializeObject<Spooler>(data.Data);
-
-               //if (s.Client == MainViewModel.Current.Config.ClientName)
-               //{
-               //   string buffer = "";
-
-               //   // - - - beeper - - -
-               //   if (false)
-               //   {
-               //      buffer = (char)0x01 + s.Beeper + (char)0x03;
-               //      DependencyService.Get<ISyscallHelper>().Write2SerialPort(byte.Parse(MainViewModel.Current.Config.ComPort), buffer);
-               //   };
-
-               //   // - - - pager - - -
-               //   if (true)
-               //   {
-               //      string beeper = s.Beeper;
-               //      string gate = s.Gate.ToString();
-               //      string text = "Gate";
-
-               //      buffer = beeper.PadLeft(4, '0'); // beeper
-               //      buffer += gate.PadLeft(3, '0'); // gate
-               //      buffer += text.ToUpper().PadLeft(10, ' '); // text
-
-               //      buffer = (char)0x01 + buffer + (char)0x03;
-
-               //      // fucking ugly ... but, it works ...
-               //      DependencyService.Get<ISyscallHelper>().Write2SerialPort(byte.Parse(MainViewModel.Current.Config.ComPort), buffer);
-               //      DependencyService.Get<ISyscallHelper>().Write2SerialPort(byte.Parse(MainViewModel.Current.Config.ComPort), buffer);
-               //   };
-               //};
-            };
-            break;
-
          case "get_interventions":
             {
-               MainViewModel.Current.SetInterventions(ZIPHelper.Unzip(Convert.FromBase64String(data.Data)));
+               MainViewModel.Current.SetInterventions(data.GetData());
                MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Interventions);
+               MainViewModel.Current.EntryMsg = $"Sync Interventions ({MainViewModel.Current.Interventions.Count}) OK ...";
             };
             break;
 
          case "get_stores":
             {
-               MainViewModel.Current.SetStores(ZIPHelper.Unzip(Convert.FromBase64String(data.Data)));
+               MainViewModel.Current.SetStores(data.GetData());
                MainViewModel.Current.SaveLocalDB(MainViewModel.DBRange.Stores);
+               MainViewModel.Current.EntryMsg = $"Sync Stores ({MainViewModel.Current.Stores.Count}) OK ...";
             };
             break;
       };
@@ -205,12 +108,7 @@ public class ClientViewModel : BaseViewModel
 
             var json = await wPost_ChatData(@"/SendDataToServer", chatData);
 
-            //string message = chatData.Serialize() + EndOfFrame;
-
-            //var clientMessageByteArray = Encoding.Unicode.GetBytes(message);
-            //await _networkStream.WriteAsync(clientMessageByteArray, 0, clientMessageByteArray.Length);
-
-            return json;                                                                                   
+            return json;
          }
          catch (Exception ex)
          {
@@ -240,7 +138,6 @@ public class ClientViewModel : BaseViewModel
 
       try
       {
-
 #if __WASM__
 #else
          if (!string.IsNullOrEmpty(basicAuth))
@@ -251,8 +148,6 @@ public class ClientViewModel : BaseViewModel
 #endif
 
          var json = ChatData.Serialize(chatData);
-         //var json = new JavaScriptSerializer().Serialize(myObject);
-         //var objAsJson = JsonConvert.SerializeObject(myObject);
          var content = new StringContent(json, Encoding.UTF8, "application/json");
          var result = await wsHelper._httpClient.PutAsync(uri, content); //or PostAsync for POST
 
@@ -265,7 +160,7 @@ public class ClientViewModel : BaseViewModel
       {
          Log.Write(new AuditTrail(ex)
          {
-            Application = "wsHelper.wPost_String1",
+            Application = "wsHelper.wPost_ChatData",
             //DataOut = json,
          });
 
@@ -280,74 +175,91 @@ public class ClientViewModel : BaseViewModel
 
    public async void Entry(string deviceID)
    {
-         if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+      if (Connectivity.Current.NetworkAccess == NetworkAccess.Internet)
+      {
+         string json = await SendDataToServer("entry", deviceID);
+
+         if (!string.IsNullOrEmpty(json))
          {
-            //var json = await wsHelper.wGet(string.Format("/User/Login/{0}/{1}", username.Text, UserViewModel.Current.Salt(username.Text, password.Text)));
-            //var json = await wsHelper.wPost_String($@"/User/Login/{WebUtility.UrlEncode(username.Text)}/{WebUtility.UrlEncode(username.Text)}", UserViewModel.Current.Salt(username.Text, password.Text));
+            var chatData = ChatCore.DeserializeChatData(json);
 
-            string json =  await SendDataToServer("entry", deviceID);
+            if (chatData != null && chatData.Action == "entry")
+            {
+               User_CE user = Newtonsoft.Json.JsonConvert.DeserializeObject<User_CE>(chatData.GetData());
 
-         int PK = -1;
-         //try
-         //{
-         //   PK = int.Parse(json);
-         //}
-         //catch { };
+               if (user != null)
+               {
+                  // - - - ? erase old data - - -              
 
-         //if (PK > 0)
-         //{
-         //   //DisplayAlert("PK", PK.ToString(), "ok");
+                  if (MainViewModel.Current.Config.Login != user.Login)
+                  {
+                     MainViewModel.Current.Config.LastSynchro = DateTime.MinValue;
 
-         //   // - - - ? erase old data - - - 
+                     MainViewModel.Current.Interventions.Clear();
+                     MainViewModel.Current.Documents.Clear();
 
-         //   if (MainViewModel.Current.Config.Login != username.Text)
-         //   {
-         //      MainViewModel.Current.Config.LastSynchro = DateTime.MinValue;
+                     // - - - clean photo folder - - -
 
-         //      MainViewModel.Current.Interventions.Clear();
-         //      MainViewModel.Current.Documents.Clear();
+                     var folder = ZPF.XF.FileIO.CleanPath(MainViewModel.Current.DataFolder + @"/Photos/");
 
-         //      // - - - clean photo folder - - -
+                     if (!System.IO.Directory.Exists(folder))
+                     {
+                        System.IO.Directory.CreateDirectory(folder);
+                     };
 
-         //      var folder = ZPF.XF.Basics.Current.FileIO.CleanPath(MainViewModel.Current.DataFolder + @"/Photos/");
+                     var files = System.IO.Directory.GetFiles(folder);
 
-         //      if (!System.IO.Directory.Exists(folder))
-         //      {
-         //         System.IO.Directory.CreateDirectory(folder);
-         //      };
+                     foreach (var file in files)
+                     {
+                        try
+                        {
+                           System.IO.File.Delete(file);
+                        }
+                        catch { };
+                     };
+                  };
 
-         //      var files = System.IO.Directory.GetFiles(folder);
+                  // - - -  - - - 
 
-         //      foreach (var file in files)
-         //      {
-         //         try
-         //         {
-         //            System.IO.File.Delete(file);
-         //         }
-         //         catch { };
-         //      };
-         //   };
+                  MainViewModel.Current.EntryMsg = "ID checked ...";
 
-         //   // - - - remember login status - - - 
-         //   MainViewModel.Current.Config.IsLogged = true;
-         //   MainViewModel.Current.Config.Login = username.Text;
-         //   MainViewModel.Current.Config.UserFK = PK;
-         //   MainViewModel.Current.Save();
+                  MainViewModel.Current.Config.IsLogged = true;
+                  MainViewModel.Current.Config.FKUser = user.PK;
+                  MainViewModel.Current.Config.Login = user.Login;
+                  MainViewModel.Current.Save();
 
-         //   MainViewModel.Current.Download(username.Text);
-         //   BackboneViewModel.Current.DecBusy();
+                  MainViewModel.Current.EntryMsg = $"Hello '{user.Login}'\nsyncing datas ...";
 
-         //   await Navigation.PopModalAsync();
-         //}
-         //else
-         //{
-         //   DoIt.OnMainThread(() =>
-         //   {
-         //      BackboneViewModel.Current.DecBusy();
+                  // - - -  - - - 
 
-         //      parent.DisplayAlert("Validation Error", "Wrong Username and/or Password", "Re-try");
-         //   });
-         //};
+                  var queryParams = new QueryParams() { FKUser = MainViewModel.Current.Config.FKUser };
+
+                  {
+                     json = await SendDataToServer("get_interventions", queryParams);
+
+                     if (!string.IsNullOrEmpty(json))
+                     {
+                        chatData = ChatCore.DeserializeChatData(json);
+                        this.OnChatData(chatData);
+                     };
+                  }
+
+                  {
+                     json = await SendDataToServer("get_stores", queryParams);
+
+                     if (!string.IsNullOrEmpty(json))
+                     {
+                        chatData = ChatCore.DeserializeChatData(json);
+                        this.OnChatData(chatData);
+                     };
+                  };
+               }
+               else
+               {
+                  MainViewModel.Current.EntryMsg = "ID couldn't be verified ...";
+               };
+            };
+         };
       }
       else
       {
